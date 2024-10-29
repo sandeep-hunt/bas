@@ -1,0 +1,16 @@
+.abouthome-container {
+    padding: 2rem 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 144px;
+}
+
+.abouthome-inner {
+    max-width: 934px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 40px;
+}

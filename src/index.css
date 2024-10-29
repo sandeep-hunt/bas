@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --white:  #FFFFFF;
+    --black:   #000000;
+    --gray: #3B3D40;
+    --main: #FB660D;
+    --main_hover: #DA5A0E;
+    --bg_clr: #FFF1EF;
+    --bg_clr1: #FFE4DF;
+    --bg_clr2: #240800;
+    --main_act: #fb640d8f;
+}
+
+body {
+    font-family: "Urbanist", system-ui;
+    background-color: var(--bg_clr);
+}

@@ -1,0 +1,23 @@
+.galleryhome-container {
+    padding: 2rem 200px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+    width: 100%;
+    margin-top: 144px;
+}
+
+.galleryhome-container .galleryhome-inner {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.galleryhome-container .galleryhome-inner .row {
+    --bs-gutter-x: 14px;
+}
+
+.galleryhome-container .galleryhome-inner img {
+    margin-bottom: 14px;
+    border-radius: 12px;
+}

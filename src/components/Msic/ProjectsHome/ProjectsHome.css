@@ -1,0 +1,33 @@
+.projectshome-container {
+    padding: 2rem 200px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+    margin-top: 144px;
+}
+
+.projectshome-container .projectshome-inner {
+    margin-top: 1.5rem;
+}
+
+.projectshome-container .projectshome-inner .row {
+    --bs-gutter-x: 28px;
+}
+
+.projectshome-container .projectshome-inner .projectshome-item {
+    padding: 50px 21px;
+    background-color: var(--gray);
+    border-radius: 5px;
+    background: rgb(255,161,79);
+    background: linear-gradient(225deg, rgba(255,161,79,1) 0%, rgba(255,56,9,1) 100%);
+    gap: 41.02px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.projectshome-container .projectshome-inner .projectshome-item .projecthome-icons {
+    width: 65px;
+    height: 65px;
+}

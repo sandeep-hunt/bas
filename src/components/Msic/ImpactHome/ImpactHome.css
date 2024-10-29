@@ -1,0 +1,19 @@
+.impacthome-container {
+    padding: 2rem 200px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+    margin-top: 144px;
+}
+
+.impacthome-container .impacthome-inner {
+    padding: 0 5rem;
+}
+
+.impacthome-container .impacthome-inner .impacthome-item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 22px;
+}

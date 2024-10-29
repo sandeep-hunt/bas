@@ -1,0 +1,67 @@
+.navbar {
+    background-color: var(--bg_clr1);
+    padding: 4px 200px !important;
+}
+
+.navbar .logo {
+    width: 70px;
+    height: 70px;
+}
+
+.navbar-nav {
+    gap: 47px;
+}
+
+.navbar .nav-link {
+    color: var(--bg_clr2) !important;
+    font-weight: bold;
+}
+
+.navbar .nav-link.btn-mainLink {
+    background-color: var(--main) !important;
+    border: 1px solid var(--main) !important;
+    font-weight: bold !important;
+    border-radius: 10px 10px 10px 0px;
+    color: var(--white) !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+}
+
+.navbar .nav-link.btn-mainLink:hover {
+    background-color: var(--main_hover) !important;
+    border: 1px solid var(--main_hover) !important;
+    color: var(--white) !important;
+}
+
+.navbar .nav-link:hover {
+    color: var(--main) !important;
+}
+
+.navbar .dropdown-menu {
+    margin-top: 25px !important;
+    width: 600px !important;
+    border: none !important;
+    padding: 0;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);;
+}
+
+.navbar .dropdown-item.active, .dropdown-item:active {
+    color: var(--white);
+    background-color: var(--main) !important;
+}
+
+.navbar .dropdown-item:hover {
+    color: var(--white);
+    background-color: var(--main) !important;
+}
+
+.navbar .dropdown-menu .dropdown-menu-text {
+    color: var(--bg_clr2);
+    font-weight: bold;
+}
+
+.navbar .dropdown-menu .dropdown-menu-tag {
+    color: var(--bg_clr2);
+    font-size: 14px;
+    font-weight: 500;
+}

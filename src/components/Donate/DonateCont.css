@@ -1,0 +1,90 @@
+.donate-container {
+    padding: 104px 200px;
+}
+
+.donate-container .donate-wrapper {
+    background-color: var(--white);
+    border-radius: 12px;
+    width: 100%;
+    height: auto;
+    padding: 32px;
+}
+
+.donate-container .donate-wrapper .row {
+    --bs-gutter-x: 31px;
+}
+
+.form-group {
+    margin-bottom: 24px !important;
+}
+
+.donation-left {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 6px;
+    width: 100%;
+    height: 100%;
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 5% 0;
+    text-align: center;
+}
+
+.donation-right-header::after {
+    padding: 0 0 1rem 0;
+    content: '';
+    display: block;
+    border-bottom: 2px dashed var(--bg_clr2);
+}
+
+.donation-right-body {
+    margin-top: 1rem;
+}
+
+.donation-right-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    font-weight: 600;
+}
+
+.donation-right-cont {
+    display: flex;
+    gap: .3rem;
+    align-items: center;
+}
+
+.donation-right-step.active {
+    color: #11A75C;
+    border: 3px solid #11A75C;
+}
+
+.donation-right-step.active-check {
+    color: var(--white);
+    border: 3px solid #11A75C;
+    background-color: #11A75C;
+}
+
+.donation-right-text.active {
+    color: #11A75C;
+}
+
+.donation-right-step {
+    border: 3px solid black;
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-check-box {
+    padding: .5rem 2.5rem !important;
+    border: 1px solid var(--main);
+    border-radius: 6px;
+}

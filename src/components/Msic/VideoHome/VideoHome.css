@@ -1,0 +1,54 @@
+.videohome-container {
+    padding: 144px 305px;
+}
+
+.videohome-container .videohome-inner {
+    background: url('../../../assets/images/msic/videobg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 570px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 24px;
+}
+
+.videohome-container .videohome-inner .popUp {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0, .8);
+}
+
+.videohome-container .videohome-inner img {
+    cursor: pointer;
+}
+
+.videohome-container .videohome-inner .popUp .close_btn {
+    position: absolute;
+    top: 2%;
+    right: 1%;
+    color: var(--white);
+    cursor: pointer;
+    width: 22px;
+}
+
+.videohome-container .videohome-inner .popUp iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 750px;
+    width: 100%;
+    max-height: 420px;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
