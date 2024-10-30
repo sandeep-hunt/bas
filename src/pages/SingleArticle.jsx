@@ -56,14 +56,14 @@ const SingleArticle = () => {
               <p>Narratives we hear play a crucial role in shaping our understanding of civilizational history by connecting dots to form a cohesive story. The narrative strategies surrounding Indian heritage over the past thousand years, however, require revisiting as emerging counter-narratives are increasingly gaining significance. Globalized narratives, which have become foundational to newer interpretations, often cause Indians to feel estranged, misunderstood, or even demoralized. This problem intensifies when local storytellers adopt these globalized narratives, mistaking narrators for the original sources of knowledge.</p>
               <p>Such misunderstandings can lead to "focalization"—a process by which perspectives are altered or skewed—resulting in the miscommunication of key aspects of Indian culture. By examining ancient Indian traditions such as **Sām Veda** (Vedic chanting, with an unknown origin date) and **Dhrupad** (an ancient form of classical Indian music, likely originating around 300 BC and still practiced today), this article explores how these cultural treasures have been represented in newer globalized narratives. It highlights the focalization that arises from these narratives and underscores the need to address these misconceptions in order to preserve the true essence of Indian heritage.</p>
               <p><strong>Keywords: </strong>Narrative Strategies, Focalisation, Khayāl, Dhrupad, Sāma Gāna</p>
-              <p><strong>Link: </strong><a href="#" target='_blank'>https://imgurl.com/images/nature_image.pdf</a></p>
+              <p><strong>Link: <u><a href="#" target='_blank'>https://imgurl.com/images/nature_image.pdf</a></u></strong></p>
             </div>
 
             <div className="posts-container single-post">
               <div className="posts-header">
                 <h3>Related Article Posts</h3>
               </div>
-              <Row xs={1} md={3} className="g-4 mt-2">
+              <Row xs={1} md={3} className="g-4">
                 <Col>
                   <Card>
                     <Card.Img variant="top" src={Blog1} />

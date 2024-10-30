@@ -22,7 +22,7 @@ const JoinUsCont = () => {
         </div>
       </div>
       <div className="donate-container">
-        <Container>
+        <Container fluid>
           <div className="donate-wrapper">
             <JoinUsForm_init />
           </div>

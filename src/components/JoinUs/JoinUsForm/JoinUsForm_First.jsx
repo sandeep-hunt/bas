@@ -2,6 +2,7 @@ import React from 'react'
 import { Row, Col } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import PhoneInput from 'react-phone-input-2';
 import DonateImg1 from '../../../assets/images/msic/donate_bg1.png'
 
 const JoinUsForm_First = ({ formData, setFormData, nextStep }) => {
@@ -37,32 +38,61 @@ const JoinUsForm_First = ({ formData, setFormData, nextStep }) => {
             </div>
             <div className="donation-right-body">
               <h4>Personal Details</h4>
-              <Form.Group className='mb-3'>
-                <label>Name<span style={{ color: `red` }}>*</span></label>
-                <input className='form-control' type="text" name="name" value={name} onChange={handleChange} />
-              </Form.Group>
-              <Form.Group className='mb-3'>
-                <label>Mobile<span style={{ color: `red` }}>*</span></label>
-                <input className='form-control' type="text" name="mobile" value={mobile} onChange={handleChange} />
-              </Form.Group>
-              <Form.Group className='mb-3'>
-                <label>Email<span style={{ color: `red` }}>*</span></label>
-                <input className='form-control' type="email" name="email" value={email} onChange={handleChange} />
-              </Form.Group>
-              <Form.Group className='mb-3'>
-                <label>Age<span style={{ color: `red` }}>*</span></label>
-                <input className='form-control' type="text" name="age" value={age} onChange={handleChange} />
-              </Form.Group>
-              <Form.Group>
-                <label>Gender<span style={{ color: `red` }}>*</span></label>
-                <Form.Select name="gender" onChange={handleChange}>
-                  <option value=''>Select Gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="rather not to say">Rather Not To Say</option>
-                </Form.Select>
-              </Form.Group>
-              <label className='mt-3'>Choose a type</label>
+              <Row>
+                <Col xs={7}>
+                  <Form.Group className='mb-3'>
+                    <label>Name <span style={{ color: `red` }}>*</span></label>
+                    <input className='form-control' type="text" name="name" value={name} onChange={handleChange} placeholder='Full Name' />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={5}>
+                  <Form.Group className='mb-3'>
+                    <label>Mobile <span style={{ color: `red` }}>*</span></label>
+                    <PhoneInput
+                      country={'in'}
+                      value={mobile}
+                      onChange={(mobile) => setFormData((prevData) => ({ ...prevData, mobile: mobile }))}
+                      enableSearch={true}
+                      disableSearchIcon={false}
+                      inputProps={{
+                        name: 'phone',
+                        required: true,
+                      }}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={5}>
+                  <Form.Group className='mb-3'>
+                    <label>Email <span style={{ color: `red` }}>*</span></label>
+                    <input className='form-control' type="email" name="email" value={email} onChange={handleChange} placeholder='Email' />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={2}>
+                  <Form.Group className='mb-3'>
+                    <label>Age <span style={{ color: `red` }}>*</span></label>
+                    <input className='form-control' type="text" name="age" value={age} onChange={handleChange} placeholder='Age' />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={3}>
+                  <Form.Group>
+                    <label>Gender <span style={{ color: `red` }}>*</span></label>
+                    <Form.Select name="gender" onChange={handleChange}>
+                      <option value=''>Gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </Form.Select>
+                  </Form.Group>
+                </Col>
+              </Row>
+              <label className='mt-3'>Choose a type <span style={{ color: `red` }}>*</span></label>
               <Form.Group className='mt-2'>
                 <Form.Check
                   inline

@@ -18,8 +18,8 @@ const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep }) => {
     <React.Fragment>
       <Row>
         <Col sm={12} md={5}>
-          <div className="donation-left" style={{backgroundImage: `url(${DonateImg1})`}}>
-            <h2>We Can Support The Culture</h2>
+          <div className="donation-left" style={{ backgroundImage: `url(${DonateImg1})` }}>
+            <h3>We Can Support The Culture</h3>
           </div>
         </Col>
         <Col sm={12} md={7}>
@@ -39,26 +39,42 @@ const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep }) => {
             </div>
             <div className="donation-right-body">
               <h4>Contact Details</h4>
-              <Form.Group className='mb-3'>
-                <label>State<span style={{ color: `red` }}>*</span></label>
-                <input className='form-control' type="text" name="state" value={state} onChange={handleChange} />
-              </Form.Group>
-              <Form.Group className='mb-3'>
-                <label>City<span style={{ color: `red` }}>*</span></label>
-                <input className='form-control' type="text" name="city" value={city} onChange={handleChange} />
-              </Form.Group>
-              <Form.Group className='mb-3'>
-                <label>Address<span style={{ color: `red` }}>*</span></label>
-                <input className='form-control' type="text" name="address" value={address} onChange={handleChange} />
-              </Form.Group>
-              <Form.Group className='mb-3'>
-                <label>Pincode<span style={{ color: `red` }}>*</span></label>
-                <input className='form-control' type="text" name="pincode" value={pincode} onChange={handleChange} />
-              </Form.Group>
+              <Row>
+                <Col xs={4}>
+                  <Form.Group className='mb-3'>
+                    <label>State <span style={{ color: `red` }}>*</span></label>
+                    <input className='form-control' type="text" name="state" value={state} onChange={handleChange} placeholder='State'/>
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={4}>
+                  <Form.Group className='mb-3'>
+                    <label>City <span style={{ color: `red` }}>*</span></label>
+                    <input className='form-control' type="text" name="city" value={city} onChange={handleChange} placeholder='City'/>
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={10}>
+                  <Form.Group className='mb-3'>
+                    <label>Address <span style={{ color: `red` }}>*</span></label>
+                    <input className='form-control' type="text" name="address" value={address} onChange={handleChange} placeholder='Address'/>
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={4}>
+                  <Form.Group className='mb-3'>
+                    <label>Pincode <span style={{ color: `red` }}>*</span></label>
+                    <input className='form-control' type="text" name="pincode" value={pincode} onChange={handleChange} placeholder='Pincode'/>
+                  </Form.Group>
+                </Col>
+              </Row>
               <Form.Group className='mt-4'>
                 <Form.Check
                   required
-                  label=" I certify that above provided information is correct and there is no mistake. I know that all further communication will be done on above provided details."
+                  label="I am willing to receive regular BAS updates."
                 />
               </Form.Group>
               <Form.Group className='mt-4'>

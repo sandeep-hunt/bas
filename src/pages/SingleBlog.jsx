@@ -21,7 +21,7 @@ const SingleBlog = () => {
         <React.Fragment>
             <Header />
             <div className="single-post-head blog" style={{ backgroundImage: `url(${BlogImg})` }}>
-                <Container className='h-100'>
+                <Container fluid className='single-post-head-cont h-100'>
                     <div className="single-post-hbi">
                         <div className="sphbitp">
                             <h1 className='text-white'>Teaching as a Passion, Not Just a Profession: The Vision of Bharata Arsheya Sansthan</h1>
@@ -44,7 +44,7 @@ const SingleBlog = () => {
                 </Container>
             </div>
             <Container fluid>
-                <div className="single-post-container">
+                <div className="single-post-container single-blog">
                     <div className="single-post-body">
                         <div className="single-post-inner">
                             <div className="single-post-date">
