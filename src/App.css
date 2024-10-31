@@ -345,12 +345,14 @@ textarea.form-control {
     font-size: 32px !important;
     line-height: 26px !important;
     font-weight: 500 !important;
+    padding-bottom: 8px;
 }
 
 .projects-content p {
     font-size: 20px !important;
     line-height: 26px !important;
     font-weight: 400 !important;
+    padding-bottom: 8px;
 }
 
 

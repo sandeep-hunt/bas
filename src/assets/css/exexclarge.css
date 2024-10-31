@@ -65,7 +65,7 @@
     }
 
     .navbar .container-fluid {
-        padding: 4px 118px !important;
+        padding: 4px 130px !important;
     }
 
     .navbar-nav {
@@ -156,6 +156,24 @@
 
     .videohome-container .videohome-inner {
         height: 450px !important;
+    }
+
+    .projects-content {
+        padding: 100px 130px;
+    }
+
+    .projects-content h4 {
+        font-size: 30px !important;
+        line-height: 26px !important;
+        font-weight: 500 !important;
+        padding-bottom: 8px;
+    }
+    
+    .projects-content p {
+        font-size: 20px !important;
+        line-height: 26px !important;
+        font-weight: 400 !important;
+        padding-bottom: 8px;
     }
 
 
