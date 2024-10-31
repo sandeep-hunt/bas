@@ -11,8 +11,8 @@ const EventsBanner = () => {
       <div className="event-banner" style={{ backgroundImage: `url(${Event_bg})` }}>
         <div className="event-banner-inner">
           <Breadcrumb>
-                        <Breadcrumb.Item href="#"><img src={HomeIcon} className='img-fluid' alt="" />Home</Breadcrumb.Item>
-                        <Breadcrumb.Item active><img src={EditIcon} className='img-fluid' alt="" />Events</Breadcrumb.Item>
+            <Breadcrumb.Item href="#"><img src={HomeIcon} className='img-fluid' alt="" />Home</Breadcrumb.Item>
+            <Breadcrumb.Item active><img src={EditIcon} className='img-fluid' alt="" />Events</Breadcrumb.Item>
           </Breadcrumb>
           <h2 className='text-white'>Events</h2>
           <p className='paragraph1 text-white'>Explore our Upcoming Events to stay updated on our latest workshops, performances, and cultural gatherings. Dive into the Previous Events archive to relive the memorable moments and achievements of past celebrations.</p>

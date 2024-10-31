@@ -25,7 +25,7 @@ const Dhrupad_Gurukul = () => {
           </Breadcrumb>
           <h2 className='text-white'>Dhrupad Gurukul</h2>
           <img src={Icon1} className='img-fluid mb-2' alt="" />
-          <p className='text-white paragraph1'>Dhrupad vocal training in the Dagar Vani tradition will be taught one on one & online.</p>
+          <p className='text-white paragraph2'>Dhrupad vocal training in the Dagar Vani tradition will be taught one on one & online.</p>
         </div>
       </div>
       <Container fluid>

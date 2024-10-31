@@ -25,7 +25,7 @@ const Footer = () => {
             </Col>
             <Col sm={12} md={3}>
               <div className="footer-content1">
-                <h4>Quick Links</h4>
+                <h4 className='footer-inner-cont'>Quick Links</h4>
                 <ul>
                   <li><Link to="/">Home</Link></li>
                   <li><Link to="/">Projects</Link></li>
@@ -39,7 +39,7 @@ const Footer = () => {
             </Col>
             <Col sm={12} md={3}>
               <div className="footer-content1">
-                <h4>Projects</h4>
+                <h4 className='footer-inner-cont'>Projects</h4>
                 <ul>
                   <li><Link to="/">Dhrupad Gurukul</Link></li>
                   <li><Link to="/">Samaveda Gurukul</Link></li>

@@ -42,7 +42,7 @@
 }
 
 .navbar .dropdown-menu {
-    margin-top: 25px !important;
+    margin-top: 25px;
     width: 600px !important;
     border: none !important;
     padding: 0;
