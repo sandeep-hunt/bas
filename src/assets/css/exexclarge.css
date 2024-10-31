@@ -59,7 +59,7 @@
         line-height: 22px;
         font-weight: 500;
     }
-    
+
     .navbar {
         padding: 0 130px !important;
     }
@@ -168,7 +168,7 @@
         font-weight: 500 !important;
         padding-bottom: 8px;
     }
-    
+
     .projects-content p {
         font-size: 20px !important;
         line-height: 26px !important;
@@ -176,6 +176,107 @@
         padding-bottom: 8px;
     }
 
+    .gallery-container {
+        padding: 100px 130px;
+    }
+
+    .event-container {
+        padding: 80px 220px !important;
+    }
+
+    .event-container .event-slider-container {
+        padding: 30px 0;
+    }
+
+    .event-container .event-slider-container .event-slider .event-slider-inner {
+        width: 50% !important;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .btn-main-outline {
+        font-size: 18px !important;
+    }
+
+    .btn-main {
+        font-size: 18px !important;
+    }
+
+    .btn-link {
+        font-size: 18px !important;
+    }
+
+    .donate-container {
+        padding: 100px 130px !important;
+    }
+
+    .posts-container {
+        padding: 100px 130px 38px 130px;
+    }
+
+    .posts-container.article-list {
+        padding: 100px 130px !important;
+    }
+
+    .single-post-container {
+        padding: 90px 130px;
+    }
+
+    .single-post-container .single-post-body {
+        padding: 100px 0;
+    }
+
+    .single-post-body .single-post-content {
+        padding: 40px 0 100px 0;
+    }
+
+    .posts-container.blog-list {
+        padding: 100px 130px !important;
+    }
+
+    .single-post-head.blog {
+        height: 600px;
+    }
+
+    .single-post-head.blog .single-post-head-cont {
+        padding: 0 130px;
+    }
+    .single-post-head .single-post-hbi .sphbitp {
+        max-width: 80%;
+    }
+
+    .single-post-container.single-blog .single-post-body {
+        padding: 38px 0;
+    }
+
+    .about-container {
+        padding: 74px 130px;
+    }
+
+    .about-container .autp {
+        padding: 0 120px;
+    }
+
+    .about-container .aumv {
+        margin: 125px 0;
+    }
+
+    .about-container .auot {
+        padding: 0 85px 85px 85px;
+    }
+
+    .auab {
+        margin: 20px 0;
+    }
+
+    .auabcnt-itmrit {
+        padding-left: 50px;
+    }
+
+    .auctu {
+        padding: 100px 0;
+    }
 
     /* Slick Slider */
     .slick-dots {
