@@ -24,7 +24,7 @@ const Donation_FirstStep = ({ formData, setFormData, nextStep }) => {
         <Col sm={12} md={7}>
           <div className="donation-right">
             <div className="donation-right-header">
-              <h4 className='text-main text-center'>Make a Donation</h4>
+              <h4 className='text-main text-center tw-800'>Make a Donation</h4>
               <div className="donation-right-wrapper">
                 <div className='donation-right-cont'>
                   <div className='donation-right-step active'>1</div>
@@ -42,52 +42,71 @@ const Donation_FirstStep = ({ formData, setFormData, nextStep }) => {
             </div>
             <div className="donation-right-body">
               <h4>Personal Details</h4>
-              <Form.Group className='mb-3'>
-                <label>Name<span style={{ color: `red` }}>*</span></label>
-                <input className='form-control' type="text" name="name" value={name} onChange={handleChange} />
-              </Form.Group>
-              <Form.Group className='mb-3'>
-                <label>Mobile<span style={{ color: `red` }}>*</span></label>
-                <PhoneInput
-                  country={'in'}
-                  value={mobile}
-                  onChange={(mobile) => setFormData((prevData) => ({ ...prevData, mobile: mobile }))}
-                  enableSearch={true}
-                  disableSearchIcon={false}
-                  inputProps={{
-                    name: 'phone',
-                    required: true,
-                  }}
-                />
-              </Form.Group>
-              <Form.Group className='mb-3'>
-                <label>Email<span style={{ color: `red` }}>*</span></label>
-                <input className='form-control' type="email" name="email" value={email} onChange={handleChange} />
-              </Form.Group>
-              <Form.Group className='mb-3'>
-                <label>Age<span style={{ color: `red` }}>*</span></label>
-                <input className='form-control' type="text" name="age" value={age} onChange={handleChange} />
-              </Form.Group>
-              <Form.Group>
-                <label>Gender<span style={{ color: `red` }}>*</span></label>
-                <Form.Select name="gender" onChange={handleChange}>
-                  <option value=''>Select Gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="rather not to say">Rather Not To Say</option>
-                </Form.Select>
-              </Form.Group>
-              <Form.Group className='mt-4'>
+              <Row>
+                <Col xs={7}>
+                  <Form.Group className='form-group'>
+                    <label>Name <span style={{ color: `red` }}>*</span></label>
+                    <input className='form-control' type="text" name="name" value={name} onChange={handleChange} placeholder='Full Name' />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={5}>
+                  <Form.Group className='form-group'>
+                    <label>Mobile <span style={{ color: `red` }}>*</span></label>
+                    <PhoneInput
+                      country={'in'}
+                      value={mobile}
+                      onChange={(mobile) => setFormData((prevData) => ({ ...prevData, mobile: mobile }))}
+                      enableSearch={true}
+                      disableSearchIcon={false}
+                      inputProps={{
+                        name: 'phone',
+                        required: true,
+                      }}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={5}>
+                  <Form.Group className='form-group'>
+                    <label>Email <span style={{ color: `red` }}>*</span></label>
+                    <input className='form-control' type="email" name="email" value={email} onChange={handleChange} placeholder='Email' />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={2}>
+                  <Form.Group className='form-group'>
+                    <label>Age <span style={{ color: `red` }}>*</span></label>
+                    <input className='form-control' type="text" name="age" value={age} onChange={handleChange} placeholder='Age' />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={3}>
+                  <Form.Group className='form-group'>
+                    <label>Gender <span style={{ color: `red` }}>*</span></label>
+                    <Form.Select name="gender" onChange={handleChange}>
+                      <option value=''>Gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </Form.Select>
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Form.Group className='form-group'>
                 <Form.Check
                   required
                   label=" I certify that above provided information is correct and there is no mistake. I know that all further communication will be done on above provided details."
                 />
               </Form.Group>
-              <Form.Group className='mt-4'>
+              <Form.Group>
                 <Row>
                   <Col>
                     <div className="d-grid">
-                      <Button className='btn-main' onClick={nextStep} disabled={!name || !mobile || !email || !age || !gender} >Next</Button>
+                      <Button className='btn-main' onClick={nextStep} disabled={!name || !mobile || !email || !age || !gender } >Next</Button>
                     </div>
                   </Col>
                 </Row>

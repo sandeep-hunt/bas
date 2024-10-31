@@ -7,7 +7,7 @@ const DonateCont = () => {
   return (
     <React.Fragment>
       <div className="donate-container">
-        <Container>
+        <Container fluid>
           <div className="donate-wrapper">
             <MultiStep_Init />
           </div>

@@ -50,7 +50,7 @@
 }
 
 .donation-right-body {
-    margin-top: 1rem;
+    margin-top: 24px;
 }
 
 .donation-right-wrapper {
@@ -59,11 +59,12 @@
     justify-content: space-between;
     margin-top: 1rem;
     font-weight: 600;
+    padding: 18px 0;
 }
 
 .donation-right-cont {
     display: flex;
-    gap: .3rem;
+    gap: 12px;
     align-items: center;
 }
 
@@ -80,6 +81,8 @@
 
 .donation-right-text.active {
     color: #11A75C;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .donation-right-step {

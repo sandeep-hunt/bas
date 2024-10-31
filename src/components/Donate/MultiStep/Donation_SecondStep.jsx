@@ -25,7 +25,7 @@ const Donation_SecondStep = ({ formData, setFormData, nextStep, prevStep }) => {
         <Col sm={12} md={7}>
           <div className="donation-right">
             <div className="donation-right-header">
-              <h4 className='text-main text-center'>Make a Donation</h4>
+              <h4 className='text-main text-center tw-800'>Make a Donation</h4>
               <div className="donation-right-wrapper">
                 <div className='donation-right-cont'>
                   <div className='donation-right-step active-check'><FontAwesomeIcon icon={faCheck} /></div>
@@ -43,29 +43,45 @@ const Donation_SecondStep = ({ formData, setFormData, nextStep, prevStep }) => {
             </div>
             <div className="donation-right-body">
               <h4>Contact Details</h4>
-              <Form.Group className='mb-3'>
-                <label>State<span style={{ color: `red` }}>*</span></label>
-                <input className='form-control' type="text" name="state" value={state} onChange={handleChange} />
-              </Form.Group>
-              <Form.Group className='mb-3'>
-                <label>City<span style={{ color: `red` }}>*</span></label>
-                <input className='form-control' type="text" name="city" value={city} onChange={handleChange} />
-              </Form.Group>
-              <Form.Group className='mb-3'>
-                <label>Address<span style={{ color: `red` }}>*</span></label>
-                <input className='form-control' type="text" name="address" value={address} onChange={handleChange} />
-              </Form.Group>
-              <Form.Group className='mb-3'>
-                <label>Pincode<span style={{ color: `red` }}>*</span></label>
-                <input className='form-control' type="text" name="pincode" value={pincode} onChange={handleChange} />
-              </Form.Group>
-              <Form.Group className='mt-4'>
+              <Row>
+                <Col xs={4}>
+                  <Form.Group className='form-group'>
+                    <label>State <span style={{ color: `red` }}>*</span></label>
+                    <input className='form-control' type="text" name="state" value={state} onChange={handleChange} placeholder='State'/>
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={4}>
+                  <Form.Group className='form-group'>
+                    <label>City <span style={{ color: `red` }}>*</span></label>
+                    <input className='form-control' type="text" name="city" value={city} onChange={handleChange} placeholder='City'/>
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={10}>
+                  <Form.Group className='form-group'>
+                    <label>Address <span style={{ color: `red` }}>*</span></label>
+                    <input className='form-control' type="text" name="address" value={address} onChange={handleChange} placeholder='Address'/>
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={4}>
+                  <Form.Group className='form-group'>
+                    <label>Pincode <span style={{ color: `red` }}>*</span></label>
+                    <input className='form-control' type="text" name="pincode" value={pincode} onChange={handleChange} placeholder='Pincode'/>
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Form.Group className='form-group'>
                 <Form.Check
                   required
-                  label=" I certify that above provided information is correct and there is no mistake. I know that all further communication will be done on above provided details."
+                  label="I am willing to receive regular BAS updates."
                 />
               </Form.Group>
-              <Form.Group className='mt-4'>
+              <Form.Group>
                 <Row>
                   <Col>
                     <div className="d-grid">

@@ -19,6 +19,10 @@ a {
     font-weight: 800 !important;
 }
 
+.tw-800 {
+    font-weight: 800 !important;
+}
+
 .tw-700 {
     font-weight: 700 !important;
 }
@@ -78,6 +82,7 @@ a {
     border: 1px solid var(--main) !important;
     font-weight: 500 !important;
     padding: 13px 18px !important;
+    font-size: 20px !important;
 }
 
 .btn-main:hover {
@@ -228,6 +233,10 @@ label {
     border-color: var(--main) !important;
     outline: 0;
     box-shadow: 0 0 0 .25rem rgba(251, 101, 14, 0.25) !important;
+}
+
+textarea.form-control {
+    height: auto !important;
 }
 
 /* Slick Slider */
@@ -689,31 +698,35 @@ label {
 
 /* About Us */
 .about-container {
-    padding: 2rem 0;
+    padding: 74px 200px;
 }
 
 .about-container .autp {
-    padding: 0 4rem;
+    padding: 0 180px;
     text-align: center;
 }
 
+.about-container .autp h2 {
+    margin-bottom: 24px;
+}
+
 .about-container .aumv {
-    margin: 4rem 0;
+    margin: 170px 0;
 }
 
 .about-container .aumv .aumvtp,
 .about-container .aumv .aumvbtm {
-    margin-bottom: 1rem;
+    margin-bottom: 40px;
 }
 
 .about-container .auot {
-    padding: 0 4rem;
+    padding: 0 108px 108px 108px;
 }
 
 .about-container .auot .auotinr {
-    margin-top: 2rem;
+    margin-top: 24px;
     display: flex;
-    gap: 1rem;
+    gap: 31px;
     flex-wrap: wrap;
 }
 
@@ -724,9 +737,12 @@ label {
 
 .auotinrct {
     position: absolute;
-    bottom: 5%;
-    left: 10%;
+    bottom: 24px;
+    left: 24px;
     color: var(--white);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 .auab {
@@ -734,14 +750,14 @@ label {
 }
 
 .auab .auabcnt {
-    margin-top: 2rem;
+    margin-top: 24px;
 }
 
 .auab .auabcnt .auabcnt-itm {
     background-color: #FED9C5;
     width: 100%;
     height: 100%;
-    padding: 1.5rem;
+    padding: 51px;
     border-radius: 8px;
 }
 
@@ -756,8 +772,36 @@ label {
     text-align: center;
 }
 
+.auabcnt-itmrit {
+    padding-left: 75px;
+}
+
+.auabcnt-itmrit h4 {
+    margin-bottom: 0;
+}
+
+.auabcnt-itmrit h5 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 26px;
+}
+
+.auabcnt-itmrit p {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 26px;
+}
+
 .slick-prev,
 .slick-next {
     top: none;
     bottom: 0 !important;
+}
+
+.auctu {
+    padding: 104px 0;
+}
+
+.auctu .auctuinr {
+    margin-top: 54px;
 }

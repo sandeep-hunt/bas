@@ -1,5 +1,5 @@
 .projectshome-container {
-    padding: 2rem 200px;
+    padding: 0 200px 0 200px;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -21,7 +21,7 @@
     border-radius: 5px;
     background: rgb(255,161,79);
     background: linear-gradient(225deg, rgba(255,161,79,1) 0%, rgba(255,56,9,1) 100%);
-    gap: 41.02px;
+    gap: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;

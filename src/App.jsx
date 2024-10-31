@@ -5,6 +5,7 @@ import './assets/css/small.css'
 import './assets/css/medium.css'
 import './assets/css/large.css'
 import './assets/css/extralarge.css'
+import './assets/css/exexclarge.css'
 import 'react-phone-input-2/lib/style.css';
 import { Routes, Route } from "react-router-dom"
 import Homepage from './pages/Homepage'

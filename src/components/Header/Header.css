@@ -1,6 +1,10 @@
 .navbar {
     background-color: var(--bg_clr1);
-    padding: 4px 200px !important;
+    padding: 0 !important;
+}
+
+.navbar .container-fluid {
+    padding: 4px 188px;
 }
 
 .navbar .logo {

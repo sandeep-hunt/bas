@@ -25,7 +25,7 @@ const Donation_ThirdStep = ({ formData, setFormData, submitForm, prevStep }) => 
         <Col sm={12} md={7}>
           <div className="donation-right">
             <div className="donation-right-header">
-              <h4 className='text-main text-center'>Make a Donation</h4>
+              <h3 className='text-main text-center tw-800'>Make a Donation</h3>
               <div className="donation-right-wrapper">
                 <div className='donation-right-cont'>
                   <div className='donation-right-step active-check'><FontAwesomeIcon icon={faCheck} /></div>
@@ -42,53 +42,62 @@ const Donation_ThirdStep = ({ formData, setFormData, submitForm, prevStep }) => 
               </div>
             </div>
             <div className="donation-right-body">
-              <h4>Donation Details</h4>
-              <Form.Group className='mb-2'>
+              <Row>
+                <Col xs={5}>
+              <Form.Group className='form-group'>
                 <label>Choose a donation type<span style={{ color: `red` }}>*</span></label>
                 <Form.Select name="donation_type" onChange={handleChange}>
                   <option value=''>Select donation type</option>
                   <option value="male">Cost of education</option>
                 </Form.Select>
               </Form.Group>
+              </Col>
+              </Row>
               <label>Choose a donation amount</label>
-              <Form.Group className='mt-2'>
-                <Form.Check
-                  inline
-                  label="&#8377; 25"
-                  name="donation_amt"
-                  value="25"
-                  type="radio"
-                  id="inline-radio-1"
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Check
-                  inline
-                  label="&#8377; 50"
-                  name="donation_amt"
-                  value="50"
-                  type="radio"
-                  id="inline-radio-2"
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Check
-                  inline
-                  label="&#8377; 100"
-                  name="donation_amt"
-                  value="100"
-                  type="radio"
-                  id="inline-radio-3"
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group className='mt-3 mb-3'>
-                <input className='form-control' type="text" name="donation_amt" value={donation_amt} onChange={handleChange} />
-              </Form.Group>
+              <div className="form-group">
+                <Form.Group className='mt-1'>
+                  <Form.Check
+                    inline
+                    label="&#8377; 25"
+                    name="donation_amt"
+                    value="25"
+                    type="radio"
+                    id="inline-radio-1"
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+                <Form.Group className='mt-1'>
+                  <Form.Check
+                    inline
+                    label="&#8377; 50"
+                    name="donation_amt"
+                    value="50"
+                    type="radio"
+                    id="inline-radio-2"
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+                <Form.Group className='mt-1'>
+                  <Form.Check
+                    inline
+                    label="&#8377; 100"
+                    name="donation_amt"
+                    value="100"
+                    type="radio"
+                    id="inline-radio-3"
+                    onChange={handleChange}
+                  />
+                  <Row>
+                    <Col xs={6}>
+                  <Form.Group className='mt-1'>
+                    <input className='form-control' type="text" name="donation_amt" value={donation_amt} onChange={handleChange} placeholder='Enter a custom donation amount'/>
+                  </Form.Group>
+                  </Col>
+                  </Row>
+                </Form.Group>
+              </div>
               <label>Choose a donation frequency<span style={{ color: `red` }}>*</span></label>
-              <Form.Group className='mt-2'>
+              <Form.Group className='form-group'>
                 <Form.Check className='form-check-box'
                   inline
                   label="Monthly"
@@ -108,7 +117,7 @@ const Donation_ThirdStep = ({ formData, setFormData, submitForm, prevStep }) => 
                   onChange={handleChange}
                 />
               </Form.Group>
-              <Form.Group className='mt-4'>
+              <Form.Group>
                 <Row>
                   <Col>
                     <div className="d-grid">
