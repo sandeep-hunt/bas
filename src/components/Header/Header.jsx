@@ -29,32 +29,32 @@ function Header() {
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
-                <Nav className="justify-content-end align-items-center flex-grow-1">
+                <Nav className="flex-grow-1">
                   <Nav.Link as={Link} to="/">Home</Nav.Link>
                   <NavDropdown
                     title="Projects"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
                   >
                     <Row>
-                      <Col sm={12} md={6}>
+                      <Col sm={12} lg={6}>
                         <NavDropdown.Item as={Link} to="/dhrupad_gurukul">
                           <strong className='dropdown-menu-text'>Dhrupad Gurukul</strong>
                           <p className='dropdown-menu-tag'>Revitalising pristine Bhartiya Sangeet</p>
                         </NavDropdown.Item>
                       </Col>
-                      <Col sm={12} md={6}>
+                      <Col sm={12} lg={6}>
                         <NavDropdown.Item as={Link} to="/samaveda_gurukul">
                         <strong className='dropdown-menu-text'>Samaveda Gurukul</strong>
                         <p className='dropdown-menu-tag'>Pre-historic Melodies & Wisdom </p>
                         </NavDropdown.Item>
                       </Col>
-                      <Col sm={12} md={6}>
+                      <Col sm={12} lg={6}>
                         <NavDropdown.Item as={Link} to="/girvaan_bhasa">
                           <strong className='dropdown-menu-text'>Girvaan Bhasa</strong>
                           <p className='dropdown-menu-tag'>A bridge to divinity</p>
                         </NavDropdown.Item>
                       </Col>
-                      <Col sm={12} md={6}>
+                      <Col sm={12} lg={6}>
                         <NavDropdown.Item as={Link} to="/jyotish">
                           <strong className='dropdown-menu-text'>Jyotisha Gurukul</strong>
                           <p className='dropdown-menu-tag'>Eyes of the Veda-s</p>

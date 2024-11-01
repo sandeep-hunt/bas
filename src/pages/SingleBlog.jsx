@@ -70,7 +70,7 @@ const SingleBlog = () => {
                             <div className="posts-header">
                                 <h3>Related Blog Posts</h3>
                             </div>
-                            <Row xs={1} md={3} className="g-4">
+                            <Row>
                                 <Col>
                                     <Card>
                                         <Card.Img variant="top" src={Blogslid1} />

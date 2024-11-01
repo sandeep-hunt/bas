@@ -17,28 +17,28 @@ const GalleryHome = () => {
         <h2 className='container-title galleryHome'>Gallery</h2>
         <div className="galleryhome-inner">
           <Row>
-            <Col sm={12} md={3}>
+            <Col sm={12} md={4} lg={3}>
             <img src={Gallery1} className='img-fluid' alt="" />
             </Col>
-            <Col sm={12} md={3}>
+            <Col sm={12} md={4} lg={3}>
             <img src={Gallery3} className='img-fluid' alt="" />
             </Col>
-            <Col sm={12} md={3}>
+            <Col sm={12} md={4} lg={3}>
             <img src={Gallery5} className='img-fluid' alt="" />
             </Col>
-            <Col sm={12} md={3}>
+            <Col sm={12} md={4} lg={3}>
             <img src={Gallery7} className='img-fluid' alt="" />
             </Col>
-            <Col sm={12} md={3}>
+            <Col sm={12} md={4} lg={3}>
             <img src={Gallery2} className='img-fluid' alt="" />
             </Col>
-            <Col sm={12} md={3}>
+            <Col sm={12} md={4} lg={3}>
             <img src={Gallery4} className='img-fluid' alt="" />
             </Col>
-            <Col sm={12} md={3}>
+            <Col sm={12} md={6} lg={3}>
             <img src={Gallery6} className='img-fluid' alt="" />
             </Col>
-            <Col sm={12} md={3}>
+            <Col sm={12} md={6} lg={3}>
             <img src={Gallery8} className='img-fluid' alt="" />
             </Col>
           </Row>

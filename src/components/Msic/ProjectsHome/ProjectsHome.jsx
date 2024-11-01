@@ -13,28 +13,28 @@ const ProjectsHome = () => {
         <h2 className='container-title projectHome'>Projects</h2>
         <div className="projectshome-inner">
           <Row>
-            <Col sm={12}  md={3}>
+            <Col sm={12} md={6} lg={3}>
               <div className="projectshome-item h-100">
                 <h4 className='text-white'>Dhrupad Gurukul</h4>
                 <img src={Pro_icon1} className='projecthome-icons' alt="" />
                 <p className='text-white paragraph3'>Revitalising pristine Bhartiya Sangeet</p>
               </div>
             </Col>
-            <Col sm={12}  md={3}>
+            <Col sm={12} md={6} lg={3}>
               <div className="projectshome-item h-100">
                 <h4 className='text-white'>Samaveda Gurukul</h4>
                 <img src={Pro_icon2} className='projecthome-icons' alt="" />
                 <p className='text-white paragraph3'>Pre-historic Melodies & Wisdom</p>
               </div>
             </Col>
-            <Col sm={12}  md={3}>
+            <Col sm={12} md={6} lg={3}>
               <div className="projectshome-item h-100">
                 <h4 className='text-white'>Girvaan Bhasa</h4>
                 <img src={Pro_icon3} className='projecthome-icons' alt="" />
                 <p className='text-white paragraph3'>A bridge to divinity</p>
               </div>
             </Col>
-            <Col sm={12}  md={3}>
+            <Col sm={12} md={6} lg={3}>
               <div className="projectshome-item h-100">
                 <h4 className='text-white'>Jyotisha Gurukul</h4>
                 <img src={Pro_icon4} className='projecthome-icons' alt="" />

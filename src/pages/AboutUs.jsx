@@ -61,7 +61,8 @@ const AboutUs = () => {
                     slidesToShow: 1,
                     slidesToScroll: 1,
                     infinite: true,
-                    dots: true
+                    dots: true,
+                    arrows:false
                 }
             },
             {
@@ -77,7 +78,8 @@ const AboutUs = () => {
                 breakpoint: 480,
                 settings: {
                     slidesToShow: 1,
-                    slidesToScroll: 1
+                    slidesToScroll: 1,
+                    arrows: false
                 }
             }
         ]
@@ -169,7 +171,7 @@ const AboutUs = () => {
                                             <div key={index}>
                                                 <div className="auabcnt-itm">
                                                     <Row>
-                                                        <Col sm={12} md={4}>
+                                                        <Col sm={12} lg={4}>
                                                             <div className="auabcnt-itmlf">
                                                                 <img src={item.image} className='img-fluid' alt="" />
                                                             </div>
@@ -178,7 +180,7 @@ const AboutUs = () => {
                                                                 <p className='text-main tw-600'>{item.designation}</p>
                                                             </div>
                                                         </Col>
-                                                        <Col sm={12} md={8}>
+                                                        <Col sm={12} lg={8}>
                                                             <div className="auabcnt-itmrit" dangerouslySetInnerHTML={{ __html: item.description }}>
                                                             </div>
                                                         </Col>
@@ -194,7 +196,7 @@ const AboutUs = () => {
                     <div className="auctu">
                         <h2 className='text-main text-bold'>Contact Us</h2>
                         <Row className='auctuinr'>
-                            <Col sm={12} md={7}>
+                            <Col sm={12} lg={7}>
                                 <Row>
                                     <Col sm={12} md={6}>
                                         <Form.Group className='form-group'>

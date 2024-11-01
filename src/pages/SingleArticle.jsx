@@ -63,7 +63,7 @@ const SingleArticle = () => {
               <div className="posts-header">
                 <h3>Related Article Posts</h3>
               </div>
-              <Row xs={1} md={3} className="g-4">
+              <Row>
                 <Col>
                   <Card>
                     <Card.Img variant="top" src={Blog1} />

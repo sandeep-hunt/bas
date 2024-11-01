@@ -15,7 +15,7 @@ const Footer = () => {
       <footer>
         <Container>
           <Row>
-            <Col sm={12} md={3}>
+            <Col sm={12} md={12} lg={3}>
               <div className="footer-content">
                 <img src={Logo} alt="" />
                 <div>
@@ -23,7 +23,7 @@ const Footer = () => {
                 </div>
               </div>
             </Col>
-            <Col sm={12} md={3}>
+            <Col sm={12} md={6} lg={3}>
               <div className="footer-content1">
                 <h4 className='footer-inner-cont'>Quick Links</h4>
                 <ul>
@@ -37,7 +37,7 @@ const Footer = () => {
                 </ul>
               </div>
             </Col>
-            <Col sm={12} md={3}>
+            <Col sm={12} md={6} lg={3}>
               <div className="footer-content1">
                 <h4 className='footer-inner-cont'>Projects</h4>
                 <ul>
@@ -48,7 +48,7 @@ const Footer = () => {
                 </ul>
               </div>
             </Col>
-            <Col sm={12} md={3}>
+            <Col sm={12}  md={12} lg={3}>
               <div className="footer-content1">
                 <div className="footer-inner">
                   <div className="footer-inner-cont">

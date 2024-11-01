@@ -17,12 +17,12 @@ const Donation_ThirdStep = ({ formData, setFormData, submitForm, prevStep }) => 
   return (
     <React.Fragment>
       <Row>
-        <Col sm={12} md={5}>
+        <Col sm={12} lg={5}>
           <div className="donation-left" style={{ backgroundImage: `url(${DonateImg1})` }}>
             <h3>We like to support.</h3>
           </div>
         </Col>
-        <Col sm={12} md={7}>
+        <Col sm={12} lg={7}>
           <div className="donation-right">
             <div className="donation-right-header">
               <h3 className='text-main text-center tw-800'>Make a Donation</h3>

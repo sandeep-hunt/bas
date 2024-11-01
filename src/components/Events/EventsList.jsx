@@ -50,6 +50,8 @@ const EventsList = () => {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: false,
+          arrows: false,
+          dots: true,
         }
       },
       {
@@ -58,7 +60,8 @@ const EventsList = () => {
           arrows: false,
           slidesToShow: 1,
           slidesToScroll: 1,
-          initialSlide: 1
+          initialSlide: 1,
+          dots: true,
         }
       },
       {
@@ -66,7 +69,8 @@ const EventsList = () => {
         settings: {
           arrows: false,
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          dots: true,
         }
       }
     ]

@@ -157,7 +157,7 @@ const BookingCont = () => {
         <Container fluid>
           <div className="donate-wrapper">
             <Row>
-              <Col sm={12} md={5}>
+              <Col sm={12} lg={5}>
                 <div className="donation-left" style={{ backgroundImage: `url(${DonateImg1})` }}>
                   <h2>{event.event_name}</h2>
                   <p>{event.event_date}</p>
@@ -166,7 +166,7 @@ const BookingCont = () => {
                   <h2>₹ {event.event_price}</h2>
                 </div>
               </Col>
-              <Col sm={12} md={7}>
+              <Col sm={12} lg={7}>
                 <h3 className='form-group'>Personal Details</h3>
                 <Row>
                   <Col sm={12} md={6}>

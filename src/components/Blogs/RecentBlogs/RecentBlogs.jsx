@@ -19,7 +19,7 @@ const RecentBlogs = () => {
           <h3 className='text-main text-bold'>Recent Blog Posts</h3>
           <Link className='text-main' to="/blogs">View All&nbsp;&nbsp;<FontAwesomeIcon icon={faArrowRight} /></Link>
         </div>
-        <Row xs={1} md={3}>
+        <Row>
           <Col>
             <Card>
               <Card.Img variant="top" src={Blogslid1} />
