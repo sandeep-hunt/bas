@@ -97,6 +97,10 @@
         gap: 22px !important;
     }
 
+    .herobanner-container .herobanner-inner h1 {
+        line-height: 48px !important;
+    }
+
     .abouthome-container {
         margin-top: 90px !important;
     }

@@ -14,7 +14,3 @@
     justify-content: center;
     gap: 32px;
 }
-
-.herobanner-container .herobanner-inner h1 {
-    line-height: 55px !important;
-}
