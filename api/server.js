@@ -27,14 +27,6 @@ app.use('/gallery', galleryRoutes);
 app.use('/events', eventRoutes);
 app.use('/fetch', fetchRoutes);
 
-db.connect((err) => {
-  if (err) {
-    console.error('Database connection failed:', err);
-    return;
-  }
-  console.log('Connected to MySQL');
-});
-
 // User registration
 app.post('/register', async (req, res) => {
   const { username, email, password } = req.body;
