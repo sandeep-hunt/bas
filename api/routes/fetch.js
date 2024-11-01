@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Razorpay = require('razorpay');
 const crypto = require('crypto');
+const db =require('../middleware/connection');
 
 // Get Blogs
 router.get('/events', (req, res) => {
-    const db = req.app.get('db');
     const sql = 'SELECT * FROM events';  // Modify this query based on your blog table
     db.query(sql, (err, results) => {
         if (err) {
@@ -23,7 +23,6 @@ const razorpay = new Razorpay({
 
 //Get event by id
 router.get('/events/:slug', (req, res) => {
-    const db = req.app.get('db');
     const eventSlug = req.params.slug;
 
     // SQL query to get the event details by ID
@@ -44,7 +43,6 @@ router.get('/events/:slug', (req, res) => {
 });
 
 router.post('/book-event', async (req, res) => {
-    const db = req.app.get('db');
     const { name, date, gender, email, mobile, state, city, address, pincode, eventId, eventPrice } = req.body;
 
     const query = 'INSERT INTO event_booking (event_booking_name, event_booking_dob, event_booking_gender, event_booking_email, event_booking_contact, event_booking_state, event_booking_city, event_booking_address, event_booking_pincode, event_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
@@ -74,7 +72,6 @@ router.post('/book-event', async (req, res) => {
 
 // Handle payment verification
 router.post('/book-event/verify-payment', (req, res) => {
-    const db = req.app.get('db');
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature, bookingId } = req.body;
 
     // Generate the expected signature using the order ID and payment ID

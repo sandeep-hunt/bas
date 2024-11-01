@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const verifyToken = require('../middleware/verifyToken');
 const multer = require('multer');
+const db =require('../middleware/connection');
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
@@ -16,7 +17,6 @@ const upload = multer({ storage: storage });
 
 // Route to fetch image URLs from the database
 router.get('/', (req, res) => {
-    const db = req.app.get('db');
     const page = parseInt(req.query.page) || 1;   // Default to page 1
     const limit = parseInt(req.query.limit) || 10; // Default to 10 items per page
     const offset = (page - 1) * limit;
@@ -49,7 +49,6 @@ router.get('/', (req, res) => {
 
 // 1. Add Image
 router.post('/add', upload.single('image'), (req, res) => {
-    const db = req.app.get('db');
     const { title } = req.body;
     const imagePath = req.file ? `uploads/gallery/${req.file.filename}` : null;
 
@@ -64,7 +63,6 @@ router.post('/add', upload.single('image'), (req, res) => {
 
 // 2. Update Image
 router.put('/update/:id', upload.single('image'), (req, res) => {
-    const db = req.app.get('db');
     const { title } = req.body;
     const imageId = req.params.id;
 
@@ -90,7 +88,6 @@ router.put('/update/:id', upload.single('image'), (req, res) => {
 
 // 3. Delete Image
 router.delete('/delete/:id', (req, res) => {
-    const db = req.app.get('db');
     const imageId = req.params.id;
 
     const query = 'DELETE FROM gallery WHERE gallery_id = ?';

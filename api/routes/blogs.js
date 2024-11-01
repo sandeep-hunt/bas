@@ -3,6 +3,7 @@ const router = express.Router();
 const verifyToken = require('../middleware/verifyToken');
 const multer = require('multer');
 const path = require('path');
+const db =require('../middleware/connection');
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
@@ -17,7 +18,6 @@ const upload = multer({ storage: storage });
 
 // Get Blogs
 router.get('/', verifyToken, (req, res) => {
-    const db = req.app.get('db');
     const sql = 'SELECT * FROM blogs';  // Modify this query based on your blog table
     db.query(sql, (err, results) => {
         if (err) {
@@ -29,7 +29,6 @@ router.get('/', verifyToken, (req, res) => {
 
 //Add Blog
 router.post('/add', upload.fields([{ name: 'image1', maxCount: 1 }, { name: 'image2', maxCount: 1 }]), (req, res) => {
-    const db = req.app.get('db');
     const { blog_title, blog_shortDesc, blog_content, blog_author, blog_slug, blog_page_title, blog_page_keywords, blog_page_desc } = req.body;
 
     // Handle uploaded files
@@ -51,7 +50,6 @@ router.post('/add', upload.fields([{ name: 'image1', maxCount: 1 }, { name: 'ima
 
 //get blog by slug
 router.get('/:id', (req, res) => {
-    const db = req.app.get('db');
     const blogId = req.params.id;  // Get the title from the URL params
     const sql = `
     SELECT blogs.*, users.username AS author
@@ -72,7 +70,6 @@ router.get('/:id', (req, res) => {
 
 //delete blog
 router.delete('/delete/:id', verifyToken, (req, res) => {
-    const db = req.app.get('db');
     const blogId = req.params.id;
 
     const sql = 'DELETE FROM blogs WHERE blog_id = ?';
@@ -90,7 +87,6 @@ router.delete('/delete/:id', verifyToken, (req, res) => {
 
 //update blog
 router.put('/update/:id', upload.fields([{ name: 'image1', maxCount: 1 }, { name: 'image2', maxCount: 1 }]), (req, res) => {
-    const db = req.app.get('db');
     const blogId = req.params.id;
     const { blog_title, blog_shortDesc, blog_content, blog_slug, blog_page_title, blog_page_keywords, blog_page_desc } = req.body;
 

@@ -24,7 +24,7 @@ const Login = () => {
         setSuccess('');
 
         try {
-            const response = await axios.post('http://localhost:5000/login', {
+            const response = await axios.post(import.meta.env.VITE_BACKEND_API +'login', {
                 email,
                 password
             });

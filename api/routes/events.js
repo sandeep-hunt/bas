@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
+const db =require('../middleware/connection');
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
@@ -16,7 +17,6 @@ const upload = multer({ storage: storage });
 
 // Route to fetch image URLs from the database
 router.get('/', (req, res) => {
-    const db = req.app.get('db');
     const page = parseInt(req.query.page) || 1;   // Default to page 1
     const limit = parseInt(req.query.limit) || 10; // Default to 10 items per page
     const offset = (page - 1) * limit;
@@ -49,7 +49,6 @@ router.get('/', (req, res) => {
 
 // Add Event (POST)
 router.post('/add', upload.fields([{ name: 'event_image' }, { name: 'event_thumbnail' }]), (req, res) => {
-    const db = req.app.get('db');
     const { event_name, event_slug, event_price, event_date, event_time, event_location, event_status } = req.body;
     const event_image = req.files['event_image'] ? `uploads/events/${req.files['event_image'][0].filename}` : null;
     const event_thumbnail = req.files['event_thumbnail'] ? `uploads/events/${req.files['event_thumbnail'][0].filename}` : null;
@@ -70,7 +69,6 @@ router.post('/add', upload.fields([{ name: 'event_image' }, { name: 'event_thumb
 
 //update blog
 router.put('/update/:id', upload.fields([{ name: 'event_image' }, { name: 'event_thumbnail' }]), (req, res) => {
-    const db = req.app.get('db');
     const eventId = req.params.id;
     const { event_name, event_slug, event_price, event_date, event_time, event_location, event_status } = req.body;
     const event_image = req.files['event_image'] ? `uploads/events/${req.files['event_image'][0].filename}` : null;
@@ -110,7 +108,6 @@ router.put('/update/:id', upload.fields([{ name: 'event_image' }, { name: 'event
 
 //delete blog
 router.delete('/delete/:id', (req, res) => {
-    const db = req.app.get('db');
     const blogId = req.params.id;
 
     const sql = 'DELETE FROM events WHERE event_id = ?';

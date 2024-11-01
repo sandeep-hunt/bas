@@ -3,6 +3,7 @@ const router = express.Router();
 const verifyToken = require('../middleware/verifyToken');
 const multer = require('multer');
 const path = require('path');
+const db =require('../middleware/connection');
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
@@ -21,7 +22,6 @@ const upload = multer({ storage: storage });
 
 // Get Articles
 router.get('/', verifyToken, (req, res) => {
-    const db = req.app.get('db');
     const sql = 'SELECT * FROM articles';  // Modify this query based on your article table
     db.query(sql, (err, results) => {
         if (err) {
@@ -33,7 +33,6 @@ router.get('/', verifyToken, (req, res) => {
 
 //Add Article
 router.post('/add', upload.fields([{ name: 'image1', maxCount: 1 }, { name: 'image2', maxCount: 1 }, { name: 'pdfs', maxCount: 10 }]), (req, res) => {
-    const db = req.app.get('db');
     const { article_title, article_shortDesc, article_content, article_author, article_slug, article_page_title, article_page_keywords, article_page_desc } = req.body;
 
     // Handle uploaded files
@@ -55,7 +54,6 @@ router.post('/add', upload.fields([{ name: 'image1', maxCount: 1 }, { name: 'ima
 
 //get article by slug
 router.get('/:id', (req, res) => {
-    const db = req.app.get('db');
     const articleId = req.params.id;  // Get the title from the URL params
     const sql = `
     SELECT articles.*, users.username AS author
@@ -76,7 +74,6 @@ router.get('/:id', (req, res) => {
 
 //delete article
 router.delete('/delete/:id', verifyToken, (req, res) => {
-    const db = req.app.get('db');
     const articleId = req.params.id;
 
     const sql = 'DELETE FROM articles WHERE article_id = ?';
@@ -94,7 +91,6 @@ router.delete('/delete/:id', verifyToken, (req, res) => {
 
 //update article
 router.put('/update/:id', upload.fields([{ name: 'image1', maxCount: 1 }, { name: 'image2', maxCount: 1 }, { name: 'pdfs', maxCount: 10 }]), (req, res) => {
-    const db = req.app.get('db');
     const articleId = req.params.id;
     const { article_title, article_shortDesc, article_content, article_slug, article_page_title, article_page_keywords, article_page_desc } = req.body;
 

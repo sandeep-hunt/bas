@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors');
 require('dotenv').config();
 const verifyToken = require('./middleware/verifyToken');
+const db = require('./middleware/connection');
 
 //Routes
 const blogRoutes = require('./routes/blogs');
@@ -20,15 +21,6 @@ app.use(cors({origin: '*'}));
 // Serve static files from the 'public' directory
 app.use('/uploads', express.static('uploads'));
 
-// Connect to MySQL
-const db = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
-});
-
-app.set('db', db);
 app.use('/blogs', blogRoutes);
 app.use('/articles', articleRoutes);
 app.use('/gallery', galleryRoutes);
