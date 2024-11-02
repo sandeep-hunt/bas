@@ -61,11 +61,11 @@
     }
 
     .navbar {
-        padding: 0 30px !important;
+        padding: 0 10px !important;
     }
 
     .navbar .container-fluid {
-        padding: 1px 30px !important;
+        padding: 1px 10px !important;
     }
 
     .navbar .logo {
@@ -85,50 +85,50 @@
     }
 
     .herobanner-container {
-        padding: 0 30px 0 30px !important;
-        margin-top: 40px !important;
+        padding: 0 10px 0 10px !important;
+        margin-top: 30px !important;
     }
 
     .herobanner-container .row {
-        --bs-gutter-y: 40px !important;
+        --bs-gutter-y: 30px !important;
     }
 
     .herobanner-container .herobanner-inner {
-        width: 90% !important;
+        width: 100% !important;
         gap: 14px !important;
     }
 
     .herobanner-container .herobanner-inner h1 {
-        line-height: 36px !important;
+        line-height: 34px !important;
     }
 
     .abouthome-container {
-        margin-top: 40px !important;
+        margin-top: 20px !important;
     }
 
     .abouthome-inner {
-        max-width: 464px !important;
-        gap: 14px !important;
+        max-width: 374px !important;
+        gap: 10px !important;
     }
 
     .impacthome-container {
-        padding: 0 30px 0 30px !important;
+        padding: 0 10px 0 10px !important;
         gap: 30px !important;
-        margin-top: 40px !important;
+        margin-top: 20px !important;
     }
 
     .impacthome-container .row {
-        --bs-gutter-y: 30px !important;
+        --bs-gutter-y: 20px !important;
     }
 
     .impacthome-container .impacthome-inner {
-        padding: 0 30px !important;
+        padding: 0 20px !important;
     }
 
     .projectshome-container {
-        padding: 0 30px 0 30px !important;
-        gap: 20px !important;
-        margin-top: 40px !important;
+        padding: 0 10px 0 10px !important;
+        gap: 10px !important;
+        margin-top: 30px !important;
     }
 
     .projectshome-container .row {
@@ -146,44 +146,44 @@
     }
 
     .galleryhome-container {
-        padding: 0 30px 0 30px !important;
+        padding: 0 10px 0 10px !important;
         gap: 20px !important;
-        margin-top: 40px !important;
+        margin-top: 30px !important;
     }
 
     .blogartihome-container {
-        padding: 0 24px 0 28px !important;
-        margin-top: 40px !important;
+        padding: 0 14px 0 14px !important;
+        margin-top: 30px !important;
         gap: 10px !important;
     }
 
     .blogartihome-container .blogartihome-inner .slick-list .slick-track {
         display: flex;
-        gap: 8px !important;
+        gap: 6px !important;
     }
 
     .testihome-container {
-        padding: 0 24px 0 28px !important;
-        margin-top: 80px !important;
+        padding: 0 14px 0 14px !important;
+        margin-top: 60px !important;
         gap: 10px !important;
     }
 
     .testihome-container .testihome-inner .slick-list .slick-track {
         display: flex;
-        gap: 8px !important;
+        gap: 6px !important;
     }
 
     .msgbxhome-container {
-        padding: 40px 30px !important;
+        padding: 20px 10px !important;
         margin: 25 0 !important;
     }
 
     .msgbxhome-inner {
-        padding: 40px 40px !important;
+        padding: 30px 30px !important;
     }
 
     .msgbxhome-container .msgbxhome-inner .row {
-        --bs-gutter-y: 20px !important;
+        --bs-gutter-y: 15px !important;
     }
 
     .msgbxhome-imgcont {
@@ -197,7 +197,7 @@
     }
 
     .joinhome-container {
-        height: 242px !important;
+        height: 232px !important;
     }
 
     .joinhome-container .joinhome-inner {
@@ -205,24 +205,29 @@
     }
 
     .videohome-container {
-        padding: 50px 40px !important;
+        padding: 50px 10px !important;
     }
 
     .videohome-container .videohome-inner {
         height: 235px !important;
     }
 
+    .videohome-container .videohome-inner img {
+        width: 50px !important;
+        height: 50px !important;
+    }
+
     .projects-banner {
-        height: 280px;
+        height: 300px;
     }
 
     .projects-banner .projects-banner-inner, .event-banner .event-banner-inner {
-        padding: 0 30px;
+        padding: 0 15px;
         gap: 12px !important;
     }
 
     .projects-banner .projects-banner-inner .breadcrumb .breadcrumb-item, .event-banner .event-banner-inner .breadcrumb .breadcrumb-item {
-        font-size: 16px !important;
+        font-size: 14px !important;
         gap: 4px !important;
     }
     
@@ -237,7 +242,7 @@
     }
 
     .projects-content {
-        padding: 40px 30px;
+        padding: 35px 10px;
     }
 
     .projects-content h4 {
@@ -255,63 +260,92 @@
     }
 
     .gallery-container {
-        padding: 40px 30px;
+        padding: 30px 10px;
     }
 
     .gallery-container .gallery-inner .row {
         --bs-gutter-x: 20px;
     }
+
+    .gallery-container .gallery-pagination .pagination button {
+        padding: 0 6px !important;
+    }
     
     .event-banner .event-banner-inner {
         gap: 12px !important;
-        padding: 30px !important;
+        padding: 15px !important;
     }
 
     .event-container {
-        padding: 40px 30px !important;
+        padding: 30px 10px !important;
     }
 
     .event-container .event-slider-container {
-        padding: 20px 0 !important;
+        padding: 10px 0 !important;
     }
 
     .event-container .event-slider-container .event-slider .event-slider-inner {
-        width: 70% !important;
+        width: 100% !important;
         display: flex;
         flex-direction: column;
-        gap: 14px !important;
+        gap: 10px !important;
     }
 
     .event-container .event-list {
-        margin-top: 50px;
+        margin-top: 40px;
+    }
+
+    .event-list .events-list-body .events-item {
+        flex-direction: column;
+        justify-content: center !important;
+        align-items: start !important;
+        gap: 15px;
+    }
+
+    .event-list .events-list-body .events-item .events-item-right {
+        flex-direction: row !important;
+        justify-content: space-between;
+        width: 100%;
     }
 
     .btn-main-outline {
-        font-size: 16px !important;
+        font-size: 14px !important;
         padding: 10px 16px !important;
     }
 
     .btn-main {
-        font-size: 16px !important;
+        font-size: 14px !important;
         padding: 10px 16px !important;
     }
 
     .btn-link {
-        font-size: 16px !important;
+        font-size: 14px !important;
         padding: 10px 16px !important;
     }
 
     .btn-mainLink {
-        font-size: 16px !important;
+        font-size: 14px !important;
         padding: 10px 16px !important;
     }
 
     .donate-container {
-        padding: 40px 30px !important;
+        padding: 30px 10px !important;
+    }
+
+    .donate-container .donate-wrapper {
+        padding: 16px !important;
     }
     
     .donate-container .donate-wrapper .row {
         --bs-gutter-y: 10px !important;
+    }
+
+    .donation-right-wrapper {
+        flex-direction: column;
+        justify-content: center !important;
+        margin-top: 0 !important;
+        align-items: start !important;
+        gap: 8px;
     }
 
     .form-group {
@@ -319,7 +353,7 @@
     }
 
     .posts-container {
-        padding: 40px 30px 32px 30px;
+        padding: 30px 10px 32px 10px;
     }
 
     .posts-container .row {
@@ -327,11 +361,16 @@
     }
 
     .posts-container .posts-header {
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
 
     .posts-container.article-list {
-        padding: 40px 30px !important;
+        padding: 30px 10px !important;
+    }
+
+    .single-post-container .single-post-body .single-post-inner {
+        flex-direction: column;
+        align-items: start;
     }
 
     .posts-container.article-list .item-content .item-inner-content {
@@ -354,16 +393,21 @@
         gap: 6px !important;
     }
 
+    .single-post-container .single-post-body .single-post-inner .single-post-date {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
     .single-post-container {
-        padding: 40px 30px;
+        padding: 30px 10px;
     }
 
     .single-post-container .row {
-        --bs-gutter-y: 40px !important;
+        --bs-gutter-y: 30px !important;
     }
 
     .single-post-container .single-post-body {
-        padding: 40px 0;
+        padding: 30px 0;
     }
 
     .single-post-body .single-post-content {
@@ -372,12 +416,12 @@
 
     .single-post-social-icons {
         display: flex;
-        gap: 20px;
+        gap: 22px;
     }
     
     .single-post-social-icons a {
         color: var(--main);
-        font-size: 20px;
+        font-size: 22px;
     }
 
     .single-post-body .single-post-content p {
@@ -387,13 +431,13 @@
     }
     
     .single-post-body .single-post-content strong {
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 700;
         line-height: 32px;
     }
 
     .posts-container.blog-list {
-        padding: 40px 30px !important;
+        padding: 30px 10px !important;
     }
 
     .single-post-head.blog {
@@ -401,11 +445,20 @@
     }
 
     .single-post-head.blog .single-post-head-cont {
-        padding: 0 30px;
+        padding: 0 14px;
     }
 
     .single-post-head .single-post-hbi .sphbitp {
-        max-width: 80%;
+        max-width: 100%;
+    }
+
+    .single-post-head .single-post-hbi .sphbibtm {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .single-post-head .single-post-hbi .sphbibtm .single-post-social-icons {
+        width: 100%;
     }
 
     .single-post-container.single-blog .single-post-body {
@@ -413,15 +466,15 @@
     }
 
     .about-container {
-        padding: 40px 30px;
+        padding: 30px 10px;
     }
 
     .about-container .autp {
-        padding: 0 30px;
+        padding: 0 20px;
     }
 
     .about-container .aumv {
-        margin: 40px 0;
+        margin: 30px 0;
     }
 
     .about-container .auot {
@@ -429,15 +482,15 @@
     }
 
     .about-container .auot .auotinr .row {
-        --bs-gutter-y: 30px !important;
+        --bs-gutter-y: 20px !important;
     }
 
     .auab {
-        margin: 15px 0;
+        margin: 10px 0;
     }
     
     .auab .auabcnt .auabcnt-itm {
-        padding: 51px;
+        padding: 16px;
     }
 
     .auabcnt-itmrit {
@@ -468,7 +521,7 @@
 
     /* Footer */
     footer {
-        padding: 60px 40px !important;
+        padding: 50px 10px !important;
         text-align: center;
     }
 
