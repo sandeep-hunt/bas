@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import About_bg from '../assets/images/msic/about_bg.png'
 import Header from '../components/Header/Header'
@@ -42,7 +42,7 @@ const data = [
 const AboutUs = () => {
 
     useEffect(() => {
-      window.scrollTo(0, 0);
+        window.scrollTo(0, 0);
     }, []);
 
     var settings = {
@@ -62,7 +62,7 @@ const AboutUs = () => {
                     slidesToScroll: 1,
                     infinite: true,
                     dots: true,
-                    arrows:false
+                    arrows: false
                 }
             },
             {
@@ -71,7 +71,8 @@ const AboutUs = () => {
                     slidesToShow: 1,
                     slidesToScroll: 1,
                     initialSlide: 1,
-                    arrows: false
+                    arrows: false,
+                    dots: true,
                 }
             },
             {
@@ -79,7 +80,8 @@ const AboutUs = () => {
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
-                    arrows: false
+                    arrows: false,
+                    dots: true,
                 }
             }
         ]
@@ -123,42 +125,52 @@ const AboutUs = () => {
                     <div className="auot">
                         <h2 className='text-main text-center tw-600'>Our Team</h2>
                         <div className="auotinr">
-                            <div className="auotinitm">
-                                <div className="auotinrct">
-                                    <h5 className='m-0'>Prof. Dr. Subroto Roy</h5>
-                                    <span className='subHdng'>Founding Director</span>
-                                </div>
-                                <div className="auotinrit">
-                                    <img src={Team1} className='img-fluid' alt="" />
-                                </div>
-                            </div>
-                            <div className="auotinitm">
-                                <div className="auotinrct">
-                                    <h5 className='m-0'>Vijay Koli</h5>
-                                    <span className='subHdng'>Director</span>
-                                </div>
-                                <div className="auotinrit">
-                                    <img src={Team2} className='img-fluid' alt="" />
-                                </div>
-                            </div>
-                            <div className="auotinitm">
-                                <div className="auotinrct">
-                                    <h5 className='m-0'>Smt. Alpana Ganguly</h5>
-                                    <span className='subHdng'>Quality Assurance Director</span>
-                                </div>
-                                <div className="auotinrit">
-                                    <img src={Team3} className='img-fluid' alt="" />
-                                </div>
-                            </div>
-                            <div className="auotinitm">
-                                <div className="auotinrct">
-                                    <h5 className='m-0'>Smt. Apurva Sathe</h5>
-                                    <span className='subHdng'>Head of Sustainability Projects</span>
-                                </div>
-                                <div className="auotinrit">
-                                    <img src={Team4} className='img-fluid' alt="" />
-                                </div>
-                            </div>
+                            <Row>
+                                <Col sm={6} lg={3}>
+                                    <div className="auotinitm">
+                                        <div className="auotinrct">
+                                            <h5 className='m-0'>Prof. Dr. Subroto Roy</h5>
+                                            <span className='subHdng'>Founding Director</span>
+                                        </div>
+                                        <div className="auotinrit">
+                                            <img src={Team1} className='img-fluid' alt="" />
+                                        </div>
+                                    </div>
+                                </Col>
+                                <Col sm={6} lg={3}>
+                                    <div className="auotinitm">
+                                        <div className="auotinrct">
+                                            <h5 className='m-0'>Vijay Koli</h5>
+                                            <span className='subHdng'>Director</span>
+                                        </div>
+                                        <div className="auotinrit">
+                                            <img src={Team2} className='img-fluid' alt="" />
+                                        </div>
+                                    </div>
+                                </Col>
+                                <Col sm={6} lg={3}>
+                                    <div className="auotinitm">
+                                        <div className="auotinrct">
+                                            <h5 className='m-0'>Smt. Alpana Ganguly</h5>
+                                            <span className='subHdng'>Quality Assurance Director</span>
+                                        </div>
+                                        <div className="auotinrit">
+                                            <img src={Team3} className='img-fluid' alt="" />
+                                        </div>
+                                    </div>
+                                </Col>
+                                <Col sm={6} lg={3}>
+                                    <div className="auotinitm">
+                                        <div className="auotinrct">
+                                            <h5 className='m-0'>Smt. Apurva Sathe</h5>
+                                            <span className='subHdng'>Head of Sustainability Projects</span>
+                                        </div>
+                                        <div className="auotinrit">
+                                            <img src={Team4} className='img-fluid' alt="" />
+                                        </div>
+                                    </div>
+                                </Col>
+                            </Row>
                         </div>
                     </div>
                     <div className="auab">
@@ -201,31 +213,31 @@ const AboutUs = () => {
                                     <Col sm={12} md={6}>
                                         <Form.Group className='form-group'>
                                             <label>First Name<span style={{ color: `red` }}>*</span></label>
-                                            <input className='form-control' type="text" name="name" placeholder='Your First Name'/>
+                                            <input className='form-control' type="text" name="name" placeholder='Your First Name' />
                                         </Form.Group>
                                     </Col>
                                     <Col sm={12} md={6}>
                                         <Form.Group className='form-group'>
                                             <label>Last Name<span style={{ color: `red` }}>*</span></label>
-                                            <input className='form-control' type="text" name="name" placeholder='Your Last Name'/>
+                                            <input className='form-control' type="text" name="name" placeholder='Your Last Name' />
                                         </Form.Group>
                                     </Col>
                                     <Col sm={12} md={6}>
                                         <Form.Group className='form-group'>
                                             <label>Mail<span style={{ color: `red` }}>*</span></label>
-                                            <input className='form-control' type="email" name="name" placeholder='Your Mail'/>
+                                            <input className='form-control' type="email" name="name" placeholder='Your Mail' />
                                         </Form.Group>
                                     </Col>
                                     <Col sm={12} md={6}>
                                         <Form.Group className='form-group'>
                                             <label>Phone<span style={{ color: `red` }}>*</span></label>
-                                            <input className='form-control' type="text" name="name" placeholder='Your Phone'/>
+                                            <input className='form-control' type="text" name="name" placeholder='Your Phone' />
                                         </Form.Group>
                                     </Col>
                                     <Col sm={12}>
                                         <Form.Group className='form-group'>
                                             <label>Message<span style={{ color: `red` }}>*</span></label>
-                                            <textarea rows={6} className='form-control' type="text" name="name" placeholder='Type Your Message Here...'/>
+                                            <textarea rows={6} className='form-control' type="text" name="name" placeholder='Type Your Message Here...' />
                                         </Form.Group>
                                     </Col>
                                 </Row>

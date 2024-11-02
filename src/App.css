@@ -730,9 +730,6 @@ textarea.form-control {
 
 .about-container .auot .auotinr {
     margin-top: 24px;
-    display: flex;
-    gap: 31px;
-    flex-wrap: wrap;
 }
 
 .about-container .auot .auotinr .auotinitm {

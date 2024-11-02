@@ -393,8 +393,8 @@
         padding: 0 10px 50px 10px;
     }
 
-    .about-container .auot .auotinr {
-        gap: 22px !important;
+    .about-container .auot .auotinr .row {
+        --bs-gutter-y: 40px !important;
     }
 
     .auab {
@@ -406,7 +406,7 @@
     }
 
     .auabcnt-itmrit {
-        padding-left: 40px;
+        padding-left: 0px;
     }
 
     .auctu {
