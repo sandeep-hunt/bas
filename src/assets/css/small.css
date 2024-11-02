@@ -212,6 +212,10 @@
         height: 235px !important;
     }
 
+    .projects-banner {
+        height: 280px;
+    }
+
     .projects-banner .projects-banner-inner, .event-banner .event-banner-inner {
         padding: 0 30px;
         gap: 12px !important;

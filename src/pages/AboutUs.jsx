@@ -126,7 +126,7 @@ const AboutUs = () => {
                         <h2 className='text-main text-center tw-600'>Our Team</h2>
                         <div className="auotinr">
                             <Row>
-                                <Col sm={6} lg={3}>
+                                <Col xs={6} lg={3}>
                                     <div className="auotinitm">
                                         <div className="auotinrct">
                                             <h5 className='m-0'>Prof. Dr. Subroto Roy</h5>
@@ -137,7 +137,7 @@ const AboutUs = () => {
                                         </div>
                                     </div>
                                 </Col>
-                                <Col sm={6} lg={3}>
+                                <Col xs={6} lg={3}>
                                     <div className="auotinitm">
                                         <div className="auotinrct">
                                             <h5 className='m-0'>Vijay Koli</h5>
@@ -148,7 +148,7 @@ const AboutUs = () => {
                                         </div>
                                     </div>
                                 </Col>
-                                <Col sm={6} lg={3}>
+                                <Col xs={6} lg={3}>
                                     <div className="auotinitm">
                                         <div className="auotinrct">
                                             <h5 className='m-0'>Smt. Alpana Ganguly</h5>
@@ -159,7 +159,7 @@ const AboutUs = () => {
                                         </div>
                                     </div>
                                 </Col>
-                                <Col sm={6} lg={3}>
+                                <Col xs={6} lg={3}>
                                     <div className="auotinitm">
                                         <div className="auotinrct">
                                             <h5 className='m-0'>Smt. Apurva Sathe</h5>
