@@ -131,7 +131,8 @@ router.post('/book-event/verify-payment', async (req, res) => {
                         scale: 3,             // Scaling factor
                         height: 10,           // Bar height, in millimeters
                         includetext: false,    // Show human-readable text
-                        textxalign: 'center', // Align the text
+                        barColor: 'white',
+                        backgroundColor: 'white',
                     }, (err, png) => {
                         if (err) {
                             console.error('Error generating barcode:', err);
@@ -147,9 +148,7 @@ router.post('/book-event/verify-payment', async (req, res) => {
 
                 // Prepare email data for the confirmation email
                 const replacements = {
-                    customerName: lastBooking.event_booking_name,
-                    bookingId: lastBooking.event_booking_id,
-                    amountPaid: lastBooking.amount_paid, // Use the correct field for the amount paid
+                    bookingName: lastBooking.event_booking_name,
                     barcode: barcodeUrl // Include the barcode URL for the email
                 };
 

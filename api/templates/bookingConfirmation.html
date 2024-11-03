@@ -1,31 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Confirmation</title>
     <style>
-        .pdf-section {
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #333;
+        }
+
+        .ticket {
+            width: 350px;
+            height: auto;
+            background-color: #333;
+            color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .ticket .header {
+            position: relative;
+            width: 100%;
+            height: 150px;
+            /* Replace with actual image URL */
+            background-size: cover;
+            background-position: center;
+            text-align: center;
             padding: 20px;
-            border: 1px solid #ddd;
-            max-width: 600px;
-            margin: 0 auto;
+        }
+
+        .ticket .header h1 {
+            margin-top: 50px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        .ticket .header p {
+            font-size: 1em;
+            color: #FFD700;
+            margin-top: 5px;
+        }
+
+        .ticket .details {
+            padding: 20px;
+            background-color: #964B00;
+            border-top: 2px solid #444;
+            border-bottom: 2px solid #444;
+        }
+
+        .ticket .details .info {
+            margin-bottom: 15px;
+        }
+
+        .ticket .details .info label {
+            font-weight: bold;
+            font-size: 0.8em;
+        }
+
+        .ticket .details .info p {
+            font-size: 1.2em;
+            margin-top: 5px;
+        }
+
+        .ticket .barcode {
+            text-align: center;
+            padding: 10px;
+            background-color: #964B00;
+        }
+
+        .ticket .barcode img {
+            max-width: 100%;
+            height: 50px;
+        }
+
+        .ticket .scan-barcode {
+            text-align: center;
+            color: #FFD700;
+            font-size: 0.9em;
+            margin-bottom: 5px;
         }
     </style>
 </head>
-<body>
-    <h1>Booking Confirmation</h1>
-    <p>Dear {{customerName}},</p>
 
+<body>
     <!-- Target PDF Section -->
     <div id="pdf-section" class="pdf-section">
-        <p>Thank you for your booking. Here are the details:</p>
-        <ul>
-            <li>Booking ID: {{bookingId}}</li>
-            <img src="{{barcode}}" alt="Barcode for Booking ID {{bookingId}}" />
-        </ul>
+        <div class="ticket">
+            <div class="header" style="background-image: url({{eventImage}});">
+                <h1>{{eventName}}</h1>
+            </div>
+            <div class="details">
+                <div class="info">
+                    <label>Location</label>
+                    <p>{{eventLocation}}</p>
+                </div>
+                <div class="info">
+                    <label>Name</label>
+                    <p>{{bookingName}}</p>
+                </div>
+                <div class="info">
+                    <label>Date</label>
+                    <p>{{bookingDate}}</p>
+                </div>
+                <div class="info">
+                    <label>Dresscode</label>
+                    <p>Traditional (Preferred)</p>
+                </div>
+            </div>
+            <div class="barcode">
+                <div class="scan-barcode">Scan Barcode</div>
+                <img src="{{barcode}}" alt="Barcode"> <!-- Replace with actual barcode image URL -->
+            </div>
+        </div>
     </div>
-
-    <p>Best Regards,<br>Event Team</p>
 </body>
+
 </html>

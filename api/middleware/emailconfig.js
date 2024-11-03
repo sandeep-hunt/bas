@@ -31,7 +31,17 @@ async function generatePdf(html) {
         `
     });
 
-    const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true });
+    const pdfBuffer = await page.pdf({
+        width: '92.6mm',
+        height: '180.4mm',
+        printBackground: true,
+        margin: {
+            top: '0mm',
+            right: '0mm',
+            bottom: '0mm',
+            left: '0mm',
+        },
+    });
     await browser.close();
     return pdfBuffer;
 }
