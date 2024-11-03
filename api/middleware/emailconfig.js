@@ -19,8 +19,9 @@ async function loadTemplate(templateName, replacements) {
 
 // Generate PDF of a Specific Section in HTML
 async function generatePdf(html) {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
+    await browser.close();
     await page.setContent(html);
 
     // Hide everything except the section with id #pdf-section
