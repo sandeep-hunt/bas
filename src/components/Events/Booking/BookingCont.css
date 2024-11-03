@@ -1,0 +1,36 @@
+.payment-success .payment-wrapper, .payment-failed .payment-wrapper, .payment-verify .payment-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.payment-success .payment-wrapper .card, .payment-failed .payment-wrapper .card, .payment-verify .payment-wrapper .card {
+    width: 100%;
+    max-width: 863px;
+}
+
+.payment-success .payment-wrapper .card .payment-content, .payment-failed .payment-wrapper .card .payment-content, .payment-verify .payment-wrapper .card .payment-content {
+    padding: 60px 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.payment-success .payment-wrapper .card .payment-content img, .payment-failed .payment-wrapper .card .payment-content img, .payment-verify .payment-wrapper .card .payment-content img {
+    width: 155px;
+    height: 155px;
+}
+
+.payment-success .payment-wrapper .card .payment-content h4 {
+    color: rgba(75, 174, 79, 1) !important;
+}
+
+.payment-failed .payment-wrapper .card .payment-content h4 {
+    color: rgb(174, 75, 75) !important;
+}
+
+.payment-verify .payment-wrapper .card .payment-content h4 {
+    color: #FA660D !important;
+}

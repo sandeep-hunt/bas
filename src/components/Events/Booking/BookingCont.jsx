@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import './BookingCont.css';
 import DonateImg1 from '../../../assets/images/msic/donate_bg1.png';
-import { useParams } from 'react-router-dom';
+import success from '../../../assets/images/msic/success.svg';
+import { useParams, Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 const BookingCont = () => {
   const { slug } = useParams(); // Capture the event ID from the URL
   const [event, setEvent] = useState('');
+  const [paymentSuccess, setpaymentSuccess] = useState('d-none');
+  const [paymentFailed, setpaymentFailed] = useState('d-none');
+  const [paymentVerify, setpaymentVerify] = useState('d-none');
+  const [wrapper, setwrapper] = useState('d-block');
+  const [loading, setLoading] = useState(false); // Loading state for button
 
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_BACKEND_API}fetch/events/${slug}`)
@@ -62,6 +70,8 @@ const BookingCont = () => {
   const handlePayment = async () => {
     if (!isFormValid()) return;
 
+    setLoading(true);
+
     try {
       const bookingResponse = await axios.post(`${import.meta.env.VITE_BACKEND_API}fetch/book-event`, {
         ...formData,
@@ -85,7 +95,8 @@ const BookingCont = () => {
         description: 'Event Payment',
         order_id: orderId, // Razorpay Order ID
         handler: function (response) {
-          alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
+          setpaymentVerify('d-block');
+          setwrapper('d-none');
           // You can also send payment details to your backend for further processing
           // Call the verify-payment API with the necessary details
           axios.post(`${import.meta.env.VITE_BACKEND_API}fetch/book-event/verify-payment`, {
@@ -97,18 +108,26 @@ const BookingCont = () => {
           })
             .then((verifyResponse) => {
               if (verifyResponse.data.success) {
-                alert('Payment verification successful');
+                setwrapper('d-none');
+                setpaymentVerify('d-none');
+                setpaymentSuccess('d-block');
+                setpaymentFailed('d-none');
               } else {
-                alert('Payment verification failed');
+                setwrapper('d-none');
+                setpaymentVerify('d-none');
+                setpaymentSuccess('d-none');
+                setpaymentFailed('d-block');
               }
             })
             .catch((error) => {
-              console.error('Error verifying payment:', error);
-              alert('Payment verification failed');
+              setwrapper('d-none');
+              setpaymentVerify('d-none');
+              setpaymentSuccess('d-none');
+              setpaymentFailed('d-block');
             });
         },
         modal: {
-          ondismiss: function() {
+          ondismiss: function () {
             alert('Payment failed or was canceled.');
           }
         },
@@ -125,7 +144,8 @@ const BookingCont = () => {
       // Error Handling for Failed Payments (Optional)
       paymentObject.on('payment.failed', function (response) {
         // Payment failure handling
-        alert(`Payment failed! Payment ID: ${response.error.metadata.payment_id}`);
+          setpaymentVerify('d-block');
+          setwrapper('d-none');
 
         axios.post(`${import.meta.env.VITE_BACKEND_API}fetch/book-event/verify-payment`, {
           razorpay_order_id: response.error.metadata.order_id,
@@ -135,20 +155,29 @@ const BookingCont = () => {
         })
           .then((verifyResponse) => {
             if (verifyResponse.data.success) {
-              alert('Payment verification successful and booking updated');
+              setwrapper('d-none');
+              setpaymentVerify('d-none');
+              setpaymentSuccess('d-block');
+              setpaymentFailed('d-none');
             } else {
-              alert('Payment verification failed');
+              setwrapper('d-none');
+              setpaymentVerify('d-none');
+              setpaymentSuccess('d-none');
+              setpaymentFailed('d-block');
             }
           })
           .catch((error) => {
-            console.error('Error verifying payment:', error);
-            alert('Payment verification failed');
+            setwrapper('d-none');
+            setpaymentVerify('d-none');
+            setpaymentSuccess('d-none');
+            setpaymentFailed('d-block');
           });
       });
 
       paymentObject.open();
     } catch (error) {
       console.error('Error initiating payment:', error);
+      setLoading(false);
     }
   };
 
@@ -156,7 +185,7 @@ const BookingCont = () => {
     <React.Fragment>
       <div className="donate-container">
         <Container fluid>
-          <div className="donate-wrapper">
+          <div className={wrapper + ' donate-wrapper'}>
             <Row>
               <Col sm={12} lg={5}>
                 <div className="donation-left" style={{ backgroundImage: `url(${DonateImg1})` }}>
@@ -299,13 +328,65 @@ const BookingCont = () => {
                   <Row>
                     <Col>
                       <div className="d-grid">
-                        <Button className='btn-main' onClick={handlePayment}>Submit & Pay</Button>
+                        <Button className='btn-main' onClick={handlePayment} disabled={loading}>{loading ? (
+                        <FontAwesomeIcon icon={faSpinner} spin /> // FontAwesome Spinner
+                      ) : 'Submit & Pay'}</Button>
                       </div>
                     </Col>
                   </Row>
                 </Form.Group>
               </Col>
             </Row>
+          </div>
+          <div className={paymentVerify + ' payment-verify'}>
+            <div className="payment-wrapper">
+              <Card>
+                <Card.Body>
+                  <div className="donation-right-header">
+                    <h4 className='text-main text-center tw-800'>Book Now</h4>
+                  </div>
+                  <div className="payment-content">
+                    <img src={success} className='img-fluid' alt="" />
+                    <h4>Please Wait....</h4>
+                    <h5>Verifying Payment</h5>
+                  </div>
+                </Card.Body>
+              </Card>
+            </div>
+          </div>
+          <div className={paymentSuccess + ' payment-success'}>
+            <div className="payment-wrapper">
+              <Card>
+                <Card.Body>
+                  <div className="donation-right-header">
+                    <h4 className='text-main text-center tw-800'>Book Now</h4>
+                  </div>
+                  <div className="payment-content">
+                    <img src={success} className='img-fluid' alt="" />
+                    <h4>Thank You!</h4>
+                    <h5>Payment Successful</h5>
+                    <Link to="/" className="btn-link">Back To Home</Link>
+                  </div>
+                </Card.Body>
+              </Card>
+            </div>
+          </div>
+          <div className={paymentFailed + ' payment-failed'}>
+            <div className="payment-wrapper">
+              <Card>
+                <Card.Body>
+                  <div className="donation-right-header">
+                    <h4 className='text-main text-center tw-800'>Book Now</h4>
+                  </div>
+                  <div className="payment-content">
+                    <img src={success} className='img-fluid' alt="" />
+                    <h4>Try Again Later!</h4>
+                    <h5>Payment Failed</h5>
+                    <Link to="/" className="btn-link">Back To Home</Link>
+                  </div>
+                </Card.Body>
+              </Card>
+            </div>
           </div>
         </Container>
       </div>
