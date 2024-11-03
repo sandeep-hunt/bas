@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Row, Col } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -6,12 +6,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import DonateImg1 from '../../../assets/images/msic/donate_bg1.png'
 
-const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep }) => {
+const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep, errors }) => {
   const { state, city, address, pincode } = formData;
+
+  const [isCheckboxChecked, setCheckboxChecked] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleCheckboxChange = () => {
+    setCheckboxChecked(!isCheckboxChecked);
   };
 
   return (
@@ -44,6 +50,7 @@ const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep }) => {
                   <Form.Group className='mb-3'>
                     <label>State <span style={{ color: `red` }}>*</span></label>
                     <input className='form-control' type="text" name="state" value={state} onChange={handleChange} placeholder='State'/>
+                    {errors.state && <small className="text-danger">{errors.state}</small>}
                   </Form.Group>
                 </Col>
               </Row>
@@ -52,6 +59,7 @@ const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep }) => {
                   <Form.Group className='mb-3'>
                     <label>City <span style={{ color: `red` }}>*</span></label>
                     <input className='form-control' type="text" name="city" value={city} onChange={handleChange} placeholder='City'/>
+                    {errors.city && <small className="text-danger">{errors.city}</small>}
                   </Form.Group>
                 </Col>
               </Row>
@@ -60,6 +68,7 @@ const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep }) => {
                   <Form.Group className='mb-3'>
                     <label>Address <span style={{ color: `red` }}>*</span></label>
                     <input className='form-control' type="text" name="address" value={address} onChange={handleChange} placeholder='Address'/>
+                    {errors.address && <small className="text-danger">{errors.address}</small>}
                   </Form.Group>
                 </Col>
               </Row>
@@ -68,11 +77,14 @@ const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep }) => {
                   <Form.Group className='mb-3'>
                     <label>Pincode <span style={{ color: `red` }}>*</span></label>
                     <input className='form-control' type="text" name="pincode" value={pincode} onChange={handleChange} placeholder='Pincode'/>
+                    {errors.pincode && <small className="text-danger">{errors.pincode}</small>}
                   </Form.Group>
                 </Col>
               </Row>
               <Form.Group className='mt-4'>
                 <Form.Check
+                  checked={isCheckboxChecked}
+                  onChange={handleCheckboxChange}
                   required
                   label="I am willing to receive regular BAS updates."
                 />
@@ -86,7 +98,7 @@ const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep }) => {
                   </Col>
                   <Col>
                     <div className="d-grid">
-                      <Button className='btn-main' onClick={submitForm} disabled={!state || !city || !address || !pincode} >Register</Button>
+                      <Button className='btn-main' onClick={submitForm} disabled={!state || !city || !address || !pincode || !isCheckboxChecked} >Register</Button>
                     </div>
                   </Col>
                 </Row>

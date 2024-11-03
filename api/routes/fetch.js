@@ -8,8 +8,8 @@ const bwipjs = require('bwip-js');
 
 // Get Blogs
 router.get('/events', (req, res) => {
-    const sql = 'SELECT * FROM events';  // Modify this query based on your blog table
-    db.query(sql, (err, results) => {
+    const sql = 'SELECT * FROM events where event_status = ?';  // Modify this query based on your blog table
+    db.query(sql, ['0'], (err, results) => {
         if (err) {
             return res.status(500).json({ error: 'Failed to fetch events' });
         }
@@ -146,26 +146,40 @@ router.post('/book-event/verify-payment', async (req, res) => {
                     });
                 });
 
-                // Prepare email data for the confirmation email
-                const replacements = {
-                    bookingName: lastBooking.event_booking_name,
-                    barcode: barcodeUrl // Include the barcode URL for the email
-                };
+                // Fetch the booking record
+                const fetchEvent = `
+                    SELECT * FROM events 
+                    WHERE event_id = ?
+                `;
 
-                try {
-                    // Load HTML template and send email
-                    const htmlContent = await loadTemplate('bookingConfirmation', replacements);
-                    const pdfBuffer = await generatePdf(htmlContent);
+                db.query(fetchEvent, [lastBooking.event_id], async (fetchErr, rows) => {
+                    const event = rows.length ? rows[0] : null;
+                    // Prepare email data for the confirmation email
+                    const replacements = {
+                        eventImage: event.event_image,
+                        eventName: event.event_name,
+                        eventLocation: event.event_location,
+                        bookingName: lastBooking.event_booking_name,
+                        eventDate: event.event_date,
+                        eventTime: event.event_time,
+                        barcode: barcodeUrl // Include the barcode URL for the email
+                    };
 
-                    const subject = 'Booking Confirmation';
-                    const message = `<p>Dear ${lastBooking.event_booking_name},</p><br/><p>Thank you for your booking. Your payment was successful and your booking Number is ${lastBooking.event_booking_number}. Please find your digital pass/ticket for the event in the attachments.</p><br/>Best Regards,<br/>Event Team`;
+                    try {
+                        // Load HTML template and send email
+                        const htmlContent = await loadTemplate('bookingConfirmation', replacements);
+                        const pdfBuffer = await generatePdf(htmlContent);
 
-                    await sendEmail(email, subject, message, pdfBuffer);
-                    res.json({ success: true, message: 'Payment verified and email sent successfully' });
-                } catch (error) {
-                    console.error('Error sending email or generating PDF:', error);
-                    res.status(500).json({ success: true, message: 'Payment verified, but email sending failed' });
-                }
+                        const subject = 'Booking Confirmation';
+                        const message = `<p>Dear ${lastBooking.event_booking_name},</p><br/><p>Thank you for your booking. Your payment was successful and your booking Number is ${lastBooking.event_booking_number}. Please find your digital pass/ticket for the event in the attachments.</p><br/>Best Regards,<br/>Event Team`;
+
+                        await sendEmail(email, subject, message, pdfBuffer);
+                        res.json({ success: true, message: 'Payment verified and email sent successfully' });
+                    } catch (error) {
+                        console.error('Error sending email or generating PDF:', error);
+                        res.status(500).json({ success: true, message: 'Payment verified, but email sending failed' });
+                    }
+                });
             });
         });
     } else {
@@ -180,5 +194,19 @@ router.post('/book-event/verify-payment', async (req, res) => {
         });
     }
 });
+
+// Handle join us
+router.post('/register', (req, res) => {
+    const { name, mobile, email, age, gender, member_type, state, city, address, pincode } = req.body;
+    const query = `INSERT INTO members (name, mobile, email, age, gender, member_type, state, city, address, pincode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    db.query(query, [name, mobile, email, age, gender, member_type, state, city, address, pincode], (err, result) => {
+        if (err) {
+            console.error('Error inserting data:', err);
+            res.status(500).json({ message: 'Error registering user' });
+        } else {
+            res.status(201).json({ message: 'User registered successfully!' });
+        }
+    });
+})
 
 module.exports = router;

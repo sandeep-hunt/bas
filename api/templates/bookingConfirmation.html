@@ -100,7 +100,7 @@
     <!-- Target PDF Section -->
     <div id="pdf-section" class="pdf-section">
         <div class="ticket">
-            <div class="header" style="background-image: url({{eventImage}});">
+            <div class="header" style="background-image: url(../{{eventImage}});">
                 <h1>{{eventName}}</h1>
             </div>
             <div class="details">
@@ -114,7 +114,11 @@
                 </div>
                 <div class="info">
                     <label>Date</label>
-                    <p>{{bookingDate}}</p>
+                    <p>{{eventDate}}</p>
+                </div>
+                <div class="info">
+                    <label>Time</label>
+                    <p>{{eventTime}}</p>
                 </div>
                 <div class="info">
                     <label>Dresscode</label>
