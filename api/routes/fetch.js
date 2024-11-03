@@ -69,14 +69,14 @@ router.post('/book-event', async (req, res) => {
                 return res.status(500).send('Error booking event');
             }
             const bookingId = result.insertId;
-    
+
             // Create Razorpay order
             const options = {
                 amount: eventPrice * 100, // Payment amount in paise
                 currency: 'INR',
                 receipt: `receipt_order_${bookingId}`,
             };
-    
+
             razorpay.orders.create(options, (err, order) => {
                 if (err) {
                     console.error('Error creating Razorpay order:', err);
@@ -157,7 +157,10 @@ router.post('/book-event/verify-payment', async (req, res) => {
                     const htmlContent = await loadTemplate('bookingConfirmation', replacements);
                     const pdfBuffer = await generatePdf(htmlContent);
 
-                    await sendEmail(email, 'Booking Confirmation', htmlContent, pdfBuffer);
+                    const subject = 'Booking Confirmation';
+                    const message = `<p>Dear ${lastBooking.event_booking_name},</p><br/><p>Thank you for your booking. Your payment was successful and your booking Number is ${lastBooking.event_booking_number}. Please find your digital pass/ticket for the event in the attachments.</p><br/>Best Regards,<br/>Event Team`;
+
+                    await sendEmail(email, subject, message, pdfBuffer);
                     res.json({ success: true, message: 'Payment verified and email sent successfully' });
                 } catch (error) {
                     console.error('Error sending email or generating PDF:', error);
