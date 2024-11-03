@@ -16,6 +16,9 @@ const BookingCont = () => {
   const [paymentVerify, setpaymentVerify] = useState('d-none');
   const [wrapper, setwrapper] = useState('d-block');
   const [loading, setLoading] = useState(false); // Loading state for button
+  const [formErrors, setFormErrors] = useState({});
+
+  const today = new Date().toISOString().split('T')[0];
 
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_BACKEND_API}fetch/events/${slug}`)
@@ -60,11 +63,48 @@ const BookingCont = () => {
   // Validate form fields
   const isFormValid = () => {
     const { name, date, gender, email, mobile, state, city, address, pincode } = formData;
-    if (!name || !date || !gender || !email || !mobile || !state || !city || !address || !pincode) {
-      alert('Please fill in all required fields.');
-      return false;
-    }
-    return true;
+
+    // Regex patterns
+    const namePattern = /^[A-Za-z\s]+$/;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const mobilePattern = /^\d{10}$/;
+    const pincodePattern = /^\d{6}$/;
+
+    const errors = {};
+
+    // Name validation
+    if (!name) errors.name = 'Name is required.';
+    else if (!namePattern.test(name)) errors.name = 'Name should contain only letters and spaces.';
+
+    // DOB validation
+    if (!date) errors.date = 'Date of birth is required.';
+
+    // Gender validation
+    if (!gender) errors.gender = 'Please select your gender.';
+
+    // Email validation
+    if (!email) errors.email = 'Email is required.';
+    else if (!emailPattern.test(email)) errors.email = 'Please enter a valid email address.';
+
+    // Mobile validation
+    if (!mobile) errors.mobile = 'Mobile number is required.';
+    else if (!mobilePattern.test(mobile)) errors.mobile = 'Please enter a valid 10-digit mobile number.';
+
+    // State validation
+    if (!state) errors.state = 'State is required.';
+
+    // City validation
+    if (!city) errors.city = 'City is required.';
+
+    // Address validation
+    if (!address) errors.address = 'Address is required.';
+
+    // Pincode validation
+    if (!pincode) errors.pincode = 'Pincode is required.';
+    else if (!pincodePattern.test(pincode)) errors.pincode = 'Please enter a valid 6-digit pincode.';
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
   };
 
   const handlePayment = async () => {
@@ -144,8 +184,8 @@ const BookingCont = () => {
       // Error Handling for Failed Payments (Optional)
       paymentObject.on('payment.failed', function (response) {
         // Payment failure handling
-          setpaymentVerify('d-block');
-          setwrapper('d-none');
+        setpaymentVerify('d-block');
+        setwrapper('d-none');
 
         axios.post(`${import.meta.env.VITE_BACKEND_API}fetch/book-event/verify-payment`, {
           razorpay_order_id: response.error.metadata.order_id,
@@ -211,6 +251,7 @@ const BookingCont = () => {
                         placeholder="Enter your full name"
                         required
                       />
+                      {formErrors.name && <small className="text-danger">{formErrors.name}</small>}
                     </Form.Group>
                   </Col>
                   <Col sm={12} md={6}>
@@ -221,9 +262,11 @@ const BookingCont = () => {
                         type="date"
                         name="date"
                         value={formData.date}
+                        max={today}
                         onChange={handleInputChange}
                         required
                       />
+                      {formErrors.date && <small className="text-danger">{formErrors.date}</small>}
                     </Form.Group>
                   </Col>
                 </Row>
@@ -240,6 +283,7 @@ const BookingCont = () => {
                     <option value="female">Female</option>
                     <option value="rather not to say">Rather Not To Say</option>
                   </Form.Select>
+                  {formErrors.gender && <small className="text-danger">{formErrors.gender}</small>}
                 </Form.Group>
                 <h3 className='form-group'>Contact Details</h3>
                 <Row>
@@ -255,6 +299,7 @@ const BookingCont = () => {
                         placeholder="Enter your email address"
                         required
                       />
+                      {formErrors.email && <small className="text-danger">{formErrors.email}</small>}
                     </Form.Group>
                   </Col>
                   <Col sm={12} md={6}>
@@ -269,6 +314,7 @@ const BookingCont = () => {
                         placeholder="Enter your mobile number"
                         required
                       />
+                      {formErrors.mobile && <small className="text-danger">{formErrors.mobile}</small>}
                     </Form.Group>
                   </Col>
                   <Col sm={12} md={6}>
@@ -283,6 +329,7 @@ const BookingCont = () => {
                         placeholder="Enter your state"
                         required
                       />
+                      {formErrors.state && <small className="text-danger">{formErrors.state}</small>}
                     </Form.Group>
                   </Col>
                   <Col sm={12} md={6}>
@@ -297,6 +344,7 @@ const BookingCont = () => {
                         placeholder="Enter your city"
                         required
                       />
+                      {formErrors.city && <small className="text-danger">{formErrors.city}</small>}
                     </Form.Group>
                   </Col>
                 </Row>
@@ -308,9 +356,10 @@ const BookingCont = () => {
                     name="address"
                     value={formData.address}
                     onChange={handleInputChange}
-                    placeholder="Enter your full address"
+                    placeholder="Enter your address"
                     required
                   />
+                  {formErrors.address && <small className="text-danger">{formErrors.address}</small>}
                 </Form.Group>
                 <Form.Group className='form-group'>
                   <label>Pincode <span style={{ color: 'red' }}>*</span></label>
@@ -323,6 +372,7 @@ const BookingCont = () => {
                     placeholder="Enter your pincode"
                     required
                   />
+                  {formErrors.pincode && <small className="text-danger">{formErrors.pincode}</small>}
                 </Form.Group>
                 <Form.Group>
                   <Row>

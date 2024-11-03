@@ -1,23 +1,68 @@
-// middleware/mailConfig.js
+const fs = require('fs');
+const path = require('path');
+const puppeteer = require('puppeteer');
 const nodemailer = require('nodemailer');
 
+// Load HTML Template and Replace Placeholders
+async function loadTemplate(templateName, replacements) {
+    const templatePath = path.join(__dirname, `../templates/${templateName}.html`);
+    let html = fs.readFileSync(templatePath, 'utf8');
+
+    // Replace placeholders with actual values from replacements object
+    for (const key in replacements) {
+        const placeholder = `{{${key}}}`;
+        html = html.replace(new RegExp(placeholder, 'g'), replacements[key]);
+    }
+
+    return html;
+}
+
+// Generate PDF of a Specific Section in HTML
+async function generatePdf(html) {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.setContent(html);
+
+    // Hide everything except the section with id #pdf-section
+    await page.addStyleTag({
+        content: `
+            body > * { display: none; }
+            #pdf-section { display: block; }
+        `
+    });
+
+    const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true });
+    await browser.close();
+    return pdfBuffer;
+}
+
+// Configure and Send Email with PDF Attachment
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: process.env.EMAIL,  // your Gmail address
-        pass: process.env.APPKEY   // your App Password or Gmail password
+        user: process.env.EMAIL,  // Your Gmail address
+        pass: process.env.APPKEY   // Your Gmail app password
     }
 });
 
-function sendEmail(to, subject, text) {
+async function sendEmail(to, subject, htmlContent, pdfBuffer) {
     const mailOptions = {
-        from: process.env.EMAIL,
+        from: process.env.EMAIL_USER,
         to: to,
         subject: subject,
-        text: text
+        html: htmlContent,
+        attachments: [
+            {
+                filename: 'BookingConfirmation.pdf',
+                content: pdfBuffer,
+                contentType: 'application/pdf'
+            }
+        ]
     };
 
+    // Send email
     return transporter.sendMail(mailOptions);
 }
 
-module.exports = sendEmail;
+// Export all functions
+module.exports = { loadTemplate, generatePdf, sendEmail };

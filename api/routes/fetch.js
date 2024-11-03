@@ -3,7 +3,8 @@ const router = express.Router();
 const Razorpay = require('razorpay');
 const crypto = require('crypto');
 const db = require('../middleware/connection');
-const sendEmail = require('../middleware/emailconfig');
+const { sendEmail, loadTemplate, generatePdf } = require('../middleware/emailconfig');
+const bwipjs = require('bwip-js');
 
 // Get Blogs
 router.get('/events', (req, res) => {
@@ -98,6 +99,7 @@ router.post('/book-event/verify-payment', async (req, res) => {
         .digest('hex');
 
     if (expectedSignature === razorpay_signature) {
+        // Update booking status to 'paid'
         const query = 'UPDATE event_booking SET payment_status = ?, payment_id = ? WHERE event_booking_id = ?';
         db.query(query, ['paid', razorpay_payment_id, bookingId], async (err, result) => {
             if (err) {
@@ -105,36 +107,67 @@ router.post('/book-event/verify-payment', async (req, res) => {
                 return res.status(500).send('Error verifying payment');
             }
 
-            // Fetch the last row in the event_booking table
+            // Fetch the booking record
             const fetchLastQuery = `
                 SELECT * FROM event_booking 
-                ORDER BY event_booking_id DESC 
-                LIMIT 1
+                WHERE event_booking_id = ?
             `;
-
-            db.query(fetchLastQuery, async (fetchErr, rows) => {
+            db.query(fetchLastQuery, [bookingId], async (fetchErr, rows) => {
                 if (fetchErr) {
                     console.error('Error fetching last booking:', fetchErr);
                     return res.status(500).send('Error fetching last booking');
                 }
 
                 const lastBooking = rows.length ? rows[0] : null;
+                if (!lastBooking) {
+                    return res.status(404).send('Booking record not found');
+                }
 
-                // Send confirmation email
-                const subject = 'Booking Confirmation';
-                const message = `Dear Customer,\n\nThank you for your booking. Your payment was successful and your booking ID is ${lastBooking.event_booking_number}.\n\nBest Regards,\nEvent Team`;
-    
+                // Generate barcode for the booking ID
+                const barcodeUrl = await new Promise((resolve, reject) => {
+                    bwipjs.toBuffer({
+                        bcid: 'code128',      // Barcode type
+                        text: lastBooking.event_booking_id.toString(), // Text to encode (the booking ID)
+                        scale: 3,             // Scaling factor
+                        height: 10,           // Bar height, in millimeters
+                        includetext: false,    // Show human-readable text
+                        textxalign: 'center', // Align the text
+                    }, (err, png) => {
+                        if (err) {
+                            console.error('Error generating barcode:', err);
+                            reject(err);
+                        } else {
+                            // Convert buffer to Base64 string
+                            const base64Image = png.toString('base64');
+                            const dataUrl = `data:image/png;base64,${base64Image}`; // Create data URL for the image
+                            resolve(dataUrl);
+                        }
+                    });
+                });
+
+                // Prepare email data for the confirmation email
+                const replacements = {
+                    customerName: lastBooking.event_booking_name,
+                    bookingId: lastBooking.event_booking_id,
+                    amountPaid: lastBooking.amount_paid, // Use the correct field for the amount paid
+                    barcode: barcodeUrl // Include the barcode URL for the email
+                };
+
                 try {
-                    await sendEmail(email, subject, message);
+                    // Load HTML template and send email
+                    const htmlContent = await loadTemplate('bookingConfirmation', replacements);
+                    const pdfBuffer = await generatePdf(htmlContent);
+
+                    await sendEmail(email, 'Booking Confirmation', htmlContent, pdfBuffer);
                     res.json({ success: true, message: 'Payment verified and email sent successfully' });
                 } catch (error) {
-                    console.error('Error sending email:', error);
+                    console.error('Error sending email or generating PDF:', error);
                     res.status(500).json({ success: true, message: 'Payment verified, but email sending failed' });
                 }
             });
-
         });
     } else {
+        // Update booking status to 'failed' if the signature doesn't match
         const query = 'UPDATE event_booking SET payment_status = ?, payment_id = ? WHERE event_booking_id = ?';
         db.query(query, ['failed', razorpay_payment_id, bookingId], (err, result) => {
             if (err) {
