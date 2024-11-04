@@ -125,7 +125,7 @@ router.post('/book-event/verify-payment', async (req, res) => {
                 }
 
                 // Generate barcode for the booking ID
-                const barcodeSvgBase64 = await new Promise((resolve, reject) => {
+                const barcodePngBase64 = await new Promise((resolve, reject) => {
                     bwipjs.toBuffer({
                         bcid: 'code128',      // Barcode type
                         text: lastBooking.event_booking_id.toString(), // Text to encode
@@ -134,15 +134,15 @@ router.post('/book-event/verify-payment', async (req, res) => {
                         includetext: false,   // Show human-readable text
                         backgroundcolor: 'FFFFFF',
                         padding: 5,           // Padding around the barcode
-                        format: 'svg',        // Output format as SVG
-                    }, (err, svg) => {
+                        format: 'png',        // Output format as PNG
+                    }, (err, png) => {
                         if (err) {
-                            console.error('Error generating SVG barcode:', err);
+                            console.error('Error generating PNG barcode:', err);
                             reject(err);
                         } else {
-                            // Convert SVG to base64
-                            const base64Svg = Buffer.from(svg).toString('base64');
-                            const dataUrl = `data:image/svg+xml;base64,${base64Svg}`; // Create data URI for embedding
+                            // Convert PNG to base64
+                            const base64Png = png.toString('base64');
+                            const dataUrl = `data:image/png;base64,${base64Png}`; // Create data URI for embedding
                             resolve(dataUrl);
                         }
                     });
