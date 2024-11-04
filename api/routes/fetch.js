@@ -134,7 +134,7 @@ router.post('/book-event/verify-payment', async (req, res) => {
                     const event = rows.length ? rows[0] : null;
                     // Prepare email data for the confirmation email
                     const replacements = {
-                        eventImage: event.event_image,
+                        eventImage: process.env.BASE_URL+event.event_image,
                         eventName: event.event_name,
                         bookingNumber: lastBooking.event_booking_number,
                         eventLocation: event.event_location,
