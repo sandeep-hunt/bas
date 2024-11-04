@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import About_bg from '../assets/images/msic/about_bg.png'
 import Header from '../components/Header/Header'
@@ -16,6 +16,10 @@ import Advisory1 from '../assets/images/advisory/1.png'
 import Advisory2 from '../assets/images/advisory/2.png'
 import Advisory3 from '../assets/images/advisory/3.png'
 import Advisory4 from '../assets/images/advisory/4.png'
+import Advisory5 from '../assets/images/advisory/5.png'
+import Advisory6 from '../assets/images/advisory/6.png'
+import Advisory7 from '../assets/images/advisory/7.png'
+import Advisory8 from '../assets/images/advisory/8.png'
 import HomeIcon from '../assets/images/icons/home.svg'
 import EditIcon from '../assets/images/icons/edit.svg'
 
@@ -43,6 +47,30 @@ const data = [
         name: 'Shri. Uttom Mihir Roy',
         designation: 'Chief Advisor (Physical Security)',
         description: "<h4>Shri. Uttom Mihir Roy</h4><h5>Chief Advisor (Physical Security)</h5><br/><p>Shri Uttom Mihir Roy is a highly experienced security consultant and expert in physical security management. With an illustrious career spanning several decades, he has held key positions in various national-level organizations. As the former General Manager and Head of Security for the Mumbai region at the Oil & Natural Gas Commission (ONGC), under the Ministry of Petroleum & Gas, Shri Roy was responsible for overseeing the security operations across critical areas including parts of Gujarat, Goa, and Maharashtra. His leadership ensured the safety and protection of one of India's most vital sectors.</p><p>In addition to his tenure with ONGC, Shri Roy has also served the Department of Atomic Energy, where he contributed to securing highly sensitive and critical installations. His extensive background in safeguarding national resources and infrastructure highlights his expertise in managing complex security challenges across multiple domains.</p><p>Now, as a Chief Advisor on Physical Security, Shri Roy brings his wealth of experience to the table, providing strategic guidance on security matters, threat assessment, and risk mitigation for organizations across various sectors. His insights and deep understanding of security protocols make him an invaluable asset in ensuring the protection of assets and personnel in high-risk environments.</p>",
+    },
+    {
+        image: Advisory5,
+        name: 'Dr. Parveen Prasad',
+        designation: 'Chief Advisor Corporate Communications (External)',
+        description: "<h4>Dr. Parveen Prasad</h4><h5>Chief Advisor Corporate Communications (External)</h5><br/><p>Dr. Parveen Prasad is a distinguished author and professor, specializing in **Human Resources (HR)** and **Leadership**. She has made significant contributions to these fields through her two published books, which are widely regarded as essential reading for HR professionals and leaders alike. Her expertise has positioned her as a sought-after **Visiting Faculty** in various management institutes, where she teaches HR subjects, imparting her vast knowledge to future business leaders.</p><p>In addition to her academic roles, Dr. Prasad is actively involved in corporate training. She curates **Masterclass sessions** for **B-Schools and corporate professionals** on a wide range of topical areas, bringing her expertise to a broader audience. These sessions, conducted under the aegis of **The Mavericks**, are designed to address emerging challenges and trends in HR, leadership, and corporate communications.</p><p>Dr. Prasad's contributions to both academia and corporate education make her a pivotal figure in shaping HR and leadership practices across industries. Through her teaching, writing, and corporate engagements, she continues to influence the next generation of professionals and leaders.</p>",
+    },
+    {
+        image: Advisory6,
+        name: 'Dr. Vinaya Kshirsagar',
+        designation: 'Chief Advisor (Vedic Linguistics)',
+        description: "<h4>Dr. Vinaya Kshirsagar</h4><h5>Chief Advisor (Vedic Linguistics, Dramaturgy, Vedic Sanskrit Language)</h5><br/><p>Dr. Vinaya Kshirsagar is a distinguished scholar in the fields of Vedic Linguistics, Dramaturgy, and Vedic Sanskrit Language. Currently serving as the Joint General Editor & Head of the Department of Sanskrit & Lexicography, Dr. Kshirsagar has held prominent academic positions throughout his illustrious career, including his role as the former Professor and Head at Deccan College. With an extensive background in Sanskrit and Linguistics, his scholarly expertise has shaped and influenced modern interpretations of ancient texts.</p><p>An accomplished academic, Dr. Kshirsagar holds a B.A, M.A, and Ph.D. in Sanskrit, along with an M.A. in Linguistics. Additionally, he has completed a certificate course in German and Computational Linguistics, further broadening his multidisciplinary knowledge base. His achievements include the prestigious Rigveda Award in 1999, a testament to his deep commitment to preserving and expanding Vedic knowledge. </p><p>With 36 years of teaching experience and 40 years dedicated to research, Dr. Kshirsagar’s contributions to the academic world are immeasurable. His work in Bhashabhijna and Kavyakovid has also cemented his reputation as a leading authority in Vedic studies, dramaturgy, and linguistics. Through his research and teachings, he continues to inspire students and scholars in these ancient and evolving fields of knowledge.</p>",
+    },
+    {
+        image: Advisory7,
+        name: 'Dr. Shive Kumar Chaturvedi',
+        designation: 'Chief Advisor (Shrimad Bhagvat Darshan)',
+        description: "<h4>Dr. Shive Kumar Chaturvedi</h4><h5>Chief Advisor (Indian Literary & Cultural Studies: Theory & Practice)</h5><br/><p>Prof. Dr. Sudhir Kumar is a highly respected scholar and Chief Advisor in Indian Literary & Cultural Studies, specializing in both theory and practice. He currently serves at the Department of Evening Studies - Multi-Disciplinary Research Center, where his leadership and academic insights have shaped research in comparative literature and cultural studies. His work focuses on the deep connections between India's literary heritage and its cultural practices, offering a holistic view of India's vast intellectual landscape.</p><p>Dr. Kumar is a recipient of the prestigious K.K. Birla Foundation Fellowship in the field of comparative literature, an award that highlights his significant contributions to the study and interpretation of literary traditions. His research spans multiple disciplines, bridging the gap between traditional literary studies and modern cultural analysis. His insights into the evolving nature of literary forms and their role in shaping cultural identity make him a distinguished figure in the academic world.</p><p>In addition to his academic accolades, Dr. Kumar is an active member of the Academic Committee at the Indian Institute of Advanced Study, Rashtrapati Niwas, Shimla. His involvement in this prestigious institution underscores his commitment to advancing research in Indian literature and cultural studies. Through his work, Dr. Kumar continues to inspire scholars and students alike, fostering a deeper understanding of India's rich literary and cultural traditions in both national and international contexts.</p>",
+    },
+    {
+        image: Advisory8,
+        name: 'Dr. Shive Kumar Chaturvedi',
+        designation: 'Chief Advisor (Shrimad Bhagvat Darshan)',
+        description: "<h4>Dr. Shive Kumar Chaturvedi</h4><h5>Chief Advisor (Shrimad Bhagvat Darshan)</h5><br/><p>Dr. Shive Kumar Chaturvedi is a distinguished scholar and Chief Advisor in Shrimad Bhagvat Darshan, bringing deep expertise to the fields of Vedic and spiritual studies. His teachings encompass the Vedas, Upanishads, Bhagavad Gita, Bhagavatam, and Yoga-Dharma traditions, with a focus on their contemporary relevance and practical application. Dr. Chaturvedi’s approach connects ancient wisdom with modern contexts, offering valuable insights for navigating today’s world through the lens of traditional teachings.</p><p>In addition to his spiritual and academic roles, Dr. Chaturvedi is a Professor Emeritus at The Ohio State University, where he has contributed significantly to Civil, Environmental, and Genetic Engineering. His academic career is marked by groundbreaking research and a commitment to integrating engineering principles with environmental and genetic advancements. His dual expertise in engineering and spiritual studies positions him uniquely to guide and mentor those seeking to understand the intersection of technology, environment, and spiritual wisdom.</p><p>Dr. Chaturvedi’s impact extends beyond the classroom and lecture halls. His work in popularizing ancient texts and practices for contemporary audiences has helped many reconnect with the timeless wisdom of the Vedas and other sacred scriptures. Through his guidance, students and practitioners gain a deeper understanding of how these teachings can be applied to enhance personal growth, ethical living, and environmental stewardship in today’s rapidly evolving world.</p>",
     },
 ]
 
@@ -93,6 +121,61 @@ const AboutUs = () => {
             }
         ]
     };
+
+
+    const [formErrors, setFormErrors] = useState({});
+    const [formData, setFormData] = useState({
+        firstname: '',
+        lastname: '',
+        email: '',
+        mobile: '',
+        message: ''
+    });
+
+    const handleInputChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    // Validate form fields
+    const isFormValid = () => {
+        const { firstname, lastname, email, mobile, message } = formData;
+
+        // Regex patterns
+        const namePattern = /^[A-Za-z\s]+$/;
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const mobilePattern = /^\d{10}$/;
+
+        const errors = {};
+
+        // Name validation
+        if (!firstname) errors.firstname = 'First Name is required.';
+        else if (!namePattern.test(firstname)) errors.name = 'Name should contain only letters and spaces.';
+
+        if (!lastname) errors.lastname = 'Last Name is required.';
+        else if (!namePattern.test(lastname)) errors.name = 'Name should contain only letters and spaces.';
+
+        // Email validation
+        if (!email) errors.email = 'Email is required.';
+        else if (!emailPattern.test(email)) errors.email = 'Please enter a valid email address.';
+
+        // Mobile validation
+        if (!mobile) errors.mobile = 'Mobile number is required.';
+        else if (!mobilePattern.test(mobile)) errors.mobile = 'Please enter a valid 10-digit mobile number.';
+
+        if (!message) errors.message = 'Message/Feedback is required.';
+
+        setFormErrors(errors);
+        return Object.keys(errors).length === 0;
+    };
+
+
+    const handleSubmit = async () => {
+        if (!isFormValid()) return;
+    }
+
     return (
         <React.Fragment>
             <Header />
@@ -220,35 +303,40 @@ const AboutUs = () => {
                                     <Col sm={12} md={6}>
                                         <Form.Group className='form-group'>
                                             <label>First Name<span style={{ color: `red` }}>*</span></label>
-                                            <input className='form-control' type="text" name="name" placeholder='Your First Name' />
+                                            <input className='form-control' type="text" name="firstname" placeholder='Your First Name' onChange={handleInputChange} />
+                                            {formErrors.firstname && <small className="text-danger">{formErrors.firstname}</small>}
                                         </Form.Group>
                                     </Col>
                                     <Col sm={12} md={6}>
                                         <Form.Group className='form-group'>
                                             <label>Last Name<span style={{ color: `red` }}>*</span></label>
-                                            <input className='form-control' type="text" name="name" placeholder='Your Last Name' />
+                                            <input className='form-control' type="text" name="lastname" placeholder='Your Last Name' onChange={handleInputChange} />
+                                            {formErrors.lastname && <small className="text-danger">{formErrors.lastname}</small>}
                                         </Form.Group>
                                     </Col>
                                     <Col sm={12} md={6}>
                                         <Form.Group className='form-group'>
                                             <label>Mail<span style={{ color: `red` }}>*</span></label>
-                                            <input className='form-control' type="email" name="name" placeholder='Your Mail' />
+                                            <input className='form-control' type="email" name="email" placeholder='Your Mail' onChange={handleInputChange} />
+                                            {formErrors.email && <small className="text-danger">{formErrors.email}</small>}
                                         </Form.Group>
                                     </Col>
                                     <Col sm={12} md={6}>
                                         <Form.Group className='form-group'>
                                             <label>Phone<span style={{ color: `red` }}>*</span></label>
-                                            <input className='form-control' type="text" name="name" placeholder='Your Phone' />
+                                            <input className='form-control' type="text" name="mobile" placeholder='Your Phone' onChange={handleInputChange} />
+                                            {formErrors.mobile && <small className="text-danger">{formErrors.mobile}</small>}
                                         </Form.Group>
                                     </Col>
                                     <Col sm={12}>
                                         <Form.Group className='form-group'>
                                             <label>Message<span style={{ color: `red` }}>*</span></label>
-                                            <textarea rows={6} className='form-control' type="text" name="name" placeholder='Type Your Message Here...' />
+                                            <textarea rows={6} className='form-control' type="text" name="message" placeholder='Type Your Message Here...' onChange={handleInputChange} />
+                                            {formErrors.message && <small className="text-danger">{formErrors.message}</small>}
                                         </Form.Group>
                                     </Col>
                                 </Row>
-                                <Button className='btn-main'>Send Message</Button>
+                                <Button className='btn-main' onClick={handleSubmit}>Send Message</Button>
                             </Col>
                         </Row>
                     </div>

@@ -369,6 +369,12 @@
         padding-left: 40px;
     }
 
+    .auabcnt-itmrit p {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+    }
+
     .auctu {
         padding: 80px 0;
     }

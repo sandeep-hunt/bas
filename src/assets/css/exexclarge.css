@@ -242,6 +242,7 @@
     .single-post-head.blog .single-post-head-cont {
         padding: 0 130px;
     }
+
     .single-post-head .single-post-hbi .sphbitp {
         max-width: 80%;
     }
@@ -272,6 +273,12 @@
 
     .auabcnt-itmrit {
         padding-left: 50px;
+    }
+
+    .auabcnt-itmrit p {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 24px;
     }
 
     .auctu {
