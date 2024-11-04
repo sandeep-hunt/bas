@@ -125,24 +125,23 @@ router.post('/book-event/verify-payment', async (req, res) => {
                 }
 
                 // Generate barcode for the booking ID
-                const barcodePngBase64 = await new Promise((resolve, reject) => {
+                const barcodeUrl = await new Promise((resolve, reject) => {
                     bwipjs.toBuffer({
                         bcid: 'code128',      // Barcode type
-                        text: lastBooking.event_booking_id.toString(), // Text to encode
+                        text: lastBooking.event_booking_id.toString(), // Text to encode (the booking ID)
                         scale: 3,             // Scaling factor
                         height: 10,           // Bar height, in millimeters
-                        includetext: false,   // Show human-readable text
-                        backgroundcolor: 'FFFFFF',
-                        padding: 5,           // Padding around the barcode
-                        format: 'png',        // Output format as PNG
+                        includetext: false,    // Show human-readable text
+                        barColor: 'white',
+                        backgroundColor: 'white',
                     }, (err, png) => {
                         if (err) {
-                            console.error('Error generating PNG barcode:', err);
+                            console.error('Error generating barcode:', err);
                             reject(err);
                         } else {
-                            // Convert PNG to base64
-                            const base64Png = png.toString('base64');
-                            const dataUrl = `data:image/png;base64,${base64Png}`; // Create data URI for embedding
+                            // Convert buffer to Base64 string
+                            const base64Image = png.toString('base64');
+                            const dataUrl = `data:image/png;base64,${base64Image}`; // Create data URL for the image
                             resolve(dataUrl);
                         }
                     });
@@ -164,7 +163,7 @@ router.post('/book-event/verify-payment', async (req, res) => {
                         bookingName: lastBooking.event_booking_name,
                         eventDate: event.event_date,
                         eventTime: event.event_time,
-                        barcode: `<img src="${barcodeSvgBase64}" alt="Barcode" />` // Include the barcode URL for the email
+                        barcode: barcodeUrl // Include the barcode URL for the email
                     };
 
                     try {
