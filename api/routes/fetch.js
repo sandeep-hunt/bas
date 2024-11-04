@@ -6,8 +6,6 @@ const db = require('../middleware/connection');
 const { sendEmail, loadTemplate } = require('../middleware/emailconfig');
 const generatePdf = require('../utils/generatePDF');
 const fs = require('fs').promises;
-const path = require('path');
-const bwipjs = require('bwip-js');
 
 // Get Blogs
 router.get('/events', (req, res) => {
@@ -126,33 +124,6 @@ router.post('/book-event/verify-payment', async (req, res) => {
                     return res.status(404).send('Booking record not found');
                 }
 
-                // Set directory path one level up
-                const barcodeDir = path.join(__dirname, '../barcodes');
-                await fs.mkdir(barcodeDir, { recursive: true });
-
-                // Save the barcode in the ../barcodes directory
-                const barcodeFilePath = path.join(barcodeDir, `${lastBooking.event_booking_id}.png`);
-
-                // Generate barcode for the booking ID
-                await new Promise((resolve, reject) => {
-                    bwipjs.toBuffer({
-                        bcid: 'code128',
-                        text: lastBooking.event_booking_id.toString(),
-                        scale: 3,
-                        height: 10,
-                        includetext: false,
-                        backgroundcolor: 'FFFFFF'
-                    }, async (err, png) => {
-                        if (err) {
-                            console.error('Error generating PNG barcode:', err);
-                            reject(err);
-                        } else {
-                            await fs.writeFile(barcodeFilePath, png); // Save PNG in ../barcodes
-                            resolve();
-                        }
-                    });
-                });
-
                 // Fetch the booking record
                 const fetchEvent = `
                     SELECT * FROM events 
@@ -165,11 +136,11 @@ router.post('/book-event/verify-payment', async (req, res) => {
                     const replacements = {
                         eventImage: event.event_image,
                         eventName: event.event_name,
+                        bookingNumber: lastBooking.event_booking_number,
                         eventLocation: event.event_location,
                         bookingName: lastBooking.event_booking_name,
                         eventDate: event.event_date,
                         eventTime: event.event_time,
-                        barcode: `<img src="cid:barcode" alt="Barcode" />`
                     };
 
                     try {
@@ -180,16 +151,7 @@ router.post('/book-event/verify-payment', async (req, res) => {
                         const subject = 'Booking Confirmation';
                         const message = `<p>Dear ${lastBooking.event_booking_name},</p><br/><p>Thank you for your booking. Your payment was successful and your booking Number is ${lastBooking.event_booking_number}. Please find your digital pass/ticket for the event in the attachments.</p><br/>Best Regards,<br/>Event Team`;
 
-                        await sendEmail(email, subject, htmlContent, [
-                            {
-                                filename: 'barcode.png',
-                                path: barcodeFilePath,
-                                cid: 'barcode'
-                            }
-                        ]);
-                        // Clean up after sending
-                        await fs.unlink(barcodeFilePath);
-                        // await sendEmail(email, subject, htmlContent);
+                        await sendEmail(email, subject, htmlContent);
                         res.json({ success: true, message: 'Payment verified and email sent successfully' });
                     } catch (error) {
                         console.error('Error sending email or generating PDF:', error);

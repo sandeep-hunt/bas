@@ -90,8 +90,8 @@
         .ticket .scan-barcode {
             text-align: center;
             color: #FFD700;
-            font-size: 0.9em;
-            margin-bottom: 5px;
+            font-size: 1em;
+            margin: 2px 0;
         }
     </style>
 </head>
@@ -104,6 +104,10 @@
                 <h1>{{eventName}}</h1>
             </div>
             <div class="details">
+                <div class="info">
+                    <label>Booking Number</label>
+                    <p><b>{{bookingNumber}}</b></p>
+                </div>
                 <div class="info">
                     <label>Location</label>
                     <p>{{eventLocation}}</p>
@@ -126,8 +130,7 @@
                 </div>
             </div>
             <div class="barcode">
-                <div class="scan-barcode">Scan Barcode</div>
-                <img src="{{barcode}}" alt="barcode">
+                <div class="scan-barcode">Thank you for the booking!!</div>
             </div>
         </div>
     </div>
