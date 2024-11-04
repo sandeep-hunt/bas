@@ -24,7 +24,7 @@ const razorpay = new Razorpay({
     key_secret: process.env.RAZORPAY_KEY_SECRET
 });
 
-//Get event by id
+//Get event by slug
 router.get('/events/:slug', (req, res) => {
     const eventSlug = req.params.slug;
 
@@ -134,7 +134,7 @@ router.post('/book-event/verify-payment', async (req, res) => {
                     const event = rows.length ? rows[0] : null;
                     // Prepare email data for the confirmation email
                     const replacements = {
-                        eventImage: process.env.BASE_URL+event.event_image,
+                        eventImage: `${process.env.BASE_URL}${event.event_image}`,
                         eventName: event.event_name,
                         bookingNumber: lastBooking.event_booking_number,
                         eventLocation: event.event_location,

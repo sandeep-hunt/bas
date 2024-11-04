@@ -15,7 +15,7 @@ const JoinUsCont = () => {
           <Breadcrumb>
             <Breadcrumb.Item href="#"><img src={HomeIcon} className='img-fluid' alt="" />Home</Breadcrumb.Item>
             <Breadcrumb.Item href="#"><img src={FileIcon} className='img-fluid' alt="" />Projects</Breadcrumb.Item>
-            <Breadcrumb.Item active><img src={EditIcon} className='img-fluid' alt="" />Gallery</Breadcrumb.Item>
+            <Breadcrumb.Item active><img src={EditIcon} className='img-fluid' alt="" />Join Us</Breadcrumb.Item>
           </Breadcrumb>
           <h2 className='text-white'>Join Us</h2>
           <p className='text-white paragraph1'>Become a part of our vibrant community! Engage in enriching workshops, cultural programs, and events that celebrate tradition and knowledge. Together, let’s preserve and promote our shared heritage.</p>

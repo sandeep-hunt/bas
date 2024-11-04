@@ -67,11 +67,24 @@ const JoinUsForm_init = () => {
         return newErrors;
     };
 
-    const nextStep = () => {
+    const nextStep = async () => {
         const fieldErrors = validateFields();
         if (Object.keys(fieldErrors).length === 0) {
-            setStep((prevStep) => prevStep + 1); // Proceed to the next step
-            setErrors({}); // Clear errors if moving to the next step
+            try {
+                // Send form data to the backend
+                const response = await axios.post(import.meta.env.VITE_BACKEND_API + 'joinus/check-email', {
+                    email: formData.email
+                });
+                if (response.data.exists) {
+                    setErrors({ email: 'This email is already registered.' });
+                } else {
+                    // Move to the next step if the email does not exist
+                    setStep((prevStep) => prevStep + 1);
+                    setErrors({});
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
         } else {
             setErrors(fieldErrors); // Set errors if validation fails
         }

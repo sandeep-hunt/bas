@@ -13,6 +13,7 @@ const articleRoutes = require('./routes/articles');
 const galleryRoutes = require('./routes/gallery');
 const eventRoutes = require('./routes/events');
 const fetchRoutes = require('./routes/fetch');
+const joinUsRoutes = require('./routes/joinUs');
 
 const app = express();
 app.use(express.json());
@@ -28,6 +29,7 @@ app.use('/articles', articleRoutes);
 app.use('/gallery', galleryRoutes);
 app.use('/events', eventRoutes);
 app.use('/fetch', fetchRoutes);
+app.use('/joinus', joinUsRoutes);
 
 // User registration
 app.post('/register', async (req, res) => {
