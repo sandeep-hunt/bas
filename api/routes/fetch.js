@@ -5,6 +5,8 @@ const crypto = require('crypto');
 const db = require('../middleware/connection');
 const { sendEmail, loadTemplate } = require('../middleware/emailconfig');
 const generatePdf = require('../utils/generatePDF');
+const fs = require('fs').promises;
+const path = require('path');
 const bwipjs = require('bwip-js');
 
 // Get Blogs
@@ -124,25 +126,29 @@ router.post('/book-event/verify-payment', async (req, res) => {
                     return res.status(404).send('Booking record not found');
                 }
 
+                // Set directory path one level up
+                const barcodeDir = path.join(__dirname, '../barcodes');
+                await fs.mkdir(barcodeDir, { recursive: true });
+
+                // Save the barcode in the ../barcodes directory
+                const barcodeFilePath = path.join(barcodeDir, `${lastBooking.event_booking_id}.png`);
+
                 // Generate barcode for the booking ID
-                const barcodeUrl = await new Promise((resolve, reject) => {
+                await new Promise((resolve, reject) => {
                     bwipjs.toBuffer({
-                        bcid: 'code128',      // Barcode type
-                        text: lastBooking.event_booking_id.toString(), // Text to encode (the booking ID)
-                        scale: 3,             // Scaling factor
-                        height: 10,           // Bar height, in millimeters
-                        includetext: false,    // Show human-readable text
-                        barColor: 'white',
-                        backgroundColor: 'white',
-                    }, (err, png) => {
+                        bcid: 'code128',
+                        text: lastBooking.event_booking_id.toString(),
+                        scale: 3,
+                        height: 10,
+                        includetext: false,
+                        backgroundcolor: 'FFFFFF'
+                    }, async (err, png) => {
                         if (err) {
-                            console.error('Error generating barcode:', err);
+                            console.error('Error generating PNG barcode:', err);
                             reject(err);
                         } else {
-                            // Convert buffer to Base64 string
-                            const base64Image = png.toString('base64');
-                            const dataUrl = `data:image/png;base64,${base64Image}`; // Create data URL for the image
-                            resolve(dataUrl);
+                            await fs.writeFile(barcodeFilePath, png); // Save PNG in ../barcodes
+                            resolve();
                         }
                     });
                 });
@@ -163,7 +169,7 @@ router.post('/book-event/verify-payment', async (req, res) => {
                         bookingName: lastBooking.event_booking_name,
                         eventDate: event.event_date,
                         eventTime: event.event_time,
-                        barcode: barcodeUrl // Include the barcode URL for the email
+                        barcode: `<img src="cid:barcode" alt="Barcode" />`
                     };
 
                     try {
@@ -174,8 +180,16 @@ router.post('/book-event/verify-payment', async (req, res) => {
                         const subject = 'Booking Confirmation';
                         const message = `<p>Dear ${lastBooking.event_booking_name},</p><br/><p>Thank you for your booking. Your payment was successful and your booking Number is ${lastBooking.event_booking_number}. Please find your digital pass/ticket for the event in the attachments.</p><br/>Best Regards,<br/>Event Team`;
 
-                        // await sendEmail(email, subject, message, pdfBuffer);
-                        await sendEmail(email, subject, htmlContent);
+                        await sendEmail(email, subject, htmlContent, [
+                            {
+                                filename: 'barcode.png',
+                                path: barcodeFilePath,
+                                cid: 'barcode'
+                            }
+                        ]);
+                        // Clean up after sending
+                        await fs.unlink(barcodeFilePath);
+                        // await sendEmail(email, subject, htmlContent);
                         res.json({ success: true, message: 'Payment verified and email sent successfully' });
                     } catch (error) {
                         console.error('Error sending email or generating PDF:', error);

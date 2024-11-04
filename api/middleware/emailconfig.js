@@ -29,36 +29,30 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// async function sendEmail(to, subject, htmlContent, pdfBuffer) {
-//     const mailOptions = {
-//         from: process.env.EMAIL_USER,
-//         to: to,
-//         subject: subject,
-//         html: htmlContent,
-//         attachments: [
-//             {
-//                 filename: 'BookingConfirmation.pdf',
-//                 content: pdfBuffer,
-//                 contentType: 'application/pdf'
-//             }
-//         ]
-//     };
-
-//     // Send email
-//     return transporter.sendMail(mailOptions);
-// }
-
-async function sendEmail(to, subject, htmlContent) {
+async function sendEmail(to, subject, htmlContent, attachments = []) {
     const mailOptions = {
         from: process.env.EMAIL_USER,
         to: to,
         subject: subject,
         html: htmlContent,
+        attachments
     };
 
     // Send email
     return transporter.sendMail(mailOptions);
 }
+
+// async function sendEmail(to, subject, htmlContent) {
+//     const mailOptions = {
+//         from: process.env.EMAIL_USER,
+//         to: to,
+//         subject: subject,
+//         html: htmlContent,
+//     };
+
+//     // Send email
+//     return transporter.sendMail(mailOptions);
+// }
 
 // Export all functions
 module.exports = { loadTemplate, sendEmail };
