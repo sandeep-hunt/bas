@@ -17,35 +17,6 @@ async function loadTemplate(templateName, replacements) {
     return html;
 }
 
-// Generate PDF of a Specific Section in HTML
-async function generatePdf(html) {
-    const browser = await puppeteer.launch({ headless: true });
-    const page = await browser.newPage();
-    await browser.close();
-    await page.setContent(html);
-
-    // Hide everything except the section with id #pdf-section
-    await page.addStyleTag({
-        content: `
-            body > * { display: none; }
-            #pdf-section { display: block; }
-        `
-    });
-
-    const pdfBuffer = await page.pdf({
-        width: '92.6mm',
-        height: '180.4mm',
-        printBackground: true,
-        margin: {
-            top: '0mm',
-            right: '0mm',
-            bottom: '0mm',
-            left: '0mm',
-        },
-    });
-    await browser.close();
-    return pdfBuffer;
-}
 
 // Configure and Send Email with PDF Attachment
 const transporter = nodemailer.createTransport({
@@ -76,6 +47,7 @@ const transporter = nodemailer.createTransport({
 //     // Send email
 //     return transporter.sendMail(mailOptions);
 // }
+
 async function sendEmail(to, subject, htmlContent) {
     const mailOptions = {
         from: process.env.EMAIL_USER,
@@ -89,4 +61,4 @@ async function sendEmail(to, subject, htmlContent) {
 }
 
 // Export all functions
-module.exports = { loadTemplate, generatePdf, sendEmail };
+module.exports = { loadTemplate, sendEmail };
