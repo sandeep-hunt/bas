@@ -1,5 +1,4 @@
 import React from 'react'
-import { Container } from 'react-bootstrap'
 import JoinUsBG from '../../assets/images/msic/joinus_bg.png'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import JoinUsForm_init from './JoinUsForm/JoinUsForm_init'
@@ -21,13 +20,7 @@ const JoinUsCont = () => {
           <p className='text-white paragraph1'>Become a part of our vibrant community! Engage in enriching workshops, cultural programs, and events that celebrate tradition and knowledge. Together, let’s preserve and promote our shared heritage.</p>
         </div>
       </div>
-      <div className="donate-container">
-        <Container fluid>
-          <div className="donate-wrapper">
-            <JoinUsForm_init />
-          </div>
-        </Container>
-      </div>
+      <JoinUsForm_init />
     </React.Fragment>
   )
 }

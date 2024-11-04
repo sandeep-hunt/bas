@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import JoinUsForm_First from './JoinUsForm_First'
 import JoinUsForm_Second from './JoinUsForm_Second';
 import axios from 'axios';
+import JoinUsForm_success from './JoinUsForm_success';
 
 const JoinUsForm_init = () => {
 
@@ -98,7 +99,7 @@ const JoinUsForm_init = () => {
             try {
                 // Send form data to the backend
                 const response = await axios.post(import.meta.env.VITE_BACKEND_API + 'fetch/register', formData);
-                alert(response.data.message);  // Success message
+                setStep((prevStep) => prevStep + 1);
             } catch (error) {
                 console.error('Error:', error);
             }
@@ -113,6 +114,8 @@ const JoinUsForm_init = () => {
             return <JoinUsForm_First formData={formData} setFormData={setFormData} nextStep={nextStep} errors={errors} />;
         case 2:
             return <JoinUsForm_Second formData={formData} setFormData={setFormData} submitForm={submitForm} prevStep={prevStep} errors={errors} />
+        case 3:
+            return <JoinUsForm_success formData={formData} />
         default:
             return <div>Error: Unknown step</div>;
     }
