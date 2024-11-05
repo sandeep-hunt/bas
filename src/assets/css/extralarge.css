@@ -101,6 +101,30 @@
         line-height: 48px !important;
     }
 
+    .abutHome::after {
+        width: 144px;
+    }
+
+    .impactHome::after {
+        width: 196px;
+    }
+
+    .projectHome::after {
+        width: 142px;
+    }
+
+    .galleryHome::after {
+        width: 131px;
+    }
+
+    .blogArtiHome::after {
+        width: 272px;
+    }
+
+    .testiHome::after {
+        width: 214px;
+    }
+
     .abouthome-container {
         margin-top: 90px !important;
     }

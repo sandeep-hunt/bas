@@ -49,7 +49,7 @@
     }
 
     .splHeadng {
-        font-size: 50x !important;
+        font-size: 50px !important;
         line-height: 50px !important;
         font-weight: bold;
     }
@@ -100,6 +100,30 @@
 
     .herobanner-container .herobanner-inner h1 {
         line-height: 34px !important;
+    }
+
+    .abutHome::after {
+        width: 100px;
+    }
+
+    .impactHome::after {
+        width: 141px;
+    }
+
+    .projectHome::after {
+        width: 104px;
+    }
+
+    .galleryHome::after {
+        width: 101px;
+    }
+
+    .blogArtiHome::after {
+        width: 192px;
+    }
+
+    .testiHome::after {
+        width: 148px;
     }
 
     .abouthome-container {
@@ -218,23 +242,26 @@
     }
 
     .projects-banner {
-        height: 300px;
+        height: 200px;
     }
 
-    .projects-banner .projects-banner-inner, .event-banner .event-banner-inner {
+    .projects-banner .projects-banner-inner,
+    .event-banner .event-banner-inner {
         padding: 0 15px;
         gap: 12px !important;
     }
 
-    .projects-banner .projects-banner-inner .breadcrumb .breadcrumb-item, .event-banner .event-banner-inner .breadcrumb .breadcrumb-item {
+    .projects-banner .projects-banner-inner .breadcrumb .breadcrumb-item,
+    .event-banner .event-banner-inner .breadcrumb .breadcrumb-item {
         font-size: 14px !important;
         gap: 4px !important;
     }
-    
-    .projects-banner .projects-banner-inner .breadcrumb .breadcrumb-item a, .event-banner .event-banner-inner .breadcrumb .breadcrumb-item a {
+
+    .projects-banner .projects-banner-inner .breadcrumb .breadcrumb-item a,
+    .event-banner .event-banner-inner .breadcrumb .breadcrumb-item a {
         gap: 4px !important;
     }
-    
+
     .breadcrumb-item+.breadcrumb-item::before {
         margin-left: 4px;
         margin-right: 4px;
@@ -247,14 +274,14 @@
 
     .projects-content h4 {
         font-size: 22px !important;
-        line-height: 20px !important;
+        line-height: 26px !important;
         font-weight: 500 !important;
         padding-bottom: 6px;
     }
 
     .projects-content p {
         font-size: 16px !important;
-        line-height: 22px !important;
+        line-height: 24px !important;
         font-weight: 400 !important;
         padding-bottom: 6px;
     }
@@ -270,7 +297,7 @@
     .gallery-container .gallery-pagination .pagination button {
         padding: 0 6px !important;
     }
-    
+
     .event-banner .event-banner-inner {
         gap: 12px !important;
         padding: 15px !important;
@@ -335,7 +362,7 @@
     .donate-container .donate-wrapper {
         padding: 16px !important;
     }
-    
+
     .donate-container .donate-wrapper .row {
         --bs-gutter-y: 10px !important;
     }
@@ -387,7 +414,7 @@
         margin-top: 10px !important;
         gap: 6px !important;
     }
-    
+
     .posts-container.blog-list .item-content .item-inner-content p {
         margin-top: 10px !important;
         gap: 6px !important;
@@ -418,7 +445,7 @@
         display: flex;
         gap: 22px;
     }
-    
+
     .single-post-social-icons a {
         color: var(--main);
         font-size: 22px;
@@ -429,7 +456,7 @@
         font-weight: 400;
         line-height: 30px;
     }
-    
+
     .single-post-body .single-post-content strong {
         font-size: 18px;
         font-weight: 700;
@@ -488,7 +515,7 @@
     .auab {
         margin: 10px 0;
     }
-    
+
     .auab .auabcnt .auabcnt-itm {
         padding: 16px;
     }
@@ -515,8 +542,8 @@
     .float {
         width: 60px !important;
         height: 60px !important;
-        bottom:30px !important;
-        right:30px !important;
+        bottom: 30px !important;
+        right: 30px !important;
     }
 
     /* Footer */

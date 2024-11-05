@@ -49,8 +49,8 @@
     }
 
     .splHeadng {
-        font-size: 50x !important;
-        line-height: 50px !important;
+        font-size: 55px !important;
+        line-height: 55px !important;
         font-weight: bold;
     }
 
@@ -100,6 +100,30 @@
 
     .herobanner-container .herobanner-inner h1 {
         line-height: 36px !important;
+    }
+
+    .abutHome::after {
+        width: 110px;
+    }
+
+    .impactHome::after {
+        width: 151px;
+    }
+
+    .projectHome::after {
+        width: 114px;
+    }
+
+    .galleryHome::after {
+        width: 111px;
+    }
+
+    .blogArtiHome::after {
+        width: 208px;
+    }
+
+    .testiHome::after {
+        width: 162px;
     }
 
     .abouthome-container {

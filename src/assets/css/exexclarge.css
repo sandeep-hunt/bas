@@ -88,6 +88,30 @@
         gap: 26px !important;
     }
 
+    .abutHome::after {
+        width: 138px;
+    }
+    
+    .impactHome::after {
+        width: 208px;
+    }
+    
+    .projectHome::after {
+        width: 150px;
+    }
+    
+    .galleryHome::after {
+        width: 131px;
+    }
+    
+    .blogArtiHome::after {
+        width: 272px;
+    }
+    
+    .testiHome::after {
+        width: 218px;
+    }
+
     .abouthome-container {
         margin-top: 100px !important;
     }
