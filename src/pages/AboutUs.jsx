@@ -3,7 +3,7 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import About_bg from '../assets/images/msic/about_bg.png'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Container, Row, Toast, ToastContainer } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import AboutImg from '../assets/images/msic/aboutImg.png'
@@ -22,6 +22,9 @@ import Advisory7 from '../assets/images/advisory/7.png'
 import Advisory8 from '../assets/images/advisory/8.png'
 import HomeIcon from '../assets/images/icons/home.svg'
 import EditIcon from '../assets/images/icons/edit.svg'
+import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const data = [
     {
@@ -131,6 +134,10 @@ const AboutUs = () => {
         mobile: '',
         message: ''
     });
+    const [showToast, setShowToast] = useState(false);
+    const [toastMessage, setToastMessage] = useState('');
+    const [toastType, setToastType] = useState('success'); // can be 'success' or 'error'
+    const [loading, setLoading] = useState(false);
 
     const handleInputChange = (e) => {
         setFormData({
@@ -174,6 +181,29 @@ const AboutUs = () => {
 
     const handleSubmit = async () => {
         if (!isFormValid()) return;
+        setLoading(true);
+        try {
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_API}fetch/messageSubmit`, formData);
+            setToastMessage(response.data.message);
+            setToastType('success');
+            setShowToast(true);
+            setLoading(false);
+        } catch (error) {
+            if (error.response) {
+                // Request made and server responded
+                setToastMessage(error.response.data.message || 'There was an error submitting your message.');
+                setToastType('error');
+                setLoading(false);
+            } else {
+                // The request was made but no response was received
+                console.error('Error submitting form:', error);
+                setToastMessage('There was an error submitting your message.');
+                setToastType('error');
+                setLoading(false);
+            }
+            setShowToast(true);
+            setLoading(false);
+        }
     }
 
     return (
@@ -336,9 +366,27 @@ const AboutUs = () => {
                                         </Form.Group>
                                     </Col>
                                 </Row>
-                                <Button className='btn-main' onClick={handleSubmit}>Send Message</Button>
+                                <Button className='btn-main' onClick={handleSubmit} disabled={loading}>{loading ? (
+                                    <FontAwesomeIcon icon={faSpinner} spin /> // FontAwesome Spinner
+                                ) : 'Send Message'}</Button>
                             </Col>
                         </Row>
+                        {/* Toast Container */}
+                        <ToastContainer position="top-end"
+                            style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 1050 }}
+                            className="p-3">
+                            <Toast
+                                show={showToast}
+                                onClose={() => setShowToast(false)}
+                                bg={toastType === 'success' ? 'success' : 'danger'} // Change background color based on type
+                                delay={3000}
+                                autohide
+                            >
+                                <Toast.Body className={toastType === 'success' ? 'text-white' : 'text-white'}>
+                                    {toastMessage}
+                                </Toast.Body>
+                            </Toast>
+                        </ToastContainer>
                     </div>
                 </div>
             </Container>

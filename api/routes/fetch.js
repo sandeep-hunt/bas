@@ -187,4 +187,18 @@ router.post('/register', (req, res) => {
     });
 })
 
+//Handle message
+router.post('/messageSubmit', (req, res) => {
+    const { firstname, lastname, email, mobile, message } = req.body;
+    const sql = 'INSERT INTO messages (message_firstname, message_lastname, message_email, message_mobile, message, message_status) VALUES (?, ?, ?, ?, ?, ?)';
+    const values = [firstname, lastname, email, mobile, message, '0'];
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error('Error inserting data: ' + err);
+            return res.status(500).json({ message: 'Internal server error.' });
+        }
+        res.status(201).json({ message: 'Message/Feedback Submitted Successfully.' });
+    });
+})
+
 module.exports = router;
