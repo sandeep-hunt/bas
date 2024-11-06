@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import { Card, Col, Container, Row, Button } from 'react-bootstrap'
@@ -8,28 +8,53 @@ import Blogslid1 from '../assets/images/msic/blogslid1.png'
 import Blogslid2 from '../assets/images/msic/blogslid2.png'
 import Blogslid3 from '../assets/images/msic/blogslid3.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { faFacebookF, faXTwitter, faInstagramSquare, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
+import axios from 'axios'
+import DOMPurify from 'dompurify';
 
 const SingleBlog = () => {
 
+    const { slug } = useParams();
+    const [blog, setblog] = useState('');
+
     useEffect(() => {
         window.scrollTo(0, 0);
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(import.meta.env.VITE_BACKEND_API + 'fetch/blogBySlug/' + slug);
+                setblog(response.data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
     }, []);
+
+    const getDayWithSuffix = (day) => {
+        if (day > 3 && day < 21) return `${day}th`; // Special case for 11th to 13th
+        switch (day % 10) {
+            case 1: return `${day}st`;
+            case 2: return `${day}nd`;
+            case 3: return `${day}rd`;
+            default: return `${day}th`;
+        }
+    };
 
     return (
         <React.Fragment>
             <Header />
-            <div className="single-post-head blog" style={{ backgroundImage: `url(${BlogImg})` }}>
+            <div className="single-post-head blog" style={{ backgroundImage: `url(${import.meta.env.VITE_BACKEND_API + blog.blog_image})` }}>
                 <Container fluid className='single-post-head-cont h-100'>
                     <div className="single-post-hbi">
                         <div className="sphbitp">
-                            <h1 className='text-white'>Teaching as a Passion, Not Just a Profession: The Vision of Bharata Arsheya Sansthan</h1>
+                            <h1 className='text-white'>{blog.blog_title}</h1>
                         </div>
                         <div className="sphbibtm">
                             <div className="post-meta">
                                 <p className="post-meta-inner">
-                                    <span className='subHdng text-white'><img src={Profile} className='img-fluid' />&nbsp;&nbsp;Subroto Roy</span>
+                                    <span className='subHdng text-white'><img src={Profile} className='img-fluid' />&nbsp;&nbsp;{blog.full_name}</span>
                                     <span className='subHdng text-white'>7 min. 159 reads</span>
                                 </p>
                             </div>
@@ -48,24 +73,16 @@ const SingleBlog = () => {
                     <div className="single-post-body">
                         <div className="single-post-inner">
                             <div className="single-post-date">
-                                <span class="date">08.08.2021</span>
+                                <span class="date">
+                                    {getDayWithSuffix(new Date(blog.created_at).getDate())}&nbsp;
+                                    {new Date(blog.created_at).toLocaleString('default', { month: 'long' })}&nbsp;
+                                    {new Date(blog.created_at).getFullYear()}
+                                </span>
                                 <span class="separator"></span>
                                 <span class="time">4 minutes</span>
                             </div>
                         </div>
-                        <div className="single-post-content">
-                            <p>At **Bharata Arsheya Sansthan**, teaching transcends beyond the boundaries of a mere profession; it is a deep-rooted passion. This approach has naturally drawn countless learners seeking authentic wisdom and meaningful guidance. When teaching is driven by passion, it creates an environment where education becomes transformative, not transactional.</p>
-                            <p>For the Sansthan, education, or Siksha, is not just about imparting knowledge—it is about **seva**, or selfless service. By treating teaching as a form of seva, the institution upholds the ancient tradition of learning as a sacred exchange, where both teacher and student engage in a process that nurtures the spirit. This service-oriented approach ensures that learners are drawn toward the teachings, not because they have to, but because they feel a genuine connection to the wisdom being offered.</p>
-                            <h4>Siksha as Seva: A Timeless Tradition</h4>
-                            <p>In the Indian Vedic tradition, education has always been viewed as **seva**—a selfless act of giving and receiving knowledge that is meant to uplift the individual and society. **Bharata Arsheya Sansthan** embraces this tradition by promoting the idea that education is not a sector to be commercialized but a sacred duty that brings out the best in both the teacher and the learner.</p>
-                            <p>This philosophy nurtures a space where learners feel deeply connected to their studies. They are not just participants in a system but seekers of higher wisdom, gravitating toward the Sansthan’s unique approach. The result is a dynamic, engaged community of students who view education as an integral part of their spiritual and intellectual growth.</p>
-                            <h4>The Power of Passion-Driven Teaching</h4>
-                            <p>When teaching is fueled by passion, the learning experience becomes more engaging and impactful. The educators at Bharata Arsheya Sansthan, led by this philosophy, are not just imparting information; they are lighting the way for learners to explore their own potential. This enthusiasm fosters a love for learning, ensuring that students remain motivated and invested in their journey of self-discovery.</p>
-                            <p>Passionate teaching has the power to inspire and transform. When learners sense that their mentoh3rs are deeply committed to their growth, they are naturally inclined to engage fully, eager to absorb and apply the knowledge they receive. This ensures not only academic success but also personal and spiritual development.</p>
-                            <h4>Conclusion: A Call to Learn Through Seva</h4>
-                            <p>At Bharata Arsheya Sansthan, education is a mission driven by passion and rooted in the ethos of seva. This dedication to Siksha as Seva attracts learners who are not just seeking education but a meaningful connection with their inner self. It is this timeless approach that sets the Sansthan apart, creating a learning environment where students and teachers embark on a shared journey of growth, wisdom, and service.</p>
-                        </div>
-
+                        <div className="single-post-content" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(blog.blog_content) }} />
                         <div className="posts-container single-post">
                             <div className="posts-header">
                                 <h3>Related Blog Posts</h3>

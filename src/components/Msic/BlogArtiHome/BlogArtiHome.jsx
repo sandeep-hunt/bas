@@ -90,7 +90,8 @@ const BlogArtiHome = () => {
                           <span className='subHdng'>
                             {getDayWithSuffix(new Date(item.created_at).getDate())}&nbsp;
                             {new Date(item.created_at).toLocaleString('default', { month: 'long' })}&nbsp;
-                            {new Date(item.created_at).getFullYear()}</span>
+                            {new Date(item.created_at).getFullYear()}
+                          </span>
                         </div>
                       </div>
                       <div className="blogartihome-contrht">
@@ -101,7 +102,7 @@ const BlogArtiHome = () => {
                       <h4>{item.blog_title.substring(0, 26)}{item.blog_title.length > 26 ? '...' : ''}</h4>
                       <p className='paragraph3'>{item.blog_shortDesc.substring(0, 160)}{item.blog_shortDesc.length > 160 ? '...' : ''}</p>
                       <div className="d-flex justify-content-end">
-                        <Link to="/" className="btn-link">Read More&nbsp;&#8594;</Link>
+                        <Link to={"/blogs/" + item.blog_slug} className="btn-link">Read More&nbsp;&#8594;</Link>
                       </div>
                     </div>
                   </Card.Body>

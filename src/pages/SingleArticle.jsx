@@ -5,11 +5,13 @@ import { Card, Col, Container, Row, Button } from 'react-bootstrap'
 import Article1 from '../assets/images/msic/article1.png'
 import Profile from '../assets/images/msic/profile.png'
 import Blog1 from '../assets/images/msic/blog1.png'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF, faXTwitter, faInstagramSquare, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
 
 const SingleArticle = () => {
+  
+  const { slug } = useParams();
 
   useEffect(() => {
     window.scrollTo(0, 0);

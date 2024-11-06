@@ -67,7 +67,7 @@ const RecentArticles = () => {
                       <h4>{item.article_title.substring(0, 26)}{item.article_title.length > 26 ? '...' : ''}</h4>
                       <p className='paragraph3'>{item.article_shortDesc.substring(0, 160)}{item.article_shortDesc.length > 160 ? '...' : ''}</p>
                       <div className="d-flex justify-content-end">
-                        <Link to="/" className="btn-link">Read More&nbsp;&#8594;</Link>
+                        <Link to={"/articles/"+item.article_slug} className="btn-link">Read More&nbsp;&#8594;</Link>
                       </div>
                     </div>
                   </Card.Body>

@@ -91,23 +91,23 @@
     .abutHome::after {
         width: 138px;
     }
-    
+
     .impactHome::after {
         width: 208px;
     }
-    
+
     .projectHome::after {
         width: 150px;
     }
-    
+
     .galleryHome::after {
         width: 131px;
     }
-    
+
     .blogArtiHome::after {
         width: 272px;
     }
-    
+
     .testiHome::after {
         width: 218px;
     }
@@ -241,6 +241,27 @@
 
     .posts-container.article-list {
         padding: 100px 130px !important;
+    }
+
+
+    .posts-container.article-list .post-meta {
+        margin-top: 22px !important;
+    }
+
+    .posts-container.article-list .post-meta-inner {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .posts-container.article-list .item-content .item-inner-content {
+        margin-top: 22px !important;
+        gap: 12px !important;
+    }
+
+    .posts-container.blog-list .item-content .item-inner-content {
+        margin-top: 22px !important;
+        gap: 12px !important;
     }
 
     .single-post-container {

@@ -295,9 +295,19 @@
         padding: 90px 100px !important;
     }
 
+    .posts-container.article-list .post-meta {
+        margin-top: 18px !important;
+    }
+
+    .posts-container.article-list .post-meta-inner {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
     .posts-container.article-list .item-content .item-inner-content {
-        margin-top: 24px !important;
-        gap: 10px !important;
+        margin-top: 18px !important;
+        gap: 6px !important;
     }
 
     .posts-container.article-list .item-content .item-inner-content p {
@@ -306,8 +316,8 @@
     }
 
     .posts-container.blog-list .item-content .item-inner-content {
-        margin-top: 24px !important;
-        gap: 10px !important;
+        margin-top: 18px !important;
+        gap: 6px !important;
     }
     
     .posts-container.blog-list .item-content .item-inner-content p {

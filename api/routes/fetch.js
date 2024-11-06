@@ -227,4 +227,85 @@ router.get('/getArticles', async (req, res) => {
     });
 });
 
+//Handle Get Articles List
+router.get('/getArticlesList', (req, res) => {
+    const page = parseInt(req.query.page) || 1;   // Default to page 1
+    const limit = parseInt(req.query.limit) || 10; // Default to 10 items per page
+    const offset = (page - 1) * limit;
+    db.query('SELECT COUNT(*) AS count FROM articles', (err, countResult) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+
+        const totalItems = countResult[0].count;
+        const totalPages = Math.ceil(totalItems / limit);
+
+        // Fetch paginated items
+        const sql = `SELECT articles.*, users.username, users.full_name, users.user_profile FROM articles JOIN users ON articles.article_author = users.username ORDER BY articles.article_id DESC LIMIT ${limit} OFFSET ${offset}`;
+        db.query(sql, (err, results) => {
+            if (err) {
+                return res.status(500).json({ error: err.message });
+            }
+
+            res.json({
+                currentPage: page,
+                totalPages: totalPages,
+                totalItems: totalItems,
+                items: results
+            });
+        });
+    });
+});
+
+//Handle Get Blogs List
+router.get('/getBlogsList', (req, res) => {
+    const page = parseInt(req.query.page) || 1;   // Default to page 1
+    const limit = parseInt(req.query.limit) || 10; // Default to 10 items per page
+    const offset = (page - 1) * limit;
+    db.query('SELECT COUNT(*) AS count FROM blogs', (err, countResult) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+
+        const totalItems = countResult[0].count;
+        const totalPages = Math.ceil(totalItems / limit);
+
+        // Fetch paginated items
+        const sql = `SELECT blogs.*, users.username, users.full_name, users.user_profile, categories.category_id, categories.category_name FROM blogs JOIN users ON blogs.blog_author = users.username JOIN categories ON blogs.blog_category = categories.category_id ORDER BY blogs.blog_id DESC LIMIT ${limit} OFFSET ${offset}`;
+        db.query(sql, (err, results) => {
+            if (err) {
+                return res.status(500).json({ error: err.message });
+            }
+
+            res.json({
+                currentPage: page,
+                totalPages: totalPages,
+                totalItems: totalItems,
+                items: results
+            });
+        });
+    });
+});
+
+//Handle Get Blog By Slug
+router.get('/blogBySlug/:slug', (req, res) => {
+    const blogSlug = req.params.slug;
+
+    // SQL query to get the event details by ID
+    const query = 'SELECT blogs.*, users.username, users.full_name, users.user_profile, categories.category_id, categories.category_name FROM blogs JOIN users ON blogs.blog_author = users.username JOIN categories ON blogs.blog_category = categories.category_id WHERE blog_slug = ?';
+
+    db.query(query, [blogSlug], (err, results) => {
+        if (err) {
+            console.error('Error fetching event:', err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        if (results.length > 0) {
+            res.json(results[0]); // Send the first result as the event
+        } else {
+            res.status(404).send('Event not found');
+        }
+    });
+})
+
 module.exports = router;
