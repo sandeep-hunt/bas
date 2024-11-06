@@ -61,6 +61,16 @@ const BlogArtiHome = () => {
     ]
   };
 
+  const getDayWithSuffix = (day) => {
+    if (day > 3 && day < 21) return `${day}th`; // Special case for 11th to 13th
+    switch (day % 10) {
+      case 1: return `${day}st`;
+      case 2: return `${day}nd`;
+      case 3: return `${day}rd`;
+      default: return `${day}th`;
+    }
+  };
+
   return (
     <React.Fragment>
       <div className="blogartihome-container">
@@ -70,14 +80,17 @@ const BlogArtiHome = () => {
             {Blogs.length > 0 ? ( // Check if Blogs array is not empty
               Blogs.map((item, index) => (
                 <Card key={index} className='shadow-sm'>
-                  <Card.Img variant="top" src={import.meta.env.VITE_BACKEND_API+item.blog_thumbnail} />
+                  <Card.Img variant="top" src={import.meta.env.VITE_BACKEND_API + item.blog_thumbnail} />
                   <Card.Body>
                     <div className="blogartihome-cont">
                       <div className="blogartihome-contlft">
                         <img src="https://i.imgur.com/6Q8s6JL.jpg" alt="/" className="rounded-circle" width={48} height={48} />
                         <div className='d-flex flex-column'>
-                          <h6 className='text-main mb-0 text-bold'>{item.blog_author}</h6>
-                          <span className='subHdng'>{item.created_at}</span>
+                          <h6 className='text-main mb-0 text-bold'>{item.full_name}</h6>
+                          <span className='subHdng'>
+                            {getDayWithSuffix(new Date(item.created_at).getDate())}&nbsp;
+                            {new Date(item.created_at).toLocaleString('default', { month: 'long' })}&nbsp;
+                            {new Date(item.created_at).getFullYear()}</span>
                         </div>
                       </div>
                       <div className="blogartihome-contrht">
@@ -85,7 +98,7 @@ const BlogArtiHome = () => {
                       </div>
                     </div>
                     <div className="blogartihome-contbtm">
-                      <h4>{item.blog_title.substring(0, 45)}{item.blog_title.length > 45 ? '...' : ''}</h4>
+                      <h4>{item.blog_title.substring(0, 26)}{item.blog_title.length > 26 ? '...' : ''}</h4>
                       <p className='paragraph3'>{item.blog_shortDesc.substring(0, 160)}{item.blog_shortDesc.length > 160 ? '...' : ''}</p>
                       <div className="d-flex justify-content-end">
                         <Link to="/" className="btn-link">Read More&nbsp;&#8594;</Link>

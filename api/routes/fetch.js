@@ -205,7 +205,20 @@ router.post('/messageSubmit', (req, res) => {
 router.get('/getBlogs', async (req, res) => {
     const limit = parseInt(req.query.limit) || 5; // Default limit if not provided
 
-    const sql = 'SELECT * FROM blogs JOIN users ON blogs.blog_author = users.username JOIN categories ON blogs.blog_category = categories.category_id ORDER BY blogs.blog_id DESC LIMIT ?';  // Modify this query based on your blog table
+    const sql = 'SELECT blogs.*, users.username, users.full_name, users.user_profile FROM blogs JOIN users ON blogs.blog_author = users.username JOIN categories ON blogs.blog_category = categories.category_id ORDER BY blogs.blog_id DESC LIMIT ?';  // Modify this query based on your blog table
+    db.query(sql, [limit], (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: 'Failed to fetch events' });
+        }
+        res.json(results);
+    });
+});
+
+//Handle Get Articles Limit
+router.get('/getArticles', async (req, res) => {
+    const limit = parseInt(req.query.limit) || 5; // Default limit if not provided
+
+    const sql = 'SELECT articles.*, users.username, users.full_name, users.user_profile FROM articles JOIN users ON articles.article_author = users.username ORDER BY articles.article_id DESC LIMIT ?';  // Modify this query based on your blog table
     db.query(sql, [limit], (err, results) => {
         if (err) {
             return res.status(500).json({ error: 'Failed to fetch events' });
