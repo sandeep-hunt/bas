@@ -49,7 +49,7 @@ const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep, errors
                   <div className="donation-right-body">
                     <h4>Contact Details</h4>
                     <Row>
-                      <Col xs={4}>
+                      <Col xs={6} sm={5}>
                         <Form.Group className='mb-3'>
                           <label>State <span style={{ color: `red` }}>*</span></label>
                           <input className='form-control' type="text" name="state" value={state} onChange={handleChange} placeholder='State' />
@@ -58,7 +58,7 @@ const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep, errors
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={4}>
+                      <Col xs={6} sm={5}>
                         <Form.Group className='mb-3'>
                           <label>City <span style={{ color: `red` }}>*</span></label>
                           <input className='form-control' type="text" name="city" value={city} onChange={handleChange} placeholder='City' />
@@ -76,7 +76,7 @@ const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep, errors
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={4}>
+                      <Col xs={4} md={4}>
                         <Form.Group className='mb-3'>
                           <label>Pincode <span style={{ color: `red` }}>*</span></label>
                           <input className='form-control' type="text" name="pincode" value={pincode} onChange={handleChange} placeholder='Pincode' />

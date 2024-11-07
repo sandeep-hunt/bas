@@ -33,7 +33,7 @@ const SingleArticle = () => {
     };
 
     fetchData();
-  }, []);
+  }, [slug]);
 
   const getDayWithSuffix = (day) => {
     if (day > 3 && day < 21) return `${day}th`; // Special case for 11th to 13th

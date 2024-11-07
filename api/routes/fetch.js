@@ -343,22 +343,22 @@ router.get('/randArticle', (req, res) => {
 router.get('/relatedBlog/:slug', (req, res) => {
     const { slug } = req.params;
 
-    // First, fetch the article by its slug to get the category_id (or any other related attribute)
+    // First, fetch the blog by its slug to get the category_id (or any other related attribute)
     db.query('SELECT * FROM blogs WHERE blog_slug = ?', [slug], (err, result) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
 
         if (result.length === 0) {
-            return res.status(404).json({ message: 'Article not found' });
+            return res.status(404).json({ message: 'Blogs not found' });
         }
 
         const blog = result[0];
 
-        // Fetch related articles based on the same category_id (for example)
+        // Fetch related blogs based on the same category_id (for example)
         db.query(
-            'SELECT SELECT blogs.*, users.username, users.full_name, users.user_profile, categories.category_id, categories.category_name FROM blogs JOIN users ON blogs.blog_author = users.username JOIN categories ON blogs.blog_category = categories.category_id WHERE category_id = ? AND blog_slug != ? LIMIT 3',
-            [blog.category_id, slug],
+            'SELECT blogs.*, users.username, users.full_name, users.user_profile, categories.category_id, categories.category_name FROM blogs JOIN users ON blogs.blog_author = users.username JOIN categories ON blogs.blog_category = categories.category_id WHERE blog_category = ? AND blog_slug != ? LIMIT 3',
+            [blog.blog_category, slug],
             (err, relatedBlogs) => {
                 if (err) {
                     return res.status(500).json({ error: err.message });
