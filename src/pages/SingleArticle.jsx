@@ -1,22 +1,74 @@
-import React, {useEffect} from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import { Card, Col, Container, Row, Button } from 'react-bootstrap'
-import Article1 from '../assets/images/msic/article1.png'
 import Profile from '../assets/images/msic/profile.png'
 import Blog1 from '../assets/images/msic/blog1.png'
 import { Link, useParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF, faXTwitter, faInstagramSquare, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
+import axios from 'axios'
+import DOMPurify from 'dompurify'
 
 const SingleArticle = () => {
-  
+
   const { slug } = useParams();
+  const [article, setarticle] = useState('');
+  const [randomArticles, setRandomArticles] = useState([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    const fetchData = async () => {
+      try {
+        // Fetch the main article by slug (you can keep this as is)
+        const response = await axios.get(import.meta.env.VITE_BACKEND_API + 'fetch/articleBySlug/' + slug);
+        setarticle(response.data);
+
+        // Fetch 3 random articles
+        const randomResponse = await axios.get(`${import.meta.env.VITE_BACKEND_API}fetch/randArticle`);
+        setRandomArticles(randomResponse.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
   }, []);
+
+  const getDayWithSuffix = (day) => {
+    if (day > 3 && day < 21) return `${day}th`; // Special case for 11th to 13th
+    switch (day % 10) {
+      case 1: return `${day}st`;
+      case 2: return `${day}nd`;
+      case 3: return `${day}rd`;
+      default: return `${day}th`;
+    }
+  };
   
+  // Function to extract text from HTML
+  const extractTextFromHTML = (html) => {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.textContent || "";  // Get text content from the parsed HTML
+  };
+
+  // Function to calculate reading time
+  const calculateReadingTime = (htmlContent) => {
+    const plainText = extractTextFromHTML(htmlContent);
+    const wordCount = plainText.split(/\s+/).filter(word => word.length > 0).length;
+    const wordsPerMinute = 50;  // Average reading speed
+    const minutes = Math.ceil(wordCount / wordsPerMinute);
+    return minutes;
+  };
+
+  // Calculate reading time for the article content
+  const readingTime = article.article_content ? calculateReadingTime(article.article_content) : 0;
+
+  //Multiple attachmets in clear json format
+  const attachmentURLs = article.article_attachment ? JSON.parse(article.article_attachment) : [];
+
+  //Current page url
+  const articleURL = window.location.href;
+
   return (
     <React.Fragment>
       <Header />
@@ -25,40 +77,49 @@ const SingleArticle = () => {
           <div className="single-post-head">
             <Row className='align-items-center'>
               <Col sm={12} md={8}>
-                <h1>FOCALISATION IN VEDIC & MODERN DAY
-                  DHRUPAD VOCAL MUSIC STORIES</h1>
+                <h1>{article.article_title}</h1>
                 <div className="post-meta">
                   <p className="post-meta-inner">
-                    <span className='subHdng'><img src={Profile} className='img-fluid' />&nbsp;&nbsp;Subroto Roy</span>
-                    <span className='subHdng'>7 min. 159 reads</span>
+                    <span className='subHdng'><img src={Profile} className='img-fluid' />&nbsp;&nbsp;{article.full_name}</span>
+                    <span className='subHdng'>{readingTime} min. 159 reads</span>
                   </p>
                 </div>
               </Col>
               <Col sm={12} md={4} className='d-flex align-items-center justify-content-center'>
-                <img src={Article1} className='img-fluid' alt="" />
+                <img src={import.meta.env.VITE_BACKEND_API + article.article_image} className='img-fluid' alt="" />
               </Col>
             </Row>
           </div>
           <div className="single-post-body">
             <div className="single-post-inner">
               <div className="single-post-date">
-                <span class="date">08.08.2021</span>
+                <span class="date">{getDayWithSuffix(new Date(article.created_at).getDate())}&nbsp;
+                  {new Date(article.created_at).toLocaleString('default', { month: 'long' })}&nbsp;
+                  {new Date(article.created_at).getFullYear()}
+                </span>
                 <span class="separator"></span>
-                <span class="time">4 minutes</span>
+                <span class="time">{readingTime} minutes</span>
               </div>
               <div className="single-post-social-icons">
-                <a href="" target='_blank'><FontAwesomeIcon icon={faFacebookF} /></a>
-                <a href="" target='_blank'><FontAwesomeIcon icon={faXTwitter} /></a>
-                <a href="" target='_blank'><FontAwesomeIcon icon={faInstagramSquare} /></a>
-                <a href="" target='_blank'><FontAwesomeIcon icon={faLinkedinIn} /></a>
+                <a href={`https://www.facebook.com/sharer/sharer.php?u=${articleURL}`} target='_blank'><FontAwesomeIcon icon={faFacebookF} /></a>
+                <a href={`https://twitter.com/intent/tweet?url=${articleURL}`} target='_blank'><FontAwesomeIcon icon={faXTwitter} /></a>
+                <a href={`https://www.instagram.com/?url=${articleURL}`} target='_blank'><FontAwesomeIcon icon={faInstagramSquare} /></a>
+                <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${articleURL}`} target='_blank'><FontAwesomeIcon icon={faLinkedinIn} /></a>
               </div>
             </div>
-            <div className="single-post-content">
-              <strong>Abstract</strong>
-              <p>Narratives we hear play a crucial role in shaping our understanding of civilizational history by connecting dots to form a cohesive story. The narrative strategies surrounding Indian heritage over the past thousand years, however, require revisiting as emerging counter-narratives are increasingly gaining significance. Globalized narratives, which have become foundational to newer interpretations, often cause Indians to feel estranged, misunderstood, or even demoralized. This problem intensifies when local storytellers adopt these globalized narratives, mistaking narrators for the original sources of knowledge.</p>
-              <p>Such misunderstandings can lead to "focalization"—a process by which perspectives are altered or skewed—resulting in the miscommunication of key aspects of Indian culture. By examining ancient Indian traditions such as **Sām Veda** (Vedic chanting, with an unknown origin date) and **Dhrupad** (an ancient form of classical Indian music, likely originating around 300 BC and still practiced today), this article explores how these cultural treasures have been represented in newer globalized narratives. It highlights the focalization that arises from these narratives and underscores the need to address these misconceptions in order to preserve the true essence of Indian heritage.</p>
-              <p><strong>Keywords: </strong>Narrative Strategies, Focalisation, Khayāl, Dhrupad, Sāma Gāna</p>
-              <p><strong>Link: <u><a href="#" target='_blank'>Download Nature Image PDF</a></u></strong></p>
+            <div className="article-single-post-cont">
+              <div className="single-post-content" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.article_content) }} />
+              <p><strong>Keywords: </strong>{article.article_page_keywords}</p>
+              {attachmentURLs.length > 0 && (
+                <p><strong>Attachments:</strong>&nbsp;
+                  {attachmentURLs.map((url, index) => (
+                    <span key={index}>
+                      <strong><u><a href={import.meta.env.VITE_BACKEND_API + url} target='_blank' rel='noopener noreferrer'>Download Attachment {index + 1}</a></u></strong>,&nbsp;
+                    </span>
+                  ))}
+                </p>
+              )}
+
             </div>
 
             <div className="posts-container single-post">
@@ -66,75 +127,37 @@ const SingleArticle = () => {
                 <h3>Related Article Posts</h3>
               </div>
               <Row>
-                <Col>
-                  <Card>
-                    <Card.Img variant="top" src={Blog1} />
-                    <Card.Body>
-                      <div className="posts-body-header">
-                        <div className="posts-head-left">
-                          <img src={Profile} className='img-fluid' alt="" />
-                          <div className="posts-head-inner-text">
-                            <h6 className='text-main mb-0 text-bold'>Subroto Roy</h6>
-                            <span className='subHdng'>20thMarch, 2024</span>
+                {randomArticles.length > 0 ? (
+                  randomArticles.map((article) => (
+                    <Col xs={12} md={6} lg={4}>
+                      <Card>
+                        <Card.Img variant="top" src={import.meta.env.VITE_BACKEND_API + article.article_thumbnail} />
+                        <Card.Body>
+                          <div className="posts-body-header">
+                            <div className="posts-head-left">
+                              <img src={Profile} className='img-fluid' alt="" />
+                              <div className="posts-head-inner-text">
+                                <h6 className='text-main mb-0 text-bold'>{article.full_name}</h6>
+                                <span className='subHdng'>
+                                  {getDayWithSuffix(new Date(article.created_at).getDate())}&nbsp;
+                                  {new Date(article.created_at).toLocaleString('default', { month: 'long' })}&nbsp;
+                                  {new Date(article.created_at).getFullYear()}
+                                </span>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                      <h4>FOCALISATION IN VEDIC & MODERN DAY DHRUPAD VOCAL MUSIC STORIES</h4>
-                      <p className='paragraph3'>
-                        Narratives we hear play a crucial role in shaping our understanding of civilizational history by connecting dots to form a cohesive story.....
-                      </p>
-                      <div className="d-flex justify-content-end mt-4">
-                        <Link to="/" className="btn-link">Read More&nbsp;&#8594;</Link>
-                      </div>
-                    </Card.Body>
-                  </Card>
-                </Col>
-                <Col>
-                  <Card>
-                    <Card.Img variant="top" src={Blog1} />
-                    <Card.Body>
-                      <div className="posts-body-header">
-                        <div className="posts-head-left">
-                          <img src={Profile} className='img-fluid' alt="" />
-                          <div className="posts-head-inner-text">
-                            <h6 className='text-main mb-0 text-bold'>Subroto Roy</h6>
-                            <span className='subHdng'>20thMarch, 2024</span>
+                          <h4>{article.article_title}</h4>
+                          <p className='paragraph3'>{article.article_shortDesc.substring(0, 160)}{article.article_shortDesc.length > 160 ? '...' : ''}</p>
+                          <div className="d-flex justify-content-end mt-4">
+                            <Link to={"/articles/"+article.article_slug} className="btn-link">Read More&nbsp;&#8594;</Link>
                           </div>
-                        </div>
-                      </div>
-                      <h4>FOCALISATION IN VEDIC & MODERN DAY DHRUPAD VOCAL MUSIC STORIES</h4>
-                      <p className='paragraph3'>
-                        Narratives we hear play a crucial role in shaping our understanding of civilizational history by connecting dots to form a cohesive story.....
-                      </p>
-                      <div className="d-flex justify-content-end mt-4">
-                        <Link to="/" className="btn-link">Read More&nbsp;&#8594;</Link>
-                      </div>
-                    </Card.Body>
-                  </Card>
-                </Col>
-                <Col>
-                  <Card>
-                    <Card.Img variant="top" src={Blog1} />
-                    <Card.Body>
-                      <div className="posts-body-header">
-                        <div className="posts-head-left">
-                          <img src={Profile} className='img-fluid' alt="" />
-                          <div className="posts-head-inner-text">
-                            <h6 className='text-main mb-0 text-bold'>Subroto Roy</h6>
-                            <span className='subHdng'>20thMarch, 2024</span>
-                          </div>
-                        </div>
-                      </div>
-                      <h4>FOCALISATION IN VEDIC & MODERN DAY DHRUPAD VOCAL MUSIC STORIES</h4>
-                      <p className='paragraph3'>
-                        Narratives we hear play a crucial role in shaping our understanding of civilizational history by connecting dots to form a cohesive story.....
-                      </p>
-                      <div className="d-flex justify-content-end mt-4">
-                        <Link to="/" className="btn-link">Read More&nbsp;&#8594;</Link>
-                      </div>
-                    </Card.Body>
-                  </Card>
-                </Col>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  ))
+                ) : (
+                  <p>No random articles found.</p>
+                )}
               </Row>
             </div>
           </div>

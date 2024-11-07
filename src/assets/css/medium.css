@@ -367,6 +367,16 @@
         line-height: 32px;
     }
 
+    .single-post-body .article-single-post-cont {
+        padding: 0 0 40px 0;
+        border-bottom: 1px solid #C4C4C4;
+    }
+    
+    .single-post-body .article-single-post-cont .single-post-content {
+        padding: 30px 0 0 0;
+        border-bottom: none;
+    }
+
     .single-post-body .single-post-content {
         padding: 30px 0 40px 0;
     }

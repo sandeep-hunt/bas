@@ -38,7 +38,7 @@ router.post('/add', upload.fields([{ name: 'image1', maxCount: 1 }, { name: 'ima
     // Handle uploaded files
     const image1 = req.files['image1'] ? `uploads/articles/${req.files['image1'][0].filename}` : null;
     const image2 = req.files['image2'] ? `uploads/articles/${req.files['image2'][0].filename}` : null;
-    const pdfs = req.files['pdfs'] ? req.files['pdfs'].map(file => `/uploads/articles/files/${file.originalname}`) : [];
+    const pdfs = req.files['pdfs'] ? req.files['pdfs'].map(file => `uploads/articles/files/${file.originalname}`) : [];
 
     const sql = `INSERT INTO articles (article_title, article_shortDesc, article_content, article_attachment, article_author, article_slug, article_page_title, article_page_keywords, article_page_desc, article_thumbnail, article_image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
     const params = [article_title, article_shortDesc, article_content, JSON.stringify(pdfs), article_author, article_slug, article_page_title, article_page_keywords, article_page_desc, image1, image2];
@@ -96,7 +96,7 @@ router.put('/update/:id', upload.fields([{ name: 'image1', maxCount: 1 }, { name
 
     const image1 = req.files['image1'] ? `uploads/${req.files['image1'][0].filename}` : null;
     const image2 = req.files['image2'] ? `uploads/${req.files['image2'][0].filename}` : null;
-    const pdfs = req.files['pdfs'] ? req.files['pdfs'].map(file => `/uploads/pdfs/${file.originalname}`) : JSON.parse(existingBlog.pdfs);
+    const pdfs = req.files['pdfs'] ? req.files['pdfs'].map(file => `uploads/articles/files/${file.originalname}`) : JSON.parse(existingBlog.pdfs);
 
     let sql = `UPDATE articles SET article_title = ?, article_shortDesc = ?, article_content = ?, article_slug = ?, article_page_title = ?, article_page_keywords = ?, article_page_desc = ?`;
 

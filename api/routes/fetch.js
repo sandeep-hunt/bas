@@ -185,7 +185,7 @@ router.post('/register', (req, res) => {
             res.status(201).json({ message: 'User registered successfully!' });
         }
     });
-})
+});
 
 //Handle message
 router.post('/messageSubmit', (req, res) => {
@@ -199,7 +199,7 @@ router.post('/messageSubmit', (req, res) => {
         }
         res.status(201).json({ message: 'Message/Feedback Submitted Successfully.' });
     });
-})
+});
 
 //Handle Get Blogs Limit
 router.get('/getBlogs', async (req, res) => {
@@ -218,7 +218,7 @@ router.get('/getBlogs', async (req, res) => {
 router.get('/getArticles', async (req, res) => {
     const limit = parseInt(req.query.limit) || 5; // Default limit if not provided
 
-    const sql = 'SELECT articles.*, users.username, users.full_name, users.user_profile FROM articles JOIN users ON articles.article_author = users.username ORDER BY articles.article_id DESC LIMIT ?';  // Modify this query based on your blog table
+    const sql = 'SELECT articles.*, users.username, users.full_name, users.user_profile FROM articles JOIN users ON articles.article_author = users.username ORDER BY articles.article_id DESC LIMIT ?';  // Modify this query based on your article table
     db.query(sql, [limit], (err, results) => {
         if (err) {
             return res.status(500).json({ error: 'Failed to fetch events' });
@@ -291,21 +291,82 @@ router.get('/getBlogsList', (req, res) => {
 router.get('/blogBySlug/:slug', (req, res) => {
     const blogSlug = req.params.slug;
 
-    // SQL query to get the event details by ID
+    // SQL query to get the blog details by slug
     const query = 'SELECT blogs.*, users.username, users.full_name, users.user_profile, categories.category_id, categories.category_name FROM blogs JOIN users ON blogs.blog_author = users.username JOIN categories ON blogs.blog_category = categories.category_id WHERE blog_slug = ?';
 
     db.query(query, [blogSlug], (err, results) => {
         if (err) {
-            console.error('Error fetching event:', err);
+            console.error('Error fetching blog:', err);
             return res.status(500).send('Internal Server Error');
         }
 
         if (results.length > 0) {
-            res.json(results[0]); // Send the first result as the event
+            res.json(results[0]); // Send the first result as the blog
         } else {
-            res.status(404).send('Event not found');
+            res.status(404).send('Blog not found');
         }
     });
-})
+});
+
+//Handle Get Articles By Slug
+router.get('/articleBySlug/:slug', (req, res) => {
+    const articleSlug = req.params.slug;
+
+    // SQL query to get the article details by slug
+    const query = 'SELECT articles.*, users.username, users.full_name, users.user_profile FROM articles JOIN users ON articles.article_author = users.username WHERE article_slug = ?';
+
+    db.query(query, [articleSlug], (err, results) => {
+        if (err) {
+            console.error('Error fetching article:', err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        if (results.length > 0) {
+            res.json(results[0]); // Send the first result as the article
+        } else {
+            res.status(404).send('Article not found');
+        }
+    });
+});
+
+//Handle Get Random articles limit=3
+router.get('/randArticle', (req, res) => {
+    db.query('SELECT articles.*, users.username, users.full_name, users.user_profile FROM articles JOIN users ON articles.article_author = users.username ORDER BY RAND() LIMIT 3', (err, result) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        return res.json(result);  // Return the random articles as a JSON response
+    });
+});
+
+//Handle Get Related Blog Posts limit=3
+router.get('/relatedBlog/:slug', (req, res) => {
+    const { slug } = req.params;
+
+    // First, fetch the article by its slug to get the category_id (or any other related attribute)
+    db.query('SELECT * FROM blogs WHERE blog_slug = ?', [slug], (err, result) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+
+        if (result.length === 0) {
+            return res.status(404).json({ message: 'Article not found' });
+        }
+
+        const blog = result[0];
+
+        // Fetch related articles based on the same category_id (for example)
+        db.query(
+            'SELECT SELECT blogs.*, users.username, users.full_name, users.user_profile, categories.category_id, categories.category_name FROM blogs JOIN users ON blogs.blog_author = users.username JOIN categories ON blogs.blog_category = categories.category_id WHERE category_id = ? AND blog_slug != ? LIMIT 3',
+            [blog.category_id, slug],
+            (err, relatedBlogs) => {
+                if (err) {
+                    return res.status(500).json({ error: err.message });
+                }
+                return res.json(relatedBlogs);
+            }
+        );
+    });
+});
 
 module.exports = router;

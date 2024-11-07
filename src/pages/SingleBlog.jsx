@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import { Card, Col, Container, Row, Button } from 'react-bootstrap'
-import BlogImg from '../assets/images/msic/blogImg.png'
 import Profile from '../assets/images/msic/profile.png'
 import Blogslid1 from '../assets/images/msic/blogslid1.png'
 import Blogslid2 from '../assets/images/msic/blogslid2.png'
@@ -17,13 +16,19 @@ const SingleBlog = () => {
 
     const { slug } = useParams();
     const [blog, setblog] = useState('');
+    const [relatedBlogs, setrelatedBlogs] = useState([]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
         const fetchData = async () => {
             try {
+                // Fetch blog by slug
                 const response = await axios.get(import.meta.env.VITE_BACKEND_API + 'fetch/blogBySlug/' + slug);
                 setblog(response.data);
+
+                // Fetch related blogs by slug
+                const relatedResponse = await axios.get(`${import.meta.env.VITE_BACKEND_API}fetch/relatedBlog/${slug}`);
+                setrelatedBlogs(relatedResponse.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -42,6 +47,8 @@ const SingleBlog = () => {
         }
     };
 
+    const articleURL = window.location.href;
+
     return (
         <React.Fragment>
             <Header />
@@ -59,10 +66,10 @@ const SingleBlog = () => {
                                 </p>
                             </div>
                             <div className="single-post-social-icons">
-                                <a href="" target='_blank'><FontAwesomeIcon icon={faFacebookF} /></a>
-                                <a href="" target='_blank'><FontAwesomeIcon icon={faXTwitter} /></a>
-                                <a href="" target='_blank'><FontAwesomeIcon icon={faInstagramSquare} /></a>
-                                <a href="" target='_blank'><FontAwesomeIcon icon={faLinkedinIn} /></a>
+                                <a href={`https://www.facebook.com/sharer/sharer.php?u=${articleURL}`} target='_blank'><FontAwesomeIcon icon={faFacebookF} /></a>
+                                <a href={`https://twitter.com/intent/tweet?url=${articleURL}`} target='_blank'><FontAwesomeIcon icon={faXTwitter} /></a>
+                                <a href={`https://www.instagram.com/?url=${articleURL}`} target='_blank'><FontAwesomeIcon icon={faInstagramSquare} /></a>
+                                <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${articleURL}`} target='_blank'><FontAwesomeIcon icon={faLinkedinIn} /></a>
                             </div>
                         </div>
                     </div>
@@ -88,90 +95,40 @@ const SingleBlog = () => {
                                 <h3>Related Blog Posts</h3>
                             </div>
                             <Row>
-                                <Col>
-                                    <Card>
-                                        <Card.Img variant="top" src={Blogslid1} />
-                                        <Card.Body>
-                                            <div className="posts-body-header">
-                                                <div className="posts-head-left">
-                                                    <img src={Profile} className='img-fluid' alt="" />
-                                                    <div className="posts-head-inner-text">
-                                                        <h6 className='text-main mb-0 text-bold'>Subroto Roy</h6>
-                                                        <span className='subHdng'>20thMarch, 2024</span>
+                                {relatedBlogs.length > 0 ? (
+                                    relatedBlogs.map((blog) => (
+                                        <Col xs={12} md={6} lg={4} key={blog.blog_id}>
+                                            <Card>
+                                                <Card.Img variant="top" src={Blogslid1} />
+                                                <Card.Body>
+                                                    <div className="posts-body-header">
+                                                        <div className="posts-head-left">
+                                                            <img src={Profile} className='img-fluid' alt="" />
+                                                            <div className="posts-head-inner-text">
+                                                                <h6 className='text-main mb-0 text-bold'>Subroto Roy</h6>
+                                                                <span className='subHdng'>20thMarch, 2024</span>
+                                                            </div>
+                                                        </div>
+                                                        <div className="posts-head-right">
+                                                            <span className='category-pill'>Music</span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="posts-head-right">
-                                                    <span className='category-pill'>Music</span>
-                                                </div>
-                                            </div>
-                                            <div className="posts-body-content">
-                                                <h4>FOCALISATION IN VEDIC & MODERN DAY DHRUPAD VOCAL MUSIC STORIES</h4>
-                                                <p className='paragraph3'>
-                                                    Narratives we hear play a crucial role in shaping our understanding of civilizational history by connecting dots to form a cohesive story.....
-                                                </p>
-                                                <div className="d-flex justify-content-end">
-                                                    <Link to="/" className="btn-link">Read More&nbsp;&#8594;</Link>
-                                                </div>
-                                            </div>
-                                        </Card.Body>
-                                    </Card>
-                                </Col>
-                                <Col>
-                                    <Card>
-                                        <Card.Img variant="top" src={Blogslid2} />
-                                        <Card.Body>
-                                            <div className="posts-body-header">
-                                                <div className="posts-head-left">
-                                                    <img src={Profile} className='img-fluid' alt="" />
-                                                    <div className="posts-head-inner-text">
-                                                        <h6 className='text-main mb-0 text-bold'>Subroto Roy</h6>
-                                                        <span className='subHdng'>20thMarch, 2024</span>
+                                                    <div className="posts-body-content">
+                                                        <h4>FOCALISATION IN VEDIC & MODERN DAY DHRUPAD VOCAL MUSIC STORIES</h4>
+                                                        <p className='paragraph3'>
+                                                            Narratives we hear play a crucial role in shaping our understanding of civilizational history by connecting dots to form a cohesive story.....
+                                                        </p>
+                                                        <div className="d-flex justify-content-end">
+                                                            <Link to="/" className="btn-link">Read More&nbsp;&#8594;</Link>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="posts-head-right">
-                                                    <span className='category-pill'>Music</span>
-                                                </div>
-                                            </div>
-                                            <div className="posts-body-content">
-                                                <h4>FOCALISATION IN VEDIC & MODERN DAY DHRUPAD VOCAL MUSIC STORIES</h4>
-                                                <p className='paragraph3'>
-                                                    Narratives we hear play a crucial role in shaping our understanding of civilizational history by connecting dots to form a cohesive story.....
-                                                </p>
-                                                <div className="d-flex justify-content-end">
-                                                    <Link to="/" className="btn-link">Read More&nbsp;&#8594;</Link>
-                                                </div>
-                                            </div>
-                                        </Card.Body>
-                                    </Card>
-                                </Col>
-                                <Col>
-                                    <Card>
-                                        <Card.Img variant="top" src={Blogslid3} />
-                                        <Card.Body>
-                                            <div className="posts-body-header">
-                                                <div className="posts-head-left">
-                                                    <img src={Profile} className='img-fluid' alt="" />
-                                                    <div className="posts-head-inner-text">
-                                                        <h6 className='text-main mb-0 text-bold'>Subroto Roy</h6>
-                                                        <span className='subHdng'>20thMarch, 2024</span>
-                                                    </div>
-                                                </div>
-                                                <div className="posts-head-right">
-                                                    <span className='category-pill'>Music</span>
-                                                </div>
-                                            </div>
-                                            <div className="posts-body-content">
-                                                <h4>FOCALISATION IN VEDIC & MODERN DAY DHRUPAD VOCAL MUSIC STORIES</h4>
-                                                <p className='paragraph3'>
-                                                    Narratives we hear play a crucial role in shaping our understanding of civilizational history by connecting dots to form a cohesive story.....
-                                                </p>
-                                                <div className="d-flex justify-content-end">
-                                                    <Link to="/" className="btn-link">Read More&nbsp;&#8594;</Link>
-                                                </div>
-                                            </div>
-                                        </Card.Body>
-                                    </Card>
-                                </Col>
+                                                </Card.Body>
+                                            </Card>
+                                        </Col>
+                                    ))
+                                ) : (
+                                    <p>No related articles found.</p>
+                                )}
                             </Row>
                         </div>
                     </div>
