@@ -369,4 +369,15 @@ router.get('/relatedBlog/:slug', (req, res) => {
     });
 });
 
+//Handle Get Settings
+router.get('/settings', (req, res) => {
+    const sql = 'SELECT * FROM settings';  // Modify this query based on your blog table
+    db.query(sql, (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: 'Failed to fetch settings' });
+        }
+        res.json(results);
+    });
+})
+
 module.exports = router;

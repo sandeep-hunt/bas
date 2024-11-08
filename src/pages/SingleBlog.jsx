@@ -7,12 +7,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link, useParams } from 'react-router-dom'
 import { faFacebookF, faXTwitter, faInstagramSquare, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
 import axios from 'axios'
-import DOMPurify from 'dompurify';
+import DOMPurify from 'dompurify'
+import { Helmet } from 'react-helmet-async'
 
 const SingleBlog = () => {
 
     const { slug } = useParams();
     const [blog, setblog] = useState('');
+    const [settings, setsettings] = useState('');
     const [relatedBlogs, setrelatedBlogs] = useState([]);
 
     useEffect(() => {
@@ -23,6 +25,10 @@ const SingleBlog = () => {
                 // Fetch blog by slug
                 const response = await axios.get(`${import.meta.env.VITE_BACKEND_API}fetch/blogBySlug/${slug}`);
                 setblog(response.data);
+
+                // Fetch the settings
+                const fetchSettings = await axios.get(import.meta.env.VITE_BACKEND_API + 'fetch/settings');
+                setsettings(fetchSettings.data[0]);
 
                 // Fetch related blogs by slug
                 const relatedResponse = await axios.get(`${import.meta.env.VITE_BACKEND_API}fetch/relatedBlog/${slug}`);
@@ -49,6 +55,11 @@ const SingleBlog = () => {
 
     return (
         <React.Fragment>
+        <Helmet>
+          <title>{`${settings.site_title} | ${blog.blog_page_title || "India's Farm Utility ROVRs, Off Road Utility Vehicles, UTV, ATV"}`}</title>
+          <meta name="description" content={blog.blog_page_desc} />
+          <meta name="keywords" content={blog.blog_page_keywords}></meta>
+        </Helmet>
             <Header />
             <div className="single-post-head blog" style={{ backgroundImage: `url(${import.meta.env.VITE_BACKEND_API + blog.blog_image})` }}>
                 <Container fluid className='single-post-head-cont h-100'>
