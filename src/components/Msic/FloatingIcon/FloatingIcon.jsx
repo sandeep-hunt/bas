@@ -22,7 +22,7 @@ const FloatingIcon = () => {
 
     return (
         <div>
-            <a href={settings.call_to_action} class="float">
+            <a href={settings.call_to_action} className="float">
                 <img src={FloatIcon} className='img-fluid' alt="whatsapp" />
             </a>
         </div>

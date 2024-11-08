@@ -107,7 +107,7 @@ const EventsList = () => {
               {listEvents.map((event, index) => (
                 <div key={index} className="events-item">
                   <div className="events-item-left">
-                    <img src={import.meta.env.VITE_BACKEND_API + event.event_thumbnail} className='img-fluid' alt={event.name} />
+                    <img src={import.meta.env.VITE_BACKEND_API + event.event_thumbnail} className='img-fluid' alt={event.name} width={135}/>
                     <div className="events-inner-cont">
                       <p className='paragraph1 m-0'><b>{event.event_name}</b></p>
                       <p className='paragraph1 m-0'><b>{event.event_location}</b></p>
