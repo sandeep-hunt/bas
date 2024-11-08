@@ -7,12 +7,14 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import Gallery_bg from '../assets/images/msic/gallery_bg.png'
 import HomeIcon from '../assets/images/icons/home.svg'
 import EditIcon from '../assets/images/icons/edit.svg'
+import { Helmet } from 'react-helmet-async'
 
 const Gallery = () => {
     const [images, setImages] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [limit] = useState(12);  // Number of items per page
+    const [settings, setsettings] = useState('');
 
     // Fetch paginated items when the component mounts or page changes
     useEffect(() => {
@@ -25,6 +27,11 @@ const Gallery = () => {
                         limit: limit
                     }
                 });
+
+                //Get Settings
+                const fetchSettings = await axios.get(import.meta.env.VITE_BACKEND_API + 'fetch/settings');
+                setsettings(fetchSettings.data[0]);
+
                 setImages(response.data.items);
                 setCurrentPage(response.data.currentPage);
                 setTotalPages(response.data.totalPages);
@@ -132,6 +139,11 @@ const Gallery = () => {
 
     return (
         <React.Fragment>
+            <Helmet>
+                <title>{`${settings?.site_title || "Bharata Arseya Samsthan"} | Gallery`}</title>
+                <meta name="description" content={settings.site_description} />
+                <meta name="keywords" content={settings.site_keywords}></meta>
+            </Helmet>
             <Header />
             <div className="event-banner" style={{ backgroundImage: `url(${Gallery_bg})` }}>
                 <div className="event-banner-inner">

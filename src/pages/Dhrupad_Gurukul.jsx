@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, {useEffect, useState} from 'react'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import Icon1 from '../assets/images/icons/pro_icon1.svg'
@@ -7,15 +7,34 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import Pro_bg1 from '../assets/images/msic/project_bg1.png'
 import HomeIcon from '../assets/images/icons/home.svg'
 import EditIcon from '../assets/images/icons/edit.svg'
+import axios from 'axios'
+import { Helmet } from 'react-helmet-async'
 
 const Dhrupad_Gurukul = () => {
+  const [settings, setsettings] = useState('');
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    const fetchData = async () => {
+      try {
+        // Fetch the settings
+        const fetchSettings = await axios.get(import.meta.env.VITE_BACKEND_API + 'fetch/settings');
+        setsettings(fetchSettings.data[0]);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
     <React.Fragment>
+    <Helmet>
+      <title>{`${settings?.site_title || "Bharata Arseya Samsthan"} | Dhrupad Gurukul`}</title>
+      <meta name="description" content={settings.site_description} />
+      <meta name="keywords" content={settings.site_keywords}></meta>
+    </Helmet>
       <Header />
       <div className="projects-banner" style={{ backgroundImage: `url(${Pro_bg1})` }}>
         <div className="projects-banner-inner">

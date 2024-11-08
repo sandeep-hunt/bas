@@ -72,21 +72,21 @@ const Footer = () => {
                     <span><FontAwesomeIcon icon={faMapMarkerAlt} /></span>
                     <strong>Address</strong>
                   </div>
-                  <p>6 Purushottam apartment, 18 Shilavihar colony, Erandwane Pune - 411 038 Maharashtra </p>
+                  <p>{settings.contact_address}</p>
                 </div>
                 <div className="footer-inner">
                   <div className="footer-inner-cont">
                     <span><FontAwesomeIcon icon={faPhoneAlt} /></span>
                     <strong>Contact</strong>
                   </div>
-                  <p><a href="tel:+919823256524">91+ 9823256524</a></p>
+                  <p><a href={`tel:${settings.contact_mobile}`}>{settings.contact_mobile}</a></p>
                 </div>
                 <div className="footer-inner">
                   <div className="footer-inner-cont">
                     <span><FontAwesomeIcon icon={faEnvelope} /></span>
                     <strong>Email</strong>
                   </div>
-                  <p><a href="mailto:bhasa@drashta.co.in">bhasa@drashta.co.in</a></p>
+                  <p><a href={`mailto:${settings.contact_mobile}`}>{settings.contact_email}</a></p>
                 </div>
               </div>
             </Col>

@@ -25,6 +25,7 @@ import EditIcon from '../assets/images/icons/edit.svg'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { Helmet } from 'react-helmet-async'
 
 const data = [
     {
@@ -78,9 +79,21 @@ const data = [
 ]
 
 const AboutUs = () => {
+    const [getsettings, setgetsettings] = useState('');
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        const fetchData = async () => {
+            try {
+                // Fetch the settings
+                const fetchSettings = await axios.get(import.meta.env.VITE_BACKEND_API + 'fetch/settings');
+                setgetsettings(fetchSettings.data[0]);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
     }, []);
 
     var settings = {
@@ -208,6 +221,11 @@ const AboutUs = () => {
 
     return (
         <React.Fragment>
+            <Helmet>
+                <title>{`${getsettings?.site_title || "Bharata Arseya Samsthan"} | About Us`}</title>
+                <meta name="description" content={getsettings.site_description} />
+                <meta name="keywords" content={getsettings.site_keywords}></meta>
+            </Helmet>
             <Header />
             <div className="event-banner" style={{ backgroundImage: `url(${About_bg})` }}>
                 <div className="event-banner-inner">
