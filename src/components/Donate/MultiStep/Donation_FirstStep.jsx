@@ -1,16 +1,21 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Row, Col } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import PhoneInput from 'react-phone-input-2';
 import DonateImg1 from '../../../assets/images/msic/donate_bg1.png'
 
-const Donation_FirstStep = ({ formData, setFormData, nextStep }) => {
+const Donation_FirstStep = ({ formData, setFormData, nextStep, errors }) => {
   const { name, mobile, email, age, gender } = formData;
+  const [isCheckboxChecked, setCheckboxChecked] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleCheckboxChange = () => {
+    setCheckboxChecked(!isCheckboxChecked);
   };
 
   return (
@@ -47,6 +52,7 @@ const Donation_FirstStep = ({ formData, setFormData, nextStep }) => {
                   <Form.Group className='mb-3'>
                     <label>Name <span style={{ color: `red` }}>*</span></label>
                     <input className='form-control' type="text" name="name" value={name} onChange={handleChange} placeholder='Full Name' />
+                    {errors.name && <small className="text-danger">{errors.name}</small>}
                   </Form.Group>
                 </Col>
               </Row>
@@ -65,6 +71,7 @@ const Donation_FirstStep = ({ formData, setFormData, nextStep }) => {
                         required: true,
                       }}
                     />
+                    {errors.mobile && <small className="text-danger">{errors.mobile}</small>}
                   </Form.Group>
                 </Col>
               </Row>
@@ -73,6 +80,7 @@ const Donation_FirstStep = ({ formData, setFormData, nextStep }) => {
                   <Form.Group className='form-group'>
                     <label>Email <span style={{ color: `red` }}>*</span></label>
                     <input className='form-control' type="email" name="email" value={email} onChange={handleChange} placeholder='Email' />
+                    {errors.email && <small className="text-danger">{errors.email}</small>}
                   </Form.Group>
                 </Col>
               </Row>
@@ -81,6 +89,7 @@ const Donation_FirstStep = ({ formData, setFormData, nextStep }) => {
                   <Form.Group className='form-group'>
                     <label>Age <span style={{ color: `red` }}>*</span></label>
                     <input className='form-control' type="text" name="age" value={age} onChange={handleChange} placeholder='Age' />
+                    {errors.age && <small className="text-danger">{errors.age}</small>}
                   </Form.Group>
                 </Col>
               </Row>
@@ -93,11 +102,14 @@ const Donation_FirstStep = ({ formData, setFormData, nextStep }) => {
                       <option value="male">Male</option>
                       <option value="female">Female</option>
                     </Form.Select>
+                    {errors.gender && <small className="text-danger">{errors.gender}</small>}
                   </Form.Group>
                 </Col>
               </Row>
               <Form.Group className='form-group'>
                 <Form.Check
+                  checked={isCheckboxChecked}
+                  onChange={handleCheckboxChange}
                   required
                   label=" I certify that above provided information is correct and there is no mistake. I know that all further communication will be done on above provided details."
                 />
@@ -106,7 +118,7 @@ const Donation_FirstStep = ({ formData, setFormData, nextStep }) => {
                 <Row>
                   <Col>
                     <div className="d-grid">
-                      <Button className='btn-main' onClick={nextStep} disabled={!name || !mobile || !email || !age || !gender} >Next</Button>
+                      <Button className='btn-main' onClick={nextStep} disabled={!name || !mobile || !email || !age || !gender || !isCheckboxChecked} >Next</Button>
                     </div>
                   </Col>
                 </Row>
