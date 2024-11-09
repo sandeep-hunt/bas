@@ -48,7 +48,7 @@ router.get('/events/:slug', (req, res) => {
 router.post('/book-event', async (req, res) => {
     const { name, date, gender, email, mobile, state, city, address, pincode, eventId, eventPrice } = req.body;
 
-    // Fetch the second-to-last row in the event_booking table
+    // Fetch the last row in the event_booking table
     const fetchLastQuery = `
         SELECT * FROM event_booking 
         ORDER BY event_booking_id DESC 
@@ -378,6 +378,52 @@ router.get('/settings', (req, res) => {
         }
         res.json(results);
     });
+});
+
+//Handle Post Donate
+router.post('/donate-now', async (req, res) => {
+    const { name, mobile, email, age, gender, state, city, address, pincode, donation_type, donation_amt, donation_freq } = req.body;
+
+    // Fetch the last row in the event_booking table
+    const fetchLastQuery = `
+        SELECT * FROM donation 
+        ORDER BY donation_id DESC 
+        LIMIT 1
+    `;
+
+    db.query(fetchLastQuery, async (fetchErr, rows) => {
+        if (fetchErr) {
+            console.error('Error fetching last donation receipt number:', fetchErr);
+            return res.status(500).send('Error fetching last donation receipt number');
+        }
+        const lastDonation = rows.length ? rows[0] : null; // Default to 0 if there are no bookings
+        const receipt_number = parseInt(lastDonation.donate_receipt_no) + 1;
+
+        const query = 'INSERT INTO donation (donate_receipt_no,doner_name, doner_mobile, doner_email, doner_age, doner_gender, doner_state, doner_city, doner_address, doner_pincode, donation_type, donation_amount, donation_freq) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        db.query(query, [receipt_number, name, mobile, email, age, gender, state, city, address, pincode, donation_type, donation_amt, donation_freq], (err, result) => {
+            if (err) {
+                console.error('Error storing donation:', err);
+                return res.status(500).send('Error donating');
+            }
+            const receiptId = result.insertId;
+
+            // Create Razorpay order
+            const options = {
+                amount: donation_amt * 100, // Payment amount in paise
+                currency: 'INR',
+                receipt: `receipt_order_${receiptId}`,
+            };
+
+            razorpay.orders.create(options, (err, order) => {
+                if (err) {
+                    console.error('Error creating Razorpay order:', err);
+                    return res.status(500).send('Payment failed');
+                }
+                res.json({ orderId: order.id, receiptId });
+            });
+        });
+
+    })
 })
 
 module.exports = router;
