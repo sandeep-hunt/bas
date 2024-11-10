@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import Donation_FirstStep from './Donation_FirstStep'
+import Donation_FirstStep from './Donation_FirstStep';
 import Donation_SecondStep from './Donation_SecondStep';
 import Donation_ThirdStep from './Donation_ThirdStep';
 import axios from 'axios';
 import Donation_verifying from './Donation_verifying';
+import Donation_success from './Donation_success';
+import Donation_failed from './Donation_failed';
 
 const MultiStep_Init = () => {
-
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({
         name: '',
@@ -22,8 +23,7 @@ const MultiStep_Init = () => {
         donation_amt: '',
         donation_freq: '',
     });
-
-    const [errors, setErrors] = useState({}); // Error messages for validation
+    const [errors, setErrors] = useState({});
 
     const validateFields = () => {
         const newErrors = {};
@@ -76,7 +76,6 @@ const MultiStep_Init = () => {
             }
         }
 
-        // Update errors state
         setErrors(newErrors);
         return newErrors;
     };
@@ -103,32 +102,38 @@ const MultiStep_Init = () => {
     const submitForm = async () => {
         const fieldErrors = validateFields();
         if (Object.keys(fieldErrors).length === 0) {
-
             try {
-                const donateResponse = await axios.post(`${import.meta.env.VITE_BACKEND_API}fetch/donate-now`, {
-                  ...formData
-                });
-
+                const donateResponse = await axios.post(`${import.meta.env.VITE_BACKEND_API}fetch/donate-now`, { ...formData });
                 const { orderId, receiptId } = donateResponse.data;
-
+    
                 const res = await loadRazorpayScript();
                 if (!res) {
                     alert('Razorpay SDK failed to load');
                     return;
                 }
-
+    
                 const options = {
-                    key: import.meta.env.VITE_RAZARPAY_KEY_ID, // Replace with your Razorpay Key
-                    amount: formData.donation_amt * 100, // Amount in paise (1 INR = 100 paise)
+                    key: import.meta.env.VITE_RAZARPAY_KEY_ID,
+                    amount: formData.donation_amt * 100,
                     currency: 'INR',
                     name: 'Donation',
                     description: 'Make a donation',
-                    image: 'https://your-site-logo.com/logo.png', // Logo for Razorpay
-                    handler: function (response) {
-                        // Handle successful payment here
-                        alert('Payment successful');
-                        nextStep();
-                        // Optionally, send the payment response to your server to update payment status
+                    order_id: orderId,
+                    image: 'https://your-site-logo.com/logo.png',
+                    handler: async function (response) {
+                        setStep(4); // Move to verifying step
+                        try {
+                            const verifyResponse = await axios.post(`${import.meta.env.VITE_BACKEND_API}fetch/donation/verify-payment`, {
+                                razorpay_order_id: response.razorpay_order_id,
+                                razorpay_payment_id: response.razorpay_payment_id,
+                                razorpay_signature: response.razorpay_signature,
+                                receiptId,
+                                email: formData.email,
+                            });
+                            setStep(verifyResponse.data.success ? 5 : 6); // Move to success or failed step
+                        } catch (error) {
+                            setStep(6); // Move to failed step
+                        }
                     },
                     prefill: {
                         name: formData.name,
@@ -142,30 +147,53 @@ const MultiStep_Init = () => {
                         color: '#F37254',
                     },
                 };
-
-                const rzp1 = new window.Razorpay(options);
-                rzp1.open(); // Open Razorpay Checkout
+    
+                const paymentObject = new window.Razorpay(options);
+    
+                paymentObject.on('payment.failed', async function (response) {
+                    // Payment failure handling
+                    try {
+                        // Update backend with failure details
+                        await axios.post(`${import.meta.env.VITE_BACKEND_API}fetch/donation/verify-payment`, {
+                            razorpay_order_id: response.error.metadata.order_id,
+                            razorpay_payment_id: response.error.metadata.payment_id,
+                            razorpay_signature: response.error.metadata.signature || '',
+                            receiptId,
+                            status: 'failed', // Optionally, send a specific failure status to backend
+                        });
+                        setStep(6); // Move to failed step
+                    } catch (error) {
+                        console.error('Error updating failed payment status:', error);
+                        setStep(6); // Move to failed step
+                    }
+                });
+    
+                paymentObject.open();
             } catch (error) {
                 console.error('Error initiating payment:', error);
             }
-        }
-        else {
+        } else {
             setErrors(fieldErrors);
         }
     };
+    
 
     switch (step) {
         case 1:
             return <Donation_FirstStep formData={formData} setFormData={setFormData} nextStep={nextStep} errors={errors} />;
         case 2:
-            return <Donation_SecondStep formData={formData} setFormData={setFormData} nextStep={nextStep} prevStep={prevStep} errors={errors} />
+            return <Donation_SecondStep formData={formData} setFormData={setFormData} nextStep={nextStep} prevStep={prevStep} errors={errors} />;
         case 3:
-            return <Donation_ThirdStep formData={formData} setFormData={setFormData} submitForm={submitForm} prevStep={prevStep} errors={errors} />
+            return <Donation_ThirdStep formData={formData} setFormData={setFormData} submitForm={submitForm} prevStep={prevStep} errors={errors} />;
         case 4:
-            return <Donation_verifying />
+            return <Donation_verifying />;
+        case 5:
+            return <Donation_success />;
+        case 6:
+            return <Donation_failed />;
         default:
             return <div>Error: Unknown step</div>;
     }
-}
+};
 
-export default MultiStep_Init
+export default MultiStep_Init;

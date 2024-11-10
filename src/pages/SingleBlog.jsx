@@ -50,6 +50,24 @@ const SingleBlog = () => {
             default: return `${day}th`;
         }
     };
+  
+    // Function to extract text from HTML
+    const extractTextFromHTML = (html) => {
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      return doc.body.textContent || "";  // Get text content from the parsed HTML
+    };
+
+    // Function to calculate reading time
+    const calculateReadingTime = (htmlContent) => {
+      const plainText = extractTextFromHTML(htmlContent);
+      const wordCount = plainText.split(/\s+/).filter(word => word.length > 0).length;
+      const wordsPerMinute = 50;  // Average reading speed
+      const minutes = Math.ceil(wordCount / wordsPerMinute);
+      return minutes;
+    };
+  
+    // Calculate reading time for the article content
+    const readingTime = blog.blog_content ? calculateReadingTime(blog.blog_content) : 0;
 
     const articleURL = window.location.href;
 
@@ -71,7 +89,6 @@ const SingleBlog = () => {
                             <div className="post-meta">
                                 <p className="post-meta-inner">
                                     <span className='subHdng text-white'><img src={Profile} className='img-fluid' alt="" />&nbsp;&nbsp;{blog.full_name}</span>
-                                    <span className='subHdng text-white'>7 min. 159 reads</span>
                                 </p>
                             </div>
                             <div className="single-post-social-icons">
@@ -95,7 +112,7 @@ const SingleBlog = () => {
                                     {new Date(blog.created_at).getFullYear()}
                                 </span>
                                 <span className="separator"></span>
-                                <span className="time">4 minutes</span>
+                                <span className="time">{readingTime} minutes</span>
                             </div>
                         </div>
                         <div className="single-post-content" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(blog.blog_content) }} />

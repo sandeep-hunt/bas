@@ -91,7 +91,6 @@ const SingleArticle = () => {
                 <div className="post-meta">
                   <p className="post-meta-inner">
                     <span className='subHdng'><img src={Profile} className='img-fluid' />&nbsp;&nbsp;{article.full_name}</span>
-                    <span className='subHdng'>{readingTime} min. 159 reads</span>
                   </p>
                 </div>
               </Col>

@@ -149,7 +149,7 @@ router.post('/book-event/verify-payment', async (req, res) => {
                         // const pdfBuffer = await generatePdf(htmlContent);
 
                         const subject = 'Booking Confirmation';
-                        const message = `<p>Dear ${lastBooking.event_booking_name},</p><br/><p>Thank you for your booking. Your payment was successful and your booking Number is ${lastBooking.event_booking_number}. Please find your digital pass/ticket for the event in the attachments.</p><br/>Best Regards,<br/>Event Team`;
+                        const message = `<p>Dear ${lastBooking.event_booking_name},</p><br/><p>Thank you for your booking. Your payment was successful and your booking Number is ${lastBooking.event_booking_number}.</p><br/>Best Regards,<br/>Event Team`;
 
                         await sendEmail(email, subject, htmlContent);
                         res.json({ success: true, message: 'Payment verified and email sent successfully' });
@@ -424,6 +424,70 @@ router.post('/donate-now', async (req, res) => {
         });
 
     })
-})
+});
+
+//Handle Post Donation Payment Verification
+router.post('/donation/verify-payment', async (req, res) => {
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature, receiptId, email } = req.body;
+
+    const body = razorpay_order_id + "|" + razorpay_payment_id;
+    const expectedSignature = crypto
+        .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
+        .update(body.toString())
+        .digest('hex');
+
+    if (expectedSignature === razorpay_signature) {
+        // Update booking status to 'paid'
+        const query = 'UPDATE donation SET donation_payment_status = ?, donation_payment_id = ? WHERE donation_id = ?';
+        db.query(query, ['paid', razorpay_payment_id, receiptId], async (err, result) => {
+            if (err) {
+                console.error('Error updating donation status:', err);
+                return res.status(500).send('Error verifying payment');
+            }
+
+            // Fetch the booking record
+            const fetchLastQuery = `
+                SELECT * FROM donation 
+                WHERE donation_id = ?
+            `;
+            db.query(fetchLastQuery, [receiptId], async (fetchErr, rows) => {
+                if (fetchErr) {
+                    console.error('Error fetching last donation:', fetchErr);
+                    return res.status(500).send('Error fetching last donation');
+                }
+
+                const lastBooking = rows.length ? rows[0] : null;
+                if (!lastBooking) {
+                    return res.status(404).send('Donation record not found');
+                }
+
+                try {
+                    // Load HTML template and send email
+                    // const htmlContent = await loadTemplate('bookingConfirmation', replacements);
+                    // const pdfBuffer = await generatePdf(htmlContent);
+
+                    const subject = 'Donation Confirmation';
+                    const message = `<p>Dear ${lastBooking.doner_name},</p><br/><p>Thank you for donating us!!!. Your payment was successful and your donation receipt number is ${lastBooking.donate_receipt_no}.</p><br/>Best Regards,<br/>Donation Team`;
+
+                    await sendEmail(email, subject, message);
+                    res.json({ success: true, message: 'Payment verified and email sent successfully' });
+                } catch (error) {
+                    console.error('Error sending email or generating PDF:', error);
+                    res.status(500).json({ success: true, message: 'Payment verified, but email sending failed' });
+                }
+            });
+        });
+    } else {
+        // Update booking status to 'failed' if the signature doesn't match
+        const query = 'UPDATE donation SET donation_payment_status = ?, donation_payment_id = ? WHERE donation_id = ?';
+        db.query(query, ['failed', razorpay_payment_id, receiptId], (err, result) => {
+            if (err) {
+                console.error('Error updating donation status:', err);
+                return res.status(500).send('Error updating failed payment');
+            }
+            res.status(400).send('Payment verification failed');
+        });
+    }
+});
 
 module.exports = router;
