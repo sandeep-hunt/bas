@@ -53,6 +53,17 @@ async function sendEmail(to, subject, htmlContent) {
     // Send email
     return transporter.sendMail(mailOptions);
 }
+async function sendEmailRegistration(to, subject, htmlContent) {
+    const mailOptions = {
+        from: `"BAS Registration" <${process.env.EMAIL_USER}>`,
+        to: to,
+        subject: subject,
+        html: htmlContent,
+    };
+
+    // Send email
+    return transporter.sendMail(mailOptions);
+}
 
 // Export all functions
-module.exports = { loadTemplate, sendEmail };
+module.exports = { loadTemplate, sendEmail ,sendEmailRegistration};
