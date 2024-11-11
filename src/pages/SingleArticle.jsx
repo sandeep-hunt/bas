@@ -3,10 +3,10 @@ import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import { Card, Col, Container, Row, Button } from 'react-bootstrap'
 import Profile from '../assets/images/msic/profile.png'
-import Blog1 from '../assets/images/msic/blog1.png'
 import { Link, useParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF, faXTwitter, faInstagramSquare, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
+import { Helmet } from 'react-helmet-async'
 import axios from 'axios'
 import DOMPurify from 'dompurify'
 
@@ -14,6 +14,7 @@ const SingleArticle = () => {
 
   const { slug } = useParams();
   const [article, setarticle] = useState('');
+  const [settings, setsettings] = useState('');
   const [randomArticles, setRandomArticles] = useState([]);
 
   useEffect(() => {
@@ -24,6 +25,10 @@ const SingleArticle = () => {
         const response = await axios.get(import.meta.env.VITE_BACKEND_API + 'fetch/articleBySlug/' + slug);
         setarticle(response.data);
 
+        // Fetch the settings
+        const fetchSettings = await axios.get(import.meta.env.VITE_BACKEND_API + 'fetch/settings');
+        setsettings(fetchSettings.data[0]);
+
         // Fetch 3 random articles
         const randomResponse = await axios.get(`${import.meta.env.VITE_BACKEND_API}fetch/randArticle`);
         setRandomArticles(randomResponse.data);
@@ -33,7 +38,7 @@ const SingleArticle = () => {
     };
 
     fetchData();
-  }, []);
+  }, [slug]);
 
   const getDayWithSuffix = (day) => {
     if (day > 3 && day < 21) return `${day}th`; // Special case for 11th to 13th
@@ -71,6 +76,11 @@ const SingleArticle = () => {
 
   return (
     <React.Fragment>
+      <Helmet>
+        <title>{`${settings.site_title} | ${article.article_page_title || "India's Farm Utility ROVRs, Off Road Utility Vehicles, UTV, ATV"}`}</title>
+        <meta name="description" content={article.article_page_desc} />
+        <meta name="keywords" content={article.article_page_keywords}></meta>
+      </Helmet>
       <Header />
       <Container fluid>
         <div className="single-post-container">
@@ -81,7 +91,6 @@ const SingleArticle = () => {
                 <div className="post-meta">
                   <p className="post-meta-inner">
                     <span className='subHdng'><img src={Profile} className='img-fluid' />&nbsp;&nbsp;{article.full_name}</span>
-                    <span className='subHdng'>{readingTime} min. 159 reads</span>
                   </p>
                 </div>
               </Col>

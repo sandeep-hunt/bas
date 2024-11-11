@@ -48,7 +48,7 @@ const JoinUsForm_First = ({ formData, setFormData, nextStep, errors }) => {
                   <div className="donation-right-body">
                     <h4>Personal Details</h4>
                     <Row>
-                      <Col xs={7}>
+                      <Col xs={10} sm={8} md={7}>
                         <Form.Group className='mb-3'>
                           <label>Name <span style={{ color: `red` }}>*</span></label>
                           <input className='form-control' type="text" name="name" value={name} onChange={handleChange} placeholder='Full Name' />
@@ -57,7 +57,7 @@ const JoinUsForm_First = ({ formData, setFormData, nextStep, errors }) => {
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={5}>
+                      <Col xs={9} sm={6} md={5}>
                         <Form.Group className='mb-3'>
                           <label>Mobile <span style={{ color: `red` }}>*</span></label>
                           <PhoneInput
@@ -76,7 +76,7 @@ const JoinUsForm_First = ({ formData, setFormData, nextStep, errors }) => {
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={5}>
+                      <Col xs={7} sm={6} md={6}>
                         <Form.Group className='mb-3'>
                           <label>Email <span style={{ color: `red` }}>*</span></label>
                           <input className='form-control' type="email" name="email" value={email} onChange={handleChange} placeholder='Email' />
@@ -85,7 +85,7 @@ const JoinUsForm_First = ({ formData, setFormData, nextStep, errors }) => {
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={2}>
+                      <Col xs={4} sm={3} md={2}>
                         <Form.Group className='mb-3'>
                           <label>Age <span style={{ color: `red` }}>*</span></label>
                           <input className='form-control' type="text" name="age" value={age} onChange={handleChange} placeholder='Age' />
@@ -94,7 +94,7 @@ const JoinUsForm_First = ({ formData, setFormData, nextStep, errors }) => {
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={3}>
+                      <Col xs={6} sm={4} md={3}>
                         <Form.Group>
                           <label>Gender <span style={{ color: `red` }}>*</span></label>
                           <Form.Select name="gender" onChange={handleChange}>

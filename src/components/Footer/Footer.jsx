@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Footer.css'
 import { Col, Container, Row } from 'react-bootstrap'
 import Logo from '../../assets/images/logo_light.svg'
@@ -8,8 +8,25 @@ import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookF,faXTwitter,faInstagramSquare,faLinkedinIn,faYoutube } from '@fortawesome/free-brands-svg-icons'
+import axios from 'axios'
 
 const Footer = () => {
+  const [settings, setsettings] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch the settings
+        const fetchSettings = await axios.get(import.meta.env.VITE_BACKEND_API + 'fetch/settings');
+        setsettings(fetchSettings.data[0]);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  },[])
+
   return (
     <React.Fragment>
       <footer>
@@ -55,21 +72,21 @@ const Footer = () => {
                     <span><FontAwesomeIcon icon={faMapMarkerAlt} /></span>
                     <strong>Address</strong>
                   </div>
-                  <p>6 Purushottam apartment, 18 Shilavihar colony, Erandwane Pune - 411 038 Maharashtra </p>
+                  <p>{settings.contact_address}</p>
                 </div>
                 <div className="footer-inner">
                   <div className="footer-inner-cont">
                     <span><FontAwesomeIcon icon={faPhoneAlt} /></span>
                     <strong>Contact</strong>
                   </div>
-                  <p><a href="tel:+919823256524">91+ 9823256524</a></p>
+                  <p><a href={`tel:${settings.contact_mobile}`}>{settings.contact_mobile}</a></p>
                 </div>
                 <div className="footer-inner">
                   <div className="footer-inner-cont">
                     <span><FontAwesomeIcon icon={faEnvelope} /></span>
                     <strong>Email</strong>
                   </div>
-                  <p><a href="mailto:bhasa@drashta.co.in">bhasa@drashta.co.in</a></p>
+                  <p><a href={`mailto:${settings.contact_mobile}`}>{settings.contact_email}</a></p>
                 </div>
               </div>
             </Col>
@@ -78,14 +95,14 @@ const Footer = () => {
             <Col sm={12}>
               <div className="footer-bottom">
                 <div className="footer-social-icons">
-                  <a href="" target='_blank'><FontAwesomeIcon icon={faFacebookF} /></a>
-                  <a href="" target='_blank'><FontAwesomeIcon icon={faXTwitter} /></a>
-                  <a href="" target='_blank'><FontAwesomeIcon icon={faInstagramSquare} /></a>
-                  <a href="" target='_blank'><FontAwesomeIcon icon={faLinkedinIn} /></a>
-                  <a href="" target='_blank'><FontAwesomeIcon icon={faYoutube} /></a>
+                  <a href={settings.facebook_url} target='_blank'><FontAwesomeIcon icon={faFacebookF} /></a>
+                  <a href={settings.twitter_url} target='_blank'><FontAwesomeIcon icon={faXTwitter} /></a>
+                  <a href={settings.insta_url} target='_blank'><FontAwesomeIcon icon={faInstagramSquare} /></a>
+                  <a href={settings.linkedin_url} target='_blank'><FontAwesomeIcon icon={faLinkedinIn} /></a>
+                  <a href={settings.youtube_url} target='_blank'><FontAwesomeIcon icon={faYoutube} /></a>
                 </div>
                 <div className="footer-copyright">
-                  <span>Copyright © 2024 bhasa@drashta.co.in | All Rights Reserved.</span>
+                  <span>{settings.site_copyright}</span>
                 </div>
               </div>
             </Col>

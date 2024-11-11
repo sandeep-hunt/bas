@@ -48,7 +48,7 @@ router.get('/events/:slug', (req, res) => {
 router.post('/book-event', async (req, res) => {
     const { name, date, gender, email, mobile, state, city, address, pincode, eventId, eventPrice } = req.body;
 
-    // Fetch the second-to-last row in the event_booking table
+    // Fetch the last row in the event_booking table
     const fetchLastQuery = `
         SELECT * FROM event_booking 
         ORDER BY event_booking_id DESC 
@@ -149,7 +149,7 @@ router.post('/book-event/verify-payment', async (req, res) => {
                         // const pdfBuffer = await generatePdf(htmlContent);
 
                         const subject = 'Booking Confirmation';
-                        const message = `<p>Dear ${lastBooking.event_booking_name},</p><br/><p>Thank you for your booking. Your payment was successful and your booking Number is ${lastBooking.event_booking_number}. Please find your digital pass/ticket for the event in the attachments.</p><br/>Best Regards,<br/>Event Team`;
+                        const message = `<p>Dear ${lastBooking.event_booking_name},</p><br/><p>Thank you for your booking. Your payment was successful and your booking Number is ${lastBooking.event_booking_number}.</p><br/>Best Regards,<br/>Event Team`;
 
                         await sendEmail(email, subject, htmlContent);
                         res.json({ success: true, message: 'Payment verified and email sent successfully' });
@@ -343,22 +343,22 @@ router.get('/randArticle', (req, res) => {
 router.get('/relatedBlog/:slug', (req, res) => {
     const { slug } = req.params;
 
-    // First, fetch the article by its slug to get the category_id (or any other related attribute)
+    // First, fetch the blog by its slug to get the category_id (or any other related attribute)
     db.query('SELECT * FROM blogs WHERE blog_slug = ?', [slug], (err, result) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
 
         if (result.length === 0) {
-            return res.status(404).json({ message: 'Article not found' });
+            return res.status(404).json({ message: 'Blogs not found' });
         }
 
         const blog = result[0];
 
-        // Fetch related articles based on the same category_id (for example)
+        // Fetch related blogs based on the same category_id (for example)
         db.query(
-            'SELECT SELECT blogs.*, users.username, users.full_name, users.user_profile, categories.category_id, categories.category_name FROM blogs JOIN users ON blogs.blog_author = users.username JOIN categories ON blogs.blog_category = categories.category_id WHERE category_id = ? AND blog_slug != ? LIMIT 3',
-            [blog.category_id, slug],
+            'SELECT blogs.*, users.username, users.full_name, users.user_profile, categories.category_id, categories.category_name FROM blogs JOIN users ON blogs.blog_author = users.username JOIN categories ON blogs.blog_category = categories.category_id WHERE blog_category = ? AND blog_slug != ? LIMIT 3',
+            [blog.blog_category, slug],
             (err, relatedBlogs) => {
                 if (err) {
                     return res.status(500).json({ error: err.message });
@@ -367,6 +367,127 @@ router.get('/relatedBlog/:slug', (req, res) => {
             }
         );
     });
+});
+
+//Handle Get Settings
+router.get('/settings', (req, res) => {
+    const sql = 'SELECT * FROM settings';  // Modify this query based on your blog table
+    db.query(sql, (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: 'Failed to fetch settings' });
+        }
+        res.json(results);
+    });
+});
+
+//Handle Post Donate
+router.post('/donate-now', async (req, res) => {
+    const { name, mobile, email, age, gender, state, city, address, pincode, donation_type, donation_amt, donation_freq } = req.body;
+
+    // Fetch the last row in the event_booking table
+    const fetchLastQuery = `
+        SELECT * FROM donation 
+        ORDER BY donation_id DESC 
+        LIMIT 1
+    `;
+
+    db.query(fetchLastQuery, async (fetchErr, rows) => {
+        if (fetchErr) {
+            console.error('Error fetching last donation receipt number:', fetchErr);
+            return res.status(500).send('Error fetching last donation receipt number');
+        }
+        const lastDonation = rows.length ? rows[0] : null; // Default to 0 if there are no bookings
+        const receipt_number = parseInt(lastDonation.donate_receipt_no) + 1;
+
+        const query = 'INSERT INTO donation (donate_receipt_no,doner_name, doner_mobile, doner_email, doner_age, doner_gender, doner_state, doner_city, doner_address, doner_pincode, donation_type, donation_amount, donation_freq) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        db.query(query, [receipt_number, name, mobile, email, age, gender, state, city, address, pincode, donation_type, donation_amt, donation_freq], (err, result) => {
+            if (err) {
+                console.error('Error storing donation:', err);
+                return res.status(500).send('Error donating');
+            }
+            const receiptId = result.insertId;
+
+            // Create Razorpay order
+            const options = {
+                amount: donation_amt * 100, // Payment amount in paise
+                currency: 'INR',
+                receipt: `receipt_order_${receiptId}`,
+            };
+
+            razorpay.orders.create(options, (err, order) => {
+                if (err) {
+                    console.error('Error creating Razorpay order:', err);
+                    return res.status(500).send('Payment failed');
+                }
+                res.json({ orderId: order.id, receiptId });
+            });
+        });
+
+    })
+});
+
+//Handle Post Donation Payment Verification
+router.post('/donation/verify-payment', async (req, res) => {
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature, receiptId, email } = req.body;
+
+    const body = razorpay_order_id + "|" + razorpay_payment_id;
+    const expectedSignature = crypto
+        .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
+        .update(body.toString())
+        .digest('hex');
+
+    if (expectedSignature === razorpay_signature) {
+        // Update booking status to 'paid'
+        const query = 'UPDATE donation SET donation_payment_status = ?, donation_payment_id = ? WHERE donation_id = ?';
+        db.query(query, ['paid', razorpay_payment_id, receiptId], async (err, result) => {
+            if (err) {
+                console.error('Error updating donation status:', err);
+                return res.status(500).send('Error verifying payment');
+            }
+
+            // Fetch the booking record
+            const fetchLastQuery = `
+                SELECT * FROM donation 
+                WHERE donation_id = ?
+            `;
+            db.query(fetchLastQuery, [receiptId], async (fetchErr, rows) => {
+                if (fetchErr) {
+                    console.error('Error fetching last donation:', fetchErr);
+                    return res.status(500).send('Error fetching last donation');
+                }
+
+                const lastBooking = rows.length ? rows[0] : null;
+                if (!lastBooking) {
+                    return res.status(404).send('Donation record not found');
+                }
+
+                try {
+                    // Load HTML template and send email
+                    // const htmlContent = await loadTemplate('bookingConfirmation', replacements);
+                    // const pdfBuffer = await generatePdf(htmlContent);
+
+                    const subject = 'Donation Confirmation';
+                    const message = `<p>Dear ${lastBooking.doner_name},</p><br/><p>Thank you for donating us!!!. Your payment was successful and your donation receipt number is ${lastBooking.donate_receipt_no}.</p><br/>Best Regards,<br/>Donation Team`;
+
+                    await sendEmail(email, subject, message);
+                    res.json({ success: true, message: 'Payment verified and email sent successfully' });
+                } catch (error) {
+                    console.error('Error sending email or generating PDF:', error);
+                    res.status(500).json({ success: true, message: 'Payment verified, but email sending failed' });
+                }
+            });
+        });
+    } else {
+        // Update booking status to 'failed' if the signature doesn't match
+        const query = 'UPDATE donation SET donation_payment_status = ?, donation_payment_id = ? WHERE donation_id = ?';
+        db.query(query, ['failed', razorpay_payment_id, receiptId], (err, result) => {
+            if (err) {
+                console.error('Error updating donation status:', err);
+                return res.status(500).send('Error updating failed payment');
+            }
+            res.status(400).send('Payment verification failed');
+        });
+    }
 });
 
 module.exports = router;
