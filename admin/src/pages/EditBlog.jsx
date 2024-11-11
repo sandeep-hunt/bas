@@ -5,24 +5,19 @@ import Breadcrumbs from '../components/Breadcrumbs'
 import { Col, Form, Row, Card, Accordion } from 'react-bootstrap'
 import { Button } from 'react-bootstrap'
 import { Editor } from "@tinymce/tinymce-react";
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios'
 
 const EditBlog = () => {
-    const navigator = useNavigate();
     const { Blogid } = useParams();
     const [blog, setBlog] = useState('');
     const [error, setError] = useState('');
     const [selectedFiles, setSelectedFiles] = useState({ image1: null, image2: null });  // Store the selected image
     const [previews, setPreviews] = useState({ image1: '', image2: '' });  // Preview for the selected image
-    const[categoryData,setCategoryData]=useState([]);
 
     // Fetch the blog data from the backend using the title
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        axios.get(`${import.meta.env.VITE_BACKEND_API}blogs/${Blogid}`,{
-            headers: { Authorization: token }
-        })
+        axios.get(`${import.meta.env.VITE_BACKEND_API}blogs/${Blogid}`)
             .then(response => {
                 setBlog(response.data);
                 setPreviews({
@@ -34,20 +29,6 @@ const EditBlog = () => {
                 console.error('Error fetching the blog:', error);
                 setError('Failed to fetch blog');
             });
-            axios.get(import.meta.env.VITE_BACKEND_API + 'category', {
-                headers: { Authorization: token }
-            })
-            .then(response => {
-                           if( response?.data?.length !== 0 ){
-                            setCategoryData(response?.data);
-                            // setLoading(false);
-                           }
-                        })
-                        .catch(error => {
-                            console.error('Error fetching Category:', error);
-                            setCategoryData([])
-                            // setLoading(false);  // In case of an error, also stop loading
-                        });
     }, [Blogid]);
 
     const handleContentChange = (blog_content) => {
@@ -81,7 +62,6 @@ const EditBlog = () => {
         formData.append('blog_page_title', blog.blog_page_title);
         formData.append('blog_page_keywords', blog.blog_page_keywords);
         formData.append('blog_page_desc', blog.blog_page_desc);
-        formData.append('blog_category', blog.blog_category);
 
         if (selectedFiles.image1) {
             formData.append('image1', selectedFiles.image1);  // Append image1 if selected
@@ -89,26 +69,18 @@ const EditBlog = () => {
         if (selectedFiles.image2) {
             formData.append('image2', selectedFiles.image2);  // Append image2 if selected
         }
-        const token = localStorage.getItem('token');
 
         axios.put(`${import.meta.env.VITE_BACKEND_API}blogs/update/${Blogid}`, formData, {
-            headers: {  Authorization: token  }
+            headers: { 'Content-Type': 'multipart/form-data' }
           })
             .then(() => {
                 alert('Blog updated successfully');
-                navigator(`/blogs`)
             })
             .catch(error => {
                 console.error('Error updating the blog:', error);
                 setError('Failed to update blog');
             });
     };
-    const options = categoryData?.map((val, i) => {
-        return (
-          <option value={val?.category_id} key={i}>
-            {val?.category_name}
-          </option>
-        )});
 
     return (
         <React.Fragment>
@@ -148,21 +120,6 @@ const EditBlog = () => {
                                             onChange={handleChange} 
                                             required 
                                         />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3">
-                                        <Form.Label>
-                                            Categories <span style={{ color: 'red' }}>*</span>
-                                        </Form.Label>
-                                        <Form.Control
-                                            as="select"
-                                            name="blog_category"
-                                            value={blog.blog_category} 
-                                            onChange={handleChange}
-                                            required
-                                        >
-                                            <option value="">Select Category</option>
-                                            {options}
-                                        </Form.Control>
                                     </Form.Group>
                                     <Form.Group className="mb-3">
                                         <Form.Label>Content <span style={{color: 'red'}}>*</span></Form.Label>

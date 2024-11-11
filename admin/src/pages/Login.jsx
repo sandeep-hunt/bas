@@ -17,7 +17,6 @@ const Login = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const navigate = useNavigate(); // Use the navigate hook
-    const [isValidEmail, setIsValidEmail] = useState(true);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,9 +29,7 @@ const Login = () => {
                 password
             });
             // Store the token in local storage (assuming token is returned by backend)
-            localStorage.setItem('token', response?.data?.token);
-            localStorage.setItem('userData',JSON.stringify(response?.data));
-
+            localStorage.setItem('token', response.data.token);
             setSuccess('Login successful! Redirecting to profile...');
 
             // Redirect to profile page after successful login
@@ -42,12 +39,6 @@ const Login = () => {
             setError(err.response?.data?.message || 'Login failed');
         }
     };
-
-    const validateEmail = (email) => {
-        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        setIsValidEmail(emailPattern.test(email));
-      };
-
 
     return (
         <React.Fragment>
@@ -65,18 +56,10 @@ const Login = () => {
                                                 type="email"
                                                 value={email}
                                                 onChange={(e) => setEmail(e.target.value)}
-                                                className={`form-control ${
-                                                    isValidEmail ? "" : "is-invalid"
-                                                  }`}
+                                                className='form-control'
                                                 placeholder="Email"
                                                 required
-                                                
                                             />
-                                            {!isValidEmail && (
-                                                <small className="text-danger">
-                                                Please enter a valid email address.
-                                                </small>
-                                            )}
                                         </div>
                                         <div className="form-group mb-3">
                                             <label>Password<span style={{ color: `red` }}>*</span></label>
