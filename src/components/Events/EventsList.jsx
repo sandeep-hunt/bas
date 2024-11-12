@@ -4,6 +4,8 @@ import Slider from "react-slick";
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 const EventsList = () => {
   const [events, setEvents] = useState([]);
@@ -90,7 +92,7 @@ const EventsList = () => {
                     <h1 className='text-white event-slider-title'>{event.event_name}</h1>
                     <h4 className='text-white event-slider-price'>&#8377; {event.event_price}</h4>
                     <div>
-                      <Link to={`booking/${event.event_slug}`} className="btn-link">Book Now&nbsp;&#8594;</Link>
+                      <Link to={`booking/${event.event_slug}`} className="btn-link">Book Now&nbsp;&nbsp;<FontAwesomeIcon size='sm' icon={faArrowRight} /></Link>
                     </div>
                   </div>
                 </div>
@@ -117,8 +119,8 @@ const EventsList = () => {
                     </div>
                   </div>
                   <div className="events-item-right">
-                    <Button className='btn-main-outline'>View Details&nbsp;&#8594;</Button>
-                    <Link to={`booking/${event.event_slug}`} className="btn-link">Book Now&nbsp;&#8594;</Link>
+                    <Button className='btn-main-outline'>View Details&nbsp;&nbsp;<FontAwesomeIcon size='sm' icon={faArrowRight} /></Button>
+                    <Link to={`booking/${event.event_slug}`} className="btn-link">Book Now&nbsp;&nbsp;<FontAwesomeIcon size='sm' icon={faArrowRight} /></Link>
                   </div>
                 </div>
               ))}

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Card, Col, Row, Button } from 'react-bootstrap'
 import Profile from '../../../assets/images/msic/profile.png'
 import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 // import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import './ArticlesList.css'
 import axios from 'axios';
@@ -11,7 +13,7 @@ const ArticlesList = () => {
     const [Articles, setArticles] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const [limit] = useState(3);  // Number of items per page
+    const [limit] = useState(5);  // Number of items per page
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -173,7 +175,7 @@ const ArticlesList = () => {
                                                 <div className="item-inner-content">
                                                     <p className="text-main1">{item.article_shortDesc.substring(0, 160)}{item.article_shortDesc.length > 160 ? '...' : ''}</p>
                                                     <div className="d-flex justify-content-start">
-                                                        <Link to={"/articles/"+item.article_slug} className="btn-link">Read More&nbsp;&#8594;</Link>
+                                                        <Link to={"/articles/"+item.article_slug} className="btn-link">Read More&nbsp;&nbsp;<FontAwesomeIcon size='sm' icon={faArrowRight} /></Link>
                                                     </div>
                                                 </div>
                                             </div>

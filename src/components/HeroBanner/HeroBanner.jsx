@@ -3,6 +3,8 @@ import './HeroBanner.css'
 import { Row, Col, Button } from 'react-bootstrap'
 import HeroImg from '../../assets/images/msic/heroimg.png'
 import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 const HeroBanner = () => {
   return (
@@ -14,7 +16,7 @@ const HeroBanner = () => {
               <h1 className="text-main">Celebrating our Rishi-s’ Wisdom & Shastra-s</h1>
               <p className='text-main paragraph1'>The fountainheads of Bhartiya sanskriti are the Rishi-s’. The Bhartiya worldview is incomplete without reference to them. All teaching learning processes & contents must be primarily based on their wisdom.</p>
               <div>
-                <Link to="/" className="btn-link">Learn More&nbsp;&#8594;</Link>
+                <Link to="/about-us" className="btn-link">Learn More&nbsp;&nbsp;<FontAwesomeIcon size='sm' icon={faArrowRight} /></Link>
               </div>
             </div>
           </Col>

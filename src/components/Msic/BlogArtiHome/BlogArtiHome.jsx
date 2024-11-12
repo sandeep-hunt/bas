@@ -4,6 +4,8 @@ import Slider from "react-slick";
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import axios from 'axios'; // Ensure axios is imported
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 const BlogArtiHome = () => {
   const [Blogs, setBlogs] = useState([]);
@@ -102,7 +104,7 @@ const BlogArtiHome = () => {
                       <h4>{item.blog_title.substring(0, 26)}{item.blog_title.length > 26 ? '...' : ''}</h4>
                       <p className='paragraph3'>{item.blog_shortDesc.substring(0, 150)}{item.blog_shortDesc.length > 150 ? '...' : ''}</p>
                       <div className="d-flex justify-content-end">
-                        <Link to={"/blogs/" + item.blog_slug} className="btn-link">Read More&nbsp;&#8594;</Link>
+                        <Link to={"/blogs/" + item.blog_slug} className="btn-link">Read More&nbsp;&nbsp;<FontAwesomeIcon size='sm' icon={faArrowRight} /></Link>
                       </div>
                     </div>
                   </Card.Body>

@@ -40,7 +40,7 @@ const RecentBlogs = () => {
       <div className="posts-container">
         <div className="posts-header">
           <h3 className='text-main text-bold'>Recent Blog Posts</h3>
-          <Link className='text-main' to="/blogs">View All&nbsp;&nbsp;<FontAwesomeIcon icon={faArrowRight} /></Link>
+          <Link className='text-main' to="/blogs">View All&nbsp;&nbsp;<FontAwesomeIcon size='sm' icon={faArrowRight} /></Link>
         </div>
         <Row>
           {Blogs.length > 0 ? (
@@ -69,7 +69,7 @@ const RecentBlogs = () => {
                       <h4>{item.blog_title.substring(0, 30)}{item.blog_title.length > 30 ? '...' : ''}</h4>
                       <p className='paragraph3'>{item.blog_shortDesc.substring(0, 150)}{item.blog_shortDesc.length > 150 ? '...' : ''}</p>
                       <div className="d-flex justify-content-end">
-                        <Link to={"/blogs/"+item.blog_slug} className="btn-link">Read More&nbsp;&#8594;</Link>
+                        <Link to={"/blogs/"+item.blog_slug} className="btn-link">Read More&nbsp;&nbsp;<FontAwesomeIcon size='sm' icon={faArrowRight} /></Link>
                       </div>
                     </div>
                   </Card.Body>

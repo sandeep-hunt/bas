@@ -2,6 +2,8 @@ import React from 'react'
 import './JoinHome.css'
 import { Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 const JoinHome = () => {
     return (
@@ -12,7 +14,7 @@ const JoinHome = () => {
                         <h2 className='text-main text-bold'>Be A Part Of Our Journey</h2>
                         <p className='paragraph1 text-main'>Join our community to stay updated with our monthly cultural events and initiatives!</p>
                         <div>
-                            <Link to="/join-us" className="btn-link">Join Us&nbsp;&#8594;</Link>
+                            <Link to="/join-us" className="btn-link">Join Us&nbsp;&nbsp;<FontAwesomeIcon size='sm' icon={faArrowRight} /></Link>
                         </div>
                     </div>
                 </Container>

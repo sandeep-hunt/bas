@@ -45,7 +45,6 @@ const Footer = () => {
                 <h4 className='footer-inner-cont'>Quick Links</h4>
                 <ul>
                   <li><Link to="/">Home</Link></li>
-                  <li><Link to="/">Projects</Link></li>
                   <li><Link to="/gallery">Gallery</Link></li>
                   <li><Link to="/events">Events</Link></li>
                   <li><Link to="/blogs&articles">Blogs & Articles</Link></li>
@@ -58,10 +57,10 @@ const Footer = () => {
               <div className="footer-content1">
                 <h4 className='footer-inner-cont'>Projects</h4>
                 <ul>
-                  <li><Link to="/">Dhrupad Gurukul</Link></li>
-                  <li><Link to="/">Samaveda Gurukul</Link></li>
-                  <li><Link to="/">Girvaan Bhasa</Link></li>
-                  <li><Link to="/">Jyotisha Gurukul</Link></li>
+                  <li><Link to="/dhrupad_gurukul">Dhrupad Gurukul</Link></li>
+                  <li><Link to="/samaveda_gurukul">Samaveda Gurukul</Link></li>
+                  <li><Link to="/girvaan_bhasa">Girvaan Bhasa</Link></li>
+                  <li><Link to="/jyotish">Jyotisha Gurukul</Link></li>
                 </ul>
               </div>
             </Col>
