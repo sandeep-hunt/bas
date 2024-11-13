@@ -60,7 +60,7 @@ const Footer = () => {
                   <li><Link to="/dhrupad_gurukul">Dhrupad Gurukul</Link></li>
                   <li><Link to="/samaveda_gurukul">Samaveda Gurukul</Link></li>
                   <li><Link to="/girvaan_bhasa">Girvaan Bhasa</Link></li>
-                  <li><Link to="/jyotish">Jyotisha Gurukul</Link></li>
+                  <li><Link to="/jyotisha_gurkul">Jyotisha Gurukul</Link></li>
                 </ul>
               </div>
             </Col>

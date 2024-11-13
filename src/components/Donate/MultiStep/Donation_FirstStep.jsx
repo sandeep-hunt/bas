@@ -79,7 +79,7 @@ const Donation_FirstStep = ({ formData, setFormData, nextStep, errors }) => {
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={7} sm={6} md={6}>
+                      <Col xs={10} sm={6} md={6}>
                         <Form.Group className='form-group'>
                           <label>Email <span style={{ color: `red` }}>*</span></label>
                           <input className='form-control' type="email" name="email" value={email} onChange={handleChange} placeholder='Email' />

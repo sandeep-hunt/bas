@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { Row, Col, Container } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { Spinner } from 'react-bootstrap'; // Import Spinner for loading indicator
 import DonateImg1 from '../../../assets/images/msic/donate_bg1.png'
 
-const Donation_ThirdStep = ({ formData, setFormData, submitForm, prevStep, errors }) => {
+const Donation_ThirdStep = ({ formData, setFormData, submitForm, prevStep, errors, btnLoad }) => {
   const { donation_type, donation_amt, donation_freq } = formData;
   const [selectedRadioAmt, setSelectedRadioAmt] = useState(donation_amt);
 
@@ -64,9 +65,9 @@ const Donation_ThirdStep = ({ formData, setFormData, submitForm, prevStep, error
                   </div>
                   <div className="donation-right-body">
                     <Row>
-                      <Col xs={5}>
+                      <Col xs={10}>
                         <Form.Group className='form-group'>
-                          <label>Choose a donation type<span style={{ color: `red` }}>*</span></label>
+                          <label>Choose a donation type <span style={{ color: `red` }}>*</span></label>
                           <Form.Select name="donation_type" onChange={handleChange}>
                             <option value=''>Select donation type</option>
                             <option value="male">Cost of education</option>
@@ -75,7 +76,7 @@ const Donation_ThirdStep = ({ formData, setFormData, submitForm, prevStep, error
                         </Form.Group>
                       </Col>
                     </Row>
-                    <label>Choose a donation amount</label>
+                    <label>Choose a donation amount <span style={{ color: `red` }}>*</span></label>
                     <div className="form-group">
                       <Form.Group className='mt-1'>
                         <Form.Check
@@ -112,7 +113,7 @@ const Donation_ThirdStep = ({ formData, setFormData, submitForm, prevStep, error
                           onChange={() => handleRadioChange("100")}
                         />
                         <Row>
-                          <Col xs={6}>
+                          <Col xs={10}>
                             <Form.Group className='mt-1'>
                               <input className='form-control' type="text" name="donation_amt" value={donation_amt} onChange={handleChange} placeholder='Enter a custom donation amount' />
                             </Form.Group>
@@ -121,7 +122,7 @@ const Donation_ThirdStep = ({ formData, setFormData, submitForm, prevStep, error
                         </Row>
                       </Form.Group>
                     </div>
-                    <label>Choose a donation frequency<span style={{ color: `red` }}>*</span></label>
+                    <label>Choose a donation frequency <span style={{ color: `red` }}>*</span></label>
                     <Form.Group className='form-group'>
                       <Form.Check className='form-check-box'
                         inline
@@ -152,7 +153,13 @@ const Donation_ThirdStep = ({ formData, setFormData, submitForm, prevStep, error
                         </Col>
                         <Col>
                           <div className="d-grid">
-                            <Button className='btn-main' onClick={submitForm} disabled={!donation_type || !donation_amt || !donation_freq} >Donate</Button>
+                            <Button 
+                              className='btn-main' 
+                              onClick={submitForm} 
+                              disabled={!donation_type || !donation_amt || !donation_freq}
+                            >
+                              {btnLoad ? <Spinner as="span" animation="border" size="sm" /> : 'Donate'}
+                            </Button>
                           </div>
                         </Col>
                       </Row>

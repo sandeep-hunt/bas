@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import { Row, Col, Container } from 'react-bootstrap'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
-import DonateImg1 from '../../../assets/images/msic/donate_bg1.png'
+import React, { useState } from 'react';
+import { Row, Col, Container } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { Spinner } from 'react-bootstrap'; // Import Spinner for loading indicator
+import DonateImg1 from '../../../assets/images/msic/donate_bg1.png';
 
-const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep, errors }) => {
+const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep, errors, btnLoad }) => {
   const { state, city, address, pincode } = formData;
-
   const [isCheckboxChecked, setCheckboxChecked] = useState(false);
 
   const handleChange = (e) => {
@@ -101,7 +101,13 @@ const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep, errors
                         </Col>
                         <Col>
                           <div className="d-grid">
-                            <Button className='btn-main' onClick={submitForm} disabled={!state || !city || !address || !pincode || !isCheckboxChecked} >Register</Button>
+                            <Button 
+                              className='btn-main' 
+                              onClick={submitForm} 
+                              disabled={btnLoad || !state || !city || !address || !pincode || !isCheckboxChecked} 
+                            >
+                              {btnLoad ? <Spinner as="span" animation="border" size="sm" /> : 'Register'}
+                            </Button>
                           </div>
                         </Col>
                       </Row>
@@ -114,7 +120,7 @@ const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep, errors
         </Container>
       </div>
     </React.Fragment>
-  )
+  );
 }
 
-export default JoinUsForm_Second
+export default JoinUsForm_Second;

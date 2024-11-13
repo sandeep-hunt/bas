@@ -20,6 +20,11 @@
     margin-bottom: 32px;
 }
 
+.testihome-container .testihome-inner .testihome-item:hover {
+    box-shadow: 0px 0px 36px 0px rgba(36, 8, 0, 0.16);
+
+}
+
 .testihome-container .testihome-inner .testihome-item .testihome-inner-body {
     margin-top: 65px;
     background-color: var(--white);

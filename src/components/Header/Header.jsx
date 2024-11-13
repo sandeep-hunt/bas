@@ -55,7 +55,7 @@ function Header() {
                         </NavDropdown.Item>
                       </Col>
                       <Col sm={12} lg={6}>
-                        <NavDropdown.Item as={Link} to="/jyotish">
+                        <NavDropdown.Item as={Link} to="/jyotisha_gurkul">
                           <strong className='dropdown-menu-text'>Jyotisha Gurukul</strong>
                           <p className='dropdown-menu-tag'>Eyes of the Veda-s</p>
                         </NavDropdown.Item>

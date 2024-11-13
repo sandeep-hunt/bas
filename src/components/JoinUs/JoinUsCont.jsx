@@ -5,6 +5,7 @@ import JoinUsForm_init from './JoinUsForm/JoinUsForm_init'
 import HomeIcon from '../../assets/images/icons/file.svg'
 import FileIcon from '../../assets/images/icons/file.svg'
 import EditIcon from '../../assets/images/icons/edit.svg'
+import { Link } from 'react-router-dom'
 
 const JoinUsCont = () => {
   return (
@@ -12,8 +13,7 @@ const JoinUsCont = () => {
       <div className="event-banner" style={{ backgroundImage: `url(${JoinUsBG})` }}>
         <div className="event-banner-inner">
           <Breadcrumb>
-            <Breadcrumb.Item href="#"><img src={HomeIcon} className='img-fluid' alt="" />Home</Breadcrumb.Item>
-            <Breadcrumb.Item href="#"><img src={FileIcon} className='img-fluid' alt="" />Projects</Breadcrumb.Item>
+            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}><img src={HomeIcon} className='img-fluid' alt="" />Home</Breadcrumb.Item>
             <Breadcrumb.Item active><img src={EditIcon} className='img-fluid' alt="" />Join Us</Breadcrumb.Item>
           </Breadcrumb>
           <h2 className='text-white'>Join Us</h2>

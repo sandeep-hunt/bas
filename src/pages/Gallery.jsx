@@ -8,6 +8,7 @@ import Gallery_bg from '../assets/images/msic/gallery_bg.png'
 import HomeIcon from '../assets/images/icons/home.svg'
 import EditIcon from '../assets/images/icons/edit.svg'
 import { Helmet } from 'react-helmet-async'
+import { Link } from 'react-router-dom'
 
 const Gallery = () => {
     const [images, setImages] = useState([]);
@@ -148,7 +149,7 @@ const Gallery = () => {
             <div className="event-banner" style={{ backgroundImage: `url(${Gallery_bg})` }}>
                 <div className="event-banner-inner">
                     <Breadcrumb>
-                        <Breadcrumb.Item href="#"><img src={HomeIcon} className='img-fluid' alt="" />Home</Breadcrumb.Item>
+                        <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}><img src={HomeIcon} className='img-fluid' alt="" />Home</Breadcrumb.Item>
                         <Breadcrumb.Item active><img src={EditIcon} className='img-fluid' alt="" />Gallery</Breadcrumb.Item>
                     </Breadcrumb>
                     <h2 className='text-white'>Gallery</h2>

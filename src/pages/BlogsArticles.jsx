@@ -10,6 +10,7 @@ import HomeIcon from '../assets/images/icons/home.svg'
 import EditIcon from '../assets/images/icons/edit.svg'
 import axios from 'axios'
 import { Helmet } from 'react-helmet-async'
+import { Link } from 'react-router-dom'
 
 const BlogsArticles = () => {
   const [settings, setsettings] = useState('');
@@ -40,7 +41,7 @@ const BlogsArticles = () => {
       <div className="projects-banner" style={{ backgroundImage: `url(${Pro_bg1})` }}>
         <div className="projects-banner-inner">
           <Breadcrumb>
-            <Breadcrumb.Item href="#"><img src={HomeIcon} className='img-fluid' alt="" />Home</Breadcrumb.Item>
+            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}><img src={HomeIcon} className='img-fluid' alt="" />Home</Breadcrumb.Item>
             <Breadcrumb.Item active><img src={EditIcon} className='img-fluid' alt="" />Blogs & Articles</Breadcrumb.Item>
           </Breadcrumb>
           <h2 className='text-white'>Blogs & Articles</h2>

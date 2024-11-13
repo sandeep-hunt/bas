@@ -23,6 +23,7 @@ const MultiStep_Init = () => {
         donation_amt: '',
         donation_freq: '',
     });
+    const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState({});
 
     const validateFields = () => {
@@ -101,6 +102,7 @@ const MultiStep_Init = () => {
 
     const submitForm = async () => {
         const fieldErrors = validateFields();
+        setLoading(true);
         if (Object.keys(fieldErrors).length === 0) {
             try {
                 const donateResponse = await axios.post(`${import.meta.env.VITE_BACKEND_API}fetch/donate-now`, { ...formData });
@@ -130,8 +132,10 @@ const MultiStep_Init = () => {
                                 receiptId,
                                 email: formData.email,
                             });
+                            setLoading(false);
                             setStep(verifyResponse.data.success ? 5 : 6); // Move to success or failed step
                         } catch (error) {
+                            setLoading(false);
                             setStep(6); // Move to failed step
                         }
                     },
@@ -161,18 +165,22 @@ const MultiStep_Init = () => {
                             receiptId,
                             status: 'failed', // Optionally, send a specific failure status to backend
                         });
+                        setLoading(false);
                         setStep(6); // Move to failed step
                     } catch (error) {
                         console.error('Error updating failed payment status:', error);
+                        setLoading(false);
                         setStep(6); // Move to failed step
                     }
                 });
     
                 paymentObject.open();
             } catch (error) {
+                setLoading(false);
                 console.error('Error initiating payment:', error);
             }
         } else {
+            setLoading(false);
             setErrors(fieldErrors);
         }
     };
@@ -184,7 +192,7 @@ const MultiStep_Init = () => {
         case 2:
             return <Donation_SecondStep formData={formData} setFormData={setFormData} nextStep={nextStep} prevStep={prevStep} errors={errors} />;
         case 3:
-            return <Donation_ThirdStep formData={formData} setFormData={setFormData} submitForm={submitForm} prevStep={prevStep} errors={errors} />;
+            return <Donation_ThirdStep formData={formData} setFormData={setFormData} submitForm={submitForm} prevStep={prevStep} errors={errors} btnLoad={loading} />;
         case 4:
             return <Donation_verifying />;
         case 5:

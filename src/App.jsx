@@ -36,7 +36,7 @@ function App() {
         <Route path='dhrupad_gurukul' element={<Dhrupad_Gurukul />} />
         <Route path='samaveda_gurukul' element={<Samaveda_Gurukul />} />
         <Route path='girvaan_bhasa' element={<Girvaan_Bhasa />} />
-        <Route path='jyotish' element={<Jyotish />} />
+        <Route path='jyotisha_gurkul' element={<Jyotish />} />
         <Route path='events' element={<Events />} />
         <Route path='events/booking/:slug' element={<EventBooking />} />
         <Route path='gallery' element={<Gallery />} />

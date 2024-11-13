@@ -4,6 +4,7 @@ import Event_bg from '../../assets/images/msic/event_bg.png'
 import HomeIcon from '../../assets/images/icons/home.svg'
 import EditIcon from '../../assets/images/icons/edit.svg'
 import './Events.css'
+import { Link } from 'react-router-dom'
 
 const EventsBanner = () => {
   return (
@@ -11,7 +12,7 @@ const EventsBanner = () => {
       <div className="event-banner" style={{ backgroundImage: `url(${Event_bg})` }}>
         <div className="event-banner-inner">
           <Breadcrumb>
-            <Breadcrumb.Item href="#"><img src={HomeIcon} className='img-fluid' alt="" />Home</Breadcrumb.Item>
+            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}><img src={HomeIcon} className='img-fluid' alt="" />Home</Breadcrumb.Item>
             <Breadcrumb.Item active><img src={EditIcon} className='img-fluid' alt="" />Events</Breadcrumb.Item>
           </Breadcrumb>
           <h2 className='text-white'>Events</h2>

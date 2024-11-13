@@ -19,7 +19,7 @@ const JoinUsForm_init = () => {
         address: '',
         pincode: '',
     });
-
+    const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState({}); // Error messages for validation
 
     const validateFields = () => {
@@ -95,17 +95,21 @@ const JoinUsForm_init = () => {
 
     const submitForm = async () => {
         const fieldErrors = validateFields();
+        setLoading(true);
         if (Object.keys(fieldErrors).length === 0) {
             try {
                 // Send form data to the backend
                 const response = await axios.post(import.meta.env.VITE_BACKEND_API + 'fetch/register', formData);
+                setLoading(false);
                 setStep((prevStep) => prevStep + 1);
             } catch (error) {
+                setLoading(false);
                 console.error('Error:', error);
             }
         }
         else {
             setErrors(fieldErrors);
+            setLoading(false);
         }
     };
 
@@ -113,7 +117,7 @@ const JoinUsForm_init = () => {
         case 1:
             return <JoinUsForm_First formData={formData} setFormData={setFormData} nextStep={nextStep} errors={errors} />;
         case 2:
-            return <JoinUsForm_Second formData={formData} setFormData={setFormData} submitForm={submitForm} prevStep={prevStep} errors={errors} />
+            return <JoinUsForm_Second formData={formData} setFormData={setFormData} submitForm={submitForm} prevStep={prevStep} errors={errors} btnLoad={loading} />
         case 3:
             return <JoinUsForm_success formData={formData} />
         default:

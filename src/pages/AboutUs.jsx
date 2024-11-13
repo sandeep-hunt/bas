@@ -26,6 +26,7 @@ import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { Helmet } from 'react-helmet-async'
+import { Link } from 'react-router-dom'
 
 const data = [
     {
@@ -230,7 +231,7 @@ const AboutUs = () => {
             <div className="event-banner" style={{ backgroundImage: `url(${About_bg})` }}>
                 <div className="event-banner-inner">
                     <Breadcrumb>
-                        <Breadcrumb.Item href="#"><img src={HomeIcon} className='img-fluid' alt="" />Home</Breadcrumb.Item>
+                        <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}><img src={HomeIcon} className='img-fluid' alt="" />Home</Breadcrumb.Item>
                         <Breadcrumb.Item active><img src={EditIcon} className='img-fluid' alt="" />About Us</Breadcrumb.Item>
                     </Breadcrumb>
                     <h2 className='text-white'>About Us</h2>
