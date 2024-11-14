@@ -30,7 +30,11 @@ router.get('/',(req,resp)=>{
 
 
 
-router.put('/update/:id', upload.fields([{ name: 'site_logo' }, { name: 'site_favicon' }]), (req, resp) => {
+router.put('/update/:id', upload.fields([
+    { name: 'site_logo' },
+    { name: 'site_favicon' },
+    { name: 'site_secondary_logo' }
+]), (req, resp) => {
     const {
         site_title,
         site_keywords,
@@ -47,11 +51,12 @@ router.put('/update/:id', upload.fields([{ name: 'site_logo' }, { name: 'site_fa
         call_to_action
     } = req.body;
 
-    console.log("req",req.files);
+    console.log("req", req.files);
 
     const site_logo = req.files['site_logo'] ? `uploads/settings/${req.files['site_logo'][0].filename}` : null;
     const site_favicon = req.files['site_favicon'] ? `uploads/settings/${req.files['site_favicon'][0].filename}` : null;
-    const settings_id = req.params.id; 
+    const site_secondary_logo = req.files['site_secondary_logo'] ? `uploads/settings/${req.files['site_secondary_logo'][0].filename}` : null;
+    const settings_id = req.params.id;
 
     const query = `
         UPDATE settings SET
@@ -61,6 +66,7 @@ router.put('/update/:id', upload.fields([{ name: 'site_logo' }, { name: 'site_fa
             site_copyright = ?,
             site_logo = COALESCE(?, site_logo),
             site_favicon = COALESCE(?, site_favicon),
+            site_secondary_logo = COALESCE(?, site_secondary_logo),
             contact_address = ?,
             contact_mobile = ?,
             contact_email = ?,
@@ -80,6 +86,7 @@ router.put('/update/:id', upload.fields([{ name: 'site_logo' }, { name: 'site_fa
         site_copyright,
         site_logo,
         site_favicon,
+        site_secondary_logo,
         contact_address,
         contact_mobile,
         contact_email,
@@ -89,7 +96,7 @@ router.put('/update/:id', upload.fields([{ name: 'site_logo' }, { name: 'site_fa
         linkedin_url,
         youtube_url,
         call_to_action,
-        settings_id 
+        settings_id
     ];
 
     db.query(query, values, (err, result) => {
@@ -102,6 +109,7 @@ router.put('/update/:id', upload.fields([{ name: 'site_logo' }, { name: 'site_fa
         resp.json({ message: 'Site settings updated successfully' });
     });
 });
+
 
 
 

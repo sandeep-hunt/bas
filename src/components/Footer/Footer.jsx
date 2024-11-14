@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Footer.css'
 import { Col, Container, Row } from 'react-bootstrap'
-import Logo from '../../assets/images/logo_light.svg'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
@@ -34,7 +33,7 @@ const Footer = () => {
           <Row>
             <Col sm={12} md={12} lg={3}>
               <div className="footer-content">
-                <img src={Logo} alt="" />
+                <img src={import.meta.env.VITE_BACKEND_API + settings.site_secondary_logo} alt="logo" />
                 <div>
                   <Link to="/donate" className='btn-mainLink'>&#x2764;&nbsp;Donate</Link>
                 </div>

@@ -81,7 +81,7 @@ const BlogArtiHome = () => {
           <Slider {...settings}>
             {Blogs.length > 0 ? ( // Check if Blogs array is not empty
               Blogs.map((item, index) => (
-                <Card key={index} className='shadow-sm'>
+                <Card key={index} className='shadow-sm boxShadowHovr'>
                   <Card.Img variant="top" src={import.meta.env.VITE_BACKEND_API + item.blog_thumbnail} />
                   <Card.Body>
                     <div className="blogartihome-cont">

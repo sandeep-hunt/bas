@@ -124,7 +124,7 @@ const SingleBlog = () => {
                                 {relatedBlogs.length > 0 ? (
                                     relatedBlogs.map((relatedBlog) => (
                                         <Col xs={12} md={6} lg={4} key={relatedBlog.blog_id}>
-                                            <Card>
+                                            <Card className="boxShadowHovrBtm">
                                                 <Card.Img variant="top" src={import.meta.env.VITE_BACKEND_API + relatedBlog.blog_thumbnail} />
                                                 <Card.Body>
                                                     <div className="posts-body-header">

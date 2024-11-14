@@ -73,7 +73,7 @@ const TestiHome = () => {
                 return (
                   <div key={index}>
                     <div className="testihome-item">
-                      <div className="testihome-inner-body">
+                      <div className="testihome-inner-body boxShadowHovr">
                         <div className="testihome-inner-body-top">
                           <img src={item.image} alt="" />
                           <h5 className='text-main'>{item.name}</h5>

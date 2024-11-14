@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -7,15 +8,31 @@ import './Header.css';
 import Logo from '../../assets/images/logo.svg';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
+import axios from 'axios'
 
 function Header() {
+  const [settings, setsettings] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch the settings
+        const fetchSettings = await axios.get(import.meta.env.VITE_BACKEND_API + 'fetch/settings');
+        setsettings(fetchSettings.data[0]);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  },[])
   return (
     <>
       {['lg'].map((expand) => (
         <Navbar key={expand} expand={expand} className='shadow-sm'>
           <Container fluid>
             <Navbar.Brand as={Link} to="/">
-              <img src={Logo} className='logo' alt="Logo" />
+              <img src={import.meta.env.VITE_BACKEND_API + settings.site_logo} className='logo' alt="Logo" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
@@ -25,7 +42,6 @@ function Header() {
             >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                  Offcanvas
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>

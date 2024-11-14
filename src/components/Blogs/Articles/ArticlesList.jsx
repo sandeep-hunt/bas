@@ -150,7 +150,7 @@ const ArticlesList = () => {
                 <Row className="g-3">
                     {Articles.map((item, index) => (
                         <Col xs={12} key={index}>
-                            <Card>
+                            <Card className='boxShadowHovrBtm'>
                                 <Row>
                                     <Col xs={12} md={4}>
                                         <Card.Img src={import.meta.env.VITE_BACKEND_API + item.article_thumbnail} className='post-thumb' />

@@ -11,19 +11,26 @@
     margin-top: 1.5rem;
 }
 
+.blogartihome-container .blogartihome-inner .card {
+    border: none;
+    margin-bottom: 32px;
+}
+
 .blogartihome-container .blogartihome-inner .card .card-body {
-    
     padding: 24px;
+}
+
+.blogartihome-container .blogartihome-inner .card .blogartihome-contbtm {
+    margin-top: 11px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .blogartihome-container .blogartihome-inner .slick-list .slick-track{
     display: flex;
     gap: 24px;
-}
-
-.blogartihome-container .blogartihome-inner .card {
-    border: none;
-    margin-bottom: 32px;
 }
 
 .blogartihome-container .blogartihome-inner .card .blogartihome-cont {
@@ -44,12 +51,4 @@
     color: var(--gray);
     font-size: 14px;
     font-weight: 500;
-}
-
-.blogartihome-container .blogartihome-inner .card .blogartihome-contbtm {
-    margin-top: 11px;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
 }

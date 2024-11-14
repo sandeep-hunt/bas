@@ -139,7 +139,7 @@ const SingleArticle = () => {
                 {randomArticles.length > 0 ? (
                   randomArticles.map((article) => (
                     <Col xs={12} md={6} lg={4}>
-                      <Card>
+                      <Card className="boxShadowHovrBtm">
                         <Card.Img variant="top" src={import.meta.env.VITE_BACKEND_API + article.article_thumbnail} />
                         <Card.Body>
                           <div className="posts-body-header">
@@ -155,7 +155,7 @@ const SingleArticle = () => {
                               </div>
                             </div>
                           </div>
-                          <h4>{article.article_title}</h4>
+                          <h4>{article.article_title.substring(0, 26)}{article.article_title.length > 26 ? '...' : ''}</h4>
                           <p className='paragraph3'>{article.article_shortDesc.substring(0, 160)}{article.article_shortDesc.length > 160 ? '...' : ''}</p>
                           <div className="d-flex justify-content-end mt-4">
                             <Link to={"/articles/"+article.article_slug} className="btn-link">Read More&nbsp;&#8594;</Link>

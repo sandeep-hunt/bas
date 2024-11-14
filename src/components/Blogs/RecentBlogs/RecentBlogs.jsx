@@ -46,7 +46,7 @@ const RecentBlogs = () => {
           {Blogs.length > 0 ? (
             Blogs.map((item, index) => (
               <Col xs={12} md={6} lg={4} key={index}>
-                <Card>
+                <Card className='boxShadowHovrBtm'>
                   <Card.Img variant="top" src={import.meta.env.VITE_BACKEND_API + item.blog_thumbnail} />
                   <Card.Body>
                     <div className="posts-body-header">
