@@ -132,15 +132,37 @@ router.post('/book-event/verify-payment', async (req, res) => {
 
                 db.query(fetchEvent, [lastBooking.event_id], async (fetchErr, rows) => {
                     const event = rows.length ? rows[0] : null;
+
+                    const eventDate = new Date(event.event_date);
+                    const formattedEventDate = eventDate.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+
+                    let eventTime;
+                    if (Number.isInteger(parseInt(event.event_time))) {
+                        // If it's a Unix timestamp in milliseconds
+                        eventTime = new Date(parseInt(event.event_time));
+                    } else {
+                        // If it's a valid ISO string
+                        eventTime = new Date(event.event_time);
+                    }
+                    const formattedEventTime = eventTime.toLocaleTimeString('en-US', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: true
+                    });
+
                     // Prepare email data for the confirmation email
                     const replacements = {
-                        eventImage: `${process.env.BASE_URL}/${event.event_image.replace(/^\/+/, '')}`,
+                        eventImage: `${process.env.BASE_URL + event.event_image}`,
                         eventName: event.event_name,
                         bookingNumber: lastBooking.event_booking_number,
                         eventLocation: event.event_location,
                         bookingName: lastBooking.event_booking_name,
-                        eventDate: event.event_date,
-                        eventTime: event.event_time,
+                        eventDate: formattedEventDate,
+                        eventTime: formattedEventTime,
                     };
 
                     try {
