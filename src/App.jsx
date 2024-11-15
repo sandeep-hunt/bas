@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 import './assets/css/xsmall.css'
 import './assets/css/small.css'
@@ -12,7 +12,7 @@ import Homepage from './pages/Homepage'
 import Donate from './pages/Donate'
 import Dhrupad_Gurukul from './pages/Dhrupad_Gurukul'
 import Samaveda_Gurukul from './pages/Samaveda_Gurukul'
-import Girvaan_Bhasa from  './pages/Girvaan_Bhasa'
+import Girvaan_Bhasa from './pages/Girvaan_Bhasa'
 import Jyotish from './pages/Jyotish'
 import Events from './pages/Events'
 import Gallery from './pages/Gallery'
@@ -25,8 +25,37 @@ import EventBooking from './pages/EventBooking'
 import JoinUs from './pages/JoinUs'
 import AboutUs from './pages/AboutUs'
 import FloatingIcon from './components/Msic/FloatingIcon/FloatingIcon'
+import axios from 'axios'
 
 function App() {
+  const [getsettings, setgetsettings] = useState('');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const fetchData = async () => {
+      try {
+        // Fetch the settings
+        const fetchSettings = await axios.get(import.meta.env.VITE_BACKEND_API + 'fetch/settings');
+        setgetsettings(fetchSettings.data[0]);
+        const faviconUrl = import.meta.env.VITE_BACKEND_API + fetchSettings.data[0].site_favicon;
+        if (faviconUrl) {
+          const link = document.querySelector("link[rel~='icon']");
+          if (link) {
+            link.href = faviconUrl;
+          } else {
+            const newLink = document.createElement('link');
+            newLink.rel = 'icon';
+            newLink.href = faviconUrl;
+            document.head.appendChild(newLink);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <React.Fragment>

@@ -3,7 +3,7 @@ const router = express.Router();
 const Razorpay = require('razorpay');
 const crypto = require('crypto');
 const db = require('../middleware/connection');
-const { sendEmail, loadTemplate } = require('../middleware/emailconfig');
+const { sendEmailEventBooking, sendEmailDonation, loadTemplate } = require('../middleware/emailconfig');
 const generatePdf = require('../utils/generatePDF');
 const fs = require('fs').promises;
 
@@ -134,7 +134,7 @@ router.post('/book-event/verify-payment', async (req, res) => {
                     const event = rows.length ? rows[0] : null;
                     // Prepare email data for the confirmation email
                     const replacements = {
-                        eventImage: `${process.env.BASE_URL}${event.event_image}`,
+                        eventImage: `${process.env.BASE_URL}/${event.event_image.replace(/^\/+/, '')}`,
                         eventName: event.event_name,
                         bookingNumber: lastBooking.event_booking_number,
                         eventLocation: event.event_location,
@@ -151,7 +151,7 @@ router.post('/book-event/verify-payment', async (req, res) => {
                         const subject = 'Booking Confirmation';
                         const message = `<p>Dear ${lastBooking.event_booking_name},</p><br/><p>Thank you for your booking. Your payment was successful and your booking Number is ${lastBooking.event_booking_number}.</p><br/>Best Regards,<br/>Event Team`;
 
-                        await sendEmail(email, subject, htmlContent);
+                        await sendEmailEventBooking(email, subject, htmlContent);
                         res.json({ success: true, message: 'Payment verified and email sent successfully' });
                     } catch (error) {
                         console.error('Error sending email or generating PDF:', error);
@@ -469,7 +469,7 @@ router.post('/donation/verify-payment', async (req, res) => {
                     const subject = 'Donation Confirmation';
                     const message = `<p>Dear ${lastBooking.doner_name},</p><br/><p>Thank you for donating us!!!. Your payment was successful and your donation receipt number is ${lastBooking.donate_receipt_no}.</p><br/>Best Regards,<br/>Donation Team`;
 
-                    await sendEmail(email, subject, message);
+                    await sendEmailDonation(email, subject, message);
                     res.json({ success: true, message: 'Payment verified and email sent successfully' });
                 } catch (error) {
                     console.error('Error sending email or generating PDF:', error);

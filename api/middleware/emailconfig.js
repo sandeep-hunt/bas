@@ -42,7 +42,7 @@ const transporter = nodemailer.createTransport({
 //     return transporter.sendMail(mailOptions);
 // }
 
-async function sendEmail(to, subject, htmlContent) {
+async function sendEmailEventBooking(to, subject, htmlContent) {
     const mailOptions = {
         from: `"BAS Event Booking" <${process.env.EMAIL_USER}>`,
         to: to,
@@ -53,6 +53,19 @@ async function sendEmail(to, subject, htmlContent) {
     // Send email
     return transporter.sendMail(mailOptions);
 }
+
+async function sendEmailDonation(to, subject, htmlContent) {
+    const mailOptions = {
+        from: `"BAS Event Booking" <${process.env.EMAIL_USER}>`,
+        to: to,
+        subject: subject,
+        html: htmlContent,
+    };
+
+    // Send email
+    return transporter.sendMail(mailOptions);
+}
+
 async function sendEmailRegistration(to, subject, htmlContent) {
     const mailOptions = {
         from: `"BAS Registration" <${process.env.EMAIL_USER}>`,
@@ -66,4 +79,4 @@ async function sendEmailRegistration(to, subject, htmlContent) {
 }
 
 // Export all functions
-module.exports = { loadTemplate, sendEmail ,sendEmailRegistration};
+module.exports = { loadTemplate, sendEmailEventBooking, sendEmailDonation ,sendEmailRegistration};

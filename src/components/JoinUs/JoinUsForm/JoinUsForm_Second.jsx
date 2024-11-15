@@ -76,7 +76,7 @@ const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep, errors
                       </Col>
                     </Row>
                     <Row>
-                      <Col xs={4} md={4}>
+                      <Col xs={5} md={4}>
                         <Form.Group className='mb-3'>
                           <label>Pincode <span style={{ color: `red` }}>*</span></label>
                           <input className='form-control' type="text" name="pincode" value={pincode} onChange={handleChange} placeholder='Pincode' />
