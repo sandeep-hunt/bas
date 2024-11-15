@@ -26,6 +26,7 @@ import JoinUs from './pages/JoinUs'
 import AboutUs from './pages/AboutUs'
 import FloatingIcon from './components/Msic/FloatingIcon/FloatingIcon'
 import axios from 'axios'
+import GetReceipt from './pages/GetReceipt'
 
 function App() {
   const [getsettings, setgetsettings] = useState('');
@@ -76,6 +77,7 @@ function App() {
         <Route path='blogs/:slug' element={<SingleBlog />} />
         <Route path='join-us' element={<JoinUs />} />
         <Route path='about-us' element={<AboutUs />} />
+        <Route path='get-receipt' element={<GetReceipt />} />
       </Routes>
       <FloatingIcon />
     </React.Fragment>

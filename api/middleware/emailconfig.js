@@ -56,7 +56,7 @@ async function sendEmailEventBooking(to, subject, htmlContent) {
 
 async function sendEmailDonation(to, subject, htmlContent) {
     const mailOptions = {
-        from: `"BAS Event Booking" <${process.env.EMAIL_USER}>`,
+        from: `"BAS Donation" <${process.env.EMAIL_USER}>`,
         to: to,
         subject: subject,
         html: htmlContent,

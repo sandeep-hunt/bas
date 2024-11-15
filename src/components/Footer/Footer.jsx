@@ -49,6 +49,7 @@ const Footer = () => {
                   <li><Link to="/blogs&articles">Blogs & Articles</Link></li>
                   <li><Link to="/join-us">Join Us</Link></li>
                   <li><Link to="/about-us">About Us</Link></li>
+                  <li><Link to="/get-receipt">Get Receipt</Link></li>
                 </ul>
               </div>
             </Col>

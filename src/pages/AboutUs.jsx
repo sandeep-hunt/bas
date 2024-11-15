@@ -139,7 +139,6 @@ const AboutUs = () => {
         ]
     };
 
-
     const [formErrors, setFormErrors] = useState({});
     const [formData, setFormData] = useState({
         firstname: '',
@@ -191,7 +190,6 @@ const AboutUs = () => {
         setFormErrors(errors);
         return Object.keys(errors).length === 0;
     };
-
 
     const handleSubmit = async () => {
         if (!isFormValid()) return;
