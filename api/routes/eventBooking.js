@@ -11,11 +11,7 @@ const razorpay = new Razorpay({
 });
 
 
-router.get('/',verifyToken, (req, resp) => {
-    const page = parseInt(req.query.page) || 1;   // Default to page 1
-    const limit = parseInt(req.query.limit) || 10; // Default to 10 items per page
-    const offset = (page - 1) * limit;
-
+router.get('/', verifyToken, (req, resp) => {
     // Count the total number of items
     db.query('SELECT COUNT(*) AS count FROM event_booking', (err, countResult) => {
         if (err) {
@@ -23,10 +19,13 @@ router.get('/',verifyToken, (req, resp) => {
         }
 
         const totalItems = countResult[0].count;
-        const totalPages = Math.ceil(totalItems / limit);
 
-        // Fetch paginated items
-        const sql = `SELECT * FROM event_booking `;
+        // Fetch all items with event_name without pagination
+        const sql = `
+            SELECT eb.*, e.event_name 
+            FROM event_booking eb
+            JOIN events e ON eb.event_id = e.event_id
+        `;
         db.query(sql, (err, results) => {
             if (err) {
                 return resp.status(500).json({ error: err.message });
@@ -34,7 +33,33 @@ router.get('/',verifyToken, (req, resp) => {
             resp.json(results);
         });
     });
-})
+});
+
+
+// router.get('/',verifyToken, (req, resp) => {
+//     const page = parseInt(req.query.page) || 1;   // Default to page 1
+//     const limit = parseInt(req.query.limit) || 10; // Default to 10 items per page
+//     const offset = (page - 1) * limit;
+
+//     // Count the total number of items
+//     db.query('SELECT COUNT(*) AS count FROM event_booking', (err, countResult) => {
+//         if (err) {
+//             return resp.status(500).json({ error: err.message });
+//         }
+
+//         const totalItems = countResult[0].count;
+//         const totalPages = Math.ceil(totalItems / limit);
+
+//         // Fetch paginated items
+//         const sql = `SELECT * FROM event_booking `;
+//         db.query(sql, (err, results) => {
+//             if (err) {
+//                 return resp.status(500).json({ error: err.message });
+//             }
+//             resp.json(results);
+//         });
+//     });
+// })
 
 
 router.post('/add', verifyToken,async (req, resp) => {
