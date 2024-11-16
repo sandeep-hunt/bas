@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: sql12.freesqldatabase.com
--- Generation Time: Nov 14, 2024 at 03:29 PM
+-- Generation Time: Nov 16, 2024 at 07:34 AM
 -- Server version: 5.5.62-0ubuntu0.14.04.1
 -- PHP Version: 7.0.33-0ubuntu0.16.04.16
 
@@ -127,6 +127,7 @@ CREATE TABLE `donation` (
   `donation_freq` int(1) NOT NULL,
   `donation_payment_id` varchar(255) NOT NULL,
   `donation_payment_status` text NOT NULL,
+  `otp_verification` int(6) NOT NULL,
   `donation_created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -134,14 +135,31 @@ CREATE TABLE `donation` (
 -- Dumping data for table `donation`
 --
 
-INSERT INTO `donation` (`donation_id`, `donate_receipt_no`, `doner_name`, `doner_mobile`, `doner_email`, `doner_age`, `doner_gender`, `doner_state`, `doner_city`, `doner_address`, `doner_pincode`, `donation_type`, `donation_amount`, `donation_freq`, `donation_payment_id`, `donation_payment_status`, `donation_created_date`) VALUES
-(1, '2024001', '', '0', '', 0, '', '', '', '', 0, '', 0, 0, '', '', '2024-11-09 17:07:42'),
-(13, '2024002', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 24, 'male', 'Karnataka ', 'Kolar', '#07, Madivala Majara Guttahalli Kyasamballi', 563121, 'male', 100, 1, 'pay_PJoXjRm4cslGYF', 'paid', '2024-11-11 01:38:12'),
-(14, '2024003', 'Harshad Waghmore', '07620081445', 'harshadwaghmore11508@gmail.com', 32, 'male', 'MAHARASHTRA', 'PUNE', 'D. P. Road, Aundh, Pune-411007', 411007, 'male', 25, 1, 'pay_PJxHlPAgNeJddZ', 'paid', '2024-11-11 10:09:38'),
-(15, '2024004', 'Harshad Waghmore', '07620081445', 'harshadwaghmore11508@gmail.com', 32, 'male', 'MAHARASHTRA', 'PUNE', 'D. P. Road, Aundh, Pune-411007', 411007, 'male', 25, 1, 'pay_PJxGeoqCIDqlER', 'paid', '2024-11-11 10:09:39'),
-(16, '2024005', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 23, 'male', 'karnataka', 'Bangarapet', 'DBRPtpectruJmapoFBNa8LxkcmEZQDqBqw', 563114, 'male', 100, 1, 'pay_PKSSnvnXeeYF1I', 'failed', '2024-11-12 16:41:22'),
-(17, '2024006', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 24, 'male', 'karnataka', 'Bangarapet', 'kiadb, dasarahoshalli', 563114, 'male', 50, 0, '', '', '2024-11-13 04:49:46'),
-(18, '2024007', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 24, 'male', 'karnataka', 'Bangarapet', 'kiadb, dasarahoshalli', 563114, 'male', 100, 0, 'pay_PKetFqhjG6yvE0', 'paid', '2024-11-13 04:50:45');
+INSERT INTO `donation` (`donation_id`, `donate_receipt_no`, `doner_name`, `doner_mobile`, `doner_email`, `doner_age`, `doner_gender`, `doner_state`, `doner_city`, `doner_address`, `doner_pincode`, `donation_type`, `donation_amount`, `donation_freq`, `donation_payment_id`, `donation_payment_status`, `otp_verification`, `donation_created_date`) VALUES
+(1, '2024001', '', '0', '', 0, '', '', '', '', 0, '', 0, 0, '', '', 0, '2024-11-09 17:07:42'),
+(13, '2024002', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 24, 'male', 'Karnataka ', 'Kolar', '#07, Madivala Majara Guttahalli Kyasamballi', 563121, 'male', 100, 1, 'pay_PJoXjRm4cslGYF', 'paid', 0, '2024-11-11 01:38:12'),
+(14, '2024003', 'Harshad Waghmore', '07620081445', 'harshadwaghmore11508@gmail.com', 32, 'male', 'MAHARASHTRA', 'PUNE', 'D. P. Road, Aundh, Pune-411007', 411007, 'male', 25, 1, 'pay_PJxHlPAgNeJddZ', 'paid', 0, '2024-11-11 10:09:38'),
+(15, '2024004', 'Harshad Waghmore', '07620081445', 'harshadwaghmore11508@gmail.com', 32, 'male', 'MAHARASHTRA', 'PUNE', 'D. P. Road, Aundh, Pune-411007', 411007, 'male', 25, 1, 'pay_PJxGeoqCIDqlER', 'paid', 0, '2024-11-11 10:09:39'),
+(16, '2024005', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 23, 'male', 'karnataka', 'Bangarapet', 'DBRPtpectruJmapoFBNa8LxkcmEZQDqBqw', 563114, 'male', 100, 1, 'pay_PKSSnvnXeeYF1I', 'failed', 0, '2024-11-12 16:41:22'),
+(17, '2024006', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 24, 'male', 'karnataka', 'Bangarapet', 'kiadb, dasarahoshalli', 563114, 'male', 50, 0, '', '', 0, '2024-11-13 04:49:46'),
+(18, '2024007', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 24, 'male', 'karnataka', 'Bangarapet', 'kiadb, dasarahoshalli', 563114, 'male', 100, 0, 'pay_PKetFqhjG6yvE0', 'paid', 0, '2024-11-13 04:50:45'),
+(19, '2024008', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 24, 'male', 'karnataka', 'Bangarapet', 'DBRPtpectruJmapoFBNa8LxkcmEZQDqBqw', 563114, 'male', 50, 1, 'pay_PLcPEmt2e9fVjt', 'paid', 0, '2024-11-15 15:03:43'),
+(20, '2024009', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 23, 'male', 'karnataka', 'Bangarapet', 'T.agara village ', 563114, 'male', 50, 1, 'pay_PLcSckU6PQFSa1', 'paid', 0, '2024-11-15 15:06:53'),
+(21, '2024010', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 24, 'male', 'karnataka', 'Bangarapet', 'kiadb, dasarahoshalli', 563114, 'male', 100, 1, 'pay_PLcVIyqPbjpbCK', 'paid', 0, '2024-11-15 15:09:44'),
+(22, '2024011', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 24, 'male', 'karnataka', 'sdsa', 'T.agara village ', 563114, 'male', 50, 1, 'pay_PLcY45pw571uux', 'paid', 0, '2024-11-15 15:12:16'),
+(23, '2024012', 'ProfitBot', '918861630673', 'sandeep.n062000@gmail.com', 24, 'male', 'karnataka', 'Bangarapet', 'kiadb, dasarahoshalli', 563114, 'male', 100, 1, 'pay_PLcbJqdt4iE9TU', 'paid', 0, '2024-11-15 15:15:23'),
+(24, '2024013', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 24, 'male', 'karnataka', 'Bangarapet', 'kiadb, dasarahoshalli', 563114, 'male', 100, 1, 'pay_PLcjVdGPDtKILY', 'paid', 0, '2024-11-15 15:23:07'),
+(25, '2024014', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 23, 'male', 'karnataka', 'Bangarapet', 'kiadb, dasarahoshalli', 563114, 'male', 100, 1, 'pay_PLctp92mmqdKQE', 'paid', 0, '2024-11-15 15:32:59'),
+(26, '2024015', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 24, 'male', 'karnataka', 'Bangarapet', 'T.agara village ', 563114, 'male', 100, 1, 'pay_PLcvoeWNp9l2fv', 'paid', 0, '2024-11-15 15:34:51'),
+(27, '2024016', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 24, 'male', 'karnataka', 'Bangarapet', 'kiadb, dasarahoshalli', 563114, 'male', 100, 1, 'pay_PLcxTATWGh204P', 'paid', 0, '2024-11-15 15:36:25'),
+(28, '2024017', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 24, 'male', 'karnataka', 'Bangarapet', 'kiadb, dasarahoshalli', 563114, 'male', 50, 1, 'pay_PLd2M1IILl8NSa', 'paid', 0, '2024-11-15 15:40:58'),
+(29, '2024018', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 24, 'male', 'karnataka', 'Bangarapet', 'kiadb, dasarahoshalli', 563114, 'male', 100, 1, 'pay_PLd4JOpNHPaXtM', 'paid', 0, '2024-11-15 15:42:55'),
+(30, '2024019', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 24, 'male', 'karnataka', 'Bangarapet', 'T.agara village ', 563114, 'male', 50, 1, 'pay_PLd6QQpgTujlna', 'paid', 0, '2024-11-15 15:44:54'),
+(31, '2024020', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 24, 'male', 'karnataka', 'Bangarapet', 'kiadb, dasarahoshalli', 563114, 'male', 25, 1, 'pay_PLd9jYkPziV3fK', 'paid', 0, '2024-11-15 15:48:01'),
+(32, '2024021', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 24, 'male', 'karnataka', 'Bangarapet', 'kiadb, dasarahoshalli', 563114, 'male', 50, 1, 'pay_PLdJVoSv0IvwRz', 'paid', 0, '2024-11-15 15:57:17'),
+(33, '2024022', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 24, 'male', 'karnataka', 'Bangarapet', 'kiadb, dasarahoshalli', 563114, 'male', 50, 1, 'pay_PLdToy51lyh32V', 'paid', 0, '2024-11-15 16:07:02'),
+(34, '2024023', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 24, 'male', 'karnataka', 'Bangarapet', 'kiadb, dasarahoshalli', 563114, 'male', 25, 1, 'pay_PLdhghVHTiSbgt', 'paid', 0, '2024-11-15 16:20:11'),
+(35, '2024024', 'sandeep', '918861630673', 'sandeep.n062000@gmail.com', 24, 'male', 'Karnataka', 'Kolar', '#07, Madivala Majara Guttahalli Kyasamballi', 563121, 'male', 100, 1, 'pay_PLoT9oneojN1Yw', 'paid', 671063, '2024-11-16 02:51:58');
 
 -- --------------------------------------------------------
 
@@ -168,10 +186,9 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`event_id`, `event_name`, `event_slug`, `event_image`, `event_thumbnail`, `event_price`, `event_date`, `event_time`, `event_location`, `event_status`, `created_date`) VALUES
-(3, 'demods', 'demods', 'uploads/events/1731386799849-WhatsApp Image 2024-10-31 at 1.00.12 PM.jpeg', 'uploads/events/1731386800122-Mustang History.jfif', 2000, '2024-10-12', '21:22:00', 'debe', 0, '2024-11-12 05:04:41'),
-(18, 'demods', 'demods-1', 'uploads/events/1731085178428-eventimg.png', 'uploads/events/1731085179141-eventyhumb.png', 5000, '2024-10-15', '21:22:00', 'debe', 1, '2024-11-12 17:17:09'),
-(20, 'demods', 'demods-1', 'uploads/events/1731085193302-eventimg.png', 'uploads/events/1731085194187-eventyhumb.png', 5000, '2024-10-15', '21:22:00', 'debe', 0, '2024-11-08 17:17:49'),
-(23, 'hello', 'hello', 'uploads/events/1731434856698-Screenshot 2024-05-31 151509.png', 'uploads/events/1731434856713-Screenshot 2024-05-31 173811.png', 2000, '2024-11-13', '08:00:00', 'bangalore', 0, '2024-11-12 18:25:36');
+(24, 'Dhrupad Darpan: Live in Berlin!', 'dhrupad-darpan-live-in-berlin', 'uploads/events/1731667730550-image.png', 'uploads/events/1731667731011-rhumbnail.png', 3000, '2024-11-14', '13:00:00', 'Berlin', 0, '2024-11-15 17:26:38'),
+(25, 'vignesh', 'vignesh', 'uploads/events/1731688780470-download1.jpeg', 'uploads/events/1731688780474-download2.jpeg', 1000, '2024-11-15', '01:12:00', 'bangalore', 1, '2024-11-15 17:09:45'),
+(26, 'hello', 'hello', 'uploads/events/1731689276660-download2.jpeg', 'uploads/events/1731689276661-download1.jpeg', 2000, '2024-11-15', '23:17:00', 'bangalore', 1, '2024-11-15 17:09:53');
 
 -- --------------------------------------------------------
 
@@ -214,7 +231,16 @@ INSERT INTO `event_booking` (`event_booking_id`, `event_id`, `event_booking_numb
 (42, 13, '123', 'Test Booking Event', '0000-00-00', 'kirithivramki7586@gmail.com', '9876543210', 'Male', 'Karnataka', 'Bangalore', 'Test124', 12131421, 'testIdpayment', 'Paid', '2024-11-08 19:19:50'),
 (43, 13, '123', 'Test Booking Event', '0000-00-00', 'vishvabulls@gmail.com', '9876543210', 'Male', 'Karnataka', 'Bangalore', 'Test124', 12131421, 'testIdpayment', 'Paid', '2024-11-08 19:23:43'),
 (44, 13, '123', 'Test Booking Event', '0000-00-00', 'vignesh.santhapeta@gmail.com', '9876543210', 'Male', 'Karnataka', 'Bangalore', 'Test124', 12131421, 'testIdpayment', 'Paid', '2024-11-08 19:25:09'),
-(45, 3, '124', 'vignesh', '2004-02-05', 'vignesh.santhapeta+testing@gmail.com', '6304418350', 'male', 'ap', 'penumuru', 'sai nagar', 517126, 'pay_PKS9X61zXJlftq', 'paid', '2024-11-12 16:23:44');
+(45, 3, '124', 'vignesh', '2004-02-05', 'vignesh.santhapeta+testing@gmail.com', '6304418350', 'male', 'ap', 'penumuru', 'sai nagar', 517126, 'pay_PKS9X61zXJlftq', 'paid', '2024-11-12 16:23:44'),
+(46, 24, '125', 'sandeep', '2018-02-06', 'sandeep.n062000@gmail.com', '8861630673', 'male', 'karnataka', 'Bangarapet', 'sdasda', 563114, 'pay_PLUtbZR6dccX7l', 'paid', '2024-11-15 07:43:32'),
+(47, 24, '126', 'ProfitBot', '2024-11-05', 'connectwithworld61@gmail.com', '8861630673', 'male', 'karnataka', 'dasarahalli', 'dfsd', 563114, 'pay_PLV1fpLcXh28QA', 'paid', '2024-11-15 07:51:09'),
+(48, 24, '127', 'sandeep', '2024-11-12', 'connectwithworld61@gmail.com', '8861630673', 'female', 'karnataka', 'dasarahalli', 'dsd', 563114, 'pay_PLXfQ2k76FCdFL', 'paid', '2024-11-15 10:26:09'),
+(49, 24, '128', 'sandeep', '2024-11-05', 'connectwithworld61@gmail.com', '8861630673', 'male', 'karnataka', 'Mulbagal', 'sdds', 563114, 'pay_PLXiDmX7Tx7GAE', 'paid', '2024-11-15 10:28:49'),
+(50, 24, '129', 'sandeep', '2024-11-06', 'connectwithworld61@gmail.com', '8861630673', 'male', 'karnataka', 'Mulbagal', 'sdsada', 563114, 'pay_PLXqojM6P4rV4Y', 'paid', '2024-11-15 10:36:57'),
+(51, 24, '130', 'sandeep', '2024-10-29', 'connectwithworld61@gmail.com', '8861630673', 'male', 'karnataka', 'Mulbagal', 'dsdsd', 563114, 'pay_PLY0Pzoynv0LF0', 'paid', '2024-11-15 10:46:02'),
+(52, 24, '131', 'ProfitBot', '2024-11-04', 'connectwithworld61@gmail.com', '8861630673', 'male', 'karnataka', 'Bangarapet', 'sdfs', 563114, 'pay_PLY4vbb9Hicd1X', 'paid', '2024-11-15 10:50:19'),
+(53, 24, '132', 'sandeep', '2024-10-31', 'connectwithworld61@gmail.com', '8861630673', 'male', 'karnataka', 'Mulbagal', 'hfdgbf', 563114, 'pay_PLYE76qq2Zd7yh', 'paid', '2024-11-15 10:59:00'),
+(54, 24, '133', 'sandeep', '2024-11-05', 'sandeep.n062000@gmail.com', '8861630673', 'male', 'karnataka', 'dasarahalli', 'dfsfd', 563114, 'pay_PLYNbVMyAeXM6P', 'paid', '2024-11-15 11:08:00');
 
 -- --------------------------------------------------------
 
@@ -325,7 +351,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`settings_id`, `site_title`, `site_keywords`, `site_description`, `site_copyright`, `site_logo`, `site_secondary_logo`, `site_favicon`, `contact_address`, `contact_mobile`, `contact_email`, `facebook_url`, `twitter_url`, `insta_url`, `linkedin_url`, `youtube_url`, `call_to_action`) VALUES
-(1, 'BAS', 'website, awesome, example', 'This is an awesome website...', 'Copyright © 2024 bhasa@drashta.co.in', 'uploads/settings/1731597645141-logo.svg', 'uploads/settings/1731597645141-logo.svg', 'uploads/settings/1731175307929-Screenshot 2024-05-03 171621.png', '123 Main St, Anytown, USA', '+918861630673', 'contact@example.com', 'https://facebook.com/...', 'https://twitter.com/...', 'https://instagram.com/...', 'https://linkedin.com/...', 'https://youtube.com/...', 'https://wa.me/918861630673');
+(1, 'BAS', 'website, awesome, example', 'This is an awesome website...', 'Copyright © 2024 bhasa@drashta.co.in', 'uploads/settings/1731690689536-logo.svg', 'uploads/settings/1731600716125-logo_light.svg', 'uploads/settings/1731690689808-logo.svg', '123 Main St, Anytown, USA', '+918861630673', 'contact@example.com', 'https://facebook.com/...', 'https://twitter.com/...', 'https://instagram.com/...', 'https://linkedin.com/...', 'https://youtube.com/...', 'https://wa.me/918861630673');
 
 -- --------------------------------------------------------
 
@@ -443,17 +469,17 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `donation`
 --
 ALTER TABLE `donation`
-  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `event_booking`
 --
 ALTER TABLE `event_booking`
-  MODIFY `event_booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `event_booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 --
 -- AUTO_INCREMENT for table `gallery`
 --

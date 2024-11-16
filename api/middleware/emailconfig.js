@@ -78,5 +78,17 @@ async function sendEmailRegistration(to, subject, htmlContent) {
     return transporter.sendMail(mailOptions);
 }
 
+async function sendReceiptOtp(to, subject, htmlContent) {
+    const mailOptions = {
+        from: `"BAS Verification" <${process.env.EMAIL_USER}>`,
+        to: to,
+        subject: subject,
+        html: htmlContent,
+    };
+
+    // Send email
+    return transporter.sendMail(mailOptions);
+}
+
 // Export all functions
-module.exports = { loadTemplate, sendEmailEventBooking, sendEmailDonation ,sendEmailRegistration};
+module.exports = { loadTemplate, sendEmailEventBooking, sendEmailDonation ,sendEmailRegistration, sendReceiptOtp};

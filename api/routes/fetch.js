@@ -3,7 +3,7 @@ const router = express.Router();
 const Razorpay = require('razorpay');
 const crypto = require('crypto');
 const db = require('../middleware/connection');
-const { sendEmailEventBooking, sendEmailDonation, loadTemplate } = require('../middleware/emailconfig');
+const { sendEmailEventBooking, sendEmailDonation, loadTemplate, sendReceiptOtp } = require('../middleware/emailconfig');
 const generatePdf = require('../utils/generatePDF');
 const fs = require('fs').promises;
 
@@ -494,7 +494,7 @@ router.post('/donation/verify-payment', async (req, res) => {
                     await sendEmailDonation(email, subject, message);
                     res.json({ success: true, message: 'Payment verified and email sent successfully' });
                 } catch (error) {
-                    console.error('Error sending email or generating PDF:', error);
+                    console.error('Error sending email:', error);
                     res.status(500).json({ success: true, message: 'Payment verified, but email sending failed' });
                 }
             });
@@ -511,5 +511,55 @@ router.post('/donation/verify-payment', async (req, res) => {
         });
     }
 });
+
+//Handle Donation Number Check
+router.post('/check-receipt-number', async (req, res) => {
+    const { receipt_number } = req.body;
+
+    if (!receipt_number) {
+        return res.status(400).json({ success: false, message: 'Receipt number is required.' });
+    }
+
+    const query = 'SELECT * FROM donation WHERE donate_receipt_no = ?';
+    db.query(query, [receipt_number], async (err, results) => {
+        if (err) {
+            return res.status(500).json({ success: false, message: 'Database error.' });
+        }
+        if (results.length > 0) {
+            // Receipt number found, get the email and send OTP
+            const email = results[0].doner_email;
+            const name = results[0].doner_name;
+            const otp = Math.floor(100000 + Math.random() * 900000); // Generate 6-digit OTP
+
+            // Update the OTP in the database
+            const updateOtpQuery = 'UPDATE donation SET otp_verification = ? WHERE donate_receipt_no = ?';
+            db.query(updateOtpQuery, [otp, receipt_number], async (err) => {
+                if (err) {
+                    return res.status(500).json({ success: false, message: 'Failed to update OTP in the database.' });
+                }
+
+                // Send OTP email
+                try {
+                    const subject = 'Email Confirmation';
+                    const message = `<p>Dear ${name},</p><br/><p>Your OTP is: ${otp}</p><br/>Best Regards,<br/>Verification Team`;
+
+                    await sendReceiptOtp(email, subject, message);
+                    res.json({ success: true, message: 'OTP sent to your email.' });
+                } catch (error) {
+                    console.error('Error sending email:', error);
+                    res.status(500).json({ success: false, message: 'Email sending failed! Try again later...' });
+                }
+            });
+        } else {
+            return res.json({ success: false, message: 'Receipt number not found.' });
+        }
+    });
+});
+
+//Handle OTP verification
+router.post('/verify-otp', async (req, res) => {
+    res.json({ success: true, message: 'OTP verification successful!' });
+});
+
 
 module.exports = router;

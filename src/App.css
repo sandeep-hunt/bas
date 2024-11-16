@@ -245,6 +245,10 @@ label {
     width: 100% !important;
 }
 
+.form-control:disabled {
+    opacity: 0.5 !important;
+}
+
 .form-check-input:checked {
     background-color: var(--main) !important;
     border-color: var(--main) !important;
@@ -847,4 +851,18 @@ textarea.form-control {
 
 .auctu .auctuinr {
     margin-top: 54px;
+}
+
+/* get receipt */
+.donation-receipt-cont {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.donation-receipt-cont .donation-receipt-contInr {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 550px;
 }
