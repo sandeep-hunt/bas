@@ -7,10 +7,10 @@ const { sendEmailEventBooking, sendEmailDonation, loadTemplate, sendReceiptOtp }
 const generatePdf = require('../utils/generatePDF');
 const fs = require('fs').promises;
 
-// Get Blogs
+// Get Events
 router.get('/events', (req, res) => {
     const sql = 'SELECT * FROM events where event_status = ?';  // Modify this query based on your blog table
-    db.query(sql, ['0'], (err, results) => {
+    db.query(sql, ['1'], (err, results) => {
         if (err) {
             return res.status(500).json({ error: 'Failed to fetch events' });
         }
