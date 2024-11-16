@@ -558,8 +558,40 @@ router.post('/check-receipt-number', async (req, res) => {
 
 //Handle OTP verification
 router.post('/verify-otp', async (req, res) => {
-    res.json({ success: true, message: 'OTP verification successful!' });
+    const { receipt_number, otp } = req.body;
+
+    // Check if receipt_number and otp are provided
+    if (!receipt_number || !otp) {
+        return res.status(400).json({ success: false, message: 'Receipt number and OTP are required.' });
+    }
+
+    try {
+        // Run the query to fetch donation data
+        db.query('SELECT * FROM donation WHERE donate_receipt_no = ? AND otp_verification = ?', [receipt_number, otp], (err, result) => {
+            if (err) {
+                console.error('Database error:', err);
+                return res.status(500).json({ success: false, message: 'Database error.' });
+            }
+
+            // Check if result is empty
+            if (!result || result.length === 0) {
+                return res.status(404).json({ success: false, message: 'Receipt number not found or OTP is incorrect.' });
+            }
+
+            // If result is found, return success with donation data
+            const donationData = result[0]; // Assuming you want the first record from the result set
+            return res.json({
+                success: true,
+                message: 'OTP verification successful!',
+                donationData, // Send the donation data back in the response
+            });
+        });
+    } catch (error) {
+        console.error('Error verifying OTP:', error);
+        return res.status(500).json({ success: false, message: 'Error verifying OTP.' });
+    }
 });
+
 
 
 module.exports = router;

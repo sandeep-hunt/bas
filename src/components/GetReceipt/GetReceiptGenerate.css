@@ -1,0 +1,42 @@
+.donation-receipt-card {
+    background-color: var(--white);
+    padding: 55px;
+}
+
+.donation-receipt-card .donation-receipt-card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 6px;
+    margin-bottom: 18px;
+}
+
+.dontaion-receipt-bdhead {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--bg_clr2);
+    margin-bottom: 18px;
+}
+
+.donation-receipt-card .donation-recept-card-inner {
+    margin-bottom: 18px;
+}
+
+.donation-receipt-card-text {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    margin-bottom: 8px;
+    color: var(--bg_clr2);
+}
+
+.donation-receipt-card-subtext {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    color: var(--bg_clr2);
+}

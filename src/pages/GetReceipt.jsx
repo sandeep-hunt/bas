@@ -4,6 +4,7 @@ import Footer from '../components/Footer/Footer';
 import { Helmet } from 'react-helmet-async';
 import { Container, Form, Button, Row, Col, Spinner } from 'react-bootstrap';
 import axios from 'axios';
+import GetReceiptGenerate from '../components/GetReceipt/GetReceiptGenerate';
 
 const GetReceipt = () => {
   const [settings, setSettings] = useState('');
@@ -15,6 +16,8 @@ const GetReceipt = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false); // State for loading spinner
+  const [donationData, setDonationData] = useState(null); // State for holding donation data
+  const [otpVerified, setOtpVerified] = useState(false); // State to track OTP verification
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -70,9 +73,8 @@ const GetReceipt = () => {
 
       if (response.data.success) {
         setOtpSent(true); // OTP successfully sent
-        setSuccessMessage('OTP has been sent successfully!');
+        setSuccessMessage('OTP sent to the email associated with the receipt number');
         setErrorReceiptNumber(''); // Clear any errors
-        console.log('OTP sent to the email associated with the receipt number');
       } else {
         setErrorReceiptNumber(response.data.message); // Show error if receipt number not found
         setOtpSent(false);
@@ -122,6 +124,8 @@ const GetReceipt = () => {
           setSuccessMessage('OTP verification successful!');
           setErrorReceiptNumber('');
           setErrorOtp('');
+          setDonationData(response.data.donationData); // Store donation data
+          setOtpVerified(true); // Mark OTP as verified
         } else {
           // OTP verification failed
           setErrorOtp('Invalid OTP. Please try again.');
@@ -147,92 +151,97 @@ const GetReceipt = () => {
       <Header />
       <div className="donate-container">
         <Container fluid>
-          <div className="donation-receipt-cont">
-            <div className="donation-receipt-contInr">
-              <div className="text-center">
-                <h4>Thank You for Your Generosity!</h4>
-                <h5>
-                  Your donation will make a meaningful impact. We truly appreciate your support and commitment to our cause. Click the button below to download your donation receipt and keep it for your records. Thank you for your generous support!
-                </h5>
-              </div>
-              <div className="donation-receipt-form">
-                <Form onSubmit={handleSubmit}>
-                  <Form.Group className="form-group">
-                    <Row>
-                      <Col xs={8}>
-                        <label>
-                          Receipt Number <span style={{ color: 'red' }}>*</span>
-                        </label>
-                        <input
-                          className="form-control"
-                          type="text"
-                          name="receiptNumber"
-                          placeholder="Enter Receipt Number"
-                          value={receiptNumber}
-                          onChange={handleReceiptNumberChange}
-                          disabled={otpSent || isLoading} // Disable when OTP is sent or loading
-                        />
-                      </Col>
-                      <Col xs={4} className="d-flex align-items-end">
-                        <Button
-                          className="btn-main-outline w-100"
-                          type="button"
-                          onClick={handleGetOtp}
-                          disabled={!receiptNumber || receiptNumber.length === 0 || otpSent || isLoading} // Disable when loading or OTP is sent
-                        >
-                          {isLoading ? (
-                            <Spinner animation="border" size="sm" />
-                          ) : (
-                            'Get OTP'
-                          )}
-                        </Button>
-                      </Col>
-                    </Row>
-                    {errorReceiptNumber && (
-                      <span style={{ color: 'red', fontSize: '0.9rem', marginTop: '0.5rem', display: 'block' }}>
-                        {errorReceiptNumber}
-                      </span>
-                    )}
-                  </Form.Group>
+          {otpVerified ? (
+            // Show GetReceiptGenerate only after OTP is verified
+            <GetReceiptGenerate donationData={donationData} />
+          ) : (
+            <div className="donation-receipt-cont">
+              <div className="donation-receipt-contInr">
+                <div className="text-center">
+                  <h4>Thank You for Your Generosity!</h4>
+                  <h5>
+                    Your donation will make a meaningful impact. We truly appreciate your support and commitment to our cause. Click the button below to download your donation receipt and keep it for your records. Thank you for your generous support!
+                  </h5>
+                </div>
+                <div className="donation-receipt-form">
+                  <Form onSubmit={handleSubmit}>
+                    <Form.Group className="form-group">
+                      <Row>
+                        <Col xs={8}>
+                          <label>
+                            Receipt Number <span style={{ color: 'red' }}>*</span>
+                          </label>
+                          <input
+                            className="form-control"
+                            type="text"
+                            name="receiptNumber"
+                            placeholder="Enter Receipt Number"
+                            value={receiptNumber}
+                            onChange={handleReceiptNumberChange}
+                            disabled={otpSent || isLoading} // Disable when OTP is sent or loading
+                          />
+                        </Col>
+                        <Col xs={4} className="d-flex align-items-end">
+                          <Button
+                            className="btn-main-outline w-100"
+                            type="button"
+                            onClick={handleGetOtp}
+                            disabled={!receiptNumber || receiptNumber.length === 0 || otpSent || isLoading} // Disable when loading or OTP is sent
+                          >
+                            {isLoading ? (
+                              <Spinner animation="border" size="sm" />
+                            ) : (
+                              'Get OTP'
+                            )}
+                          </Button>
+                        </Col>
+                      </Row>
+                      {errorReceiptNumber && (
+                        <span style={{ color: 'red', fontSize: '0.9rem', marginTop: '0.5rem', display: 'block' }}>
+                          {errorReceiptNumber}
+                        </span>
+                      )}
+                    </Form.Group>
 
-                  <Form.Group className="form-group">
-                    <label>
-                      OTP <span style={{ color: 'red' }}>*</span>
-                    </label>
-                    <input
-                      className="form-control"
-                      type="text"
-                      name="otp"
-                      placeholder="Enter OTP"
-                      value={otp}
-                      onChange={handleOtpChange}
-                      disabled={!otpSent} // Enable only after OTP is sent
-                    />
-                    {errorOtp && (
-                      <span style={{ color: 'red', fontSize: '0.9rem', marginTop: '0.5rem', display: 'block' }}>
-                        {errorOtp}
-                      </span>
-                    )}
-                    {successMessage && !errorReceiptNumber && !errorOtp && !isSubmitting && (
-                      <span style={{ color: 'green', fontSize: '0.9rem', marginTop: '1rem', display: 'block' }}>
-                        {successMessage}
-                      </span>
-                    )}
-                  </Form.Group>
+                    <Form.Group className="form-group">
+                      <label>
+                        OTP <span style={{ color: 'red' }}>*</span>
+                      </label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="otp"
+                        placeholder="Enter OTP"
+                        value={otp}
+                        onChange={handleOtpChange}
+                        disabled={!otpSent} // Enable only after OTP is sent
+                      />
+                      {errorOtp && (
+                        <span style={{ color: 'red', fontSize: '0.9rem', marginTop: '0.5rem', display: 'block' }}>
+                          {errorOtp}
+                        </span>
+                      )}
+                      {successMessage && !errorReceiptNumber && !errorOtp && !isSubmitting && (
+                        <span style={{ color: 'green', fontSize: '0.9rem', marginTop: '1rem', display: 'block' }}>
+                          {successMessage}
+                        </span>
+                      )}
+                    </Form.Group>
 
-                  <Form.Group className="form-group">
-                    <Button
-                      className="btn-main w-100"
-                      type="submit"
-                      disabled={!receiptNumber || !otp || errorReceiptNumber || errorOtp || !otpSent || isSubmitting}
-                    >
-                      {isSubmitting ? 'Submitting...' : 'Submit'}
-                    </Button>
-                  </Form.Group>
-                </Form>
+                    <Form.Group className="form-group">
+                      <Button
+                        className="btn-main w-100"
+                        type="submit"
+                        disabled={!receiptNumber || !otp || errorReceiptNumber || errorOtp || !otpSent || isSubmitting}
+                      >
+                        {isSubmitting ? 'Submitting...' : 'Submit'}
+                      </Button>
+                    </Form.Group>
+                  </Form>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </Container>
       </div>
       <Footer />
