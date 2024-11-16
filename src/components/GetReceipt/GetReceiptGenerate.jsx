@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Col, Row } from 'react-bootstrap';
+import { Button, Col, Row, Spinner } from 'react-bootstrap';
 import axios from 'axios';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+import html2pdf from 'html2pdf.js';
 import './GetReceiptGenerate.css';
 
 const GetReceiptGenerate = ({ donationData }) => {
@@ -11,6 +10,7 @@ const GetReceiptGenerate = ({ donationData }) => {
     }
 
     const [settings, setSettings] = useState('');
+    const [isLoading, setIsLoading] = useState(false); // State for loading spinner
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -27,24 +27,33 @@ const GetReceiptGenerate = ({ donationData }) => {
         fetchData();
     }, []);
 
-    const handleDownloadPDF = async () => {
+    const handleDownloadPDF = () => {
+        setIsLoading(true);
         const element = document.querySelector('.donation-receipt-card'); // Select the receipt container
         if (!element) return;
 
-        try {
-            const canvas = await html2canvas(element, { scale: 2 }); // Render HTML to canvas
-            const imgData = canvas.toDataURL('image/png');
-            const pdf = new jsPDF('p', 'mm', 'a4');
+        const options = {
+            // margin:       [10, 10], // Set margins (top, left, right, bottom)
+            filename: 'receipt_no_' + donationData.donate_receipt_no + '.pdf', // Set the filename
+            image: { type: 'jpeg', quality: 1 }, // Image quality (if needed)
+            html2canvas: {
+                scale: 2,  // Increase the canvas scale for better quality
+                useCORS: true, // Allow cross-origin images to load
+                logging: true, // Enable logging for debugging
+            },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }, // Set page size and orientation
+        };
 
-            // Calculate dimensions to fit the content in the PDF
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+        // Custom width and height for the PDF (in mm)
+        const customWidth = 210; // A4 width
+        const customHeight = 297; // A4 height
 
-            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-            pdf.save('DonationReceipt.pdf'); // Save the file
-        } catch (error) {
-            console.error('Error generating PDF:', error);
-        }
+        // Create the PDF using html2pdf
+        html2pdf()
+            .from(element) // Get content from the selected element
+            .set(options)
+            .save() // Save the generated PDF
+            .then(() => setIsLoading(false)); // Stop the spinner when PDF is downloaded
     };
 
     return (
@@ -117,7 +126,16 @@ const GetReceiptGenerate = ({ donationData }) => {
                     </div>
                 </Col>
                 <Col xs={12} md={4}>
-                    <Button className='btn-main' onClick={handleDownloadPDF}>Download PDF</Button>
+                    <Button className='btn-main' onClick={handleDownloadPDF} disabled={isLoading}>
+                        {isLoading ? (
+                            <>
+                                <span>Please wait... </span>
+                                <Spinner animation="border" size="sm" />
+                            </>
+                        ) : (
+                            'Download PDF'
+                        )}
+                    </Button>
                 </Col>
             </Row>
         </React.Fragment>

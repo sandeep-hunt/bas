@@ -484,12 +484,11 @@ router.post('/donation/verify-payment', async (req, res) => {
                 }
 
                 try {
-                    // Load HTML template and send email
-                    // const htmlContent = await loadTemplate('bookingConfirmation', replacements);
-                    // const pdfBuffer = await generatePdf(htmlContent);
+                    // Generate the receipt link
+                    const receiptLink = `${websiteUrl}/get-receipt/${receiptId}`;
 
                     const subject = 'Donation Confirmation';
-                    const message = `<p>Dear ${lastBooking.doner_name},</p><br/><p>Thank you for donating us!!!. Your payment was successful and your donation receipt number is ${lastBooking.donate_receipt_no}.</p><br/>Best Regards,<br/>Donation Team`;
+                    const message = `<p>Dear ${lastBooking.doner_name},</p><br/><p>Thank you for donating to us! Your payment was successful and your donation receipt number is ${lastBooking.donate_receipt_no}.</p><br/><p>You can view and download your receipt from the link below:</p><p><a href="${process.env.WEBSITE_URL}/get-receipt">Click Here</a></p><br/>Best Regards,<br/>Donation Team`;
 
                     await sendEmailDonation(email, subject, message);
                     res.json({ success: true, message: 'Payment verified and email sent successfully' });
