@@ -4,8 +4,7 @@ const Razorpay = require('razorpay');
 const crypto = require('crypto');
 const db = require('../middleware/connection');
 const { sendEmailEventBooking, sendEmailDonation, loadTemplate, sendReceiptOtp } = require('../middleware/emailconfig');
-const generatePdf = require('../utils/generatePDF');
-const fs = require('fs').promises;
+require('dotenv').config();
 
 // Get Events
 router.get('/events', (req, res) => {
@@ -485,7 +484,7 @@ router.post('/donation/verify-payment', async (req, res) => {
 
                 try {
                     const subject = 'Donation Confirmation';
-                    const message = `<p>Dear ${lastBooking.doner_name},</p><br/><p>Thank you for donating to us! Your payment was successful and your donation receipt number is ${lastBooking.donate_receipt_no}.</p><br/><p>You can view and download your receipt from the link below:</p><p><a href="${process.env.WEBSITE_URL}/get-receipt">Click Here</a></p><br/>Best Regards,<br/>Donation Team`;
+                    const message = `<p>Dear ${lastBooking.doner_name},</p><br/><p>Thank you for donating to us! Your payment was successful and your donation receipt number is ${lastBooking.donate_receipt_no}.</p><br/><p>You can view and download your receipt from the link below:</p><p><a href="${process.env.WEBSITE_URL}get-receipt">Click Here</a></p><br/>Best Regards,<br/>Donation Team`;
 
                     await sendEmailDonation(email, subject, message);
                     res.json({ success: true, message: 'Payment verified and email sent successfully' });
