@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 const db =require('../middleware/connection');
+const { verify } = require('crypto');
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
@@ -15,37 +16,89 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-// Route to fetch image URLs from the database
+
+// get
+
 router.get('/', (req, res) => {
-    const page = parseInt(req.query.page) || 1;   // Default to page 1
-    const limit = parseInt(req.query.limit) || 10; // Default to 10 items per page
-    const offset = (page - 1) * limit;
-
-    // Count the total number of items
+    // Fetch the total number of items
     db.query('SELECT COUNT(*) AS count FROM events', (err, countResult) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+  
+      const totalItems = countResult[0].count;
+  
+      // Fetch all the items
+      const sql = `
+        SELECT
+          e.event_id,
+          e.event_name,
+          e.event_slug,
+          e.event_image,
+          e.event_thumbnail,
+          e.event_price,
+          e.event_date,
+          e.event_time,
+          e.event_location,
+          e.event_status,
+          e.created_date,
+          COALESCE(eb.event_booking_count, 0) AS event_booking_count
+        FROM events e
+        LEFT JOIN (
+          SELECT event_id, COUNT(*) AS event_booking_count
+          FROM event_booking
+          WHERE payment_status = 'paid'
+          GROUP BY event_id
+        ) eb ON e.event_id = eb.event_id
+        ORDER BY e.event_id
+      `;
+      db.query(sql, (err, results) => {
         if (err) {
-            return res.status(500).json({ error: err.message });
+          return res.status(500).json({ error: err.message });
         }
-
-        const totalItems = countResult[0].count;
-        const totalPages = Math.ceil(totalItems / limit);
-
-        // Fetch paginated items
-        const sql = `SELECT * FROM events LIMIT ${limit} OFFSET ${offset}`;
-        db.query(sql, (err, results) => {
-            if (err) {
-                return res.status(500).json({ error: err.message });
-            }
-
-            res.json({
-                currentPage: page,
-                totalPages: totalPages,
-                totalItems: totalItems,
-                items: results
-            });
-        });
+  
+        // Build the response object
+        const response = {
+          totalItems: totalItems,
+          items: results
+        };
+  
+        res.json(response);
+      });
     });
-});
+  });
+
+// Route to fetch image URLs from the database
+// router.get('/', (req, res) => {
+//     const page = parseInt(req.query.page) || 1;   // Default to page 1
+//     const limit = parseInt(req.query.limit) || 10; // Default to 10 items per page
+//     const offset = (page - 1) * limit;
+
+//     // Count the total number of items
+//     db.query('SELECT COUNT(*) AS count FROM events', (err, countResult) => {
+//         if (err) {
+//             return res.status(500).json({ error: err.message });
+//         }
+
+//         const totalItems = countResult[0].count;
+//         const totalPages = Math.ceil(totalItems / limit);
+
+//         // Fetch paginated items
+//         const sql = `SELECT * FROM events LIMIT ${limit} OFFSET ${offset}`;
+//         db.query(sql, (err, results) => {
+//             if (err) {
+//                 return res.status(500).json({ error: err.message });
+//             }
+
+//             res.json({
+//                 currentPage: page,
+//                 totalPages: totalPages,
+//                 totalItems: totalItems,
+//                 items: results
+//             });
+//         });
+//     });
+// });
 
 // Add Event (POST)
 router.post('/add', upload.fields([{ name: 'event_image' }, { name: 'event_thumbnail' }]), (req, res) => {
