@@ -8,12 +8,11 @@ import EditIcon from '../assets/images/icons/edit.svg'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 
-const Gallery = () => {
+const Gallery = ({ settings }) => {
     const [images, setImages] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [limit] = useState(12);  // Number of items per page
-    const [settings, setsettings] = useState('');
 
     // Fetch paginated items when the component mounts or page changes
     useEffect(() => {
@@ -26,10 +25,6 @@ const Gallery = () => {
                         limit: limit
                     }
                 });
-
-                //Get Settings
-                const fetchSettings = await axios.get(import.meta.env.VITE_BACKEND_API + 'fetch/settings');
-                setsettings(fetchSettings.data[0]);
 
                 setImages(response.data.items);
                 setCurrentPage(response.data.currentPage);

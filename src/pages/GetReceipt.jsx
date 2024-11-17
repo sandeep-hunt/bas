@@ -4,8 +4,7 @@ import { Container, Form, Button, Row, Col, Spinner } from 'react-bootstrap';
 import axios from 'axios';
 import GetReceiptGenerate from '../components/GetReceipt/GetReceiptGenerate';
 
-const GetReceipt = () => {
-  const [settings, setSettings] = useState('');
+const GetReceipt = ({settings}) => {
   const [receiptNumber, setReceiptNumber] = useState('');
   const [otp, setOtp] = useState('');
   const [errorReceiptNumber, setErrorReceiptNumber] = useState('');
@@ -19,16 +18,6 @@ const GetReceipt = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const fetchData = async () => {
-      try {
-        const fetchSettings = await axios.get(import.meta.env.VITE_BACKEND_API + 'fetch/settings');
-        setSettings(fetchSettings.data[0]);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
   }, []);
 
   const handleReceiptNumberChange = (e) => {

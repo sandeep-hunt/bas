@@ -8,11 +8,10 @@ import { Helmet } from 'react-helmet-async'
 import axios from 'axios'
 import DOMPurify from 'dompurify'
 
-const SingleArticle = () => {
+const SingleArticle = ({settings}) => {
 
   const { slug } = useParams();
   const [article, setarticle] = useState('');
-  const [settings, setsettings] = useState('');
   const [randomArticles, setRandomArticles] = useState([]);
 
   useEffect(() => {
@@ -22,10 +21,6 @@ const SingleArticle = () => {
         // Fetch the main article by slug (you can keep this as is)
         const response = await axios.get(import.meta.env.VITE_BACKEND_API + 'fetch/articleBySlug/' + slug);
         setarticle(response.data);
-
-        // Fetch the settings
-        const fetchSettings = await axios.get(import.meta.env.VITE_BACKEND_API + 'fetch/settings');
-        setsettings(fetchSettings.data[0]);
 
         // Fetch 3 random articles
         const randomResponse = await axios.get(`${import.meta.env.VITE_BACKEND_API}fetch/randArticle`);
@@ -75,7 +70,7 @@ const SingleArticle = () => {
   return (
     <React.Fragment>
       <Helmet>
-        <title>{`${settings.site_title} | ${article.article_page_title || "India's Farm Utility ROVRs, Off Road Utility Vehicles, UTV, ATV"}`}</title>
+        <title>{`${settings.site_title} | ${article.article_page_title}`}</title>
         <meta name="description" content={article.article_page_desc} />
         <meta name="keywords" content={article.article_page_keywords}></meta>
       </Helmet>

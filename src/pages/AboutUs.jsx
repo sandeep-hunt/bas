@@ -77,22 +77,10 @@ const data = [
     },
 ]
 
-const AboutUs = () => {
-    const [getsettings, setgetsettings] = useState('');
-
+const AboutUs = ({setsettings}) => {
+  
     useEffect(() => {
-        window.scrollTo(0, 0);
-        const fetchData = async () => {
-            try {
-                // Fetch the settings
-                const fetchSettings = await axios.get(import.meta.env.VITE_BACKEND_API + 'fetch/settings');
-                setgetsettings(fetchSettings.data[0]);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-
-        fetchData();
+      window.scrollTo(0, 0);
     }, []);
 
     var settings = {
@@ -219,9 +207,9 @@ const AboutUs = () => {
     return (
         <React.Fragment>
             <Helmet>
-                <title>{`${getsettings?.site_title || "Bharata Arseya Samsthan"} | About Us`}</title>
-                <meta name="description" content={getsettings.site_description} />
-                <meta name="keywords" content={getsettings.site_keywords}></meta>
+                <title>{`${setsettings?.site_title || "Bharata Arseya Samsthan"} | About Us`}</title>
+                <meta name="description" content={setsettings.site_description} />
+                <meta name="keywords" content={setsettings.site_keywords}></meta>
             </Helmet>
             <div className="event-banner" style={{ backgroundImage: `url(${About_bg})` }}>
                 <div className="event-banner-inner">

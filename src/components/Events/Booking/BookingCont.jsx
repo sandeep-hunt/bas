@@ -7,8 +7,9 @@ import { useParams, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+import { Helmet } from 'react-helmet-async';
 
-const BookingCont = () => {
+const BookingCont = ({setsettings}) => {
   const { slug } = useParams(); // Capture the event ID from the URL
   const [event, setEvent] = useState('');
   const [paymentSuccess, setpaymentSuccess] = useState('d-none');
@@ -223,6 +224,11 @@ const BookingCont = () => {
 
   return (
     <React.Fragment>
+    <Helmet>
+        <title>{`${setsettings?.site_title || "Bharata Arseya Samsthan"} | Event Booking (${event.event_name})`}</title>
+        <meta name="description" content={setsettings.site_description} />
+        <meta name="keywords" content={setsettings.site_keywords}></meta>
+    </Helmet>
       <div className="donate-container">
         <Container fluid>
           <div className={wrapper + ' donate-wrapper'}>

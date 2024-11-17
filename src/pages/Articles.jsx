@@ -1,25 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect} from 'react'
 import { Container } from 'react-bootstrap'
 import ArticlesList from '../components/Blogs/Articles/ArticlesList'
-import axios from 'axios'
 import { Helmet } from 'react-helmet-async'
 
-const Articles = () => {
-  const [settings, setsettings] = useState('');
+const Articles = ({settings}) => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const fetchData = async () => {
-      try {
-        // Fetch the settings
-        const fetchSettings = await axios.get(import.meta.env.VITE_BACKEND_API + 'fetch/settings');
-        setsettings(fetchSettings.data[0]);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
   }, []);
 
   return (

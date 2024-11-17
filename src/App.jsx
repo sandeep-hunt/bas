@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from 'react'
-import './App.css'
-import './assets/css/xsmall.css'
-import './assets/css/small.css'
-import './assets/css/medium.css'
-import './assets/css/large.css'
-import './assets/css/extralarge.css'
-import './assets/css/exexclarge.css'
+import React, { useEffect, useState } from 'react';
+import './App.css';
+import './assets/css/xsmall.css';
+import './assets/css/small.css';
+import './assets/css/medium.css';
+import './assets/css/large.css';
+import './assets/css/extralarge.css';
+import './assets/css/exexclarge.css';
 import 'react-phone-input-2/lib/style.css';
-import { Routes, Route } from "react-router-dom"
-import Homepage from './pages/Homepage'
-import Donate from './pages/Donate'
-import Dhrupad_Gurukul from './pages/Dhrupad_Gurukul'
-import Samaveda_Gurukul from './pages/Samaveda_Gurukul'
-import Girvaan_Bhasa from './pages/Girvaan_Bhasa'
-import Jyotish from './pages/Jyotish'
-import Events from './pages/Events'
-import Gallery from './pages/Gallery'
-import BlogsArticles from './pages/BlogsArticles'
-import Blogs from './pages/Blogs'
-import Articles from './pages/Articles'
-import SingleArticle from './pages/SingleArticle'
-import SingleBlog from './pages/SingleBlog'
-import EventBooking from './pages/EventBooking'
-import JoinUs from './pages/JoinUs'
-import AboutUs from './pages/AboutUs'
-import FloatingIcon from './components/Msic/FloatingIcon/FloatingIcon'
-import axios from 'axios'
-import GetReceipt from './pages/GetReceipt'
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
+import { Routes, Route } from 'react-router-dom';
+import Homepage from './pages/Homepage';
+import Donate from './pages/Donate';
+import Dhrupad_Gurukul from './pages/Dhrupad_Gurukul';
+import Samaveda_Gurukul from './pages/Samaveda_Gurukul';
+import Girvaan_Bhasa from './pages/Girvaan_Bhasa';
+import Jyotish from './pages/Jyotish';
+import Events from './pages/Events';
+import Gallery from './pages/Gallery';
+import BlogsArticles from './pages/BlogsArticles';
+import Blogs from './pages/Blogs';
+import Articles from './pages/Articles';
+import SingleArticle from './pages/SingleArticle';
+import SingleBlog from './pages/SingleBlog';
+import EventBooking from './pages/EventBooking';
+import JoinUs from './pages/JoinUs';
+import AboutUs from './pages/AboutUs';
+import FloatingIcon from './components/Msic/FloatingIcon/FloatingIcon';
+import axios from 'axios';
+import GetReceipt from './pages/GetReceipt';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const [getsettings, setgetsettings] = useState('');
@@ -64,28 +64,28 @@ function App() {
     <React.Fragment>
       <Header />
       <Routes>
-        <Route path='/' element={<Homepage />} />
-        <Route path='donate' element={<Donate />} />
-        <Route path='dhrupad_gurukul' element={<Dhrupad_Gurukul />} />
-        <Route path='samaveda_gurukul' element={<Samaveda_Gurukul />} />
-        <Route path='girvaan_bhasa' element={<Girvaan_Bhasa />} />
-        <Route path='jyotisha_gurkul' element={<Jyotish />} />
-        <Route path='events' element={<Events />} />
-        <Route path='events/booking/:slug' element={<EventBooking />} />
-        <Route path='gallery' element={<Gallery />} />
-        <Route path='blogs&articles' element={<BlogsArticles />} />
-        <Route path='blogs' element={<Blogs />} />
-        <Route path='articles' element={<Articles />} />
-        <Route path='articles/:slug' element={<SingleArticle />} />
-        <Route path='blogs/:slug' element={<SingleBlog />} />
-        <Route path='join-us' element={<JoinUs />} />
-        <Route path='about-us' element={<AboutUs />} />
-        <Route path='get-receipt' element={<GetReceipt />} />
+        <Route path='/' element={<Homepage settings={getsettings} />} />
+        <Route path='donate' element={<Donate settings={getsettings} />} />
+        <Route path='dhrupad_gurukul' element={<Dhrupad_Gurukul settings={getsettings} />} />
+        <Route path='samaveda_gurukul' element={<Samaveda_Gurukul settings={getsettings} />} />
+        <Route path='girvaan_bhasa' element={<Girvaan_Bhasa settings={getsettings} />} />
+        <Route path='jyotisha_gurkul' element={<Jyotish settings={getsettings} />} />
+        <Route path='events' element={<Events settings={getsettings} />} />
+        <Route path='events/booking/:slug' element={<EventBooking settings={getsettings} />} />
+        <Route path='gallery' element={<Gallery settings={getsettings} />} />
+        <Route path='blogs&articles' element={<BlogsArticles settings={getsettings} />} />
+        <Route path='blogs' element={<Blogs settings={getsettings} />} />
+        <Route path='articles' element={<Articles settings={getsettings} />} />
+        <Route path='articles/:slug' element={<SingleArticle settings={getsettings} />} />
+        <Route path='blogs/:slug' element={<SingleBlog settings={getsettings} />} />
+        <Route path='join-us' element={<JoinUs settings={getsettings} />} />
+        <Route path='about-us' element={<AboutUs setsettings={getsettings} />} />
+        <Route path='get-receipt' element={<GetReceipt settings={getsettings} />} />
       </Routes>
       <FloatingIcon />
       <Footer />
     </React.Fragment>
-  )
+  );
 }
 
-export default App
+export default App;

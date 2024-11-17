@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import Pro_bg1 from '../assets/images/msic/blog_bg.png'
 import { Container } from 'react-bootstrap'
@@ -6,26 +6,13 @@ import RecentBlogs from '../components/Blogs/RecentBlogs/RecentBlogs'
 import RecentArticles from '../components/Blogs/RecentArticles/RecentArticles'
 import HomeIcon from '../assets/images/icons/home.svg'
 import EditIcon from '../assets/images/icons/edit.svg'
-import axios from 'axios'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 
-const BlogsArticles = () => {
-  const [settings, setsettings] = useState('');
-
+const BlogsArticles = ({settings}) => {
+  
   useEffect(() => {
     window.scrollTo(0, 0);
-    const fetchData = async () => {
-      try {
-        // Fetch the settings
-        const fetchSettings = await axios.get(import.meta.env.VITE_BACKEND_API + 'fetch/settings');
-        setsettings(fetchSettings.data[0]);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
   }, []);
 
   return (

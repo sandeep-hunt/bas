@@ -1,24 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import DonateCont from '../components/Donate/DonateCont'
-import axios from 'axios'
 import { Helmet } from 'react-helmet-async'
 
-const Donate = () => {
-  const [settings, setsettings] = useState('');
+const Donate = ({settings}) => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const fetchData = async () => {
-      try {
-        // Fetch the settings
-        const fetchSettings = await axios.get(import.meta.env.VITE_BACKEND_API + 'fetch/settings');
-        setsettings(fetchSettings.data[0]);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
   }, []);
 
   return (
