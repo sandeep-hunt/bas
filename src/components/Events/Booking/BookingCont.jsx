@@ -230,9 +230,13 @@ const BookingCont = () => {
               <Col sm={12} lg={5}>
                 <div className="donation-left" style={{ backgroundImage: `url(${DonateImg1})` }}>
                   <h2>{event.event_name}</h2>
-                  <p>{event.event_date}</p>
-                  <p>{event.event_time}</p>
-                  <p>{event.event_location}</p>
+                  <h5>
+                    {new Date(event.event_date).getDate()}&nbsp;
+                    {new Date(event.event_date).toLocaleString('default', { month: 'long' })}&nbsp;
+                    {new Date(event.event_date).getFullYear()}
+                  </h5>
+                  <h5>{event.event_time}</h5>
+                  <h5>{event.event_location}</h5>
                   <h2>₹ {event.event_price}</h2>
                 </div>
               </Col>
@@ -379,8 +383,8 @@ const BookingCont = () => {
                     <Col>
                       <div className="d-grid">
                         <Button className='btn-main' onClick={handlePayment} disabled={loading}>{loading ? (
-                        <FontAwesomeIcon icon={faSpinner} spin /> // FontAwesome Spinner
-                      ) : 'Submit & Pay'}</Button>
+                          <FontAwesomeIcon icon={faSpinner} spin /> // FontAwesome Spinner
+                        ) : 'Submit & Pay'}</Button>
                       </div>
                     </Col>
                   </Row>

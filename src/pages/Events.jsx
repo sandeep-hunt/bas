@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../components/Header/Header'
-import Footer from '../components/Footer/Footer'
 import EventsBanner from '../components/Events/EventsBanner'
 import EventsList from '../components/Events/EventsList'
 import axios from 'axios'
@@ -31,10 +29,8 @@ const Events = () => {
       <meta name="description" content={settings.site_description} />
       <meta name="keywords" content={settings.site_keywords}></meta>
     </Helmet>
-        <Header />
         <EventsBanner />
         <EventsList />
-        <Footer />
     </React.Fragment>
   )
 }

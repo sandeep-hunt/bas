@@ -1,6 +1,4 @@
 import React, {useEffect} from 'react'
-import Header from '../components/Header/Header'
-import Footer from '../components/Footer/Footer'
 import BookingCont from '../components/Events/Booking/BookingCont'
 
 const EventBooking = () => {
@@ -11,9 +9,7 @@ const EventBooking = () => {
     
     return (
         <React.Fragment>
-            <Header />
             <BookingCont />
-            <Footer />
         </React.Fragment>
     )
 }

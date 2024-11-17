@@ -1,6 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import Header from '../components/Header/Header'
-import Footer from '../components/Footer/Footer'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import Pro_bg1 from '../assets/images/msic/blog_bg.png'
 import { Container } from 'react-bootstrap'
@@ -37,7 +35,6 @@ const BlogsArticles = () => {
         <meta name="description" content={settings.site_description} />
         <meta name="keywords" content={settings.site_keywords}></meta>
     </Helmet>
-      <Header />
       <div className="projects-banner" style={{ backgroundImage: `url(${Pro_bg1})` }}>
         <div className="projects-banner-inner">
           <Breadcrumb>
@@ -52,7 +49,6 @@ const BlogsArticles = () => {
         <RecentArticles />
         <RecentBlogs />
       </Container>
-      <Footer />
     </React.Fragment>
   )
 }

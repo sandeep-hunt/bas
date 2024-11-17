@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../components/Header/Header'
-import Footer from '../components/Footer/Footer'
 import { Card, Col, Container, Row, Button } from 'react-bootstrap'
 import Profile from '../assets/images/msic/profile.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -78,7 +76,6 @@ const SingleBlog = () => {
           <meta name="description" content={blog.blog_page_desc} />
           <meta name="keywords" content={blog.blog_page_keywords}></meta>
         </Helmet>
-            <Header />
             <div className="single-post-head blog" style={{ backgroundImage: `url(${import.meta.env.VITE_BACKEND_API + blog.blog_image})` }}>
                 <Container fluid className='single-post-head-cont h-100'>
                     <div className="single-post-hbi">
@@ -162,7 +159,6 @@ const SingleBlog = () => {
                     </div>
                 </div>
             </Container>
-            <Footer />
         </React.Fragment>
     )
 }

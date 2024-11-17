@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../components/Header/Header'
-import Footer from '../components/Footer/Footer'
 import DonateCont from '../components/Donate/DonateCont'
 import axios from 'axios'
 import { Helmet } from 'react-helmet-async'
@@ -30,9 +28,7 @@ const Donate = () => {
         <meta name="description" content={settings.site_description} />
         <meta name="keywords" content={settings.site_keywords}></meta>
       </Helmet>
-      <Header />
       <DonateCont />
-      <Footer />
     </React.Fragment>
   )
 }

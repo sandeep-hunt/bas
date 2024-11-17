@@ -1,3 +1,7 @@
+.donation-receiptMain {
+    --bs-gutter-y: 1.5rem !important;
+}
+
 .donation-receipt-card {
     background-color: var(--white);
     padding: 55px;

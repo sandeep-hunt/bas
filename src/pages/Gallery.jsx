@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Header from '../components/Header/Header'
-import Footer from '../components/Footer/Footer'
 import axios from 'axios'
 import { Col, Container, Row } from 'react-bootstrap'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
@@ -145,7 +143,6 @@ const Gallery = () => {
                 <meta name="description" content={settings.site_description} />
                 <meta name="keywords" content={settings.site_keywords}></meta>
             </Helmet>
-            <Header />
             <div className="event-banner" style={{ backgroundImage: `url(${Gallery_bg})` }}>
                 <div className="event-banner-inner">
                     <Breadcrumb>
@@ -193,7 +190,6 @@ const Gallery = () => {
                     </div>
                 </div>
             </Container>
-            <Footer />
         </React.Fragment>
     )
 }

@@ -27,6 +27,8 @@ import AboutUs from './pages/AboutUs'
 import FloatingIcon from './components/Msic/FloatingIcon/FloatingIcon'
 import axios from 'axios'
 import GetReceipt from './pages/GetReceipt'
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
 
 function App() {
   const [getsettings, setgetsettings] = useState('');
@@ -60,6 +62,7 @@ function App() {
 
   return (
     <React.Fragment>
+      <Header />
       <Routes>
         <Route path='/' element={<Homepage />} />
         <Route path='donate' element={<Donate />} />
@@ -80,6 +83,7 @@ function App() {
         <Route path='get-receipt' element={<GetReceipt />} />
       </Routes>
       <FloatingIcon />
+      <Footer />
     </React.Fragment>
   )
 }

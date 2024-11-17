@@ -1,6 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import Header from '../components/Header/Header'
-import Footer from '../components/Footer/Footer'
 import Icon1 from '../assets/images/icons/pro_icon1.svg'
 import { Container } from 'react-bootstrap'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
@@ -36,7 +34,6 @@ const Dhrupad_Gurukul = () => {
       <meta name="description" content={settings.site_description} />
       <meta name="keywords" content={settings.site_keywords}></meta>
     </Helmet>
-      <Header />
       <div className="projects-banner" style={{ backgroundImage: `url(${Pro_bg1})` }}>
         <div className="projects-banner-inner">
           <Breadcrumb>
@@ -66,7 +63,6 @@ const Dhrupad_Gurukul = () => {
           <p>Through this practice, the music itself becomes a vehicle for experiencing the divine, reminding us that sound, when harnessed properly, is powerful forces in the universe.</p>
         </div>
       </Container>
-      <Footer />
     </React.Fragment>
   )
 }

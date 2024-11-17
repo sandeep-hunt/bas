@@ -58,7 +58,7 @@ const GetReceiptGenerate = ({ donationData }) => {
 
     return (
         <React.Fragment>
-            <Row>
+            <Row className='donation-receiptMain'>
                 <Col xs={12} md={8}>
                     <div className="donation-receipt-card">
                         <div className="donation-receipt-card-header">
@@ -126,6 +126,7 @@ const GetReceiptGenerate = ({ donationData }) => {
                     </div>
                 </Col>
                 <Col xs={12} md={4}>
+                    <h5>Thank you for your generous contribution! Your donation helps us continue our mission and make a meaningful impact.</h5>
                     <Button className='btn-main' onClick={handleDownloadPDF} disabled={isLoading}>
                         {isLoading ? (
                             <>

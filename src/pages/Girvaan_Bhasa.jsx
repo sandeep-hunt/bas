@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../components/Header/Header'
-import Footer from '../components/Footer/Footer'
 import Icon3 from '../assets/images/icons/pro_icon3.svg'
 import { Container } from 'react-bootstrap'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
@@ -36,7 +34,6 @@ const Girvaan_Bhasa = () => {
                 <meta name="description" content={settings.site_description} />
                 <meta name="keywords" content={settings.site_keywords}></meta>
             </Helmet>
-            <Header />
             <div className="projects-banner" style={{ backgroundImage: `url(${Pro_bg3})` }}>
                 <div className="projects-banner-inner">
                     <Breadcrumb>
@@ -71,7 +68,6 @@ const Girvaan_Bhasa = () => {
                     <p>By making this sacred language accessible and practical, BHASA is playing a crucial role in reviving one of the most important languages of human civilization. Through speaking, reading, and understanding Girvaan Bhasha, learners will embark on a journey that transcends the ordinary, connecting them with the divine heritage of India and the eternal truths it holds.</p>
                 </div>
             </Container>
-            <Footer />
         </React.Fragment>
     )
 }

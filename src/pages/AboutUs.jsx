@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import About_bg from '../assets/images/msic/about_bg.png'
-import Header from '../components/Header/Header'
-import Footer from '../components/Footer/Footer'
 import { Col, Container, Row, Toast, ToastContainer } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -225,7 +223,6 @@ const AboutUs = () => {
                 <meta name="description" content={getsettings.site_description} />
                 <meta name="keywords" content={getsettings.site_keywords}></meta>
             </Helmet>
-            <Header />
             <div className="event-banner" style={{ backgroundImage: `url(${About_bg})` }}>
                 <div className="event-banner-inner">
                     <Breadcrumb>
@@ -407,7 +404,6 @@ const AboutUs = () => {
                     </div>
                 </div>
             </Container>
-            <Footer />
         </React.Fragment>
     )
 }

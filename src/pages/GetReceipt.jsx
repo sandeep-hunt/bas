@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
 import { Helmet } from 'react-helmet-async';
 import { Container, Form, Button, Row, Col, Spinner } from 'react-bootstrap';
 import axios from 'axios';
@@ -148,7 +146,6 @@ const GetReceipt = () => {
         <meta name="description" content={settings.site_description} />
         <meta name="keywords" content={settings.site_keywords}></meta>
       </Helmet>
-      <Header />
       <div className="donate-container">
         <Container fluid>
           {otpVerified ? (
@@ -244,7 +241,6 @@ const GetReceipt = () => {
           )}
         </Container>
       </div>
-      <Footer />
     </React.Fragment>
   );
 };

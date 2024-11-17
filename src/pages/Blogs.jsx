@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../components/Header/Header'
-import Footer from '../components/Footer/Footer'
 import { Container } from 'react-bootstrap'
 import BlogsList from '../components/Blogs/Blogs/BlogsList'
 import axios from 'axios'
@@ -31,11 +29,9 @@ const Blogs = () => {
           <meta name="description" content={settings.site_description} />
           <meta name="keywords" content={settings.site_keywords}></meta>
         </Helmet>
-            <Header />
             <Container fluid>
                 <BlogsList />
             </Container>
-            <Footer />
         </React.Fragment>
     )
 }

@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../components/Header/Header'
-import Footer from '../components/Footer/Footer'
 import Icon4 from '../assets/images/icons/pro_icon4.svg'
 import { Container } from 'react-bootstrap'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
@@ -36,7 +34,6 @@ const Jyotish = () => {
             <meta name="description" content={settings.site_description} />
             <meta name="keywords" content={settings.site_keywords}></meta>
         </Helmet>
-            <Header />
             <div className="projects-banner" style={{ backgroundImage: `url(${Pro_bg4})` }}>
                 <div className="projects-banner-inner">
                     <Breadcrumb>
@@ -77,7 +74,6 @@ const Jyotish = () => {
                     <p>Jyotish is not just a predictive tool—it is a spiritual compass, guiding individuals on their journey through life. At BHASA, Jyotish will be taught as both a practical science and a spiritual practice, empowering students to illuminate their own lives and the lives of others through the divine wisdom of the Vedas.</p>
                 </div>
             </Container>
-            <Footer />
         </React.Fragment>
     )
 }

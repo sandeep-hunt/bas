@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../components/Header/Header'
-import Footer from '../components/Footer/Footer'
 import { Card, Col, Container, Row, Button } from 'react-bootstrap'
 import Profile from '../assets/images/msic/profile.png'
 import { Link, useParams } from 'react-router-dom'
@@ -81,7 +79,6 @@ const SingleArticle = () => {
         <meta name="description" content={article.article_page_desc} />
         <meta name="keywords" content={article.article_page_keywords}></meta>
       </Helmet>
-      <Header />
       <Container fluid>
         <div className="single-post-container">
           <div className="single-post-head">
@@ -172,7 +169,6 @@ const SingleArticle = () => {
           </div>
         </div>
       </Container>
-      <Footer />
     </React.Fragment>
   )
 }

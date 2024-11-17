@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../components/Header/Header'
-import Footer from '../components/Footer/Footer'
 import Icon2 from '../assets/images/icons/pro_icon2.svg'
 import { Container } from 'react-bootstrap'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
@@ -36,7 +34,6 @@ const Samaveda_Gurukul = () => {
             <meta name="description" content={settings.site_description} />
             <meta name="keywords" content={settings.site_keywords}></meta>
         </Helmet>
-            <Header />
             <div className="projects-banner" style={{ backgroundImage: `url(${Pro_bg2})` }}>
                 <div className="projects-banner-inner">
                     <Breadcrumb>
@@ -68,7 +65,6 @@ const Samaveda_Gurukul = () => {
                     <p>The “Saamaveda Gurukula” offers a rare and invaluable opportunity for those who wish to immerse themselves in the ancient wisdom of the Vedas. Through rigorous training in the Kauthuma and Ranayaniya recensions, students will carry forward the sacred sounds of the Saamaveda, contributing to the preservation of this extraordinary tradition. By doing so, they will not only uphold the spiritual legacy of the Vedas but also become integral to the global network of Vedic rituals, ensuring that the divine connection between humanity and the gods remains unbroken.</p>
                 </div>
             </Container>
-            <Footer />
         </React.Fragment>
     )
 }

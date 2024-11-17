@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import Header from '../components/Header/Header'
 import HeroBanner from '../components/HeroBanner/HeroBanner'
 import AboutHome from '../components/Msic/AboutHome/AboutHome'
 import { Container } from 'react-bootstrap'
@@ -9,7 +8,6 @@ import GalleryHome from '../components/Msic/GalleryHome/GalleryHome'
 import BlogArtiHome from '../components/Msic/BlogArtiHome/BlogArtiHome'
 import TestiHome from '../components/Msic/TestiHome/TestiHome'
 import MsgBxHome from '../components/Msic/MsgBxHome/MsgBxHome'
-import Footer from '../components/Footer/Footer'
 import JoinHome from '../components/Msic/JoinHome/JoinHome'
 import VideoHome from '../components/Msic/VideoHome/VideoHome'
 import axios from 'axios'
@@ -40,7 +38,6 @@ const Homepage = () => {
       <meta name="description" content={settings.site_description} />
       <meta name="keywords" content={settings.site_keywords}></meta>
     </Helmet>
-      <Header />
       <Container fluid>
         <HeroBanner />
         <AboutHome />
@@ -55,7 +52,6 @@ const Homepage = () => {
       <Container fluid>
         <VideoHome />
       </Container>
-      <Footer />
     </React.Fragment>
   )
 }
