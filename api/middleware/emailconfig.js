@@ -90,5 +90,29 @@ async function sendReceiptOtp(to, subject, htmlContent) {
     return transporter.sendMail(mailOptions);
 }
 
+async function sendEmailDonationReminder(to, subject, htmlContent) {
+    const mailOptions = {
+        from: `"BAS DonataionReminder" <${process.env.EMAIL_USER}>`,
+        to: to,
+        subject: subject,
+        html: htmlContent,
+    };
+
+    // Send email
+    return transporter.sendMail(mailOptions);
+}
+
+async function sendEmailEventUpdated(to, subject, htmlContent) {
+    const mailOptions = {
+        from: `"BAS Event updated" <${process.env.EMAIL_USER}>`,
+        to: to,
+        subject: subject,
+        html: htmlContent,
+    };
+
+    // Send email
+    return transporter.sendMail(mailOptions);
+}
+
 // Export all functions
-module.exports = { loadTemplate, sendEmailEventBooking, sendEmailDonation ,sendEmailRegistration, sendReceiptOtp};
+module.exports = { loadTemplate, sendEmailEventBooking, sendEmailDonation ,sendEmailRegistration, sendReceiptOtp,sendEmailDonationReminder,sendEmailEventUpdated};
