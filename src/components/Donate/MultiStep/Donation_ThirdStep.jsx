@@ -81,41 +81,41 @@ const Donation_ThirdStep = ({ formData, setFormData, submitForm, prevStep, error
                       <Form.Group className='mt-1'>
                         <Form.Check
                           inline
-                          label="&#8377; 25"
+                          label="&#8377; 1001"
                           name="donation_amt"
-                          value="25"
+                          value="1001"
                           type="radio"
                           id="inline-radio-1"
-                          checked={selectedRadioAmt === '25'}
-                          onChange={() => handleRadioChange("25")}
+                          checked={selectedRadioAmt === '1001'}
+                          onChange={() => handleRadioChange("1001")}
                         />
                       </Form.Group>
                       <Form.Group className='mt-1'>
                         <Form.Check
                           inline
-                          label="&#8377; 50"
+                          label="&#8377; 1501"
                           name="donation_amt"
-                          value="50"
+                          value="1501"
                           type="radio"
                           id="inline-radio-2"
-                          checked={selectedRadioAmt === '50'}
-                          onChange={() => handleRadioChange("50")}
+                          checked={selectedRadioAmt === '1501'}
+                          onChange={() => handleRadioChange("1501")}
                         />
                       </Form.Group>
                       <Form.Group className='mt-1'>
                         <Form.Check
                           inline
-                          label="&#8377; 100"
+                          label="&#8377; 2001"
                           name="donation_amt"
-                          value="100"
+                          value="2001"
                           type="radio"
-                          checked={selectedRadioAmt === '100'}
-                          onChange={() => handleRadioChange("100")}
+                          checked={selectedRadioAmt === '2001'}
+                          onChange={() => handleRadioChange("2001")}
                         />
                         <Row>
                           <Col xs={10}>
                             <Form.Group className='mt-1'>
-                              <input className='form-control' type="text" name="donation_amt" value={donation_amt} onChange={handleChange} placeholder='Enter a custom donation amount' />
+                              <input className='form-control' type="text" name="donation_amt" value={donation_amt} onChange={handleChange} placeholder='Enter the amount you wish to pay' />
                             </Form.Group>
                             {errors.donation_amt && <small className="text-danger">{errors.donation_amt}</small>}
                           </Col>
@@ -124,6 +124,15 @@ const Donation_ThirdStep = ({ formData, setFormData, submitForm, prevStep, error
                     </div>
                     <label>Choose a donation frequency <span style={{ color: `red` }}>*</span></label>
                     <Form.Group className='form-group'>
+                      <Form.Check className='form-check-box'
+                        inline
+                        label="Yearly"
+                        name="donation_freq"
+                        value="2"
+                        type="radio"
+                        id="inline-freq-3"
+                        onChange={handleChange}
+                      />
                       <Form.Check className='form-check-box'
                         inline
                         label="Monthly"

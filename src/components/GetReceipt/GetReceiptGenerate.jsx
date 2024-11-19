@@ -64,8 +64,8 @@ const GetReceiptGenerate = ({ donationData }) => {
                         <div className="donation-receipt-card-header">
                             <img src={import.meta.env.VITE_BACKEND_API + settings.site_logo} alt="logo" />
                             <h4 className='text-main'>DONATION RECEIPT</h4>
-                            <h5 className='text-main'>THE FOUNDATION</h5>
                             <p className='donation-receipt-card-text'>6 Purushottam Apartment, 18 Shilavihar Colony,<br />Erandwane, Pune - 411 038 (Maharashtra)</p>
+                            <p className='donation-receipt-card-text'>FORM 12A: AAJCB3798EE20231<br/>FORM 80G: AAJCB3798EF20231</p>
                         </div>
                         <div className="donation-recipt-card-body">
                             <div className="donation-recept-card-inner dontaion-receipt-bdhead">

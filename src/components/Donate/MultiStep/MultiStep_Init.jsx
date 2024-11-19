@@ -69,8 +69,8 @@ const MultiStep_Init = () => {
             if (!formData.donation_type) {
                 newErrors.donation_type = 'Please select a donation type.';
             }
-            if (!formData.donation_amt || !donationAmtPattern.test(formData.donation_amt) || parseInt(formData.donation_amt) < 25) {
-                newErrors.donation_amt = 'Please enter a donation amount of at least ₹25.';
+            if (!formData.donation_amt || !donationAmtPattern.test(formData.donation_amt) || parseInt(formData.donation_amt) < 1001) {
+                newErrors.donation_amt = 'Please enter a donation amount of at least ₹1001.';
             }
             if (!formData.donation_freq) {
                 newErrors.donation_freq = 'Please select a donation frequency.';
