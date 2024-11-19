@@ -84,15 +84,18 @@ const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep, errors
                         </Form.Group>
                       </Col>
                     </Row>
-                    <Form.Group className='mt-4'>
+                    <Form.Group className='mb-3'>
                       <Form.Check
                         checked={isCheckboxChecked}
                         onChange={handleCheckboxChange}
                         required
-                        label="I am willing to receive regular BAS updates."
+                        label={
+                          <span className='form-checkbox-label'>
+                            I am willing to receive regular BAS updates.</span>
+                        }
                       />
                     </Form.Group>
-                    <Form.Group className='mt-4'>
+                    <Form.Group>
                       <Row>
                         <Col>
                           <div className="d-grid">
@@ -101,10 +104,10 @@ const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep, errors
                         </Col>
                         <Col>
                           <div className="d-grid">
-                            <Button 
-                              className='btn-main' 
-                              onClick={submitForm} 
-                              disabled={btnLoad || !state || !city || !address || !pincode || !isCheckboxChecked} 
+                            <Button
+                              className='btn-main'
+                              onClick={submitForm}
+                              disabled={btnLoad || !state || !city || !address || !pincode || !isCheckboxChecked}
                             >
                               {btnLoad ? <Spinner as="span" animation="border" size="sm" /> : 'Register'}
                             </Button>

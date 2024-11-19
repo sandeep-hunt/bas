@@ -92,7 +92,10 @@ const Donation_SecondStep = ({ formData, setFormData, nextStep, prevStep, errors
                         checked={isCheckboxChecked}
                         onChange={handleCheckboxChange}
                         required
-                        label="I am willing to receive regular BAS updates."
+                        label={
+                          <span className='form-checkbox-label'>
+                            I am willing to receive regular BAS updates.</span>
+                        }
                       />
                     </Form.Group>
                     <Form.Group>
