@@ -5,6 +5,7 @@ import { Col, Container, Row, Toast, ToastContainer } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import AboutImg from '../assets/images/msic/aboutImg.png'
+import AboutImg1 from '../assets/images/msic/aboutImg1.png'
 import Team1 from '../assets/images/team/1.png'
 import Team2 from '../assets/images/team/2.png'
 import Team3 from '../assets/images/team/3.png'
@@ -234,13 +235,20 @@ const AboutUs = ({setsettings}) => {
                                     <h2 className='text-main tw-600'>Our Mission</h2>
                                     <p className='text-main paragraph1'><span className='camelCase'>T</span>o be a global beacon of Bhartiya wisdom and cultural heritage, inspiring individuals and communities worldwide to embrace, respect, and preserve the ancient knowledge and traditions of our Rishi-s, fostering a harmonious and sustainable world aligned with their timeless worldview.</p>
                                 </div>
+                            </Col>
+                            <Col sm={12} lg={5} className='d-flex justify-content-end'>
+                                <img src={AboutImg} className='img-fluid' alt="" />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={12} lg={5}>
+                            <img src={AboutImg1} className='img-fluid' alt="" />
+                            </Col>
+                            <Col sm={12} lg={7} className='d-flex justify-content-end'>
                                 <div className="aumvbtm">
                                     <h2 className='text-main tw-600'>Our Vision</h2>
                                     <p className='text-main paragraph1'><span className='camelCase'>O</span>ur mission is to promote, preserve, and share the profound wisdom of Bhartiya Sanskriti, as imparted by the Rishi-s, across generations and borders. Through educational initiatives, research, cultural events, and publications, we aim to rekindle a connection with Bhartiya traditions—spanning literature, music, shastras, meditation, and beyond—creating a bridge between ancient teachings and modern life. We are dedicated to fostering an understanding and appreciation of these practices globally and supporting the spiritual and intellectual growth of all those who seek to learn.</p>
                                 </div>
-                            </Col>
-                            <Col sm={12} lg={5} className='d-flex justify-content-end'>
-                                <img src={AboutImg} className='img-fluid' alt="" />
                             </Col>
                         </Row>
                     </div>
