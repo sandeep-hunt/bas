@@ -48,6 +48,21 @@ const Donation = () => {
         };
     });
     
+    const  donerTypeHtmlCellRender = (row)=>{
+
+        if(parseInt(row.donation_freq) === 1){
+            return <div> Monthly</div>
+
+        }
+        if(parseInt(row.donation_freq) === 2){
+            return <div> Yearly</div>
+
+        }
+        if(parseInt(row.donation_freq) === 0){
+            return <div>One Time</div>
+        }
+
+    }
 
    
     const columns = [
@@ -77,7 +92,8 @@ const Donation = () => {
         },
         {
             name: 'Doner Type',
-            selector: row => row.donation_freq === 1 ? "Monthly" : "One Time",
+            selector: row => row.donation_freq,
+            cell:donerTypeHtmlCellRender,
             sortable: true,
             wrap: true,
         },
