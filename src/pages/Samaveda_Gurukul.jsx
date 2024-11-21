@@ -29,7 +29,7 @@ const Samaveda_Gurukul = ({ settings }) => {
                     </Breadcrumb>
                     <h2 className='text-white'>Samaveda Gurukul</h2>
                     <img src={Icon2} className='img-fluid mb-2' alt="" />
-                    <p className='text-white paragraph1'>Teachers from traditional gurukulas will impart training in Saama Gaan of all exacting Shakas. Motivation for research & publication will also be given.</p>
+                    <p className='text-white paragraph2'>Teachers from traditional gurukulas will impart training in Saama Gaan of all exacting Shakas. Motivation for research & publication will also be given.</p>
                 </div>
             </div>
             <Container fluid>

@@ -218,25 +218,25 @@ const AboutUs = ({setsettings}) => {
                         <Breadcrumb.Item active><img src={EditIcon} className='img-fluid' alt="" />About Us</Breadcrumb.Item>
                     </Breadcrumb>
                     <h2 className='text-white'>About Us</h2>
-                    <p className='text-white paragraph1'>We are dedicated to preserving and promoting the ancient wisdom of Vedic traditions through education, music, and culture. Our mission is to create a platform for learning, growth, and the revival of timeless knowledge systems.</p>
+                    <p className='text-white paragraph2'>We are dedicated to preserving and promoting the ancient wisdom of Vedic traditions through education, music, and culture. Our mission is to create a platform for learning, growth, and the revival of timeless knowledge systems.</p>
                 </div>
             </div>
             <Container fluid>
                 <div className="about-container">
                     <div className="autp">
-                        <h2 className='text-main tw-600'>About Us</h2>
-                        <p className='text-main paragraph1'>Bhārata Āṛṣeya Saṅsthān is a dedicated initiative to celebrate, share, and sustain the essence of Bhartiya Sanskriti worldwide. Inspired by the vision of our ancient Rishi-s, we seek to revive and promote the timeless wisdom embedded in Bhartiya traditions, from Vedic literature to spiritual practices, shlokas, music, and holistic wellness. Through our extensive programs—such as the Dhrupad Gurukul, Samaveda Gurukul, and Jyotisha Gurukul—we offer a range of cultural and educational experiences that bridge ancient teachings with contemporary understanding. Our commitment to research, publications, and global events serves as a platform to deepen awareness and respect for Bhartiya heritage, making these invaluable teachings accessible to communities across the world. Join us in our journey to honor and share the transformative power of Bhartiya Sanskriti.</p>
+                        <h2 className='text-main tw-600 text-center'>About Us</h2>
+                        <p className='text-main paragraph1'><span className='camelCase'>B</span>hārata Āṛṣeya Saṅsthān is a dedicated initiative to celebrate, share, and sustain the essence of Bhartiya Sanskriti worldwide. Inspired by the vision of our ancient Rishi-s, we seek to revive and promote the timeless wisdom embedded in Bhartiya traditions, from Vedic literature to spiritual practices, shlokas, music, and holistic wellness. Through our extensive programs—such as the Dhrupad Gurukul, Samaveda Gurukul, and Jyotisha Gurukul—we offer a range of cultural and educational experiences that bridge ancient teachings with contemporary understanding. Our commitment to research, publications, and global events serves as a platform to deepen awareness and respect for Bhartiya heritage, making these invaluable teachings accessible to communities across the world. Join us in our journey to honor and share the transformative power of Bhartiya Sanskriti.</p>
                     </div>
                     <div className="aumv">
                         <Row>
                             <Col sm={12} lg={7}>
                                 <div className="aumvtp">
                                     <h2 className='text-main tw-600'>Our Mission</h2>
-                                    <p className='text-main paragraph1'>To be a global beacon of Bhartiya wisdom and cultural heritage, inspiring individuals and communities worldwide to embrace, respect, and preserve the ancient knowledge and traditions of our Rishi-s, fostering a harmonious and sustainable world aligned with their timeless worldview.</p>
+                                    <p className='text-main paragraph1'><span className='camelCase'>T</span>o be a global beacon of Bhartiya wisdom and cultural heritage, inspiring individuals and communities worldwide to embrace, respect, and preserve the ancient knowledge and traditions of our Rishi-s, fostering a harmonious and sustainable world aligned with their timeless worldview.</p>
                                 </div>
                                 <div className="aumvbtm">
                                     <h2 className='text-main tw-600'>Our Vision</h2>
-                                    <p className='text-main paragraph1'>Our mission is to promote, preserve, and share the profound wisdom of Bhartiya Sanskriti, as imparted by the Rishi-s, across generations and borders. Through educational initiatives, research, cultural events, and publications, we aim to rekindle a connection with Bhartiya traditions—spanning literature, music, shastras, meditation, and beyond—creating a bridge between ancient teachings and modern life. We are dedicated to fostering an understanding and appreciation of these practices globally and supporting the spiritual and intellectual growth of all those who seek to learn.</p>
+                                    <p className='text-main paragraph1'><span className='camelCase'>O</span>ur mission is to promote, preserve, and share the profound wisdom of Bhartiya Sanskriti, as imparted by the Rishi-s, across generations and borders. Through educational initiatives, research, cultural events, and publications, we aim to rekindle a connection with Bhartiya traditions—spanning literature, music, shastras, meditation, and beyond—creating a bridge between ancient teachings and modern life. We are dedicated to fostering an understanding and appreciation of these practices globally and supporting the spiritual and intellectual growth of all those who seek to learn.</p>
                                 </div>
                             </Col>
                             <Col sm={12} lg={5} className='d-flex justify-content-end'>
@@ -310,8 +310,8 @@ const AboutUs = ({setsettings}) => {
                                                                 <img src={item.image} className='img-fluid' alt="" />
                                                             </div>
                                                             <div className="auabcnt-itmrt">
-                                                                <h4 className=' text-main m-0'>{item.name}</h4>
-                                                                <p className='text-main tw-600'>{item.designation}</p>
+                                                                <h4 className='m-0'>{item.name}</h4>
+                                                                <p className='t-600'>{item.designation}</p>
                                                             </div>
                                                         </Col>
                                                         <Col sm={12} lg={8}>

@@ -29,7 +29,7 @@ const Jyotish = ({ settings }) => {
                     </Breadcrumb>
                     <h2 className='text-white'>Jyotish</h2>
                     <img src={Icon4} className='img-fluid mb-2' alt="" />
-                    <p className='text-white paragraph1'>Astronomical Jyotish & phal jyotish as propounded by various rishis will be taught. Palmistry, prashna jyotish, nadi jyotish etc. shall also be taught.</p>
+                    <p className='text-white paragraph2'>Astronomical Jyotish & phal jyotish as propounded by various rishis will be taught. Palmistry, prashna jyotish, nadi jyotish etc. shall also be taught.</p>
                 </div>
             </div>
             <Container fluid>

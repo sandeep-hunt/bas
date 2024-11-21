@@ -29,7 +29,7 @@ const Girvaan_Bhasa = ({ settings }) => {
                     </Breadcrumb>
                     <h2 className='text-white'>Girvaan Bhasa</h2>
                     <img src={Icon3} className='img-fluid mb-2' alt="" />
-                    <p className='text-white paragraph1'>Girvaan bhasa in its Kristine form for conversation shall be imparted.</p>
+                    <p className='text-white paragraph2'>Girvaan bhasa in its Kristine form for conversation shall be imparted.</p>
                 </div>
             </div>
             <Container fluid>
