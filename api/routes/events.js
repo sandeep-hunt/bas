@@ -4,6 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const db =require('../middleware/connection');
 const { verify } = require('crypto');
+const { sendEmailEventUpdated } = require('../middleware/emailconfig');
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
@@ -56,6 +57,7 @@ router.get('/', (req, res) => {
         if (err) {
           return res.status(500).json({ error: err.message });
         }
+        console.log("results",results)
   
         // Build the response object
         const response = {
@@ -121,43 +123,74 @@ router.post('/add', upload.fields([{ name: 'event_image' }, { name: 'event_thumb
 
 
 //update blog
-router.put('/update/:id', upload.fields([{ name: 'event_image' }, { name: 'event_thumbnail' }]), (req, res) => {
-    const eventId = req.params.id;
-    const { event_name, event_slug, event_price, event_date, event_time, event_location, event_status } = req.body;
-    const event_image = req.files['event_image'] ? `uploads/events/${req.files['event_image'][0].filename}` : null;
-    const event_thumbnail = req.files['event_thumbnail'] ? `uploads/events/${req.files['event_thumbnail'][0].filename}` : null;
+router.put('/update/:id', upload.fields([{ name: 'event_image' }, { name: 'event_thumbnail' }]), async (req, res) => {
+  const eventId = req.params.id;
+  const { event_name, event_slug, event_price, event_date, event_time, event_location, event_status } = req.body;
+  const event_image = req.files['event_image'] ? `uploads/events/${req.files['event_image'][0].filename}` : null;
+  const event_thumbnail = req.files['event_thumbnail'] ? `uploads/events/${req.files['event_thumbnail'][0].filename}` : null;
 
-    // If a new image is uploaded, update it; otherwise, keep the old one
-    let sql = `UPDATE events SET event_name = ?, event_slug = ?, event_price = ?, event_date = ?, event_time = ?, event_location = ?, event_status = ?`;
+  let sql = `UPDATE events SET event_name = ?, event_slug = ?, event_price = ?, event_date = ?, event_time = ?, event_location = ?, event_status = ?`;
+  const params = [event_name, event_slug, event_price, event_date, event_time, event_location, event_status];
 
-    const params = [event_name, event_slug, event_price, event_date, event_time, event_location, event_status];
+  if (event_image) {
+    sql += `, event_image = ?`;
+    params.push(event_image);
+  }
+  if (event_thumbnail) {
+    sql += `, event_thumbnail = ?`;
+    params.push(event_thumbnail);
+  }
 
-    if (event_image) {
-        sql += `, event_image = ?`;
-        params.push(event_image);
+  sql += ` WHERE event_id = ?`;
+  params.push(eventId);
+
+  try {
+    // Fetch the current event data for comparison
+    const [currentEvent] = await db.promise().query(`SELECT event_date, event_time, event_location FROM events WHERE event_id = ?`, [eventId]);
+
+    if (!currentEvent.length) {
+      return res.status(404).json({ message: 'Event not found' });
     }
-    if (event_thumbnail) {
-        sql += `, event_thumbnail = ?`;
-        params.push(event_thumbnail);
+
+    const existingEvent = currentEvent[0];
+
+    // Check if any of the relevant fields have changed
+    const shouldSendEmail = 
+      existingEvent.event_date !== event_date || 
+      existingEvent.event_time !== event_time || 
+      existingEvent.event_location !== event_location;
+
+    // Execute the event update with promise support
+    const [result] = await db.promise().query(sql, params);
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: 'Event not found' });
     }
 
-    // Complete the query
-    sql += ` WHERE event_id = ?`;
-    params.push(eventId);
+    if (shouldSendEmail) {
+      // Fetch all email addresses for users who booked this event
+      const fetchEmailsSql = `SELECT event_booking_email FROM event_booking WHERE event_id = ? AND payment_status = 'paid'`;
+      const [emailResults] = await db.promise().query(fetchEmailsSql, [eventId]);
 
-    // Execute the query
-    db.query(sql, params, (err, result) => {
-        if (err) {
-            console.error('Error updating event:', err);
-            return res.status(500).json({ error: 'Failed to update event', details: err.message });
-        }
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: 'Event not found' });
-        }
-        res.json({ message: 'Event updated successfully' });
-    });
+      const emails = emailResults.map(row => row.event_booking_email);
+      if (emails.length > 0) {
+        await sendEmailEventUpdated(
+          emails.join(', '),
+          `Update: Event "${event_name}"`,
+          `Dear participant,\n\nThe event "${event_name}" has been updated. Please check the event details for the latest information.\n\nThank you.`
+        );
+      }
+    }
 
-})
+    res.json({ message: 'Event updated successfully', notifications: shouldSendEmail ? 'sent' : 'not needed' });
+    
+  } catch (err) {
+    console.error('Error processing request:', err);
+    res.status(500).json({ error: 'Failed to process request', details: err.message });
+  }
+});
+
+
 
 //delete blog
 router.delete('/delete/:id', (req, res) => {
