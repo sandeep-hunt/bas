@@ -248,6 +248,7 @@ const AboutUs = ({setsettings}) => {
                                 <div className="aumvbtm">
                                     <h2 className='text-main tw-600'>Our Vision</h2>
                                     <p className='text-main paragraph1'><span className='camelCase'>O</span>ur mission is to promote, preserve, and share the profound wisdom of Bhartiya Sanskriti, as imparted by the Rishi-s, across generations and borders. Through educational initiatives, research, cultural events, and publications, we aim to rekindle a connection with Bhartiya traditions—spanning literature, music, shastras, meditation, and beyond—creating a bridge between ancient teachings and modern life. We are dedicated to fostering an understanding and appreciation of these practices globally and supporting the spiritual and intellectual growth of all those who seek to learn.</p>
+                                    {/* <p>Our mission is to promote and share the wisdom of Bhartiya Sanskriti, as taught by the Rishi-s, across generations and borders. Through education, research, cultural events, and publications, we aim to reconnect people with Bhartiya traditions—spanning literature, music, shastras, and meditation—bridging ancient teachings with modern life. We strive to foster global appreciation of these practices while supporting spiritual and intellectual growth.</p> */}
                                 </div>
                             </Col>
                         </Row>

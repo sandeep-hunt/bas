@@ -7,7 +7,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { Spinner } from 'react-bootstrap'; // Import Spinner for loading indicator
 import DonateImg1 from '../../../assets/images/msic/donate_bg1.png';
 
-const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep, errors, btnLoad }) => {
+const JoinUsForm_Second = ({ formData, setFormData, nextStep, prevStep, errors, btnLoad }) => {
   const { state, city, address, pincode } = formData;
   const [isCheckboxChecked, setCheckboxChecked] = useState(false);
 
@@ -43,6 +43,10 @@ const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep, errors
                       <div className='donation-right-cont active'>
                         <div className='donation-right-step active'>2</div>
                         <div className="donation-right-text active">CONTACT DETAIL</div>
+                      </div>
+                      <div className='donation-right-cont'>
+                        <div className='donation-right-step'>3</div>
+                        <div className="donation-right-text">DOCUMENTS</div>
                       </div>
                     </div>
                   </div>
@@ -106,11 +110,9 @@ const JoinUsForm_Second = ({ formData, setFormData, submitForm, prevStep, errors
                           <div className="d-grid">
                             <Button
                               className='btn-main'
-                              onClick={submitForm}
+                              onClick={nextStep}
                               disabled={btnLoad || !state || !city || !address || !pincode || !isCheckboxChecked}
-                            >
-                              {btnLoad ? <Spinner as="span" animation="border" size="sm" /> : 'Register'}
-                            </Button>
+                            >Next</Button>
                           </div>
                         </Col>
                       </Row>

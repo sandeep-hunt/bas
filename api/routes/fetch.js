@@ -4,6 +4,29 @@ const Razorpay = require('razorpay');
 const crypto = require('crypto');
 const db = require('../middleware/connection');
 const { sendEmailEventBooking, sendEmailDonation, loadTemplate, sendReceiptOtp } = require('../middleware/emailconfig');
+const multer = require('multer');
+
+// Configure Multer for file uploads
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './uploads/members/'); // Directory for file uploads
+    },
+    filename: (req, file, cb) => {
+        cb(null, `${Date.now()}-${file.originalname}`);
+    },
+});
+
+const upload = multer({
+    storage,
+    fileFilter: (req, file, cb) => {
+        const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png'];
+        if (allowedTypes.includes(file.mimetype)) {
+            cb(null, true);
+        } else {
+            cb(new Error('Invalid file type. Only PDF, JPEG, and PNG are allowed.'));
+        }
+    },
+});
 
 // Get Events
 router.get('/events', (req, res) => {
@@ -194,18 +217,62 @@ router.post('/book-event/verify-payment', async (req, res) => {
 });
 
 // Handle join us
-router.post('/register', (req, res) => {
-    const { name, mobile, email, age, gender, member_type, state, city, address, pincode } = req.body;
-    const query = `INSERT INTO members (name, mobile, email, age, gender, member_type, state, city, address, pincode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-    db.query(query, [name, mobile, email, age, gender, member_type, state, city, address, pincode], (err, result) => {
-        if (err) {
-            console.error('Error inserting data:', err);
-            res.status(500).json({ message: 'Error registering user' });
-        } else {
-            res.status(201).json({ message: 'User registered successfully!' });
-        }
-    });
-});
+router.post(
+    '/register',
+    upload.fields([
+        { name: 'aadhaarFile', maxCount: 1 },
+        { name: 'panFile', maxCount: 1 },
+        { name: 'resumeFile', maxCount: 1 }, // Changed from photoFile to resumeFile
+    ]),
+    (req, res) => {
+        const {
+            name,
+            mobile,
+            email,
+            age,
+            gender,
+            member_type,
+            state,
+            city,
+            address,
+            pincode,
+        } = req.body;
+
+        const aadhaarFilePath = req.files.aadhaarFile ? req.files.aadhaarFile[0].path : null;
+        const panFilePath = req.files.panFile ? req.files.panFile[0].path : null;
+        const resumeFilePath = req.files.resumeFile ? req.files.resumeFile[0].path : null; // Added resumeFilePath
+
+        const query = `
+            INSERT INTO members 
+            (name, mobile, email, age, gender, member_type, state, city, address, pincode, aadhaarFilePath, panFilePath, resumeFilePath) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `;
+        const values = [
+            name,
+            mobile,
+            email,
+            age,
+            gender,
+            member_type,
+            state,
+            city,
+            address,
+            pincode,
+            aadhaarFilePath,
+            panFilePath,
+            resumeFilePath, // Added resumeFilePath
+        ];
+
+        db.query(query, values, (err, result) => {
+            if (err) {
+                console.error('Error inserting data:', err);
+                res.status(500).json({ message: 'Error registering user' });
+            } else {
+                res.status(201).json({ message: 'User registered successfully!', data: result });
+            }
+        });
+    }
+);
 
 //Handle message
 router.post('/messageSubmit', (req, res) => {

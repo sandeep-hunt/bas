@@ -43,6 +43,10 @@ const JoinUsForm_First = ({ formData, setFormData, nextStep, errors }) => {
                         <div className='donation-right-step'>2</div>
                         <div className="donation-right-text">CONTACT DETAIL</div>
                       </div>
+                      <div className='donation-right-cont'>
+                        <div className='donation-right-step'>3</div>
+                        <div className="donation-right-text">DOCUMENTS</div>
+                      </div>
                     </div>
                   </div>
                   <div className="donation-right-body">
