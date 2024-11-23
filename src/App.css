@@ -789,6 +789,12 @@ textarea.form-control {
     margin-bottom: 24px;
 }
 
+.about-container .aumv {
+    display: flex;
+    flex-direction: column;
+    gap: 72px;
+}
+
 .about-container .autp p,.about-container .aumv .aumvtp p,
 .about-container .aumv .aumvbtm p {
     font-weight: normal !important;
