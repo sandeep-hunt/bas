@@ -27,9 +27,9 @@ const Girvaan_Bhasa = ({ settings }) => {
                         <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}><img src={HomeIcon} className='img-fluid' alt="" />Home</Breadcrumb.Item>
                         <Breadcrumb.Item active><img src={EditIcon} className='img-fluid' alt="" />Girvaan Bhasa</Breadcrumb.Item>
                     </Breadcrumb>
-                    <h2 className='text-white'>Girvaan Bhasa</h2>
+                    <h2 className='text-white'>Gīrvāṇ Bhasa</h2>
                     <img src={Icon3} className='img-fluid mb-2' alt="" />
-                    <p className='text-white paragraph2'>Girvaan bhasa in its Kristine form for conversation shall be imparted.</p>
+                    <p className='text-white paragraph2'>Gīrvāṇ Bhasa in its Kristine form for conversation shall be imparted. </p>
                 </div>
             </div>
             <Container fluid>

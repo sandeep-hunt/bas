@@ -16,7 +16,7 @@ const EventsBanner = () => {
             <Breadcrumb.Item active><img src={EditIcon} className='img-fluid' alt="" />Events</Breadcrumb.Item>
           </Breadcrumb>
           <h2 className='text-white'>Events</h2>
-          <p className='paragraph2 text-white'>Explore our Upcoming Events to stay updated on our latest workshops, performances, and cultural gatherings. Dive into the Previous Events archive to relive the memorable moments and achievements of past celebrations.</p>
+          <p className='paragraph2 text-white'>Explore our Upcoming Events to stay updated on our latest workshops, performances, and Saṁskriti gatherings. Dive into the Previous Events archive to relive the memorable moments and achievements of past celebrations.</p>
         </div>
       </div>
     </React.Fragment>

@@ -27,9 +27,9 @@ const Samaveda_Gurukul = ({ settings }) => {
                         <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}><img src={HomeIcon} className='img-fluid' alt="" />Home</Breadcrumb.Item>
                         <Breadcrumb.Item active><img src={EditIcon} className='img-fluid' alt="" />Samaveda Gurukul</Breadcrumb.Item>
                     </Breadcrumb>
-                    <h2 className='text-white'>Samaveda Gurukul</h2>
+                    <h2 className='text-white'>Sāmavéda Gurukul</h2>
                     <img src={Icon2} className='img-fluid mb-2' alt="" />
-                    <p className='text-white paragraph2'>Teachers from traditional gurukulas will impart training in Saama Gaan of all exacting Shakas. Motivation for research & publication will also be given.</p>
+                    <p className='text-white paragraph2'>Teachers from traditional gurukulas will impart training in Sāma Gaan of all exacting Sikṣā. Motivation for research & publication will also be given.</p>
                 </div>
             </div>
             <Container fluid>

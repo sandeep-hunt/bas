@@ -795,6 +795,11 @@ textarea.form-control {
     gap: 72px;
 }
 
+.about-container .aumv .row {
+    --bs-gutter-x: 60px;
+    --bs-gutter-y: 40px;
+}
+
 .about-container .autp p,.about-container .aumv .aumvtp p,
 .about-container .aumv .aumvbtm p {
     font-weight: normal !important;

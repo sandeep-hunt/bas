@@ -512,6 +512,12 @@
 
     .about-container .aumv {
         margin: 30px 0;
+        gap: 40px;
+    }
+
+    .about-container .aumv .row {
+        --bs-gutter-x: 0px;
+        --bs-gutter-y: 40px;
     }
 
     .about-container .auot {

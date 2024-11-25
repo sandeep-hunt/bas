@@ -9,7 +9,7 @@ const data = [
   {
     image: Testi1,
     name: 'Late Guru Sayeeduddin Dagar',
-    description: 'Late Guru Sayeeduddin Dagar remarked, "He is Dagar" after a demonstration and performance by Dr. Suvratadev Sharmana Vandopadhyay at Garware College, Pune Hall in 2012. This high praise reflects the depth of his artistry and connection to the Dagar tradition of Dhrupad.',
+    description: 'Late Guru Sayeeduddin Dagar remarked, "He is Ḍāgar" after a demonstration and performance by Dr. Suvratadev Sharmana Vandopadhyay at Garware College, Pune Hall in 2012. This high praise reflects the depth of his artistry and connection to the Ḍāgar tradition of Dhrupad.',
   },
   {
     image: Testi2,

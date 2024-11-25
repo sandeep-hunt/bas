@@ -13,8 +13,8 @@ const HeroBanner = () => {
         <Row>
           <Col sm={12} lg={6}>
             <div className="herobanner-inner">
-              <h1 className="text-main">Celebrating our Rishi-s’ Wisdom & Shastra-s</h1>
-              <p className='text-main paragraph1'>The fountainheads of Bhartiya sanskriti are the Rishi-s’. The Bhartiya worldview is incomplete without reference to them. All teaching learning processes & contents must be primarily based on their wisdom.</p>
+              <h1 className="text-main">Celebrating our Ṛṣī Wisdom & Shastra-s</h1>
+              <p className='text-main paragraph1'>The fountainheads of Bhāratīya sanskriti are the Rishi-s’. The Bhāratīya worldview is incomplete without reference to them. All teaching learning processes & contents must be primarily based on their wisdom.</p>
               <div>
                 <Link to="/about-us" className="btn-link">Learn More&nbsp;&nbsp;<FontAwesomeIcon size='sm' icon={faArrowRight} /></Link>
               </div>

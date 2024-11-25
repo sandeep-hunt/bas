@@ -27,9 +27,9 @@ const Jyotish = ({ settings }) => {
                         <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}><img src={HomeIcon} className='img-fluid' alt="" />Home</Breadcrumb.Item>
                         <Breadcrumb.Item active><img src={EditIcon} className='img-fluid' alt="" />Jyotish</Breadcrumb.Item>
                     </Breadcrumb>
-                    <h2 className='text-white'>Jyotish</h2>
+                    <h2 className='text-white'>Jyotiśa Gurukul</h2>
                     <img src={Icon4} className='img-fluid mb-2' alt="" />
-                    <p className='text-white paragraph2'>Astronomical Jyotish & phal jyotish as propounded by various rishis will be taught. Palmistry, prashna jyotish, nadi jyotish etc. shall also be taught.</p>
+                    <p className='text-white paragraph2'>Astronomical Jyotish & phal jyotish as propounded by various rishis will be taught. Palmistry, prashna Jyotiśa, nadi Jyotiśa etc. shall also be taught.</p>
                 </div>
             </div>
             <Container fluid>

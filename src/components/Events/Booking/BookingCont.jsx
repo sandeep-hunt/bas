@@ -425,6 +425,7 @@ const BookingCont = ({setsettings}) => {
                     <img src={success} className='img-fluid' alt="" />
                     <h4>Thank You!</h4>
                     <h5>Payment Successful</h5>
+                    <span style={{color: `#959595`}}>Check your email for a receipt.</span>
                     <Link to="/" className="btn-link">Back To Home</Link>
                   </div>
                 </Card.Body>

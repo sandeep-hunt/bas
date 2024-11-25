@@ -456,6 +456,7 @@
 
     .about-container .aumv {
         margin: 40px 0;
+        gap: 40px;
     }
 
     .about-container .auot {

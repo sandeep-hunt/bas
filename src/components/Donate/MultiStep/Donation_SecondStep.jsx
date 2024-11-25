@@ -94,7 +94,7 @@ const Donation_SecondStep = ({ formData, setFormData, nextStep, prevStep, errors
                         required
                         label={
                           <span className='form-checkbox-label'>
-                            I am willing to receive regular BAS updates.</span>
+                            I do hereby declare that, the contributions are from my personal funds and voluntary by nature. I also agree to the policy that no refunds for the cancellation of the donated amount will be entertained.</span>
                         }
                       />
                     </Form.Group>

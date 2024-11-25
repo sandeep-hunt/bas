@@ -25,16 +25,6 @@ const RecentBlogs = () => {
     fetchBlogs(); // Call the fetch function
   }, [limit]);
 
-  const getDayWithSuffix = (day) => {
-    if (day > 3 && day < 21) return `${day}th`; // Special case for 11th to 13th
-    switch (day % 10) {
-      case 1: return `${day}st`;
-      case 2: return `${day}nd`;
-      case 3: return `${day}rd`;
-      default: return `${day}th`;
-    }
-  };
-
   return (
     <React.Fragment>
       <div className="posts-container">
@@ -55,8 +45,8 @@ const RecentBlogs = () => {
                         <div className="posts-head-inner-text">
                           <h6 className='text-main mb-0 text-bold'>{item.full_name}</h6>
                           <span className='subHdng'>
-                            {getDayWithSuffix(new Date(item.created_at).getDate())}&nbsp;
-                            {new Date(item.created_at).toLocaleString('default', { month: 'long' })}&nbsp;
+                            {new Date(item.created_at).toLocaleString('default', { month: 'short' })}&nbsp;
+                            {new Date(item.created_at).getDate()},&nbsp;
                             {new Date(item.created_at).getFullYear()}
                           </span>
                         </div>
