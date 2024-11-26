@@ -70,7 +70,11 @@ const Donation_ThirdStep = ({ formData, setFormData, submitForm, prevStep, error
                           <label>Choose a donation type <span style={{ color: `red` }}>*</span></label>
                           <Form.Select name="donation_type" onChange={handleChange}>
                             <option value=''>Select donation type</option>
-                            <option value="male">Cost of education</option>
+                            <option value="Dhrupad Gurukul">Dhrupad Gurukul</option>
+                            <option value="Sāmavéda Gurukul">Sāmavéda Gurukul</option>
+                            <option value="Gīrvāṇ Bhāṣa">Gīrvāṇ Bhāṣa</option>
+                            <option value="Jyotiśa Gurukul">Jyotiśa Gurukul</option>
+                            <option value="Future Projects">Future Projects</option>
                           </Form.Select>
                           {errors.donation_type && <small className="text-danger">{errors.donation_type}</small>}
                         </Form.Group>
