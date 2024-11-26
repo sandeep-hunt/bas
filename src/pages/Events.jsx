@@ -12,7 +12,7 @@ const Events = ({ settings }) => {
   return (
     <React.Fragment>
       <Helmet>
-        <title>{`${settings?.site_title || "Bharata Arseya Samsthan"} | Events`}</title>
+        <title>{`${settings?.site_title || "Loading..."} | Events`}</title>
         <meta name="description" content={settings.site_description} />
         <meta name="keywords" content={settings.site_keywords}></meta>
       </Helmet>

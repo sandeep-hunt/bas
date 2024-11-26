@@ -134,7 +134,7 @@ const Gallery = ({ settings }) => {
     return (
         <React.Fragment>
             <Helmet>
-                <title>{`${settings?.site_title || "Bharata Arseya Samsthan"} | Gallery`}</title>
+                <title>{`${settings?.site_title || "Loading..."} | Gallery`}</title>
                 <meta name="description" content={settings.site_description} />
                 <meta name="keywords" content={settings.site_keywords}></meta>
             </Helmet>

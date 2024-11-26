@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import { Spinner } from 'react-bootstrap'; // Import Spinner for loading indicator
 import PhoneInput from 'react-phone-input-2';
 import DonateImg1 from '../../../assets/images/msic/donate_bg1.png'
 
-const JoinUsForm_First = ({ formData, setFormData, nextStep, errors }) => {
+const JoinUsForm_First = ({ formData, setFormData, nextStep, errors, btnLoad }) => {
   const { name, mobile, email, age, gender, member_type } = formData;
 
   const [isCheckboxChecked, setCheckboxChecked] = useState(false);
@@ -145,11 +146,13 @@ const JoinUsForm_First = ({ formData, setFormData, nextStep, errors }) => {
                         }
                       />
                     </Form.Group>
+                    {errors.emailCheck && <small className="text-danger">{errors.emailCheck}</small>}
                     <Form.Group className='mt-3'>
                       <Row>
                         <Col>
                           <div className="d-grid">
-                            <Button className='btn-main' onClick={nextStep} disabled={!name || !mobile || !email || !age || !gender || !member_type || !isCheckboxChecked} >Next</Button>
+                            <Button className='btn-main' onClick={nextStep} disabled={btnLoad || !name || !mobile || !email || !age || !gender || !member_type || !isCheckboxChecked} >
+                              {btnLoad ? <Spinner as="span" animation="border" size="sm" /> : 'Next'}</Button>
                           </div>
                         </Col>
                       </Row>

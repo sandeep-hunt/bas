@@ -92,6 +92,7 @@ const JoinUsForm_init = () => {
 
     const nextStep = async () => {
         const fieldErrors = validateFields();
+        setLoading(true);
         if (Object.keys(fieldErrors).length === 0) {
             if (step === 1) {
                 try {
@@ -100,19 +101,24 @@ const JoinUsForm_init = () => {
                         { email: formData.email }
                     );
                     if (response.data.exists) {
-                        setErrors({ email: 'This email is already registered.' });
+                        setErrors({ emailCheck: 'This email is already registered.' });
+                        setLoading(false);
                     } else {
                         setStep((prevStep) => prevStep + 1);
+                        setLoading(false);
                         setErrors({});
                     }
                 } catch (error) {
+                    setLoading(false);
                     console.error('Error:', error);
                 }
             } else {
+                setLoading(false);
                 setStep((prevStep) => prevStep + 1);
                 setErrors({});
             }
         } else {
+            setLoading(false);
             setErrors(fieldErrors);
         }
     };
@@ -154,12 +160,12 @@ const JoinUsForm_init = () => {
 
     switch (step) {
         case 1:
-            return <JoinUsForm_First formData={formData} setFormData={setFormData} nextStep={nextStep} errors={errors} />;
+            return <JoinUsForm_First formData={formData} setFormData={setFormData} nextStep={nextStep} errors={errors} btnLoad={loading} />;
         case 2:
             return <JoinUsForm_Second formData={formData} setFormData={setFormData} nextStep={nextStep} prevStep={prevStep} errors={errors} />;
         case 3:
             return (
-                <JoinUsForm_Third formData={formData} setFormData={setFormData} submitForm={submitForm} prevStep={prevStep} errors={errors} btnLoad={loading}/>
+                <JoinUsForm_Third formData={formData} setFormData={setFormData} submitForm={submitForm} prevStep={prevStep} errors={errors} btnLoad={loading} />
             );
         case 4:
             return <JoinUsForm_success formData={formData} />;

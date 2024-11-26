@@ -17,7 +17,7 @@ const Samaveda_Gurukul = ({ settings }) => {
     return (
         <React.Fragment>
         <Helmet>
-            <title>{`${settings?.site_title || "Bharata Arseya Samsthan"} | Samaveda Gurukul`}</title>
+            <title>{`${settings?.site_title || "Loading..."} | Samaveda Gurukul`}</title>
             <meta name="description" content={settings.site_description} />
             <meta name="keywords" content={settings.site_keywords}></meta>
         </Helmet>

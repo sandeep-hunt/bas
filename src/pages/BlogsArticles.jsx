@@ -18,7 +18,7 @@ const BlogsArticles = ({settings}) => {
   return (
     <React.Fragment>
     <Helmet>
-        <title>{`${settings?.site_title || "Bharata Arseya Samsthan"} | Recent Blogs & Articles`}</title>
+        <title>{`${settings?.site_title || "Loading..."} | Recent Blogs & Articles`}</title>
         <meta name="description" content={settings.site_description} />
         <meta name="keywords" content={settings.site_keywords}></meta>
     </Helmet>

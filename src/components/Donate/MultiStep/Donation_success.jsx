@@ -19,6 +19,7 @@ const Donation_success = () => {
                     <img src={success} className='img-fluid' alt="" />
                     <h4>Thank You!</h4>
                     <h5>Payment Successful</h5>
+                    <span style={{color: `#959595`}}>Thank you for your generous donation! Your support makes a meaningful difference. Please check your email for the donation receipt.</span>
                     <Link to="/" className="btn-link">Back To Home</Link>
                   </div>
                 </Card.Body>

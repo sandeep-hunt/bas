@@ -208,7 +208,7 @@ const AboutUs = ({ setsettings }) => {
     return (
         <React.Fragment>
             <Helmet>
-                <title>{`${setsettings?.site_title || "Bharata Arseya Samsthan"} | About Us`}</title>
+                <title>{`${setsettings?.site_title || "Loading..."} | About Us`}</title>
                 <meta name="description" content={setsettings.site_description} />
                 <meta name="keywords" content={setsettings.site_keywords}></meta>
             </Helmet>

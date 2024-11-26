@@ -225,7 +225,7 @@ const BookingCont = ({setsettings}) => {
   return (
     <React.Fragment>
     <Helmet>
-        <title>{`${setsettings?.site_title || "Bharata Arseya Samsthan"} | Event Booking (${event.event_name})`}</title>
+        <title>{`${setsettings?.site_title || "Loading..."} | Event Booking (${event.event_name})`}</title>
         <meta name="description" content={setsettings.site_description} />
         <meta name="keywords" content={setsettings.site_keywords}></meta>
     </Helmet>
