@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import Container from 'react-bootstrap/esm/Container'
 import Breadcrumbs from '../components/Breadcrumbs'
 import { Col, Form, Row, Card, Accordion } from 'react-bootstrap'
 import { Button } from 'react-bootstrap'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const AddMember = () => {
-
+    const [loading, setLoading] = useState(true);
     const navigator = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -32,6 +34,7 @@ const AddMember = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+    
         const fullName = formData.firstName + ' ' + formData.lastName;
         const dataToSubmit = {
             ...formData,
@@ -42,6 +45,7 @@ const AddMember = () => {
     
         const token = localStorage.getItem('token');
     
+       
         try {
             const response = await axios.post(import.meta.env.VITE_BACKEND_API + 'members/add-member', dataToSubmit, {
                 headers: { Authorization: token }
@@ -65,8 +69,30 @@ const AddMember = () => {
                 console.error("Error message:", error.message);
                 alert("An error occurred. Please try again.");
             }
-        }
+        }finally {
+            setLoading(false);
+          }
     };
+    useEffect(() => {
+        const timer = setTimeout(() => {
+          setLoading(false);
+        }, 2000); // 2 seconds for skeleton loading
+    
+        return () => clearTimeout(timer); // Cleanup timer on unmount
+      }, []);
+    
+    const SkeletonForm = () => (
+        <Row>
+          {[...Array(10)].map((_, idx) => (
+            <Col sm={12} md={6} key={idx} className="mb-3">
+              <Skeleton height={40} />
+            </Col>
+          ))}
+          <Col sm={12} className="text-center mt-4">
+            <Skeleton width={150} height={40} />
+          </Col>
+        </Row>
+      );
     
     return (
         <React.Fragment>
@@ -84,6 +110,9 @@ const AddMember = () => {
                     <div className="mt-3">
                         <Card>
                             <Card.Body>
+                            {loading ? (
+                  <SkeletonForm />
+                ) : (
                             <Form onSubmit={handleSubmit}>
                             <Row>
                                 <Col sm={12} md={6}>
@@ -276,6 +305,7 @@ const AddMember = () => {
                                 </Col>
                             </Row>
                         </Form>
+                )}
                             </Card.Body>
                         </Card>
                     </div>
