@@ -4,33 +4,28 @@ import Breadcrumbs from '../components/Breadcrumbs'
 import Container from 'react-bootstrap/esm/Container'
 import DataTable from 'react-data-table-component'
 import { Link } from 'react-router-dom'
-import axios from 'axios';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import axios from 'axios'
 
 const EventBooking = () => {
 
     const [eventBookingData,setEventBookingData] = useState([])
-    const [loading, setLoading] = useState(true);
+
 
 
 
 
     const  getDataHandler = async ()=>{
-        setLoading(true);
+
         const token = localStorage.getItem('token');
         try {
             const get_response = await  axios.get(import.meta.env.VITE_BACKEND_API + 'eventsBooking',{
                 headers: { Authorization: token }
             });
-            
             if(get_response?.data){
                 setEventBookingData(get_response?.data)
-                setLoading(false);
             }
         } catch (error) {
             setEventBookingData([])
-            setLoading(false);
         }
     }
 
@@ -142,13 +137,6 @@ const customStyles = {
                             <Link className='btn btn-primary' to="/events/add-booking">Add Booking</Link>
                             <input type="text" onChange={handleFilter} />
                         </div> */}
-                        {/* Skeleton Loader for the Table */}
-                        {loading ? (
-                            <div>
-                                <Skeleton height={50} width="100%" />
-                                <Skeleton count={5} height={40} width="100%" style={{ marginTop: 10 }} />
-                            </div>
-                        ) : (
                         <DataTable
                             columns={columns}
                             data={data}
@@ -156,7 +144,6 @@ const customStyles = {
                             pagination
                             customStyles={customStyles}
                         ></DataTable>
-                        )}
                     </div>
                 </div>
             </Container>
