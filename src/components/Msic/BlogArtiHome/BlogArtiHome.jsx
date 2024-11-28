@@ -76,7 +76,7 @@ const BlogArtiHome = () => {
                   <Card.Body>
                     <div className="blogartihome-cont">
                       <div className="blogartihome-contlft">
-                        <img src="https://i.imgur.com/6Q8s6JL.jpg" alt="/" className="rounded-circle" width={48} height={48} />
+                        <img src={import.meta.env.VITE_BACKEND_API + item.user_profile} alt="/" className="rounded-circle" width={48} height={48} />
                         <div className='d-flex flex-column'>
                           <h6 className='text-main mb-0 text-bold'>{item.full_name}</h6>
                           <span className='subHdng'>

@@ -41,7 +41,7 @@ const RecentBlogs = () => {
                   <Card.Body>
                     <div className="posts-body-header">
                       <div className="posts-head-left">
-                        <img src="https://i.imgur.com/6Q8s6JL.jpg" className='rounded-circle' width={48} height={48} alt="" />
+                        <img src={import.meta.env.VITE_BACKEND_API + item.user_profile} className='rounded-circle' width={48} height={48} alt="" />
                         <div className="posts-head-inner-text">
                           <h6 className='text-main mb-0 text-bold'>{item.full_name}</h6>
                           <span className='subHdng'>

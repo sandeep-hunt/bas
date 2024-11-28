@@ -161,7 +161,7 @@ const BlogsList = () => {
                                                 <h4><Link className='text-main' to={"/blogs/"+item.blog_slug}>{item.blog_title}</Link></h4>
                                                 <div className="post-meta">
                                                     <div className="post-meta-inner">
-                                                        <img src={Profile} className='img-fluid' alt="" />
+                                                        <img src={import.meta.env.VITE_BACKEND_API + item.user_profile} alt="/" className="rounded-circle" width={48} height={48} />
                                                         <div className="post-meta-inner-text">
                                                             <h6 className='text-main mb-0 text-bold'>{item.full_name}</h6>
                                                             <span className='subHdng'>

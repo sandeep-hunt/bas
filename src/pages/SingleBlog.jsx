@@ -80,7 +80,7 @@ const SingleBlog = ({settings}) => {
                         <div className="sphbibtm">
                             <div className="post-meta">
                                 <p className="post-meta-inner">
-                                    <span className='subHdng text-white'><img src={Profile} className='img-fluid' alt="" />&nbsp;&nbsp;{blog.full_name}</span>
+                                    <span className='subHdng text-white'><img src={import.meta.env.VITE_BACKEND_API + blog.user_profile} alt="/" className="rounded-circle" width={48} height={48} />&nbsp;&nbsp;{blog.full_name}</span>
                                 </p>
                             </div>
                             <div className="single-post-social-icons">

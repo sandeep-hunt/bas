@@ -82,7 +82,7 @@ const SingleArticle = ({settings}) => {
                 <h1>{article.article_title}</h1>
                 <div className="post-meta">
                   <p className="post-meta-inner">
-                    <span className='subHdng'><img src={Profile} className='img-fluid' />&nbsp;&nbsp;{article.full_name}</span>
+                    <span className='subHdng'><img src={import.meta.env.VITE_BACKEND_API + article.user_profile} alt="/" className="rounded-circle" width={48} height={48} />&nbsp;&nbsp;{article.full_name}</span>
                   </p>
                 </div>
               </Col>
