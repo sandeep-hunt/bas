@@ -21,6 +21,7 @@ const JoinUsForm_success = ({ formData }) => {
                     <img src={Joinsuccess} className='img-fluid' alt="" />
                     <h4>Thank You!</h4>
                     <h5>Your registration as a {member_type} has been successful.</h5>
+                    <span className="text-center" style={{color: `#959595`}}>Thank you for registering! Please allow 24-48 hours for us to process your registration. We appreciate your patience and look forward to assisting you.</span>
                     <Link to="/" className="btn-link">Back To Home</Link>
                   </div>
                 </Card.Body>
