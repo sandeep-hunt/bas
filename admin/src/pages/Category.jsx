@@ -122,7 +122,6 @@ const Blogs = () => {
     fetchData();
 }, []);
 
-console.log("loading",loading)
 
     
 
