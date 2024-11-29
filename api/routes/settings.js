@@ -50,9 +50,7 @@ router.put('/update/:id', upload.fields([
         youtube_url,
         call_to_action
     } = req.body;
-
-    console.log("req", req.files);
-
+    
     const site_logo = req.files['site_logo'] ? `uploads/settings/${req.files['site_logo'][0].filename}` : null;
     const site_favicon = req.files['site_favicon'] ? `uploads/settings/${req.files['site_favicon'][0].filename}` : null;
     const site_secondary_logo = req.files['site_secondary_logo'] ? `uploads/settings/${req.files['site_secondary_logo'][0].filename}` : null;

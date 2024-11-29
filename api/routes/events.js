@@ -57,7 +57,7 @@ router.get('/', (req, res) => {
         if (err) {
           return res.status(500).json({ error: err.message });
         }
-        console.log("results",results)
+        // console.log("results",results)
   
         // Build the response object
         const response = {
