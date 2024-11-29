@@ -40,7 +40,8 @@ const eventBookingRoutes=require('./routes/eventBooking');
 const dashboardRoutes = require('./routes/dashboard');
 const settingRoutes = require('./routes/settings');
 const messageRoutes = require('./routes/messages');
-const donationRoutes = require('./routes/donation')
+const donationRoutes = require('./routes/donation');
+const paymentRoutes = require('./routes/payment');
 
 
 
@@ -64,7 +65,8 @@ app.use('/eventsBooking',eventBookingRoutes);
 app.use('/dasboard',dashboardRoutes);
 app.use('/setting',settingRoutes);
 app.use('/messages',messageRoutes);
-app.use('/donation',donationRoutes)
+app.use('/donation',donationRoutes);
+app.use('/payment',paymentRoutes);
 
 
 
@@ -101,7 +103,6 @@ app.post('/login', (req, res) => {
     if (result.length === 0) return res.status(400).json({ message: 'User not found' });
 
     const user = result[0];
-    console.log("user",user);
     // Compare password
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) return res.status(400).json({ message: 'Invalid credentials' });
@@ -141,19 +142,14 @@ app.put('/update', verifyToken, upload.fields([{ name: 'user_profile' }]), (req,
 // Change password
 app.post('/change-password', verifyToken, async (req, res) => {
   const { oldPassword, newPassword } = req.body;
-  // The ID is coming from req.body instead of req.id
-  const userId = req.body.id; // Changed from req.id to req.body.id
 
-  console.log("Request body:", req.body);
+  const userId = req.body.id; 
 
-  // Fetch the user's current password
   db.query('SELECT password FROM users WHERE id = ?', [userId], async (err, result) => {
     if (err) {
       console.error("Database error:", err);
       return res.status(500).json({ message: 'Database error', error: err });
     }
-
-    console.log("Query result:", result);
 
     if (result.length === 0) {
       return res.status(404).json({ message: 'User not found' });
@@ -162,16 +158,15 @@ app.post('/change-password', verifyToken, async (req, res) => {
     const user = result[0];
 
     try {
-      // Verify the old password
+     
       const isOldPasswordValid = await bcrypt.compare(oldPassword, user.password);
       if (!isOldPasswordValid) {
         return res.status(400).json({ message: 'Incorrect old password' });
       }
 
-      // Hash the new password
+      
       const hashedNewPassword = await bcrypt.hash(newPassword, 10);
 
-      // Update the password in the database
       const sql = 'UPDATE users SET password = ? WHERE id = ?';
       db.query(sql, [hashedNewPassword, userId], (updateErr, updateResult) => {
         if (updateErr) {
@@ -191,6 +186,9 @@ app.post('/change-password', verifyToken, async (req, res) => {
 app.get('/profile', verifyToken, (req, res) => {
   res.json({ message: `Welcome to your profile, user ID: ${req.userId}` });
 });
+
+
+
 
 
 
