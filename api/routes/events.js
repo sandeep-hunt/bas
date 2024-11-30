@@ -120,8 +120,6 @@ router.post('/add', upload.fields([{ name: 'event_image' }, { name: 'event_thumb
     });
 });
 
-
-
 //update blog
 router.put('/update/:id', upload.fields([{ name: 'event_image' }, { name: 'event_thumbnail' }]), async (req, res) => {
   const eventId = req.params.id;
@@ -146,7 +144,7 @@ router.put('/update/:id', upload.fields([{ name: 'event_image' }, { name: 'event
 
   try {
     // Fetch the current event data for comparison
-    const [currentEvent] = await db.promise().query(`SELECT event_date, event_time, event_location FROM events WHERE event_id = ?`, [eventId]);
+    const [currentEvent] = await db.promise().query(`SELECT event_date, event_time, event_location, event_status FROM events WHERE event_id = ?`, [eventId]);
 
     if (!currentEvent.length) {
       return res.status(404).json({ message: 'Event not found' });
@@ -156,9 +154,10 @@ router.put('/update/:id', upload.fields([{ name: 'event_image' }, { name: 'event
 
     // Check if any of the relevant fields have changed
     const shouldSendEmail = 
-      existingEvent.event_date !== event_date || 
+      event_status !== '0' &&
+      (existingEvent.event_date !== event_date || 
       existingEvent.event_time !== event_time || 
-      existingEvent.event_location !== event_location;
+      existingEvent.event_location !== event_location);
 
     // Execute the event update with promise support
     const [result] = await db.promise().query(sql, params);
@@ -189,7 +188,6 @@ router.put('/update/:id', upload.fields([{ name: 'event_image' }, { name: 'event
     res.status(500).json({ error: 'Failed to process request', details: err.message });
   }
 });
-
 
 
 //delete blog

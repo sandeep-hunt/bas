@@ -121,7 +121,6 @@ const MultiStep_Init = () => {
                     name: 'Donation',
                     description: 'Make a donation',
                     order_id: orderId,
-                    image: 'https://your-site-logo.com/logo.png',
                     handler: async function (response) {
                         setStep(4); // Move to verifying step
                         try {

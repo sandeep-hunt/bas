@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const puppeteer = require('puppeteer');
 const nodemailer = require('nodemailer');
 
 // Load HTML Template and Replace Placeholders
@@ -20,27 +19,14 @@ async function loadTemplate(templateName, replacements) {
 
 // Configure and Send Email with PDF Attachment
 const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
+    host: process.env.MAILHOST_NAME,
+    port: process.env.MAILHOST_PORT,
     secure: true,
     auth: {
-        user: process.env.EMAIL,  // Your Gmail address
-        pass: process.env.APPKEY   // Your Gmail app password
+        user: process.env.EMAIL,
+        pass: process.env.APPKEY
     }
 });
-
-// async function sendEmail(to, subject, htmlContent, attachments = []) {
-//     const mailOptions = {
-//         from: `"BAS Event Booking" <${process.env.EMAIL_USER}>`,
-//         to: to,
-//         subject: subject,
-//         html: htmlContent,
-//         attachments
-//     };
-
-//     // Send email
-//     return transporter.sendMail(mailOptions);
-// }
 
 async function sendEmailEventBooking(to, subject, htmlContent) {
     const mailOptions = {
