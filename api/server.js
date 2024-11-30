@@ -197,7 +197,7 @@ app.get('/profile', verifyToken, (req, res) => {
 async function getMonthlyDonors() {
   const query = `
     SELECT * FROM donation
-    WHERE donation_freq = 1
+    WHERE donation_freq = 0
     AND DATE(donation_created_date) = DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
   `;
   const [rows] = await db.promise().query(query);
@@ -208,10 +208,11 @@ async function getMonthlyDonors() {
 async function sendReminderEmails(donors) {
   donors.forEach(async (donor) => {
     try {
+      const donationLink = process.env.FRONTEND_URL;  // Replace with your actual donation page link
       await sendEmailDonationReminder(
         donor.doner_email,
         "Monthly Donation Reminder",
-        `Dear Donor,\n\nThank you for your continued support! This is a reminder for your monthly donation.\n\nDonation Amount: ${donor.donation_amount}\n\nThank you!`
+        `Dear Donor,\n\nThank you for your continued support! This is a reminder for your monthly donation.\n\nDonation Amount: ${donor.donation_amount}\n\nTo make your donation, please click the link below:\n\n${donationLink}\n\nThank you!`
       );
     } catch (error) {
       console.error(`Error sending email to ${donor.doner_email}:`, error);
