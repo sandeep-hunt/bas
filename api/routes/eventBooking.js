@@ -22,7 +22,7 @@ router.get('/', verifyToken, (req, resp) => {
 
         // Fetch all items with event_name without pagination
         const sql = `
-            SELECT eb.*, e.event_name 
+            SELECT eb.*, e.event_name, e.event_status
             FROM event_booking eb
             JOIN events e ON eb.event_id = e.event_id
         `;

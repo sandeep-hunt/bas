@@ -113,7 +113,12 @@ const EventsList = () => {
                     <div className="events-inner-cont">
                       <p className='paragraph1 m-0'><b>{event.event_name}</b></p>
                       <p className='paragraph1 m-0'><b>{event.event_location}</b></p>
-                      <span>{formatDate(event.event_date)}</span>
+                      {/* <span>{event.event_date}</span> */}
+                      <div>
+                      {new Date(event.event_date).getDate()}&nbsp;
+                      {new Date(event.event_date).toLocaleString('default', { month: 'long' })}&nbsp;
+                      {new Date(event.event_date).getFullYear()}
+                      </div>
                       <span>{event.event_time}</span>
                       <span>&#8377; {event.event_price}</span>
                     </div>

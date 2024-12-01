@@ -161,18 +161,27 @@ router.post('/book-event/verify-payment', async (req, res) => {
                         day: 'numeric'
                     });
 
-                    let eventTime;
-                    if (Number.isInteger(parseInt(event.event_time))) {
-                        // If it's a Unix timestamp in milliseconds
-                        eventTime = new Date(parseInt(event.event_time));
-                    } else {
-                        // If it's a valid ISO string
-                        eventTime = new Date(event.event_time);
-                    }
+                    // let eventTime;
+                    // if (Number.isInteger(parseInt(event.event_time))) {
+                    //     // If it's a Unix timestamp in milliseconds
+                    //     eventTime = new Date(parseInt(event.event_time));
+                    // } else {
+                    //     // If it's a valid ISO string
+                    //     eventTime = new Date(event.event_time);
+                    // }
+                    // const formattedEventTime = eventTime.toLocaleTimeString('en-US', {
+                    //     hour: '2-digit',
+                    //     minute: '2-digit',
+                    //     hour12: true
+                    // });
+
+                    const eventDateTimeString = `${event.event_date.toISOString().split('T')[0]}T${event.event_time}`;
+                    const eventTime = new Date(eventDateTimeString);
+                    
                     const formattedEventTime = eventTime.toLocaleTimeString('en-US', {
                         hour: '2-digit',
                         minute: '2-digit',
-                        hour12: true
+                        hour12: true,
                     });
 
                     // Prepare email data for the confirmation email

@@ -38,7 +38,7 @@ router.get('/', (req, res) => {
           e.event_image,
           e.event_thumbnail,
           e.event_price,
-          e.event_date,
+          CONVERT_TZ(e.event_date, '+00:00', '+05:30') AS event_date,
           e.event_time,
           e.event_location,
           e.event_status,
@@ -57,8 +57,7 @@ router.get('/', (req, res) => {
         if (err) {
           return res.status(500).json({ error: err.message });
         }
-        // console.log("results",results)
-  
+
         // Build the response object
         const response = {
           totalItems: totalItems,
@@ -107,6 +106,8 @@ router.post('/add', upload.fields([{ name: 'event_image' }, { name: 'event_thumb
     const { event_name, event_slug, event_price, event_date, event_time, event_location, event_status } = req.body;
     const event_image = req.files['event_image'] ? `uploads/events/${req.files['event_image'][0].filename}` : null;
     const event_thumbnail = req.files['event_thumbnail'] ? `uploads/events/${req.files['event_thumbnail'][0].filename}` : null;
+
+    console.log("event_date",event_date)
 
     const query = `
       INSERT INTO events (event_name, event_slug, event_image, event_thumbnail, event_price, event_date, event_time, event_location, event_status)
