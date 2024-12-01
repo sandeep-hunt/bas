@@ -25,6 +25,8 @@ const BookingCont = ({setsettings}) => {
     axios.get(`${import.meta.env.VITE_BACKEND_API}fetch/events/${slug}`)
       .then(response => {
         setEvent(response.data);
+        // consol.log(response.data);
+        console.log(response.data);
       })
       .catch(error => {
         console.error('Error fetching the event:', error);
@@ -221,7 +223,6 @@ const BookingCont = ({setsettings}) => {
       setLoading(false);
     }
   };
-
   return (
     <React.Fragment>
     <Helmet>
@@ -237,9 +238,9 @@ const BookingCont = ({setsettings}) => {
                 <div className="donation-left" style={{ backgroundImage: `url(${DonateImg1})` }}>
                   <h2 className='text-center'>{event.event_name}</h2>
                   <h5>
-                    {new Date(event.event_date).getDate()}&nbsp;
-                    {new Date(event.event_date).toLocaleString('default', { month: 'long' })}&nbsp;
-                    {new Date(event.event_date).getFullYear()}
+                      {new Date(event.event_date).getDate()}&nbsp;
+                      {new Date(event.event_date).toLocaleString('default', { month: 'long' })}&nbsp;
+                      {new Date(event.event_date).getFullYear()}
                   </h5>
                   <h5>{event.event_time}</h5>
                   <h5>{event.event_location}</h5>
