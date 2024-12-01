@@ -44,7 +44,7 @@ const RecentArticles = () => {
                       <div className="posts-head-left">
                         <img src={import.meta.env.VITE_BACKEND_API + item.user_profile} className='rounded-circle' width={48} height={48} alt="" />
                         <div className="posts-head-inner-text">
-                          <h6 className='text-main mb-0 text-bold'>{item.full_name}</h6>
+                          <h6 className='text-main mb-0 text-semibold'>{item.full_name}</h6>
                           <span className='subHdng'>
                             {new Date(item.created_at).toLocaleString('default', { month: 'short' })}&nbsp;
                             {new Date(item.created_at).getDate()},&nbsp;
@@ -54,7 +54,7 @@ const RecentArticles = () => {
                       </div>
                     </div>
                     <div className="posts-body-content">
-                      <h4>{item.article_title.substring(0, 26)}{item.article_title.length > 26 ? '...' : ''}</h4>
+                      <h4 className='text-main'>{item.article_title.substring(0, 26)}{item.article_title.length > 26 ? '...' : ''}</h4>
                       <p className='paragraph3'>{item.article_shortDesc.substring(0, 160)}{item.article_shortDesc.length > 160 ? '...' : ''}</p>
                       <div className="d-flex justify-content-end">
                         <Link to={"/articles/"+item.article_slug} className="btn-link">Read More&nbsp;&nbsp;<FontAwesomeIcon size='sm' icon={faArrowRight} /></Link>

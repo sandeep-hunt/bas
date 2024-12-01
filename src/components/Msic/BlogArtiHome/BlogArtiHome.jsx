@@ -78,7 +78,7 @@ const BlogArtiHome = () => {
                       <div className="blogartihome-contlft">
                         <img src={import.meta.env.VITE_BACKEND_API + item.user_profile} alt="/" className="rounded-circle" width={48} height={48} />
                         <div className='d-flex flex-column'>
-                          <h6 className='text-main mb-0 text-bold'>{item.full_name}</h6>
+                          <h6 className='text-main mb-0 tw-semibold'>{item.full_name}</h6>
                           <span className='subHdng'>
                             {new Date(item.created_at).toLocaleString('default', { month: 'short' })}&nbsp;
                             {new Date(item.created_at).getDate()},&nbsp;
@@ -91,7 +91,7 @@ const BlogArtiHome = () => {
                       </div>
                     </div>
                     <div className="blogartihome-contbtm">
-                      <h4>{item.blog_title.substring(0, 26)}{item.blog_title.length > 26 ? '...' : ''}</h4>
+                      <h4 className='text-main'>{item.blog_title.substring(0, 26)}{item.blog_title.length > 26 ? '...' : ''}</h4>
                       <p className='paragraph3'>{item.blog_shortDesc.substring(0, 150)}{item.blog_shortDesc.length > 150 ? '...' : ''}</p>
                       <div className="d-flex justify-content-end">
                         <Link to={"/blogs/" + item.blog_slug} className="btn-link">Read More&nbsp;&nbsp;<FontAwesomeIcon size='sm' icon={faArrowRight} /></Link>

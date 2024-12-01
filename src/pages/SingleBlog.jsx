@@ -8,7 +8,7 @@ import axios from 'axios'
 import DOMPurify from 'dompurify'
 import { Helmet } from 'react-helmet-async'
 
-const SingleBlog = ({settings}) => {
+const SingleBlog = ({ settings }) => {
 
     const { slug } = useParams();
     const [blog, setblog] = useState('');
@@ -43,22 +43,22 @@ const SingleBlog = ({settings}) => {
             default: return `${day}th`;
         }
     };
-  
+
     // Function to extract text from HTML
     const extractTextFromHTML = (html) => {
-      const doc = new DOMParser().parseFromString(html, 'text/html');
-      return doc.body.textContent || "";  // Get text content from the parsed HTML
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        return doc.body.textContent || "";  // Get text content from the parsed HTML
     };
 
     // Function to calculate reading time
     const calculateReadingTime = (htmlContent) => {
-      const plainText = extractTextFromHTML(htmlContent);
-      const wordCount = plainText.split(/\s+/).filter(word => word.length > 0).length;
-      const wordsPerMinute = 50;  // Average reading speed
-      const minutes = Math.ceil(wordCount / wordsPerMinute);
-      return minutes;
+        const plainText = extractTextFromHTML(htmlContent);
+        const wordCount = plainText.split(/\s+/).filter(word => word.length > 0).length;
+        const wordsPerMinute = 50;  // Average reading speed
+        const minutes = Math.ceil(wordCount / wordsPerMinute);
+        return minutes;
     };
-  
+
     // Calculate reading time for the article content
     const readingTime = blog.blog_content ? calculateReadingTime(blog.blog_content) : 0;
 
@@ -66,15 +66,19 @@ const SingleBlog = ({settings}) => {
 
     return (
         <React.Fragment>
-        <Helmet>
-          <title>{`${settings.site_title} | ${blog.blog_page_title}`}</title>
-          <meta name="description" content={blog.blog_page_desc} />
-          <meta name="keywords" content={blog.blog_page_keywords}></meta>
-        </Helmet>
-            <div className="single-post-head blog" style={{ backgroundImage: `url(${import.meta.env.VITE_BACKEND_API + blog.blog_image})` }}>
+            <Helmet>
+                <title>{`${settings.site_title} | ${blog.blog_page_title}`}</title>
+                <meta name="description" content={blog.blog_page_desc} />
+                <meta name="keywords" content={blog.blog_page_keywords}></meta>
+            </Helmet>
+
+            <div className="single-post-head blog" style={{ background: `linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.25) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0.00) 46.86%, rgba(0, 0, 0, 0.15) 100%), url(${import.meta.env.VITE_BACKEND_API + blog.blog_image}) lightgray 50% / cover no-repeat` }}>
                 <Container fluid className='single-post-head-cont h-100'>
                     <div className="single-post-hbi">
                         <div className="sphbitp">
+                            <div>
+                                <span className='category-pill1'>{blog.category_name}</span>
+                            </div>
                             <h1 className='text-white'>{blog.blog_title}</h1>
                         </div>
                         <div className="sphbibtm">

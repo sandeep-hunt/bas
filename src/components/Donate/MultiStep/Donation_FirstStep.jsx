@@ -40,7 +40,7 @@ const Donation_FirstStep = ({ formData, setFormData, nextStep, errors }) => {
                       </div>
                       <div className='donation-right-cont'>
                         <div className='donation-right-step'>2</div>
-                        <div className="donation-right-text">CONTACT DETAIL</div>
+                        <div className="donation-right-text">CONTACT DETAILS</div>
                       </div>
                       <div className='donation-right-cont'>
                         <div className='donation-right-step'>3</div>
@@ -116,7 +116,7 @@ const Donation_FirstStep = ({ formData, setFormData, nextStep, errors }) => {
                         required
                         label={
                           <span className='form-checkbox-label'>
-                            I certify that above provided information is correct and there is no mistake. I know that all further communication will be done on above provided details.</span>
+                            I certify that above data provided by me are correct and error free. I know that all further communication shall be done at the address I have given above.</span>
                         }
                       />
                     </Form.Group>

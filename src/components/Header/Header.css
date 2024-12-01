@@ -51,6 +51,10 @@
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);;
 }
 
+.navbar .dropdown-item {
+    color: var(--bg_clr2);
+}
+
 .navbar .dropdown-item.active, .dropdown-item:active {
     color: var(--white);
     background-color: var(--main) !important;
@@ -62,12 +66,10 @@
 }
 
 .navbar .dropdown-menu .dropdown-menu-text {
-    color: var(--bg_clr2);
     font-weight: bold;
 }
 
 .navbar .dropdown-menu .dropdown-menu-tag {
-    color: var(--bg_clr2);
     font-size: 14px;
     font-weight: 500;
 }

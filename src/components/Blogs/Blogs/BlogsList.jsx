@@ -158,12 +158,12 @@ const BlogsList = () => {
                                     <Col xs={12} md={8}>
                                         <Card.Body>
                                             <div className="item-content">
-                                                <h4><Link className='text-main' to={"/blogs/"+item.blog_slug}>{item.blog_title}</Link></h4>
+                                                <h4 className='text-main'><Link className='text-main' to={"/blogs/"+item.blog_slug}>{item.blog_title}</Link></h4>
                                                 <div className="post-meta">
                                                     <div className="post-meta-inner">
                                                         <img src={import.meta.env.VITE_BACKEND_API + item.user_profile} alt="/" className="rounded-circle" width={48} height={48} />
                                                         <div className="post-meta-inner-text">
-                                                            <h6 className='text-main mb-0 text-bold'>{item.full_name}</h6>
+                                                            <h6 className='text-main mb-0 text-semibold'>{item.full_name}</h6>
                                                             <span className='subHdng'>
                                                                 {getDayWithSuffix(new Date(item.created_at).getDate())}&nbsp;
                                                                 {new Date(item.created_at).toLocaleString('default', { month: 'long' })}&nbsp;
