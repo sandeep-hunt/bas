@@ -26,7 +26,7 @@ const ProjectsHome = () => {
             <Col sm={12} md={6} lg={3}>
               <Link to="/samaveda_gurukul">
                 <div className="projectshome-item h-100">
-                  <h4 className='text-white'>Samaveda Gurukul</h4>
+                  <h4 className='text-white'>Sāmavéda Gurukul</h4>
                   <img src={Pro_icon2} className='projecthome-icons' alt="" />
                   <p className='text-white paragraph3'>Pre-historic Melodies & Wisdom</p>
                 </div>
@@ -35,7 +35,7 @@ const ProjectsHome = () => {
             <Col sm={12} md={6} lg={3}>
             <Link to="/girvaan_bhasa">
               <div className="projectshome-item h-100">
-                <h4 className='text-white'>Girvaan Bhasa</h4>
+                <h4 className='text-white'>Gīrvāṇ Bhasa</h4>
                 <img src={Pro_icon3} className='projecthome-icons' alt="" />
                 <p className='text-white paragraph3'>A bridge to divinity</p>
               </div>
@@ -44,9 +44,9 @@ const ProjectsHome = () => {
             <Col sm={12} md={6} lg={3}>
             <Link to="/jyotisha_gurkul">
               <div className="projectshome-item h-100">
-                <h4 className='text-white'>Jyotisha Gurukul</h4>
+                <h4 className='text-white'>Jyotiśa Gurukul</h4>
                 <img src={Pro_icon4} className='projecthome-icons' alt="" />
-                <p className='text-white paragraph3'>Eyes of the Veda-s</p>
+                <p className='text-white paragraph3'>Eyes of the Véda-s</p>
               </div>
             </Link>
             </Col>
