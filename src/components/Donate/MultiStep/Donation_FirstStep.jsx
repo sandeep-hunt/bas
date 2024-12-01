@@ -26,7 +26,7 @@ const Donation_FirstStep = ({ formData, setFormData, nextStep, errors }) => {
             <Row>
               <Col sm={12} lg={5}>
                 <div className="donation-left" style={{ backgroundImage: `url(${DonateImg1})` }}>
-                  <h3>We like to support.</h3>
+                  <h3>I/We like to support.</h3>
                 </div>
               </Col>
               <Col sm={12} lg={7}>

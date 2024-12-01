@@ -235,7 +235,7 @@ const BookingCont = ({setsettings}) => {
             <Row>
               <Col sm={12} lg={5}>
                 <div className="donation-left" style={{ backgroundImage: `url(${DonateImg1})` }}>
-                  <h2>{event.event_name}</h2>
+                  <h2 className='text-center'>{event.event_name}</h2>
                   <h5>
                     {new Date(event.event_date).getDate()}&nbsp;
                     {new Date(event.event_date).toLocaleString('default', { month: 'long' })}&nbsp;

@@ -30,7 +30,7 @@ const transporter = nodemailer.createTransport({
 
 async function sendEmailEventBooking(to, subject, htmlContent) {
     const mailOptions = {
-        from: `"BAS Event Booking" <${process.env.EMAIL_USER}>`,
+        from: `"BAS Event Booking" <${process.env.EMAIL}>`,
         to: to,
         subject: subject,
         html: htmlContent,
@@ -42,7 +42,7 @@ async function sendEmailEventBooking(to, subject, htmlContent) {
 
 async function sendEmailDonation(to, subject, htmlContent) {
     const mailOptions = {
-        from: `"BAS Donation" <${process.env.EMAIL_USER}>`,
+        from: `"BAS Donation" <${process.env.EMAIL}>`,
         to: to,
         subject: subject,
         html: htmlContent,
@@ -54,7 +54,7 @@ async function sendEmailDonation(to, subject, htmlContent) {
 
 async function sendEmailRegistration(to, subject, htmlContent) {
     const mailOptions = {
-        from: `"BAS Registration" <${process.env.EMAIL_USER}>`,
+        from: `"BAS Registration" <${process.env.EMAIL}>`,
         to: to,
         subject: subject,
         html: htmlContent,
@@ -67,7 +67,7 @@ async function sendEmailRegistration(to, subject, htmlContent) {
 
 async function sendReceiptOtp(to, subject, htmlContent) {
     const mailOptions = {
-        from: `"BAS Verification" <${process.env.EMAIL_USER}>`,
+        from: `"BAS Verification" <${process.env.EMAIL}>`,
         to: to,
         subject: subject,
         html: htmlContent,
@@ -79,7 +79,7 @@ async function sendReceiptOtp(to, subject, htmlContent) {
 
 async function sendEmailDonationReminder(to, subject, htmlContent) {
     const mailOptions = {
-        from: `"BAS DonataionReminder" <${process.env.EMAIL_USER}>`,
+        from: `"BAS DonataionReminder" <${process.env.EMAIL}>`,
         to: to,
         subject: subject,
         html: htmlContent,
@@ -91,7 +91,7 @@ async function sendEmailDonationReminder(to, subject, htmlContent) {
 
 async function sendEmailEventUpdated(to, subject, htmlContent) {
     const mailOptions = {
-        from: `"BAS Event updated" <${process.env.EMAIL_USER}>`,
+        from: `"BAS Event updated" <${process.env.EMAIL}>`,
         to: to,
         subject: subject,
         html: htmlContent,
@@ -103,7 +103,7 @@ async function sendEmailEventUpdated(to, subject, htmlContent) {
 
 async function sendEmailRefundPayment(to, subject, htmlContent) {
     const mailOptions = {
-        from: `"BAS Event Amount Refund" <${process.env.EMAIL_USER}>`,
+        from: `"BAS Event Amount Refund" <${process.env.EMAIL}>`,
         to: to,
         subject: subject,
         html: htmlContent,
@@ -114,7 +114,7 @@ async function sendEmailRefundPayment(to, subject, htmlContent) {
 }
 async function sendEmailMember(to, subject, htmlContent) {
     const mailOptions = {
-        from: `"BAS Member Updates" <${process.env.EMAIL_USER}>`,
+        from: `"BAS Member Updates" <${process.env.EMAIL}>`,
         to: to,
         subject: subject,
         html: htmlContent,
