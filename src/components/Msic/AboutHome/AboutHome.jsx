@@ -10,7 +10,7 @@ const AboutHome = () => {
       <div className="abouthome-container">
         <div className="abouthome-inner">
           <h2 className='container-title abutHome'>About Us</h2>
-          <p className='text-main paragraph1'>Bhārata Āṛṣeya Saṅsthān is the initiative to promote, advocate, develop, support, Bhāratīya Saṁskriti Seva (On the lines of ‘Indian Administrative Services’ ) for creating awareness in and outside India about Bhāratīya Saṁskriti including ancient literature, customs, traditions, shlokas, Véda-s, mantras, music, literature, meditation, yoga, all Indian practices and philosophy and to carry on the research for promotion of the same and to publish the relevant information through magazines, books, brochures .</p>
+          <p className='text-main paragraph1'>Bhārata Āṛṣeya Saṅsthān is the initiative to promote, advocate, develop, support, Bhāratīya Saṁskriti Seva (On the lines of ‘Indian Administrative Services’ ) for creating awareness in and outside India about Bhāratīya Saṁskriti including ancient literature, customs, traditions, shlokas, Véda-s, mantras, music, literature, meditation, yoga, all Indian practices and philosophy and to carry on the research for promotion of the same and to publish the relevant information through magazines, books, brochures.</p>
           <Link to="/about-us" className="btn-link">Learn More&nbsp;&nbsp;<FontAwesomeIcon size='sm' icon={faArrowRight} /></Link>
         </div>
       </div>

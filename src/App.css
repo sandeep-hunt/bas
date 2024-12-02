@@ -356,6 +356,8 @@ textarea.form-control {
     background-repeat: no-repeat;
     width: 100%;
     height: 380px;
+    display: flex;
+    justify-content: center;
 }
 
 .projects-banner .projects-banner-inner {
@@ -367,6 +369,7 @@ textarea.form-control {
     justify-content: center;
     gap: 22px;
     text-align: center;
+    max-width: 726px;
 }
 
 .projects-banner .projects-banner-inner .breadcrumb .breadcrumb-item {
