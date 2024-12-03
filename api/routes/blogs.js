@@ -41,12 +41,11 @@ router.get('/', verifyToken, (req, res) => {
 
 
 // Add Blog
-router.post('/add', verifyToken, upload.fields([{ name: 'image1', maxCount: 1 }, { name: 'image2', maxCount: 1 }]), (req, res) => {
+router.post('/add',verifyToken, upload.fields([{ name: 'image1', maxCount: 1 }, { name: 'image2', maxCount: 1 }]), (req, res) => {
     const {
         blog_title, blog_shortDesc, blog_content, blog_author,
         blog_slug, blog_page_title, blog_page_keywords, blog_page_desc, blog_category
     } = req.body;
-
     let image1 = null;
     let image2 = null;
 
@@ -58,68 +57,50 @@ router.post('/add', verifyToken, upload.fields([{ name: 'image1', maxCount: 1 },
             image2 = 'uploads/blogs/' + req.files['image2'][0].filename;
         }
     }
+    const sql = `
+        INSERT INTO blogs (
+            blog_title, 
+            blog_shortDesc, 
+            blog_content, 
+            blog_author, 
+            blog_slug, 
+            blog_page_title, 
+            blog_page_keywords, 
+            blog_page_desc, 
+            blog_category, 
+            blog_thumbnail, 
+            blog_image
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+    const params = [
+        blog_title,
+        blog_shortDesc,
+        blog_content,
+        blog_author,
+        blog_slug,
+        blog_page_title,
+        blog_page_keywords,
+        blog_page_desc,
+        blog_category,
+        image1,
+        image2  
+    ];
 
-    // Check for duplicate blog_slug
-    const slugCheckSql = `SELECT blog_id FROM blogs WHERE blog_slug = ?`;
-    db.query(slugCheckSql, [blog_slug], (slugErr, slugResult) => {
-        if (slugErr) {
-            console.error('Error checking slug:', slugErr);
-            return res.status(500).json({
-                error: 'Failed to add blog',
-                details: slugErr.message
+    db.query(sql, params, (err, result) => {
+        if (err) {
+            console.error('Error inserting blog:', err);
+            return res.status(500).json({ 
+                error: 'Failed to add blog', 
+                details: err.message 
             });
         }
-
-        if (slugResult.length > 0) {
-            return res.status(400).json({ message: 'Blog slug already exists. Please use a unique slug.' });
-        }
-
-        // If slug is unique, insert the new blog
-        const sql = `
-            INSERT INTO blogs (
-                blog_title, 
-                blog_shortDesc, 
-                blog_content, 
-                blog_author, 
-                blog_slug, 
-                blog_page_title, 
-                blog_page_keywords, 
-                blog_page_desc, 
-                blog_category, 
-                blog_thumbnail, 
-                blog_image
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        `;
-        const params = [
-            blog_title,
-            blog_shortDesc,
-            blog_content,
-            blog_author,
-            blog_slug,
-            blog_page_title,
-            blog_page_keywords,
-            blog_page_desc,
-            blog_category,
-            image1,
-            image2  
-        ];
-
-        db.query(sql, params, (err, result) => {
-            if (err) {
-                console.error('Error inserting blog:', err);
-                return res.status(500).json({ 
-                    error: 'Failed to add blog', 
-                    details: err.message 
-                });
+        res.json({ 
+            message: 'Blog added successfully', 
+            blogId: result.insertId,
+            images: {
+                thumbnail: image1,
+                image: image2
             }
-            res.json({ 
-                message: 'Blog added successfully', 
-                blogId: result.insertId,
-                images: {
-                    thumbnail: image1,
-                    image: image2
-                }
-            });
         });
     });
 });

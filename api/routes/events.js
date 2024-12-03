@@ -70,35 +70,55 @@ router.get('/', (req, res) => {
   });
 
 // Route to fetch image URLs from the database
+// router.get('/', (req, res) => {
+//     const page = parseInt(req.query.page) || 1;   // Default to page 1
+//     const limit = parseInt(req.query.limit) || 10; // Default to 10 items per page
+//     const offset = (page - 1) * limit;
 
+//     // Count the total number of items
+//     db.query('SELECT COUNT(*) AS count FROM events', (err, countResult) => {
+//         if (err) {
+//             return res.status(500).json({ error: err.message });
+//         }
+
+//         const totalItems = countResult[0].count;
+//         const totalPages = Math.ceil(totalItems / limit);
+
+//         // Fetch paginated items
+//         const sql = `SELECT * FROM events LIMIT ${limit} OFFSET ${offset}`;
+//         db.query(sql, (err, results) => {
+//             if (err) {
+//                 return res.status(500).json({ error: err.message });
+//             }
+
+//             res.json({
+//                 currentPage: page,
+//                 totalPages: totalPages,
+//                 totalItems: totalItems,
+//                 items: results
+//             });
+//         });
+//     });
+// });
+
+// Add Event (POST)
 router.post('/add', upload.fields([{ name: 'event_image' }, { name: 'event_thumbnail' }]), (req, res) => {
-  const { event_name, event_slug, event_price, event_date, event_time, event_location, event_status } = req.body;
-  const event_image = req.files['event_image'] ? `uploads/events/${req.files['event_image'][0].filename}` : null;
-  const event_thumbnail = req.files['event_thumbnail'] ? `uploads/events/${req.files['event_thumbnail'][0].filename}` : null;
+    const { event_name, event_slug, event_price, event_date, event_time, event_location, event_status } = req.body;
+    const event_image = req.files['event_image'] ? `uploads/events/${req.files['event_image'][0].filename}` : null;
+    const event_thumbnail = req.files['event_thumbnail'] ? `uploads/events/${req.files['event_thumbnail'][0].filename}` : null;
 
-  // Check for duplicate event_slug
-  const checkQuery = `SELECT COUNT(*) AS count FROM events WHERE event_slug = ?`;
-  db.query(checkQuery, [event_slug], (err, result) => {
-      if (err) {
-          return res.status(500).json({ message: 'Error checking event_slug', error: err });
-      }
+    console.log("event_date",event_date)
 
-      if (result[0].count > 0) {
-          return res.status(400).json({ message: 'Event slug already exists' });
-      }
-
-      // Insert the event if slug is unique
-      const insertQuery = `
-        INSERT INTO events (event_name, event_slug, event_image, event_thumbnail, event_price, event_date, event_time, event_location, event_status)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-      `;
-      db.query(insertQuery, [event_name, event_slug, event_image, event_thumbnail, event_price, event_date, event_time, event_location, event_status], (err, result) => {
-          if (err) {
-              return res.status(500).json({ message: 'Error adding event', error: err });
-          }
-          res.status(201).json({ message: 'Event added successfully', event_id: result.insertId });
-      });
-  });
+    const query = `
+      INSERT INTO events (event_name, event_slug, event_image, event_thumbnail, event_price, event_date, event_time, event_location, event_status)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+    db.query(query, [event_name, event_slug, event_image, event_thumbnail, event_price, event_date, event_time, event_location, event_status], (err, result) => {
+        if (err) {
+            return res.status(500).json({ message: 'Error adding event', error: err });
+        }
+        res.status(201).json({ message: 'Event added successfully', event_id: result.insertId });
+    });
 });
 
 //update blog

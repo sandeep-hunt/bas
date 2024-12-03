@@ -40,67 +40,17 @@ router.post('/add', upload.fields([{ name: 'image1', maxCount: 1 }, { name: 'ima
     const image2 = req.files['image2'] ? `uploads/articles/${req.files['image2'][0].filename}` : null;
     const pdfs = req.files['pdfs'] ? req.files['pdfs'].map(file => `uploads/articles/files/${file.originalname}`) : [];
 
-    // Check for duplicate article_slug
-    const slugCheckSql = `SELECT article_id FROM articles WHERE article_slug = ?`;
-    db.query(slugCheckSql, [article_slug], (slugErr, slugResult) => {
-        if (slugErr) {
-            console.error('Error checking slug:', slugErr);
-            return res.status(500).json({
-                error: 'Failed to add article',
-                details: slugErr.message
-            });
+    const sql = `INSERT INTO articles (article_title, article_shortDesc, article_content, article_attachment, article_author, article_slug, article_page_title, article_page_keywords, article_page_desc, article_thumbnail, article_image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    const params = [article_title, article_shortDesc, article_content, JSON.stringify(pdfs), article_author, article_slug, article_page_title, article_page_keywords, article_page_desc, image1, image2];
+
+    db.query(sql, params, (err, result) => {
+        if (err) {
+            console.error('Error inserting article:', err);
+            return res.status(500).json({ error: 'Failed to add article', details: err.message });
         }
-
-        if (slugResult.length > 0) {
-            return res.status(400).json({ message: 'Article slug already exists. Please use a unique slug.' });
-        }
-
-        // If slug is unique, insert the new article
-        const sql = `
-            INSERT INTO articles (
-                article_title, 
-                article_shortDesc, 
-                article_content, 
-                article_attachment, 
-                article_author, 
-                article_slug, 
-                article_page_title, 
-                article_page_keywords, 
-                article_page_desc, 
-                article_thumbnail, 
-                article_image
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        `;
-        const params = [
-            article_title,
-            article_shortDesc,
-            article_content,
-            JSON.stringify(pdfs),
-            article_author,
-            article_slug,
-            article_page_title,
-            article_page_keywords,
-            article_page_desc,
-            image1,
-            image2
-        ];
-
-        db.query(sql, params, (err, result) => {
-            if (err) {
-                console.error('Error inserting article:', err);
-                return res.status(500).json({ 
-                    error: 'Failed to add article', 
-                    details: err.message 
-                });
-            }
-            res.json({ 
-                message: 'Article added successfully', 
-                articleId: result.insertId 
-            });
-        });
+        res.json({ message: 'Article added successfully', articleId: result.insertId });
     });
 });
-
 
 //get article by slug
 router.get('/:id', (req, res) => {

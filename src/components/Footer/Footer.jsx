@@ -63,6 +63,14 @@ const Footer = () => {
                   <li><Link to="/jyotisha_gurkul">Jyotisha Gurukul</Link></li>
                 </ul>
               </div>
+              <div className="footer-content1">
+                <h4 className='footer-inner-cont'>Legal</h4>
+                <ul>
+                  <li><Link to="#">Terms & Conditions</Link></li>
+                  <li><Link to="#">Privacy & Policy</Link></li>
+                  <li><Link to="#">Cancellation & Refund Policy</Link></li>
+                </ul>
+              </div>
             </Col>
             <Col sm={12}  md={12} lg={3}>
               <div className="footer-content1">

@@ -136,6 +136,17 @@ const JoinUsForm_First = ({ formData, setFormData, nextStep, errors, btnLoad }) 
                     </Form.Group>
                     {errors.member_type && <small className="text-danger">{errors.member_type}</small>}
                     <Form.Group className='mt-3'>
+                      {formData.member_type === 'Member' ?
+                      <div className='d-flex flex-column gap-1 form-checkbox-label' style={{padding: `1rem`, border: `1px solid #FB660D`, borderRadius: `8px`}}>
+                        <span style={{color: `red`}}>Note:</span>
+                        <span>We request you to proceed with the registration & Our team will contact you for the futher updates and payment.</span>
+                        <span>Institutional Member ₹25,000</span>
+                        <span>Patron ₹15,000</span>
+                        <span>Life Membership ₹10,000</span>
+                        <span>General Member: ₹101</span>
+                      </div> : <></>}
+                    </Form.Group>
+                    <Form.Group className='mt-3'>
                       <Form.Check
                         checked={isCheckboxChecked}
                         onChange={handleCheckboxChange}
