@@ -66,9 +66,8 @@ const Footer = () => {
               <div className="footer-content1">
                 <h4 className='footer-inner-cont'>Legal</h4>
                 <ul>
-                  <li><Link to="https://merchant.razorpay.com/policy/POJjWQG6eoCvQz/terms" target='_blank'>Terms & Conditions</Link></li>
-                  <li><Link to="https://merchant.razorpay.com/policy/POJjWQG6eoCvQz/refund" target='_blank'>Cancellation & Refund Policy</Link></li>
-                  <li><Link to="https://merchant.razorpay.com/policy/POJjWQG6eoCvQz/shipping" target='_blank'>Shipping & Delivery</Link></li>
+                  <li><Link to="/terms">Terms & Conditions</Link></li>
+                  <li><Link to="/refund">Cancellation & Refund Policy</Link></li>
                 </ul>
               </div>
             </Col>

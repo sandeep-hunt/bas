@@ -29,6 +29,8 @@ import axios from 'axios';
 import GetReceipt from './pages/GetReceipt';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import Terms from './pages/Terms';
+import Refund from './pages/Refund';
 
 function App() {
   const [getsettings, setgetsettings] = useState('');
@@ -81,6 +83,8 @@ function App() {
         <Route path='join-us' element={<JoinUs settings={getsettings} />} />
         <Route path='about-us' element={<AboutUs setsettings={getsettings} />} />
         <Route path='get-receipt' element={<GetReceipt settings={getsettings} />} />
+        <Route path='terms' element={<Terms settings={getsettings} />}/>
+        <Route path='refund' element={<Refund settings={getsettings} />}/>
       </Routes>
       <FloatingIcon />
       <Footer />
