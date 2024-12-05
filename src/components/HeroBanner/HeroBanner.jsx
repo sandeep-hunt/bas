@@ -21,7 +21,7 @@ const HeroBanner = () => {
             </div>
           </Col>
           <Col sm={12} lg={6} className='d-flex justify-content-end'>
-            <img src={HeroImg} className='img-fluid' alt="Hero Banner" />
+            <img src={HeroImg} className='img-fluid' alt="Ṛṣī Wisdom & Shastra-s" />
           </Col>
         </Row>
       </div>

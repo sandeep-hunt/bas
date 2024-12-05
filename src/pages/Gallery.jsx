@@ -155,7 +155,7 @@ const Gallery = ({ settings }) => {
                             {images.map(image => (
                                 <Col key={image.gallery_id} sm={12} md={4}>
                                     <div className="gallery-item">
-                                        <img src={import.meta.env.VITE_BACKEND_API + image.gallery_imagePath} className='img-fluid' alt={`Image ${image.gallery_id}`} />
+                                        <img src={import.meta.env.VITE_BACKEND_API + image.gallery_imagePath} className='img-fluid' alt={`Drashta ${image.gallery_id}`} />
                                         <p className='paragraph1 text-center tw-600 text-main'>{image.gallery_image_name}</p>
                                     </div>
                                 </Col>

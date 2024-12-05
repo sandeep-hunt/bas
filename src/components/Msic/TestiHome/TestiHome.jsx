@@ -75,7 +75,7 @@ const TestiHome = () => {
                     <div className="testihome-item">
                       <div className="testihome-inner-body boxShadowHovr">
                         <div className="testihome-inner-body-top">
-                          <img src={item.image} alt="" />
+                          <img src={item.image} alt={item.name} />
                           <h5 className='text-main'>{item.name}</h5>
                         </div>
                         <div className="testihome-inner-body-bottom">

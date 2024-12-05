@@ -18,7 +18,7 @@ const ProjectsHome = () => {
               <Link to="/dhrupad_gurukul">
                 <div className="projectshome-item h-100">
                   <h4 className='text-white'>Dhrupad Gurukul</h4>
-                  <img src={Pro_icon1} className='projecthome-icons' alt="" />
+                  <img src={Pro_icon1} className='projecthome-icons' alt="Dhrupad Gurukul" />
                   <p className='text-white paragraph3'>Revitalising pristine Bhartiya Sangeet</p>
                 </div>
               </Link>
@@ -27,7 +27,7 @@ const ProjectsHome = () => {
               <Link to="/samaveda_gurukul">
                 <div className="projectshome-item h-100">
                   <h4 className='text-white'>Sāmavéda Gurukul</h4>
-                  <img src={Pro_icon2} className='projecthome-icons' alt="" />
+                  <img src={Pro_icon2} className='projecthome-icons' alt="Sāmavéda Gurukul" />
                   <p className='text-white paragraph3'>Pre-historic Melodies & Wisdom</p>
                 </div>
               </Link>
@@ -36,7 +36,7 @@ const ProjectsHome = () => {
             <Link to="/girvaan_bhasa">
               <div className="projectshome-item h-100">
                 <h4 className='text-white'>Gīrvāṇ Bhasa</h4>
-                <img src={Pro_icon3} className='projecthome-icons' alt="" />
+                <img src={Pro_icon3} className='projecthome-icons' alt="Gīrvāṇ Bhasa" />
                 <p className='text-white paragraph3'>A bridge to divinity</p>
               </div>
             </Link>
@@ -45,7 +45,7 @@ const ProjectsHome = () => {
             <Link to="/jyotisha_gurkul">
               <div className="projectshome-item h-100">
                 <h4 className='text-white'>Jyotiśa Gurukul</h4>
-                <img src={Pro_icon4} className='projecthome-icons' alt="" />
+                <img src={Pro_icon4} className='projecthome-icons' alt="Jyotiśa Gurukul" />
                 <p className='text-white paragraph3'>Eyes of the Véda-s</p>
               </div>
             </Link>

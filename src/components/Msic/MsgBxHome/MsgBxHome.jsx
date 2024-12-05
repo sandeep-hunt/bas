@@ -11,7 +11,7 @@ const MsgBxHome = () => {
                     <Row>
                         <Col sm={12} md={6}>
                             <div className="msgbxhome-imgcont">
-                                <img src={AboutImg} className='msgbxhome-img' alt="" />
+                                <img src={AboutImg} className='msgbxhome-img' alt="Dr. Subroto Roy" />
                                 <h4 className='text-main'>Dr. Subroto Roy</h4>
                             </div>
                         </Col>

@@ -231,7 +231,7 @@ const AboutUs = ({ setsettings }) => {
                     <div className="aumv">
                         <Row>
                             <Col sm={12} lg={5} className='d-flex justify-content-center'>
-                                <img src={AboutImg} className='img-fluid' alt="" />
+                                <img src={AboutImg} className='img-fluid' alt="drashta mission" />
                             </Col>
                             <Col sm={12} lg={7} className='d-flex align-items-center justify-content-center'>
                                 <div className="aumvtp">
@@ -248,7 +248,7 @@ const AboutUs = ({ setsettings }) => {
                                 </div>
                             </Col>
                             <Col sm={12} lg={5} className='d-flex justify-content-center order-lg-2 order-1'>
-                                <img src={AboutImg1} className='img-fluid' alt="" />
+                                <img src={AboutImg1} className='img-fluid' alt="drashta vission" />
                             </Col>
                         </Row>
                     </div>
@@ -263,7 +263,7 @@ const AboutUs = ({ setsettings }) => {
                                             <span className='subHdng'>Founding Director</span>
                                         </div>
                                         <div className="auotinrit">
-                                            <img src={Team1} className='img-fluid' alt="" />
+                                            <img src={Team1} className='img-fluid' alt="Prof. Dr. Subroto Roy" />
                                         </div>
                                     </div>
                                 </Col>
@@ -274,7 +274,7 @@ const AboutUs = ({ setsettings }) => {
                                             <span className='subHdng'>Director</span>
                                         </div>
                                         <div className="auotinrit">
-                                            <img src={Team2} className='img-fluid' alt="" />
+                                            <img src={Team2} className='img-fluid' alt="Vijay Koli" />
                                         </div>
                                     </div>
                                 </Col>
@@ -285,7 +285,7 @@ const AboutUs = ({ setsettings }) => {
                                             <span className='subHdng'>Quality Assurance Director</span>
                                         </div>
                                         <div className="auotinrit">
-                                            <img src={Team3} className='img-fluid' alt="" />
+                                            <img src={Team3} className='img-fluid' alt="Smt. Alpana Ganguly" />
                                         </div>
                                     </div>
                                 </Col>
@@ -296,7 +296,7 @@ const AboutUs = ({ setsettings }) => {
                                             <span className='subHdng'>Head of Sustainability Projects</span>
                                         </div>
                                         <div className="auotinrit">
-                                            <img src={Team4} className='img-fluid' alt="" />
+                                            <img src={Team4} className='img-fluid' alt="Smt. Apurva Sathe" />
                                         </div>
                                     </div>
                                 </Col>
@@ -330,7 +330,7 @@ const AboutUs = ({ setsettings }) => {
                                                                 className="order-1 order-lg-2" // Image second on larger devices, first on smaller
                                                             >
                                                                 <div className="auabcnt-itmlf">
-                                                                    <img src={item.image} className="img-fluid" alt="" />
+                                                                    <img src={item.image} className="img-fluid" alt={item.name} />
                                                                 </div>
                                                                 <div className="auabcnt-itmrt">
                                                                     <h4 className="m-0">{item.name}</h4>
@@ -346,7 +346,7 @@ const AboutUs = ({ setsettings }) => {
                                                                 className="order-1" // Image first by default
                                                             >
                                                                 <div className="auabcnt-itmlf">
-                                                                    <img src={item.image} className="img-fluid" alt="" />
+                                                                    <img src={item.image} className="img-fluid" alt={item.name} />
                                                                 </div>
                                                                 <div className="auabcnt-itmrt">
                                                                     <h4 className="m-0">{item.name}</h4>

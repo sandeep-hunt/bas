@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Col, Row, Button } from 'react-bootstrap'
-import Profile from '../../../assets/images/msic/profile.png'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
-// import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import './BlogsList.css'
 import axios from 'axios';
 
@@ -143,10 +141,6 @@ const BlogsList = () => {
     return (
         <React.Fragment>
             <div className="posts-container blog-list">
-                {/* <Breadcrumb>
-                    <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
-                    <Breadcrumb.Item active>Blogs</Breadcrumb.Item>
-                </Breadcrumb> */}
                 <Row className="g-3">
                     {Blogs.map((item, index) => (
                         <Col xs={12} key={index}>
@@ -161,7 +155,7 @@ const BlogsList = () => {
                                                 <h4 className='text-main'><Link className='text-main' to={"/blogs/"+item.blog_slug}>{item.blog_title}</Link></h4>
                                                 <div className="post-meta">
                                                     <div className="post-meta-inner">
-                                                        <img src={import.meta.env.VITE_BACKEND_API + item.user_profile} alt="/" className="rounded-circle" width={48} height={48} />
+                                                        <img src={import.meta.env.VITE_BACKEND_API + item.user_profile} alt={'Drashta '+item.full_name} className="rounded-circle" width={48} height={48} />
                                                         <div className="post-meta-inner-text">
                                                             <h6 className='text-main mb-0 text-semibold'>{item.full_name}</h6>
                                                             <span className='subHdng'>

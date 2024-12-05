@@ -29,7 +29,7 @@ const VideoHome = () => {
         <React.Fragment>
             <div className="videohome-container">
                 <div className="videohome-inner">
-                    <img src={Play_Btn} className='img-fluid' alt="" onClick={openPopUp} />
+                    <img src={Play_Btn} className='img-fluid' alt="subarto roy video playback" onClick={openPopUp} />
                     <div className="popUp">
                         <img src={Close_Btn} className='close_btn' onClick={closePopUp} alt="" />
                         <iframe className='iframeVdo' width="560" height="315" src={src} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>

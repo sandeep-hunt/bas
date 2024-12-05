@@ -18,28 +18,28 @@ const GalleryHome = () => {
         <div className="galleryhome-inner">
           <Row>
             <Col sm={6} md={4} lg={3}>
-            <img src={Gallery1} className='img-fluid' alt="" />
+            <img src={Gallery1} className='img-fluid' alt="subarto roy" />
             </Col>
             <Col sm={6} md={4} lg={3}>
-            <img src={Gallery3} className='img-fluid' alt="" />
+            <img src={Gallery3} className='img-fluid' alt="saarc cultural center foundation day" />
             </Col>
             <Col sm={6} md={4} lg={3}>
-            <img src={Gallery5} className='img-fluid' alt="" />
+            <img src={Gallery5} className='img-fluid' alt="subarto roy gifting" />
             </Col>
             <Col sm={6} md={4} lg={3}>
-            <img src={Gallery7} className='img-fluid' alt="" />
+            <img src={Gallery7} className='img-fluid' alt="musical event" />
             </Col>
             <Col sm={6} md={4} lg={3}>
-            <img src={Gallery2} className='img-fluid' alt="" />
+            <img src={Gallery2} className='img-fluid' alt="drashta outing in the event day" />
             </Col>
             <Col sm={6} md={4} lg={3}>
-            <img src={Gallery4} className='img-fluid' alt="" />
+            <img src={Gallery4} className='img-fluid' alt="drashta award winning to subarto roy" />
             </Col>
             <Col sm={6} md={6} lg={3}>
-            <img src={Gallery6} className='img-fluid' alt="" />
+            <img src={Gallery6} className='img-fluid' alt="drashta members" />
             </Col>
             <Col sm={6} md={6} lg={3}>
-            <img src={Gallery8} className='img-fluid' alt="" />
+            <img src={Gallery8} className='img-fluid' alt="drashta subarto roy sining" />
             </Col>
           </Row>
         </div>
