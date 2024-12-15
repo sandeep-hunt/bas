@@ -12,7 +12,7 @@ const JoinHome = () => {
                 <Container className='h-100'>
                     <div className="joinhome-inner">
                         <h2 className='text-main text-bold'>Be A Part Of Our Journey</h2>
-                        <p className='paragraph1 text-main'>Join our community to stay updated with our monthly cultural events and initiatives!</p>
+                        <p className='paragraph1 text-main'>Join our community to stay updated with our monthly Saṁskriti events and initiatives!</p>
                         <div>
                             <Link to="/join-us" className="btn-link">Join Us&nbsp;&nbsp;<FontAwesomeIcon size='sm' icon={faArrowRight} /></Link>
                         </div>

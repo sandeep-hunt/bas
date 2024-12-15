@@ -61,7 +61,7 @@ function Header() {
                       <Col sm={12} lg={6}>
                         <NavDropdown.Item as={Link} to="/dhrupad_gurukul" onClick={handleCloseOffcanvas}>
                           <strong className="dropdown-menu-text">Dhrupad Gurukul</strong>
-                          <p className="dropdown-menu-tag">Revitalising pristine Bhāratīya Sangeet</p>
+                          <p className="dropdown-menu-tag">Revitalising pristine Bhāratīya Sangīt</p>
                         </NavDropdown.Item>
                       </Col>
                       <Col sm={12} lg={6}>
@@ -72,14 +72,14 @@ function Header() {
                       </Col>
                       <Col sm={12} lg={6}>
                         <NavDropdown.Item as={Link} to="/girvaan_bhasa" onClick={handleCloseOffcanvas}>
-                          <strong className="dropdown-menu-text">Gīrvāṇ Bhasa</strong>
+                          <strong className="dropdown-menu-text">Gīrvāṇ Bhāṣā</strong>
                           <p className="dropdown-menu-tag">A bridge to divinity</p>
                         </NavDropdown.Item>
                       </Col>
                       <Col sm={12} lg={6}>
                         <NavDropdown.Item as={Link} to="/jyotisha_gurkul" onClick={handleCloseOffcanvas}>
                           <strong className="dropdown-menu-text">Jyotiśa Gurukul</strong>
-                          <p className="dropdown-menu-tag">Eyes of the Veda-s</p>
+                          <p className="dropdown-menu-tag">Eyes of the Véda-s</p>
                         </NavDropdown.Item>
                       </Col>
                     </Row>

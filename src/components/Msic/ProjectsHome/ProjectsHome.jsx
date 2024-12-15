@@ -19,14 +19,14 @@ const ProjectsHome = () => {
                 <div className="projectshome-item h-100">
                   <h4 className='text-white'>Dhrupad Gurukul</h4>
                   <img src={Pro_icon1} className='projecthome-icons' alt="Dhrupad Gurukul" />
-                  <p className='text-white paragraph3'>Revitalising pristine Bhartiya Sangeet</p>
+                  <p className='text-white paragraph3'>Revitalising pristine Bhāratīya Sangīt</p>
                 </div>
               </Link>
             </Col>
             <Col sm={12} md={6} lg={3}>
               <Link to="/samaveda_gurukul">
                 <div className="projectshome-item h-100">
-                  <h4 className='text-white'>Sāmavéda Gurukul</h4>
+                  <h4 className='text-white'> Sāmavéda Gurukul</h4>
                   <img src={Pro_icon2} className='projecthome-icons' alt="Sāmavéda Gurukul" />
                   <p className='text-white paragraph3'>Pre-historic Melodies & Wisdom</p>
                 </div>
@@ -35,7 +35,7 @@ const ProjectsHome = () => {
             <Col sm={12} md={6} lg={3}>
             <Link to="/girvaan_bhasa">
               <div className="projectshome-item h-100">
-                <h4 className='text-white'>Gīrvāṇ Bhasa</h4>
+                <h4 className='text-white'>Gīrvāṇ Bhāṣā</h4>
                 <img src={Pro_icon3} className='projecthome-icons' alt="Gīrvāṇ Bhasa" />
                 <p className='text-white paragraph3'>A bridge to divinity</p>
               </div>

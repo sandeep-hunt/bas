@@ -219,14 +219,14 @@ const AboutUs = ({ setsettings }) => {
                         <Breadcrumb.Item active><img src={EditIcon} className='img-fluid' alt="" />About Us</Breadcrumb.Item>
                     </Breadcrumb>
                     <h2 className='text-white'>About Us</h2>
-                    <p className='text-white paragraph2'>We are dedicated to preserving and promoting the ancient wisdom of Vedic traditions through education, music, and Saṁskriti. Our mission is to create a platform for learning, growth, and the revival of timeless knowledge systems.</p>
+                    <p className='text-white paragraph2'>We are dedicated to preserving and promoting the ancient wisdom of Védic traditions through education, music, and Saṁskriti. Our mission is to create a platform for learning, growth, and the revival of timeless knowledge systems.</p>
                 </div>
             </div>
             <Container fluid>
                 <div className="about-container">
                     <div className="autp">
                         <h2 className='text-main tw-600 text-center'>About Us</h2>
-                        <p className='text-main paragraph1'><span className='camelCase'>B</span>hārata Āṛṣeya Saṅsthān is a dedicated initiative to celebrate, share, and sustain the essence of Bhāratīya Saṁskriti worldwide. Inspired by the vision of our ancient Ṛṣī-s, we seek to revive and promote the timeless wisdom embedded in Bhāratīya traditions, from Vedic literature to spiritual practices, shlokas, music, and holistic wellness. Through our extensive programs—such as the Dhrupad Gurukul, Sāmavéda Gurukul, and Jyotiśa Gurukul—we offer a range of cultural and educational experiences that bridge ancient teachings with contemporary understanding. Our commitment to research, publications, and global events serves as a platform to deepen awareness and respect for Bhartiya heritage, making these invaluable teachings accessible to communities across the world. Join us in our journey to honor and share the transformative power of Bhartiya Sanskriti.</p>
+                        <p className='text-main paragraph1'><span className='camelCase'>B</span>hārata Āṛṣéya Saṁsthān is a dedicated initiative to celebrate, share, and sustain the essence of Bhāratīya Saṁskriti worldwide. Inspired by the vision of our ancient Ṛṣī, we seek to revive and promote the timeless wisdom embedded in Bhāratīya traditions, from Védic literature to spiritual practices, shlokas, music, and holistic wellness. Through our extensive programmes—such as the Dhrupad Gurukul, Sāmavéda Gurukul, and Jyotiśa Gurukul—we offer a range of cultural and educational experiences that bridge ancient teachings with contemporary understanding. Our commitment to research, publications, and global events serves as a platform to deepen awareness and respect for Bhāratīya heritage, making these invaluable teachings accessible to communities across the world. Join us in our journey to honour and share the transformative power of Bhāratīya Saṁskriti.</p>
                     </div>
                     <div className="aumv">
                         <Row>
@@ -236,7 +236,7 @@ const AboutUs = ({ setsettings }) => {
                             <Col sm={12} lg={7} className='d-flex align-items-center justify-content-center'>
                                 <div className="aumvtp">
                                     <h2 className='text-main text-center tw-600'>Our Vision</h2>
-                                    <p className='text-main paragraph1'><span className='camelCase'>O</span>ur mission is to promote, preserve, and share the profound wisdom of Bhāratīya Saṁskriti, as imparted by the Rishi-s, through generations and borders. Through educational initiatives, research, Saṁskriti events, and publications, we aim to rekindle a connection with Bhāratīya traditions—spanning literature, music, shastras, meditation, and beyond—creating a bridge between ancient teachings and modern life.</p>
+                                    <p className='text-main paragraph1'><span className='camelCase'>O</span>ur mission is to promote, preserve, and share the profound wisdom of Bhāratīya Saṁskriti, as imparted by the Ṛṣī-s, through generations and borders. Through educational initiatives, research, Saṁskriti events, and publications, we aim to rekindle a connection with Bhāratīya traditions—spanning literature, music, śāstra-s, meditation, and beyond—creating a bridge between ancient teachings and modern life.</p>
                                 </div>
                             </Col>
                         </Row>

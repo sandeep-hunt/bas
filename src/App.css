@@ -442,6 +442,10 @@ textarea.form-control {
 
 .gallery-container .gallery-inner .gallery-item img {
     border-radius: 12px;
+    max-height: 302px;
+    max-width: 417px;
+    width: 100%;
+    height: 100%;
 }
 
 .pagination {

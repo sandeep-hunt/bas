@@ -34,20 +34,19 @@ const Dhrupad_Gurukul = ({ settings }) => {
       </div>
       <Container fluid>
         <div className="projects-content">
-          <h4>Dhrupad – The Oral-Aural Tradition</h4>
-          <p>Dhrupad, one of the oldest and most profound forms of Indian classical music, is much more than a musical genre. It is an oral-aural tradition rooted in the transmission of knowledge through sound vibrations, known as naad. At BHASA (Bharat Arseya Sansthan), this tradition is kept alive through the teachings of Guru Dr. Suvratadev Sharmana Vandyopadhyay, who has devoted his life to imparting Dhrupad Gaan Siksha, a Vedic communication protocol.</p>
-          <h4>A Comprehensive Vedic Communication Protocol</h4>
-          <p>At its core, Dhrupad Gaan Sikṣā at BHASA represents a highly sophisticated method of transferring knowledge. It is not merely the transmission of musical notes or melodic patterns but also the transfer of *shakti*—a vital, divine energy that empowers both the teacher and the student. This communication goes beyond mere words or melodies; it is rooted in sound itself, where each vibration, or *shruti*, carries immense meaning and power.</p>
-          <p>Dr. Suvratadev Sharmana Vandyopadhyay transports this *shakti* through his mastery over *naad* or sound, particularly through the subtleties of *shruti*, the microtones that form the very fabric of Indian classical music. The entire process of learning Dhrupad at BHASA is deeply spiritual, engaging the student in an *aadhyaatmic* (spiritual) journey. This elevates Dhrupad beyond entertainment, placing it as a medium for inner transformation and self-realization.</p>
-          <h4>The Ḍāgarvāṇī: The Living Legacy</h4>
-          <p>The Ḍāgarvāṇī tradition of Dhrupad, one of the most prominent and revered lineages in Indian classical music, has been preserving and nurturing this ancient art form for centuries. The Ḍāgar family has upheld Dhrupad's spiritual essence and musical purity, transmitting it orally from one generation to the next.</p>
-          <p>At BHASA, the teachings of the Dagar tradition remain vibrant and intact, passed on by Dr. Sharmana Vandyopadhyay in a manner faithful to its ancient roots. The training process focuses on deep listening and understanding, immersing students in the rich world of sound and vibration. This process not only develops musicality but also creates a channel for inner awakening, as the student becomes attuned to the subtle nuances of *shruti* and *naad*.</p>
-          <h4>Dhrupad: Beyond Entertainment</h4>
-          <p>Dhrupad, unlike many modern forms of music, does not confine itself to the realm of entertainment. It is a meditative practice that brings together the body, mind, and spirit. Every note and rhythm is designed to resonate within, creating harmony not just in music but in the practitioner's being.</p>
-          <p>At BHASA, Dhrupad is taught as a sacred practice, a medium through which divine energy flows. The learning process involves rigorous discipline, devotion to the Guru, and a deep respect for the ancient wisdom that Dhrupad embodies.</p>
-          <h4>Conclusion: A Journey of Sound and Soul</h4>
-          <p>Dhrupad Gaan Siksha at BHASA is more than a music lesson—it is a journey into the essence of sound and its power to transform. Under the guidance of Dr. Suvratadev Sharmana Vandyopadhyay, this sacred tradition continues to flourish, keeping alive not just the musical heritage of Dhrupad but also its spiritual essence. For those who seek more than entertainment, Dhrupad offers a path of self-realization, making the oral-aural tradition a vital part of India's cultural and spiritual landscape.</p>
-          <p>Through this practice, the music itself becomes a vehicle for experiencing the divine, reminding us that sound, when harnessed properly, is powerful forces in the universe.</p>
+          <h4>Dhrupad : The Oral-Aural Tradition</h4>
+          <p>The roots of Dhrupada (Dhruva Pada) cannot be traced to any other musical form but to the Sāma Véda. <br/>Nātyaśātra which is referred to as Pañćam Véda and is the Upavéda of Sāma Véda, may have been compiled before 300 BCE by Bharata Muni. Its most prominent commentator - Abhinavagupta refers to Dhruvagānam as follows:</p>
+          <h5 className='text-center'><i>Prāṇabhūtan tāvad dhruvāganam prayogasya</i></h5>
+          <p className='text-center'><i>Dhruvagān is not an ordinary part but the very life of nātya</i></p>
+          <p>In Nātyaśātra, five forms of Dhruva-s are given in the context of Nātya as follows:</p>
+          <ol>
+            <li>Praveśikī</li>
+            <li>Ākṣepikī</li>
+            <li>Naiṣkramikī</li>
+            <li>Prāsādikī</li>
+            <li>Antarā</li>
+          </ol>
+          <p>However, the singers had to practice these gāna types before they were sung with the nāṭya. This in itself may have been rather attractive and may have been sung without the nāṭaka itself being enacted. <br/>This may have given birth to Dhruvapāda singing which we sing today. Bharata himself writes how the Dhruva-s come from Sāma Vēda. The project <strong>Academy of Dhrupad Music & Research (ADMUR)</strong> in itself is a way to delve into the roots of Dhruvapada singing of today. But the search must happen through practice combined with library referencing. Hence the focus in <strong>ADMUR</strong> is on practice leading to insights followed by verification. Learning could also happen through conjecturing & refutations in the Upaniṣadic manner.</p>
         </div>
       </Container>
     </React.Fragment>

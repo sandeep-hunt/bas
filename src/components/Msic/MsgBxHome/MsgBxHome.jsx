@@ -19,7 +19,7 @@ const MsgBxHome = () => {
                             <div className="msgbxhome-bx">
                                 <h3 className='text-main text-center'>Director’s Message</h3>
                                 <p className='paragraph1'>What we pride as Bhārata is the gift of our Ṛṣī.
-                                They, not only gave us Véda-s but also successfully embedded their knowledge in our daily living. However in the name of modernity we have created unsustainable world which require a realignment with the worldview of our Ṛṣī. Bhārata Āṛṣeya Saṅsthān is an initiative to catelised the process of this realignment.</p>
+                                They, not only gave us Véda-s but also successfully embedded their knowledge in our daily living. However in the name of modernity we have created unsustainable world which require a realignment with the worldview of our Ṛṣī. Bhārata Āṛṣéya  Saṁsthān is an initiative to catelised the process of this realignment.</p>
                             </div>
                         </Col>
                     </Row>

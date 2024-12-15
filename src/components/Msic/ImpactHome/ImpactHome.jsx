@@ -12,12 +12,12 @@ const ImpactHome = () => {
                         <Col sm={6} md={6} lg={3}>
                             <div className="impacthome-item">
                                 <span className='text-main splHeadng'>50+</span>
-                                <p className='text-gray paragraph2'>Lecture demonstrations<br/>across the globe</p>
+                                <p className='text-gray paragraph2'>Lecture demonstrations across the globe</p>
                             </div>
                         </Col>
                         <Col sm={6} md={6} lg={3}>
                             <div className="impacthome-item">
-                                <span className='text-main splHeadng'>60</span>
+                                <span className='text-main splHeadng'>63</span>
                                 <p className='text-gray paragraph2'>Global performances</p>
                             </div>
                         </Col>
@@ -30,7 +30,7 @@ const ImpactHome = () => {
                         <Col sm={6} md={6} lg={3}>
                             <div className="impacthome-item">
                                 <span className='text-main splHeadng'>110</span>
-                                <p className='text-gray paragraph2'>Publications in Journals,<br/>Magazines, Newspapers</p>
+                                <p className='text-gray paragraph2'>Publications in Journals, Magazines, Newspapers</p>
                             </div>
                         </Col>
                     </Row>
