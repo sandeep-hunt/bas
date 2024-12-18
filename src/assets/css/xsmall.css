@@ -65,12 +65,12 @@
     }
 
     .navbar .container-fluid {
-        padding: 1px 10px !important;
+        padding: 1px 23px !important;
     }
 
     .navbar .logo {
-        width: 55px !important;
-        height: 55px !important;
+        width: 60px !important;
+        height: 60px !important;
     }
 
     .navbar-nav {

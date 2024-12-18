@@ -68,6 +68,11 @@
         padding: 4px 130px !important;
     }
 
+    .navbar .logo {
+        width: 85px !important;
+        height: 85px !important;
+    }
+
     .navbar-nav {
         gap: 20px !important;
     }
