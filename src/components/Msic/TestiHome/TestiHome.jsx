@@ -4,6 +4,8 @@ import Slider from "react-slick"
 import Testi1 from '../../../assets/images/testimonials/1.png'
 import Testi2 from '../../../assets/images/testimonials/2.png'
 import Testi3 from '../../../assets/images/testimonials/3.png'
+import Testi4 from '../../../assets/images/testimonials/4.png'
+import Testi5 from '../../../assets/images/testimonials/5.png'
 
 const data = [
   {
@@ -20,6 +22,16 @@ const data = [
     image: Testi3,
     name: 'Shilpa Shanker - Dhrupad Singer',
     description: 'Dr. Suvratadev Sharmana Vandopadhyay has been a transformative guide in my Dhrupad journey. His profound wisdom and insightful teachings have brought a new joy and depth to my Dhrupad practice. I am grateful for his timely and impactful guidance.',
+  },
+  {
+    image: Testi4,
+    name: 'Vijita Vishwakumar - Teacher',
+    description: 'I had the privilege of attending the live Dhrupad Darpan baithak and it was truly a transcendental experience. The entire audience was transported to another realm of acoustic beauty punctuated by blissful tanpura strains. The intricate negotiation of raga & tala proved the Bharatiya view that the animate and inanimate worlds energise each other seeking freedom from their very characteristhc grossness.',
+  },
+  {
+    image: Testi5,
+    name: 'Saurebh Shindde - Cinematographer',
+    description: 'I was first invited to a Dhrupad Darpan Baithak as a videographer, to shoot the event. Interestingly, when I began shooting, I experienced something unique. My vision acquired a rhythm and my hands started operating the camera differently. It was as if something was guiding my movements and creating images. Since then, Dhrupad has become part of my life and my playlist!',
   },
 ]
 
