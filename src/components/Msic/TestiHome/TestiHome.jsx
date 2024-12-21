@@ -26,12 +26,12 @@ const data = [
   {
     image: Testi4,
     name: 'Vijita Vishwakumar - Teacher',
-    description: 'I had the privilege of attending the live Dhrupad Darpan baithak and it was truly a transcendental experience. The entire audience was transported to another realm of acoustic beauty punctuated by blissful tanpura strains. The intricate negotiation of raga & tala proved the Bharatiya view that the animate and inanimate worlds energise each other seeking freedom from their very characteristhc grossness.',
+    description: 'I attended the live Dhrupad Darpan baithak, a transcendental journey of acoustic beauty. The seamless interplay of raga and tala embodied the Bharatiya belief in the union of the animate and inanimate, transcending their earthly bounds.',
   },
   {
     image: Testi5,
     name: 'Saurebh Shindde - Cinematographer',
-    description: 'I was first invited to a Dhrupad Darpan Baithak as a videographer, to shoot the event. Interestingly, when I began shooting, I experienced something unique. My vision acquired a rhythm and my hands started operating the camera differently. It was as if something was guiding my movements and creating images. Since then, Dhrupad has become part of my life and my playlist!',
+    description: 'I first attended a Dhrupad Darpan Baithak as a videographer, but the experience transformed me. My hands found rhythm, guided by something beyond me, creating images in harmony with the music. Since then, Dhrupad has become a part of my life and playlist!',
   },
 ]
 
