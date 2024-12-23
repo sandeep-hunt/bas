@@ -112,7 +112,7 @@ const GetReceiptGenerate = ({ donationData }) => {
                             <div className="donation-recept-card-inner">
                                 <h5 className='text-main'>Donation Information:</h5>
                                 <div className="donation-receipt-card-cont">
-                                    <p className='donation-receipt-card-text'>Donation Amount: <span className='donation-receipt-card-subtext'>{donationData.donation_amount}</span></p>
+                                    <p className='donation-receipt-card-text'>Donation Amount: <span className='donation-receipt-card-subtext'>₹ {donationData.donation_amount}</span></p>
                                     <p className='donation-receipt-card-text'>Donation Date:<span className='donation-receipt-card-subtext'>&nbsp;
                                         {(new Date(donationData.donation_created_date).getDate())}&nbsp;
                                         {new Date(donationData.donation_created_date).toLocaleString('default', { month: 'long' })}&nbsp;
