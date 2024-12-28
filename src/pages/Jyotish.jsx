@@ -29,13 +29,13 @@ const Jyotish = ({ settings }) => {
                     </Breadcrumb>
                     <h2 className='text-white'>Jyotiśa Gurukul</h2>
                     <img src={Icon4} className='img-fluid mb-2' alt="" />
-                    <p className='text-white paragraph2'>Astronomical Jyotish & phal jyotish as propounded by various rishis will be taught. Palmistry, prashna Jyotiśa, nadi Jyotiśa etc. shall also be taught.</p>
+                    <p className='text-white paragraph2'>Astronomical Jyotiśa & phal Jyotiśa as propounded by various Ṛṣīs’ will be taught. Palmistry, praśna Jyotiśa, nāḍi Jyotiśa etc. shall also be taught.</p>
                 </div>
             </div>
             <Container fluid>
                 <div className="projects-content">
                     <h4>Jyotiśa: The Eyes of the Véda-s</h4>
-                    <p>Jyotiśa is revered as the eyes of Véda-s. It is also compared with the rare jewel on the head of Nāga serpent known as Nāgamaṇi. It merely illustrates how Jyotiśa is like the Nāgamaṇi of Véda – as a jewel in its crown.<br/>There is an astronomical part as well as a predictive part of Jyotiśa which are very well entrenched in Sanātan people through experience of their efficacy. Ṛṣi Parāśara & Ṛṣi Gemini are the two best-known fountainheads of two different but not contradictory Jyotiśa knowledge frameworks based on which many leaders of men and even nations depend heavily. Realizing its great importance, Bhāsa believes that no Bhāratīya Jñāna is complete without Jyotiśa. A comprehensive training program on Jyotiśa shall be offered for aspiring Jyotiśa-s. Alongside, astrological services shall also be available as Bhāsa’s sustainability project.</p>
+                    <p>Jyotiśa is revered as the eyes of Véda-s. It is also compared with the rare jewel on the head of Nāga serpent known as Nāgamaṇi. It merely illustrates how Jyotiśa is like the Nāgamaṇi of Véda – as a jewel in its crown.<br/>There is an astronomical part as well as a predictive part of Jyotiśa which are very well entrenched in Sanātan people through experience of their efficacy. Ṛṣi Parāśara & Ṛṣi Gemini are the two best-known fountainheads of two different but not contradictory Jyotiśa knowledge frameworks based on which many leaders of men and even nations depend heavily. Realizing its great importance, Bhāsa believes that no Bhāratīya Jñāna is complete without Jyotiśa. A comprehensive training Programme on Jyotiśa shall be offered for aspiring Jyotiśa-s. Alongside, astrological services shall also be available as Bhāsa’s sustainability project.</p>
                 </div>
             </Container>
         </React.Fragment>
