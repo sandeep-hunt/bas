@@ -8,6 +8,10 @@ a {
     font-weight: bold;
 }
 
+.text-br {
+    color: #1F1500;
+}
+
 .text-main {
     color: var(--bg_clr2);
 }

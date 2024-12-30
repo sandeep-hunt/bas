@@ -29,7 +29,7 @@ const Jyotish = ({ settings }) => {
                     </Breadcrumb>
                     <h2 className='text-white'>Jyotiśa Gurukul</h2>
                     <img src={Icon4} className='img-fluid mb-2' alt="" />
-                    <p className='text-white paragraph2'>Astronomical Jyotiśa & phal Jyotiśa as propounded by various Ṛṣīs’ will be taught. Palmistry, praśna Jyotiśa, nāḍi Jyotiśa etc. shall also be taught.</p>
+                    <p className='text-white paragraph2 tw-600'>Astronomical Jyotiśa & phal Jyotiśa as propounded by various Ṛṣī-s will be taught. Palmistry, praśṇa Jyotiśa, nāḍi Jyotiśa etc. shall also be taught.</p>
                 </div>
             </div>
             <Container fluid>

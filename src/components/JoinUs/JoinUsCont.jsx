@@ -16,8 +16,8 @@ const JoinUsCont = () => {
             <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}><img src={HomeIcon} className='img-fluid' alt="" />Home</Breadcrumb.Item>
             <Breadcrumb.Item active><img src={EditIcon} className='img-fluid' alt="" />Join Us</Breadcrumb.Item>
           </Breadcrumb>
-          <h2 className='text-white'>Join Us</h2>
-          <p className='text-white paragraph1'>Become a part of our vibrant community! Engage in enriching workshops, Saṁskriti Programmes, and events that celebrate tradition and knowledge. Together, let’s preserve and promote our shared heritage.</p>
+          <h2 className='text-br'>Join Us</h2>
+          <p className='text-br paragraph1'>Become a part of our vibrant community! Engage in enriching workshops, Sāṁskritik programmes, and events that celebrate tradition and knowledge. Together, let’s preserve and promote our shared heritage.</p>
         </div>
       </div>
       <JoinUsForm_init />

@@ -115,8 +115,7 @@ const Donation_FirstStep = ({ formData, setFormData, nextStep, errors }) => {
                         onChange={handleCheckboxChange}
                         required
                         label={
-                          <span className='form-checkbox-label'>
-                            I certify that above data provided by me are correct and error free. I know that all further communication shall be done at the address I have given above.</span>
+                          <span className='form-checkbox-label'>I certify that above provided information is correct and there is no mistake. I know that all further communication will be done on above provided details.</span>
                         }
                       />
                     </Form.Group>

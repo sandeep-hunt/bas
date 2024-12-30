@@ -29,7 +29,7 @@ const BlogsArticles = ({settings}) => {
             <Breadcrumb.Item active><img src={EditIcon} className='img-fluid' alt="" />Blogs & Articles</Breadcrumb.Item>
           </Breadcrumb>
           <h2 className='text-white'>Blogs & Articles</h2>
-          <p className='text-white paragraph2'>Research articles and blogs relevant to the relevant area can be accessed here.</p>
+          <p className='text-white paragraph2 tw-600'>Research articles and blogs relevant to the specific areas can be accessed here.</p>
         </div>
       </div>
       <Container fluid>

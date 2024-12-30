@@ -50,7 +50,7 @@ const data = [
         image: Advisory5,
         name: 'Dr. Parveen Parsad',
         designation: 'Chief Advisor Corporate Communications (External)',
-        description: "<h4>Dr. Parveen Prasad</h4><h5>Chief Advisor Corporate Communications (External)</h5><br/><p><span class='camelCase'>D</span>r. Parveen Prasad is a distinguished author and professor, specializing in **Human Resources (HR)** and **Leadership**. She has made significant contributions to these fields through her two published books, which are widely regarded as essential reading for HR professionals and leaders alike. Her expertise has positioned her as a sought-after **Visiting Faculty** in various management institutes, where she teaches HR subjects, imparting her vast knowledge to future business leaders.</p><p>In addition to her academic roles, Dr. Prasad is actively involved in corporate training. She curates **Masterclass sessions** for **B-Schools and corporate professionals** on a wide range of topical areas, bringing her expertise to a broader audience. These sessions, conducted under the aegis of **The Mavericks**, are designed to address emerging challenges and trends in HR, leadership, and corporate communications.</p><p>Dr. Prasad's contributions to both academia and corporate education make her a pivotal figure in shaping HR and leadership practices across industries. Through her teaching, writing, and corporate engagements, she continues to influence the next generation of professionals and leaders.</p>",
+        description: "<h4>Dr. Parveen Prasad</h4><h5>Chief Advisor Corporate Communications (External)</h5><br/><p><span class='camelCase'>D</span>r. Parveen Parsad  is a distinguished author and professor, specializing in Human Resources (HR) and Leadership. She has made significant contributions to these fields through her two published books, which are widely regarded as essential reading for HR professionals and leaders alike. Her expertise has positioned her as a sought-after Visiting Faculty in various management institutes, where she teaches HR subjects, imparting her vast knowledge to future business leaders.</p><p>In addition to her academic roles, Dr. Parsad is actively involved in corporate training. She curates Masterclass sessions for B-Schools and corporate professionals on a wide range of topical areas, bringing her expertise to a broader audience. These sessions, conducted under the aegis of The Mavericks, are designed to address emerging challenges and trends in HR, leadership, and corporate communications.</p><p>Dr. Parsad 's contributions to both academia and corporate education make her a pivotal figure in shaping HR and leadership practices across industries. Through her teaching, writing, and corporate engagements, she continues to influence the next generation of professionals and leaders.</p>",
     },
     {
         image: Advisory6,
@@ -66,9 +66,9 @@ const data = [
     },
     {
         image: Advisory2,
-        name: 'Dr.Bhagyashree Yargop',
+        name: 'Dr. Bhagyashree Yargop',
         designation: 'Chief Advisor (Védic Geography)',
-        description: "<h4>Dr. Bhagyashree Yargop</h4><h5>Coastal Geomorphologist & Researcher in Ancient Indian Geographical Knowledge</h5><br/><p><span class='camelCase'>D</span>r. Bhagyashree Yargop is a distinguished Coastal Geomorphologist with profound expertise in Ancient Indian Geographical Knowledge. Her career is highlighted by her pivotal role in establishing the **Department of Earth Sciences** at a leading university, where she has significantly shaped the academic landscape for emerging geographers and researchers. Her leadership is further demonstrated through her administrative roles as a senior college administrator, where she has seamlessly integrated her passion for education and research to influence academic policies and initiatives.</p><p>Dr. Yargop's research extends beyond traditional geographical studies, encompassing a deep exploration of Ancient Indian Geographical Knowledge. She actively investigates how historical geographical insights can be integrated with modern scientific understanding. Her contributions not only illuminate ancient practices but also enhance contemporary approaches to coastal geomorphology, thus broadening our grasp of Earth's dynamic processes.</p><p>Beyond her professional achievements, Dr. Yargop is passionate about **Indian classical music**, which complements her academic pursuits and enriches her life. Her love for travel, exploration, and reading further inspires her, allowing her to draw from a wide array of experiences and insights. Dr. Yargop’s multifaceted career continues to inspire students and researchers, making substantial contributions to both modern and traditional geographical studies.</p>",
+        description: "<h4>Dr. Bhagyashree Yargop</h4><h5>Coastal Geomorphologist & Researcher in Ancient Indian Geographical Knowledge</h5><br/><p><span class='camelCase'>D</span>r. Bhagyashree Yargop is a distinguished Coastal Geomorphologist with profound expertise in Ancient Indian Geographical Knowledge. Her career is highlighted by her pivotal role in establishing the Department of Earth Sciences at a leading university, where she has significantly shaped the academic landscape for emerging geographers and researchers. Her leadership is further demonstrated through her administrative roles as a senior college administrator, where she has seamlessly integrated her passion for education and research to influence academic policies and initiatives.</p><p>Dr. Yargop's research extends beyond traditional geographical studies, encompassing a deep exploration of Ancient Indian Geographical Knowledge. She actively investigates how historical geographical insights can be integrated with modern scientific understanding. Her contributions not only illuminate ancient practices but also enhance contemporary approaches to coastal geomorphology, thus broadening our grasp of Earth's dynamic processes.</p><p>Beyond her professional achievements, Dr. Yargop is passionate about Indian classical music, which complements her academic pursuits and enriches her life. Her love for travel, exploration, and reading further inspires her, allowing her to draw from a wide array of experiences and insights. Dr. Yargop’s multifaceted career continues to inspire students and researchers, making substantial contributions to both modern and traditional geographical studies.</p>",
     },
     {
         image: Advisory8,
@@ -219,7 +219,7 @@ const AboutUs = ({ setsettings }) => {
                         <Breadcrumb.Item active><img src={EditIcon} className='img-fluid' alt="" />About Us</Breadcrumb.Item>
                     </Breadcrumb>
                     <h2 className='text-white'>About Us</h2>
-                    <p className='text-white paragraph2'>We are dedicated to preserving and promoting the ancient wisdom of Védic traditions through education, music, and Saṁskriti. Our mission is to create a platform for learning, growth, and the revival of timeless knowledge systems.</p>
+                    <p className='text-white paragraph2 tw-600'>We are dedicated to preserving and promoting the ancient wisdom of Védic traditions through education, music, and Saṁskriti. Our mission is to create a platform for learning, growth, and the revival of timeless knowledge systems.</p>
                 </div>
             </div>
             <Container fluid>
@@ -230,25 +230,25 @@ const AboutUs = ({ setsettings }) => {
                     </div>
                     <div className="aumv">
                         <Row>
-                            <Col sm={12} lg={5} className='d-flex justify-content-center'>
-                                <img src={AboutImg} className='img-fluid' alt="drashta mission" />
-                            </Col>
                             <Col sm={12} lg={7} className='d-flex align-items-center justify-content-center'>
                                 <div className="aumvtp">
                                     <h2 className='text-main text-center tw-600'>Our Vision</h2>
                                     <p className='text-main paragraph1'><span className='camelCase'>O</span>ur mission is to promote, preserve, and share the profound wisdom of Bhāratīya Saṁskriti, as imparted by the Ṛṣī-s, through generations and borders. Through educational initiatives, research, Saṁskriti events, and publications, we aim to rekindle a connection with Bhāratīya traditions—spanning literature, music, śāstra-s, meditation, and beyond—creating a bridge between ancient teachings and modern life.</p>
                                 </div>
                             </Col>
+                            <Col sm={12} lg={5} className='d-flex justify-content-center'>
+                                <img src={AboutImg} className='img-fluid' alt="drashta mission" />
+                            </Col>
                         </Row>
                         <Row>
-                            <Col sm={12} lg={7} className='d-flex align-items-center justify-content-center order-lg-1 order-2'>
+                            <Col sm={12} lg={5} className='d-flex justify-content-center order-lg-1 order-2'>
+                                <img src={AboutImg1} className='img-fluid' alt="drashta vission" />
+                            </Col>
+                            <Col sm={12} lg={7} className='d-flex align-items-center justify-content-center order-lg-2 order-1'>
                                 <div className="aumvbtm">
                                     <h2 className='text-main tw-600 text-center'>Our Mission</h2>
                                     <p className='text-main paragraph1'><span className='camelCase'>T</span>o be a global beacon of Bhāratīya wisdom and Saṁskritik heritage, inspiring individuals and communities worldwide to embrace, respect, and preserve the ancient knowledge and traditions of our Ṛṣī-s, fostering a harmonious and sustainable world aligned with their timeless worldview.</p>
                                 </div>
-                            </Col>
-                            <Col sm={12} lg={5} className='d-flex justify-content-center order-lg-2 order-1'>
-                                <img src={AboutImg1} className='img-fluid' alt="drashta vission" />
                             </Col>
                         </Row>
                     </div>
@@ -256,7 +256,7 @@ const AboutUs = ({ setsettings }) => {
                         <h2 className='text-main text-center tw-600'>Our Team</h2>
                         <div className="auotinr">
                             <Row>
-                                <Col xs={12} sm={6} lg={3}>
+                                <Col xs={12} sm={6} lg={4} className='d-flex justify-content-center'>
                                     <div className="auotinitm">
                                         <div className="auotinrct">
                                             <h5 className='m-0'>Prof. Dr. Subroto Roy</h5>
@@ -267,7 +267,7 @@ const AboutUs = ({ setsettings }) => {
                                         </div>
                                     </div>
                                 </Col>
-                                <Col xs={12} sm={6} lg={3}>
+                                <Col xs={12} sm={6} lg={4} className='d-flex justify-content-center'>
                                     <div className="auotinitm">
                                         <div className="auotinrct">
                                             <h5 className='m-0'>Vijay Koli</h5>
@@ -278,7 +278,7 @@ const AboutUs = ({ setsettings }) => {
                                         </div>
                                     </div>
                                 </Col>
-                                <Col xs={12} sm={6} lg={3}>
+                                <Col xs={12} sm={6} lg={4} className='d-flex justify-content-center'>
                                     <div className="auotinitm">
                                         <div className="auotinrct">
                                             <h5 className='m-0'>Smt. Alpana Ganguly</h5>
@@ -286,17 +286,6 @@ const AboutUs = ({ setsettings }) => {
                                         </div>
                                         <div className="auotinrit">
                                             <img src={Team3} className='img-fluid' alt="Smt. Alpana Ganguly" />
-                                        </div>
-                                    </div>
-                                </Col>
-                                <Col xs={12} sm={6} lg={3}>
-                                    <div className="auotinitm">
-                                        <div className="auotinrct">
-                                            <h5 className='m-0'>Smt. Apurva Sathe</h5>
-                                            <span className='subHdng'>Head of Sustainability Projects</span>
-                                        </div>
-                                        <div className="auotinrit">
-                                            <img src={Team4} className='img-fluid' alt="Smt. Apurva Sathe" />
                                         </div>
                                     </div>
                                 </Col>
@@ -313,32 +302,6 @@ const AboutUs = ({ setsettings }) => {
                                             <div className="auabcnt-itm" key={index}>
                                                 <Row>
                                                     {index % 2 === 0 ? ( // Check if the index is even
-                                                        <>
-                                                            <Col
-                                                                sm={12}
-                                                                lg={8}
-                                                                className="order-2 order-lg-1" // Content first on larger devices, second on smaller
-                                                            >
-                                                                <div
-                                                                    className="auabcnt-itmrit"
-                                                                    dangerouslySetInnerHTML={{ __html: item.description }}
-                                                                ></div>
-                                                            </Col>
-                                                            <Col
-                                                                sm={12}
-                                                                lg={4}
-                                                                className="order-1 order-lg-2" // Image second on larger devices, first on smaller
-                                                            >
-                                                                <div className="auabcnt-itmlf">
-                                                                    <img src={item.image} className="img-fluid" alt={item.name} />
-                                                                </div>
-                                                                <div className="auabcnt-itmrt">
-                                                                    <h4 className="m-0">{item.name}</h4>
-                                                                    <p className="t-600">{item.designation}</p>
-                                                                </div>
-                                                            </Col>
-                                                        </>
-                                                    ) : (
                                                         <>
                                                             <Col
                                                                 sm={12}
@@ -362,6 +325,32 @@ const AboutUs = ({ setsettings }) => {
                                                                     className="auabcnt-itmrit"
                                                                     dangerouslySetInnerHTML={{ __html: item.description }}
                                                                 ></div>
+                                                            </Col>
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            <Col
+                                                                sm={12}
+                                                                lg={8}
+                                                                className="order-2 order-lg-1" // Content first on larger devices, second on smaller
+                                                            >
+                                                                <div
+                                                                    className="auabcnt-itmrit"
+                                                                    dangerouslySetInnerHTML={{ __html: item.description }}
+                                                                ></div>
+                                                            </Col>
+                                                            <Col
+                                                                sm={12}
+                                                                lg={4}
+                                                                className="order-1 order-lg-2" // Image second on larger devices, first on smaller
+                                                            >
+                                                                <div className="auabcnt-itmlf">
+                                                                    <img src={item.image} className="img-fluid" alt={item.name} />
+                                                                </div>
+                                                                <div className="auabcnt-itmrt">
+                                                                    <h4 className="m-0">{item.name}</h4>
+                                                                    <p className="t-600">{item.designation}</p>
+                                                                </div>
                                                             </Col>
                                                         </>
                                                     )}
