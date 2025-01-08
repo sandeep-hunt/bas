@@ -17,7 +17,7 @@ const Girvaan_Bhasa = ({ settings }) => {
     return (
         <React.Fragment>
             <Helmet>
-                <title>{`${settings?.site_title || "Loading..."} | Gīrvāṇ Bhāṣā`}</title>
+                <title>{`${settings?.site_title || "BHASA"} | Gīrvāṇ Bhāṣā`}</title>
                 <meta name="description" content={settings.site_description} />
                 <meta name="keywords" content={settings.site_keywords}></meta>
             </Helmet>

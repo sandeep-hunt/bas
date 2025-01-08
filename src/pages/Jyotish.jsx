@@ -17,7 +17,7 @@ const Jyotish = ({ settings }) => {
     return (
         <React.Fragment>
         <Helmet>
-            <title>{`${settings?.site_title || "Loading..."} | Jyotiśa Gurukul`}</title>
+            <title>{`${settings?.site_title || "BHASA"} | Jyotiśa Gurukul`}</title>
             <meta name="description" content={settings.site_description} />
             <meta name="keywords" content={settings.site_keywords}></meta>
         </Helmet>

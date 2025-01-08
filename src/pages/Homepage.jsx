@@ -21,7 +21,7 @@ const Homepage = ({ settings }) => {
   return (
     <React.Fragment>
       <Helmet>
-        <title>{`${settings?.site_title || "Loading..."}`}</title>
+        <title>{`${settings?.site_title || "BHASA"}`}</title>
         <meta name="description" content={settings?.site_description} />
         <meta name="keywords" content={settings?.site_keywords}></meta>
       </Helmet>
